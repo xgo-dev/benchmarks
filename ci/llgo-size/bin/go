@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -u
+
+real_go="${BENT_REAL_GO:-}"
+log_file="${BENT_TIMING_LOG:-}"
+if [[ -z "$real_go" || -z "$log_file" ]]; then
+  echo "timed go wrapper requires BENT_REAL_GO and BENT_TIMING_LOG" >&2
+  exit 2
+fi
+
+# Bent invokes `go env GOROOT GOVERSION` and consumes its stdout.  Instrument
+# only dependency acquisition, otherwise keep the real Go command transparent.
+if [[ "${1:-}" != "get" ]]; then
+  exec "$real_go" "$@"
+fi
+
+benchmark="${BENT_BENCH:-$(basename "$PWD")}"
+start_ns="$(date +%s%N)"
+{
+  printf '\n[bent-download] start benchmark=%s cwd=%s command=' "$benchmark" "$PWD"
+  printf '%q ' "$real_go" "$@"
+  printf '\n'
+  "$real_go" "$@"
+  status=$?
+  end_ns="$(date +%s%N)"
+  duration_ms=$(( (end_ns - start_ns) / 1000000 ))
+  printf '[bent-download] end benchmark=%s status=%d duration_ms=%d\n' "$benchmark" "$status" "$duration_ms"
+  exit "$status"
+} >> "$log_file" 2>&1

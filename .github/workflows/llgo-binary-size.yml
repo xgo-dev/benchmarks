@@ -1,0 +1,219 @@
+name: LLGo binary size
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ci/llgo-size/site/**
+      - ci/llgo-size/publish-site.sh
+      - ci/llgo-size/prepare-pages-branch.sh
+      - .github/workflows/llgo-binary-size-pages.yml
+  pull_request:
+    paths-ignore:
+      - ci/llgo-size/site/**
+      - ci/llgo-size/publish-site.sh
+      - ci/llgo-size/prepare-pages-branch.sh
+      - .github/workflows/llgo-binary-size-pages.yml
+  # GitHub evaluates repository-dispatch workflows from the receiving
+  # repository's default branch. Merge this workflow there before enabling
+  # the sender in xgo-dev/llgo.
+  repository_dispatch:
+    types: [llgo-main-updated]
+  workflow_dispatch:
+    inputs:
+      llgo_commit:
+        description: Optional full xgo-dev/llgo commit SHA to benchmark
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: llgo-binary-size-pages
+  cancel-in-progress: false
+
+jobs:
+  binary-size:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read pinned toolchain versions
+        env:
+          DISPATCH_SOURCE_REPOSITORY: ${{ github.event.client_payload.source_repository }}
+          DISPATCH_LLGO_REPOSITORY: ${{ github.event.client_payload.llgo_repository }}
+          DISPATCH_LLGO_COMMIT: ${{ github.event.client_payload.llgo_commit }}
+          MANUAL_LLGO_COMMIT: ${{ inputs.llgo_commit }}
+        run: |
+          set -euo pipefail
+          set -a
+          source ci/llgo-size/llgo-version.env
+          set +a
+
+          # The dispatched SHA is the run's runtime pin and is retained in
+          # results.json / Pages. Restrict automatic events to official LLGo.
+          if [[ "$GITHUB_EVENT_NAME" == "repository_dispatch" ]]; then
+            if [[ "$DISPATCH_SOURCE_REPOSITORY" != "xgo-dev/llgo" || \
+                  "$DISPATCH_LLGO_REPOSITORY" != "xgo-dev/llgo" ]]; then
+              echo "refusing binary-size dispatch from ${DISPATCH_SOURCE_REPOSITORY:-unknown}" >&2
+              exit 1
+            fi
+            if [[ ! "$DISPATCH_LLGO_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+              echo "invalid dispatched LLGo commit: ${DISPATCH_LLGO_COMMIT:-missing}" >&2
+              exit 1
+            fi
+            LLGO_REPOSITORY="$DISPATCH_LLGO_REPOSITORY"
+            LLGO_COMMIT="$DISPATCH_LLGO_COMMIT"
+          elif [[ -n "$MANUAL_LLGO_COMMIT" ]]; then
+            if [[ ! "$MANUAL_LLGO_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+              echo "manual LLGo commit must be a full 40-character SHA" >&2
+              exit 1
+            fi
+            LLGO_REPOSITORY=xgo-dev/llgo
+            LLGO_COMMIT="$MANUAL_LLGO_COMMIT"
+          fi
+
+          printf 'LLGO_REPOSITORY=%s\n' "$LLGO_REPOSITORY" >> "$GITHUB_ENV"
+          printf 'LLGO_COMMIT=%s\n' "$LLGO_COMMIT" >> "$GITHUB_ENV"
+          printf 'GO_VERSION=%s\n' "$GO_VERSION" >> "$GITHUB_ENV"
+          printf 'LLVM_VERSION=%s\n' "$LLVM_VERSION" >> "$GITHUB_ENV"
+          mkdir -p .ci
+          printf '%s\n' "$GO_VERSION" > .ci/go-version
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: .ci/go-version
+
+      - name: Install LLVM and CMake dependencies
+        run: |
+          set -euo pipefail
+          source ci/llgo-size/timing.sh
+          time_command "APT package index update" sudo apt-get update
+          time_command "APT package installation" \
+            sudo apt-get install -y cmake clang-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev ninja-build \
+              libuv1-dev libgc-dev libffi-dev
+      - name: Check out pinned LLGo
+        run: |
+          set -euo pipefail
+          source ci/llgo-size/timing.sh
+          time_command "Clone pinned LLGo repository" \
+            git clone --progress --filter=blob:none --no-checkout "https://github.com/${LLGO_REPOSITORY}.git" .ci/llgo
+          time_command "Fetch pinned LLGo commit" \
+            git -C .ci/llgo fetch --progress --no-tags --depth=1 origin "$LLGO_COMMIT"
+          time_command "Check out pinned LLGo commit" \
+            git -C .ci/llgo checkout --detach "$LLGO_COMMIT"
+      - name: Build LLGo and the LTO plugin
+        run: |
+          set -euo pipefail
+          source ci/llgo-size/timing.sh
+          export GOROOT="$(go env GOROOT)"
+          export PATH="$GOROOT/bin:/usr/lib/llvm-${LLVM_VERSION}/bin:$PATH"
+          export LLGO_ROOT="$GITHUB_WORKSPACE/.ci/llgo"
+          (
+            cd "$LLGO_ROOT"
+            time_command "Download LLGo Go modules" go mod download -x
+            time_command "Build LLGo command" go build -tags=dev -o "$LLGO_ROOT/llgo" ./cmd/llgo
+          )
+          time_command "Configure LLGo LTO plugin" \
+            cmake -S "$LLGO_ROOT/ltoplugin" -B "$LLGO_ROOT/ltoplugin/build" \
+              -DLLVM_DIR="/usr/lib/llvm-${LLVM_VERSION}/lib/cmake/llvm" \
+              -DCMAKE_BUILD_TYPE=Release -G Ninja
+          time_command "Build LLGo LTO plugin" \
+            cmake --build "$LLGO_ROOT/ltoplugin/build" --parallel 2 --verbose
+      - name: Build five binary-size configurations with Bent
+        env:
+          BENT_BUILD_WORKERS: 4
+          LLGO_BIN: ${{ github.workspace }}/.ci/llgo/llgo
+          LLGO_LTO_PLUGIN: ${{ github.workspace }}/.ci/llgo/ltoplugin/build/LLGOLTOPlugin.so
+          LLGO_ROOT: ${{ github.workspace }}/.ci/llgo
+        run: |
+          set -euo pipefail
+          source ci/llgo-size/timing.sh
+          export GOROOT="$(go env GOROOT)"
+          export PATH="$GOROOT/bin:/usr/lib/llvm-${LLVM_VERSION}/bin:$PATH"
+          echo "[toolchain] selected llvm-config:"
+          llvm-config --version
+          echo "[toolchain] selected clang++:"
+          clang++ --version
+          time_command "Build Bent command" go build -o .ci/bent ./cmd/bent
+          mkdir -p .ci/bent-run
+          export BENT_REAL_GO="$GOROOT/bin/go"
+          export BENT_TIMING_LOG="$GITHUB_WORKSPACE/.ci/bent-run/download-timings.log"
+          export PATH="$GITHUB_WORKSPACE/ci/llgo-size/bin:$PATH"
+          print_download_log() {
+            if [[ -s "$BENT_TIMING_LOG" ]]; then
+              echo "::group::Bent dependency download timings and output"
+              cat "$BENT_TIMING_LOG"
+              echo "::endgroup::"
+            else
+              echo "[timing] Bent did not record dependency downloads"
+            fi
+          }
+          trap print_download_log EXIT
+          (
+            cd .ci/bent-run
+            time_command "Bent initialize run directory" \
+              "$GITHUB_WORKSPACE/.ci/bent" -I
+            time_command "Bent dependency acquisition and five-configuration build" \
+              "$GITHUB_WORKSPACE/.ci/bent" -v -report-build-time -build-only \
+                -j="$BENT_BUILD_WORKERS" \
+                -B=benchmarks-llgo-size.toml \
+                -C=configurations-llgo-size.toml
+          )
+          time_command "Generate binary-size report" \
+            bash -c 'set -o pipefail; ci/llgo-size/report.sh .ci/bent-run | tee -a "$GITHUB_STEP_SUMMARY"'
+      - name: Upload binary-size results
+        uses: actions/upload-artifact@v4
+        with:
+          name: llgo-binary-size
+          path: .ci/bent-run/results
+          if-no-files-found: error
+
+      - name: Publish binary-size history to Pages
+        if: github.event_name == 'repository_dispatch' || (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
+        env:
+          PAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          pages_dir="$GITHUB_WORKSPACE/.ci/pages"
+          bash ci/llgo-size/prepare-pages-branch.sh \
+            "$pages_dir" \
+            "https://x-access-token:${PAGES_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          ci/llgo-size/publish.sh \
+            .ci/bent-run/results \
+            "$pages_dir" \
+            ci/llgo-size/site
+  deploy-pages:
+    if: github.event_name == 'repository_dispatch' || (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
+    needs: binary-size
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out Pages source
+        uses: actions/checkout@v4
+        with:
+          ref: pages
+          path: pages-source
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Build Pages with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./pages-source
+          destination: ./_site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./_site
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,70 @@
+#!/bin/bash
+
+x=`which dwarf-goodness`
+y=`which optargorder`
+z=`which nostmt`
+tmp=tmp-bench-dwarf-$$
+bench=no
+
+# make it exist so it can be removed
+cat /dev/null > $tmp
+
+# Measures fraction of input variables to lines that are present
+if [ "x$x" = "x" ] ; then
+	echo "Can get dwarf-goodness command with 'go get github.com/dr2chase/dwarf-goodness/cmd/dwarf-goodness'"
+else
+	dwarf-goodness "$1" > $tmp
+	# has format #inputs, #present, ratio, difference
+	inputsquality=`tail -1 $tmp | awk 'BEGIN {FS=","} {print $3}'`
+	echo "tmp dwarf line quality wc = " `wc -l $tmp`
+	bench=yes
+fi
+
+# Measures fraction of function arguments that are present at function entry
+if [ "x$y" = "x" ] ; then
+	echo "Can get optargorder command with 'go get github.com/dr2chase/optargorder'"
+else
+	optargorder "$1" > $tmp
+	# has format nFunctions,argumentError,mixedRegMem,regReuse,tooManyPieces,missingSource,wrongOrder,missingDwarf,duplicated,1-totalErrors/nFunctions
+	argsquality=`tail -1 $tmp | awk 'BEGIN {FS=","} {print $10}'`
+	echo "tmp dwarf args quality wc = " `wc -l $tmp`
+	bench=yes
+fi
+
+# Measures fraction of lines mentioned in dwarf that are tagged as "is_stmt"
+if [ "x$z" = "x" ] ; then
+	echo "Can get nostmt command with 'go get github.com/dr2chase/nostmt'"
+else
+	nostmt -c "$1" > $tmp
+	# has total,nostmt,1-nostmt/total
+	stmtquality=`tail -1 $tmp | awk 'BEGIN {FS=","} {print $3}'`
+	echo "tmp stmt args quality wc = " `wc -l $tmp`
+
+	nostmt -c -k "$1" > $tmp
+	# has total,nostmt,1-nostmt/total
+	stmtkindquality=`tail -1 $tmp | awk 'BEGIN {FS=","} {print $3}'`
+	echo "tmp stmt args kind quality wc = " `wc -l $tmp`
+
+	bench=yes
+fi
+
+if [ ${bench} = "yes" ] ; then
+	echo "goos: $GOOS"
+	echo "goarch: $GOARCH"
+	echo "pkg:" # Erase any inherited pkg if files are concatenated
+    if echo $inputsquality | egrep -q '[.0-9]+' ; then
+    	echo Unit inputs-quality assume=exact
+		echo "Benchmark${2}_dwarf_input_goodness" 1 ${inputsquality} inputs-quality
+	fi
+    if echo $argsquality | egrep -q '[.0-9]+' ; then
+    	echo Unit args-quality assume=exact
+		echo "Benchmark${2}_dwarf_args_goodness" 1 ${argsquality} args-quality
+	fi
+    if echo $stmtquality | egrep -q '[.0-9]+' ; then
+    	echo Unit stmts-quality assume=exact
+		echo "Benchmark${2}_dwarf_stmt_goodness" 1 ${stmtquality} stmts-quality
+		# echo "Benchmark${2}_dwarf_stmt_goodness_kind" 1 ${stmtkindquality} stmts-quality
+	fi
+fi
+
+rm $tmp

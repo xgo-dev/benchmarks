@@ -1,0 +1,66 @@
+name: LLGo binary-size Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ci/llgo-size/site/**
+      - ci/llgo-size/publish-site.sh
+      - ci/llgo-size/prepare-pages-branch.sh
+      - .github/workflows/llgo-binary-size-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: llgo-binary-size-pages
+  cancel-in-progress: false
+
+jobs:
+  publish-site:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh the Pages source without rebuilding benchmarks
+        env:
+          PAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          pages_dir="$GITHUB_WORKSPACE/.ci/pages"
+          bash ci/llgo-size/prepare-pages-branch.sh \
+            "$pages_dir" \
+            "https://x-access-token:${PAGES_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          ci/llgo-size/publish-site.sh "$pages_dir" ci/llgo-size/site
+
+  deploy-pages:
+    needs: publish-site
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out Pages source
+        uses: actions/checkout@v4
+        with:
+          ref: pages
+          path: pages-source
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Build Pages with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./pages-source
+          destination: ./_site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./_site
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

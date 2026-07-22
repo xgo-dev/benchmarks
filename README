@@ -1,0 +1,31 @@
+This subrepository holds macro-benchmarks used for Go performance
+development and monitoring.
+
+Each benchmark is compiled into a separate binary. To build and
+install them all in the current directory, execute:
+
+	$ GOBIN=$PWD go get golang.org/x/benchmarks/...
+
+To run a benchmark, simply execute its binary.
+
+Each binary has a number of flags to control benchmark duration, etc.
+Run with '-help' to get the full list of flags.
+
+When the benchmarking finishes, the binary prints results in the
+standard Go benchmark format [1]:
+
+	$ garbage
+	BenchmarkGarbage/benchmem-MB=64-4     2000	   6443223 ns/op	   6008832 GC-bytes-from-system	    230521 STW-ns/GC	     15329 STW-ns/op	   2780501 allocated-bytes/op	     68636 allocs/op	 119041368 bytes-from-system	 104202240 heap-bytes-from-system	   8109400 other-bytes-from-system	 112427008 peak-RSS-bytes	 121511936 peak-VM-bytes	    720896 stack-bytes-from-system	  25194000 user+sys-ns/op
+
+This format can be processed by tools like benchstat
+(https://golang.org/x/perf/cmd/benchstat) and benchplot
+(https://godoc.org/github.com/aclements/go-misc/benchplot).
+
+Required extra tools:
+  For Linux, you need "perf". On Debian/Ubuntu, you can install
+  package "perf-tools-common" to get it. Run "perf" once with no
+  arguments to check if it requires additional packages to be installed.
+
+To submit changes to this repository, see http://golang.org/doc/contribute.html.
+
+[1] https://github.com/golang/proposal/blob/master/design/14313-benchmark-format.md

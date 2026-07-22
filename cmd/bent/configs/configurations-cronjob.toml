@@ -1,0 +1,72 @@
+[[Configurations]]
+  Name = "baseline"
+  Root = "$ROOT/${BASE}"
+  AfterBuild = [ "benchsize", "benchdwarf" ]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+
+[[Configurations]]
+  Name = "experiment"
+  Root = "$ROOT/go-tip/"
+  AfterBuild = [ "benchsize", "benchdwarf" ]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+  RunEnv = ["GOARCH=${BENTARCH}"]
+
+[[Configurations]]
+  Name = "baseline-prof"
+  Root = "$ROOT/${BASE}"
+  RunWrapper = ["cpuprofile"]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+  RunEnv = ["GOARCH=${BENTARCH}"]
+  Disabled = true
+
+[[Configurations]]
+  Name = "experiment-prof"
+  Root = "$ROOT/go-tip/"
+  RunWrapper = ["cpuprofile"]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+  RunEnv = ["GOARCH=${BENTARCH}"]
+  Disabled = true
+
+[[Configurations]]
+  Name = "experiment-prof-nopreempt"
+  Root = "$ROOT/go-tip/"
+  RunWrapper = ["cpuprofile"]
+  RunEnv = ["GODEBUG=asyncpreemptoff=1", "GOARCH=${BENTARCH}"]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+  Disabled = true
+
+[[Configurations]]
+  Name = "baseline-Nl"
+  GcFlags = "-N -l"
+  Root = "$ROOT/${BASE}"
+  AfterBuild = [ "benchsize", "benchdwarf" ]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+  RunEnv = ["GOARCH=${BENTARCH}"]
+  Disabled = true
+
+[[Configurations]]
+  Name = "experiment-Nl"
+  GcFlags = "-N -l"
+  Root = "$ROOT/go-tip/"
+  AfterBuild = [ "benchsize", "benchdwarf" ]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+  RunEnv = ["GOARCH=${BENTARCH}"]
+  Disabled = true
+
+[[Configurations]]
+  Name = "baseline-l"
+  GcFlags = "-l"
+  Root = "$ROOT/${BASE}"
+  AfterBuild = [ "benchsize", "benchdwarf" ]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+  RunEnv = ["GOARCH=${BENTARCH}"]
+  Disabled = true
+
+[[Configurations]]
+  Name = "experiment-l"
+  GcFlags = "-l"
+  Root = "$ROOT/go-tip/"
+  AfterBuild = [ "benchsize", "benchdwarf" ]
+  GcEnv = ["GOARCH=${BENTARCH}"]
+  RunEnv = ["GOARCH=${BENTARCH}"]
+  Disabled = true

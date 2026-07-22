@@ -1,0 +1,15 @@
+[[Configurations]]
+  Name = "Control"
+  RunEnv = ["GOGC=100"]
+  RunFlags = ["-test.short"]
+  Root = "$HOME/work/go/"
+#  RunWrapper = ["foo"]  # Optional command wrapper
+#  Disabled = true       # Don't run this configuration
+
+[[Configurations]]
+  Name = "Test"
+  # GcFlags = "-d=ssa/insert_resched_checks/off"
+  # GCEnv = ["GOEXPERIMENT=something"]
+  RunEnv = ["GOGC=100"]
+  RunFlags = ["-test.short"]
+  Root = "$HOME/work/go-dev/"

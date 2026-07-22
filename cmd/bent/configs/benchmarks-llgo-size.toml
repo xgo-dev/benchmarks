@@ -1,0 +1,25 @@
+# A small, stable subset of the Bent suites for binary-size CI.
+#
+# The packages cover AWS SDK request handling, human-readable byte parsing,
+# Kubernetes, logging, TOML, and GORM. They are deliberately limited to keep the five-way compiler matrix
+# practical on a GitHub hosted runner, and have been verified against the
+# pinned LLGo revision.
+
+[[Benchmarks]]
+  Name = "toml"
+
+[[Benchmarks]]
+  Name = "aws_restjson"
+
+[[Benchmarks]]
+  Name = "dustin_humanize"
+  Benchmarks = "BenchmarkParseBigBytes"
+
+[[Benchmarks]]
+  Name = "k8s_workqueue"
+
+[[Benchmarks]]
+  Name = "uber_zap"
+
+[[Benchmarks]]
+  Name = "gorm_schema"

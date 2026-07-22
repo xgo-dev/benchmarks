@@ -1,0 +1,2 @@
+# benchmarks
+Go compiler benchmarks

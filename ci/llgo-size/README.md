@@ -57,6 +57,10 @@ separate `llgo-binary-size-pages.yml` workflow. That path publishes the updated
 site directly without rebuilding benchmarks, and its publication jobs are
 restricted to `main`; pull-request builds cannot publish Pages.
 
+The benchmark and page-only workflows use separate concurrency queues. A page
+refresh can therefore wait independently without replacing a pending
+binary-size run.
+
 ### First-time repository setup
 
 The first publisher run creates the `pages` branch automatically. Before that

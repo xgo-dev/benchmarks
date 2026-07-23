@@ -34,7 +34,10 @@ permissions:
   actions: write
 
 concurrency:
-  group: llgo-binary-size-pages
+  # Keep benchmark builds in their own queue. The Pages-only workflow has a
+  # separate queue; sharing one group would let a newer pending Pages run
+  # replace a pending binary-size run even with cancel-in-progress disabled.
+  group: llgo-binary-size-build
   cancel-in-progress: false
 
 jobs:

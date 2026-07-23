@@ -1,0 +1,297 @@
+# Benchmarks that build, and that run quickly enough.
+# The noisy ones are listed at the bottom
+
+[[Benchmarks]]
+  Name = "dustin_broadcast"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "dustin_humanize"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "rcrowley_metrics"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "shopify_sarama"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "aws_restjson"
+  Benchmarks = "Benchmark"
+  Disabled = true # no benchmarks
+
+[[Benchmarks]]
+  Name = "aws_restxml"
+  Benchmarks = "Benchmark"
+  Disabled = true # no benchmarks
+
+[[Benchmarks]]
+  Name = "aws_jsonrpc"
+  Benchmarks = "Benchmark"
+  Disabled = true # no benchmarks
+
+[[Benchmarks]]
+  Name = "aws_jsonutil"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "kanzi"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ethereum_bitutil"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ethereum_ethash"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ethereum_core"
+  Benchmarks = "Benchmark([^ICBH]|H[^a]|B[^l]|C[^h]|I[^n])"
+
+[[Benchmarks]]
+  Name = "ethereum_sha3"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ethereum_ecies"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ethereum_corevm"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ethereum_trie"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ethereum_whisper"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "eolian_dsp"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "spexs2"
+  Benchmarks = "BenchmarkRun"
+
+[[Benchmarks]]
+  Name = "minio"
+  Tests = "none" # Don't run these tests; they hang, etc.
+  Benchmarks = "Benchmark([^LPGA]|L[^]i|G[^e]|P[^ua]|A[^u]|Parallel([^LPG]|L[^]i|G[^e]|P[^u]))"
+
+[[Benchmarks]]
+  Name = "gonum_blas_native"
+  Benchmarks = "Benchmark" # not all benchmarks
+
+[[Benchmarks]]
+  Name = "gonum_lapack_native"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "gonum_mat"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "semver"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "hugo_helpers"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "hugo_hugolib"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "k8s_cache"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "k8s_workqueue"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "uuid"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "gonum_topo"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "gonum_path"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "gonum_community"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "gonum_traverse"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "capnproto2"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "uber_zap"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "uber_tally"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "bloom_bits"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "bloom_bloom"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "bindata"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "cespare_mph"
+  Benchmarks = "Benchmark"
+
+# Used by InfluxDB and Prometheus
+[[Benchmarks]]
+  Name = "cespare_xxhash"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "gtank_blake2s"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "gtank_ed25519"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "nelsam_gxui_interval"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ajstarks_deck_generate"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "benhoyt_goawk_1_18"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "ericlagergren_decimal"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "tidwall_tile38"
+  Benchmarks = "Benchmark"
+  Disabled = true
+  # Requires user intervention on Darwin, accepts network connections
+
+[[Benchmarks]]
+  Name = "commonmark_markdown"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_augmentedtree"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_bitarray"
+  Benchmarks = "Benchmark" # note BenchmarkBitmap* is flawed
+
+[[Benchmarks]]
+  Name = "workiva_btree_palm"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_btree_plus"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_fibheap"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_queue"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_rangetree"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_hilbert"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_rangetree_skiplist"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_set"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_slice"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_avl"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_sort"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_ctrie"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_dtrie"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_triex"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "workiva_triey"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "thriftrw_gen"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "thriftrw_protocol"
+  Benchmarks = "Benchmark"
+
+[[Benchmarks]]
+  Name = "yarpc"
+  Benchmarks = "Benchmark"
+  Disabled = true
+  # Requires user intervention on Darwin, accepts network connections
+
+[[Benchmarks]]
+  Name = "uber_tchannel"
+  Benchmarks = "Benchmark"
+  Disabled = true # fails to compile
+
+[[Benchmarks]]
+  Name = "uber_tchannel_benchmark"
+  Benchmarks = "Benchmark"
+  Disabled = true # fails to compile

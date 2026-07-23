@@ -1,0 +1,89 @@
+#!/bin/bash
+
+tmp=tmp-bench-size-$$
+
+if [ `uname` = "Darwin" ] ; then
+	# e.g., `        Section __text: 1445477`
+	otherawk='$2 ~ "__.?%s:" {tot += $3} END {print tot}'
+	size -m "$1" > $tmp
+	wposix=
+	statflag="-f %z"
+else
+	x=`which gsize`
+	# e.g., `.text                1269331   4207296`
+	# Field 2 is size, field 3 is address.
+	otherawk='$1 ~ ".%s" {tot += $2} END {print tot}'
+	if [ "x$x" = "x" ] ; then
+		size -A "$1" > $tmp
+	else
+		"$x" -A "$1" > $tmp
+	fi
+	wposix="-Wposix"
+	statflag="--format %s"
+fi
+
+# $1: size output file
+# $2: section name (without leading .)
+function find_section() {
+	cmd="$(printf "${otherawk}" $2)"
+	out=$(awk ${wposix} "${cmd}" < $1)
+	if [[ "${out}" == "" ]]; then
+		echo 0
+	else
+		echo ${out}
+	fi
+}
+
+total=$(stat $statflag "$1")
+
+text=$(find_section "${tmp}" "text")
+gopclntab=$(find_section "${tmp}" "gopclntab")
+rodata=$(find_section "${tmp}" "rodata")
+data=$(find_section "${tmp}" "data")
+
+debug_info=$(find_section "${tmp}" "debug_info")
+debug_loc=$(find_section "${tmp}" "debug_loc")
+debug_line=$(find_section "${tmp}" "debug_line")
+debug_ranges=$(find_section "${tmp}" "debug_ranges")
+debug_frame=$(find_section "${tmp}" "debug_frame")
+debug_abbrev=$(find_section "${tmp}" "debug_abbrev")
+debug_pubname=$(find_section "${tmp}" "debug_pubname")
+debug_pubtype=$(find_section "${tmp}" "debug_pubtype")
+
+echo "goos: $GOOS"
+echo "goarch: $GOARCH"
+echo "pkg:" # Erase any inherited pkg if files are concatenated
+
+if echo $total | egrep -q '[0-9]+' ; then
+	echo Unit total-bytes assume=exact
+	echo "Benchmark${2}" 1 ${total} total-bytes
+fi
+
+if echo $text | egrep -q '[0-9]+' ; then
+	echo Unit text-bytes assume=exact
+	echo "Benchmark${2}" 1 ${text} text-bytes
+fi
+
+if echo $data | egrep -q '[0-9]+' ; then
+	echo Unit data-bytes assume=exact
+	echo "Benchmark${2}" 1 ${data} data-bytes
+fi
+
+if echo $rodata | egrep -q '[0-9]+' ; then
+	echo Unit rodata-bytes assume=exact
+	echo "Benchmark${2}" 1 ${rodata} rodata-bytes
+fi
+
+if echo $gopclntab | egrep -q '[0-9]+' ; then
+	echo Unit pclntab-bytes assume=exact
+	echo "Benchmark${2}" 1 ${gopclntab} pclntab-bytes
+fi
+
+debug=`expr ${debug_info} + ${debug_loc} + ${debug_line} + ${debug_ranges} + ${debug_frame} + ${debug_abbrev} + ${debug_pubname} + ${debug_pubtype}`
+
+if echo $debug | egrep -q '[0-9]+' ; then
+	echo Unit debug-bytes assume=exact
+	echo "Benchmark${2}" 1 ${debug} debug-bytes
+fi
+
+rm $tmp

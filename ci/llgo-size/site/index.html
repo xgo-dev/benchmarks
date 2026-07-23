@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLGo binary-size history</title>
+  <link rel="stylesheet" href="style.css?v=20260722-2300">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">LLGo compiler benchmarks</p>
+      <h1>Binary-size history</h1>
+      <p class="lede">ELF sizes collected by Bent <code>benchsize</code>. Compare two CI runs side by side and trace each benchmark over time.</p>
+      <p id="status" class="status" role="status">Loading results…</p>
+    </header>
+
+    <section class="controls" aria-labelledby="compare-heading">
+      <div>
+        <h2 id="compare-heading">Compare runs</h2>
+        <p class="muted">The newer and baseline runs become adjacent columns, grouped by use case and build mode.</p>
+      </div>
+      <label>Newer run<select id="newer-run"></select></label>
+      <label>Baseline run<select id="baseline-run"></select></label>
+    </section>
+
+    <section id="run-meta" class="run-meta" aria-live="polite"></section>
+
+    <section class="card" aria-labelledby="table-heading">
+      <div class="card-heading">
+        <div>
+          <p class="eyebrow">total size · LLGo relative to Go</p>
+          <h2 id="table-heading">Size comparison</h2>
+        </div>
+        <span id="table-note" class="muted"></span>
+      </div>
+      <div id="comparison-grid" class="comparison-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="history-heading">
+      <div class="card-heading">
+        <div>
+          <p class="eyebrow">one chart per benchmark</p>
+          <h2 id="history-heading">Size history</h2>
+        </div>
+      </div>
+      <div id="history-charts" class="chart-grid" aria-live="polite"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Run</th><th>LLGo commit</th><th>Go</th><th>LLVM</th><th>Workflow</th></tr></thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://github.com/xgo-dev/benchmarks/tree/main/ci/llgo-size">Source and benchmark configuration</a>
+      <span>·</span>
+      <a href="data/index.json">Raw run index</a>
+    </footer>
+  </main>
+  <script src="app.js?v=20260722-2300"></script>
+</body>
+</html>

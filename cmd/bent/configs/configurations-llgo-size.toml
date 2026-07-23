@@ -1,0 +1,47 @@
+# Five-way binary-size comparison used by ci/llgo-size.
+#
+# LLGO_BIN and LLGO_LTO_PLUGIN are built by the workflow. LLGo's command is
+# Go-compatible but does not support the standard go command's -vet option.
+# It has a plugin-aware package cache, so these one-shot size builds may reuse
+# valid archives; an explicit Bent -a still forces a full rebuild.
+
+[[Configurations]]
+  Name = "Go"
+  Root = "$GOROOT"
+  UseBuildCache = true
+  AfterBuild = ["benchsize"]
+
+[[Configurations]]
+  Name = "LLGoNoLTO"
+  Compiler = "$LLGO_BIN"
+  Root = "$GOROOT"
+  OmitVetFlag = true
+  UseBuildCache = true
+  AfterBuild = ["benchsize"]
+
+[[Configurations]]
+  Name = "LLGoFullLTONoGlobalDCE"
+  Compiler = "$LLGO_BIN"
+  Root = "$GOROOT"
+  OmitVetFlag = true
+  UseBuildCache = true
+  BuildFlags = ["-lto=full", "-globaldce=false"]
+  AfterBuild = ["benchsize"]
+
+[[Configurations]]
+  Name = "LLGoFullLTOGlobalDCE"
+  Compiler = "$LLGO_BIN"
+  Root = "$GOROOT"
+  OmitVetFlag = true
+  UseBuildCache = true
+  BuildFlags = ["-lto=full"]
+  AfterBuild = ["benchsize"]
+
+[[Configurations]]
+  Name = "LLGoFullLTOGlobalDCEPlugin"
+  Compiler = "$LLGO_BIN"
+  Root = "$GOROOT"
+  OmitVetFlag = true
+  UseBuildCache = true
+  BuildFlags = ["-lto=full", "-lto-pass-plugin=$LLGO_LTO_PLUGIN"]
+  AfterBuild = ["benchsize"]

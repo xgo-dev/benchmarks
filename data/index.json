@@ -1,23 +1,23 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23T12:51:14.077420Z",
+  "generatedAt": "2026-07-23T13:30:07.364636Z",
   "runs": [
     {
-      "key": "30002899923-1",
-      "id": "30002899923",
+      "key": "fdc1c881473e5d69d90dd7a80e67f0033af39d69",
+      "id": "30009857660",
       "attempt": 1,
-      "number": 12,
-      "createdAt": "2026-07-23T12:51:12.031694Z",
-      "sourceCommit": "c699b5a2d286cc6240cabd5f78ef1a5797ae97c3",
+      "number": 17,
+      "createdAt": "2026-07-23T13:30:04.990863Z",
+      "sourceCommit": "77613363096e297983e43c02effd4333f433f839",
       "ref": "main",
       "llgoCommit": "fdc1c881473e5d69d90dd7a80e67f0033af39d69",
       "goVersion": "1.26.2",
       "llvmVersion": "19",
-      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30002899923",
-      "path": "runs/30002899923-1/results.json"
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30009857660",
+      "path": "runs/fdc1c881473e5d69d90dd7a80e67f0033af39d69/results.json"
     },
     {
-      "key": "29994613987-1",
+      "key": "9b3f60c1ad555ae190f4545b9b1acad4899e598f",
       "id": "29994613987",
       "attempt": 1,
       "number": 10,
@@ -28,10 +28,10 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/29994613987",
-      "path": "runs/29994613987-1/results.json"
+      "path": "runs/9b3f60c1ad555ae190f4545b9b1acad4899e598f/results.json"
     },
     {
-      "key": "29979866860-1",
+      "key": "d726187ce3e34f686e1113d66b63a876466c7b10",
       "id": "29979866860",
       "attempt": 1,
       "number": 1,
@@ -42,7 +42,7 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/29979866860",
-      "path": "runs/29979866860-1/results.json"
+      "path": "runs/d726187ce3e34f686e1113d66b63a876466c7b10/results.json"
     }
   ]
 }

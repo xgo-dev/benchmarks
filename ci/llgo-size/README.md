@@ -69,6 +69,11 @@ variants. A PR that changes the committed LLGo version runs the full five-way
 matrix and uploads the `llgo-binary-size` artifact for review, but still does
 not publish history.
 
+Every full binary-size run also uploads a 30-day `llgo-binary-size-binaries`
+artifact containing the LLGo executable, the LTO plugin, and Bent's generated
+test binaries. The artifact URL is recorded in that run's JSON and shown on
+the Pages dashboard; GitHub may require repository access before downloading.
+
 ### First-time repository setup
 
 The first publisher run creates the `pages` branch automatically. Before that

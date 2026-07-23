@@ -86,6 +86,8 @@ for path in glob.glob(os.path.join(data_dir, "runs", "*", "results.json")):
         "goVersion": run.get("goVersion", ""),
         "llvmVersion": run.get("llvmVersion", ""),
         "workflowUrl": run.get("workflowUrl", ""),
+        "binaryArtifactName": run.get("binaryArtifactName", ""),
+        "binaryArtifactUrl": run.get("binaryArtifactUrl", ""),
         "path": "runs/" + key + "/results.json",
     })
 runs.sort(key=lambda item: item["createdAt"], reverse=True)

@@ -15,6 +15,9 @@ permissions:
   contents: write
 
 concurrency:
+  # This must not share a group with the benchmark workflow: GitHub keeps only
+  # one pending run per group, so a page-only update could otherwise cancel a
+  # waiting binary-size build.
   group: llgo-binary-size-pages
   cancel-in-progress: false
 

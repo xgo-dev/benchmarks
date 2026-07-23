@@ -30,16 +30,22 @@ on:
         type: string
 
 permissions:
-  contents: write
-  actions: write
+  contents: read
+  actions: read
 
 concurrency:
-  group: llgo-binary-size-pages
+  # Keep benchmark builds in their own queue. The Pages-only workflow has a
+  # separate queue; sharing one group would let a newer pending Pages run
+  # replace a pending binary-size run even with cancel-in-progress disabled.
+  group: llgo-binary-size-build
   cancel-in-progress: false
 
 jobs:
   update-pin:
     if: github.event_name == 'repository_dispatch'
+    permissions:
+      contents: write
+      actions: write
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -87,8 +93,40 @@ jobs:
             "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/llgo-binary-size.yml/dispatches" \
             --data "$payload"
 
+  pr-scope:
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    outputs:
+      version_changed: ${{ steps.changed.outputs.version_changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect a committed LLGo version change
+        id: changed
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          if git diff --name-only "$BASE_SHA" "$PR_SHA" | grep -Fxq 'ci/llgo-size/llgo-version.env'; then
+            echo 'version_changed=true' >> "$GITHUB_OUTPUT"
+            echo 'The PR changes the committed LLGo version; the full matrix will run.'
+          else
+            echo 'version_changed=false' >> "$GITHUB_OUTPUT"
+            echo 'The PR does not change the committed LLGo version; only Go validation will run.'
+          fi
+
   binary-size:
-    if: github.event_name != 'repository_dispatch'
+    if: >-
+      always() && github.event_name != 'repository_dispatch' &&
+      (github.event_name != 'pull_request' || needs.pr-scope.outputs.version_changed == 'true')
+    needs: pr-scope
+    permissions:
+      contents: write
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:
@@ -209,7 +247,7 @@ jobs:
           if-no-files-found: error
 
       - name: Publish binary-size history to Pages
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         env:
           PAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -223,7 +261,7 @@ jobs:
             "$pages_dir" \
             ci/llgo-size/site
   deploy-pages:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: binary-size
     runs-on: ubuntu-24.04
     permissions:
@@ -253,3 +291,42 @@ jobs:
       - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  pr-validation:
+    if: >-
+      always() && github.event_name == 'pull_request' &&
+      needs.pr-scope.result == 'success' && needs.pr-scope.outputs.version_changed != 'true'
+    needs: pr-scope
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the PR validation Go version
+        run: |
+          set -euo pipefail
+          source ci/llgo-size/llgo-version.env
+          mkdir -p .ci
+          printf '%s\n' "$GO_VERSION" > .ci/go-version
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: .ci/go-version
+
+      - name: Run the LLGo-size benchmark cases with Go
+        env:
+          BENT_BUILD_WORKERS: 4
+        run: |
+          set -euo pipefail
+          go build -o .ci/bent ./cmd/bent
+          mkdir -p .ci/bent-pr
+          (
+            cd .ci/bent-pr
+            "$GITHUB_WORKSPACE/.ci/bent" -I
+            "$GITHUB_WORKSPACE/.ci/bent" -v \
+              -B=benchmarks-llgo-size.toml \
+              -C=configurations-llgo-size.toml \
+              -c=Go -j="$BENT_BUILD_WORKERS"
+          )

@@ -9,6 +9,8 @@ on:
       - ci/llgo-size/publish-site.sh
       - ci/llgo-size/prepare-pages-branch.sh
       - .github/workflows/llgo-binary-size-pages.yml
+      # ci/llgo-size/llgo-version.env is intentionally not ignored: changing
+      # the committed LLGo pin must trigger a binary-size build.
   pull_request:
     paths-ignore:
       - ci/llgo-size/site/**
@@ -29,13 +31,64 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: llgo-binary-size-pages
   cancel-in-progress: false
 
 jobs:
+  update-pin:
+    if: github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update the committed LLGo pin and start the build
+        env:
+          DISPATCH_SOURCE_REPOSITORY: ${{ github.event.client_payload.source_repository }}
+          DISPATCH_LLGO_REPOSITORY: ${{ github.event.client_payload.llgo_repository }}
+          DISPATCH_LLGO_COMMIT: ${{ github.event.client_payload.llgo_commit }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [[ "$DISPATCH_SOURCE_REPOSITORY" != "xgo-dev/llgo" || \
+                "$DISPATCH_LLGO_REPOSITORY" != "xgo-dev/llgo" ]]; then
+            echo "refusing binary-size dispatch from ${DISPATCH_SOURCE_REPOSITORY:-unknown}" >&2
+            exit 1
+          fi
+          if [[ ! "$DISPATCH_LLGO_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "invalid dispatched LLGo commit: ${DISPATCH_LLGO_COMMIT:-missing}" >&2
+            exit 1
+          fi
+
+          current_commit="$(awk -F= '$1 == "LLGO_COMMIT" { print $2 }' ci/llgo-size/llgo-version.env)"
+          if [[ "$current_commit" == "$DISPATCH_LLGO_COMMIT" ]]; then
+            echo "LLGo pin is already $DISPATCH_LLGO_COMMIT; no build needed"
+            exit 0
+          fi
+
+          sed -i "s/^LLGO_COMMIT=.*/LLGO_COMMIT=${DISPATCH_LLGO_COMMIT}/" \
+            ci/llgo-size/llgo-version.env
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ci/llgo-size/llgo-version.env
+          git commit -m "ci: pin LLGo ${DISPATCH_LLGO_COMMIT:0:12}"
+          git push origin HEAD:main
+
+          payload="$(jq -cn \
+            --arg ref main \
+            --arg llgo_commit "$DISPATCH_LLGO_COMMIT" \
+            '{ref: $ref, inputs: {llgo_commit: $llgo_commit}}')"
+          curl --fail-with-body --location --request POST \
+            --header 'Accept: application/vnd.github+json' \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/llgo-binary-size.yml/dispatches" \
+            --data "$payload"
+
   binary-size:
+    if: github.event_name != 'repository_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:
@@ -43,9 +96,6 @@ jobs:
 
       - name: Read pinned toolchain versions
         env:
-          DISPATCH_SOURCE_REPOSITORY: ${{ github.event.client_payload.source_repository }}
-          DISPATCH_LLGO_REPOSITORY: ${{ github.event.client_payload.llgo_repository }}
-          DISPATCH_LLGO_COMMIT: ${{ github.event.client_payload.llgo_commit }}
           MANUAL_LLGO_COMMIT: ${{ inputs.llgo_commit }}
         run: |
           set -euo pipefail
@@ -53,21 +103,7 @@ jobs:
           source ci/llgo-size/llgo-version.env
           set +a
 
-          # The dispatched SHA is the run's runtime pin and is retained in
-          # results.json / Pages. Restrict automatic events to official LLGo.
-          if [[ "$GITHUB_EVENT_NAME" == "repository_dispatch" ]]; then
-            if [[ "$DISPATCH_SOURCE_REPOSITORY" != "xgo-dev/llgo" || \
-                  "$DISPATCH_LLGO_REPOSITORY" != "xgo-dev/llgo" ]]; then
-              echo "refusing binary-size dispatch from ${DISPATCH_SOURCE_REPOSITORY:-unknown}" >&2
-              exit 1
-            fi
-            if [[ ! "$DISPATCH_LLGO_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
-              echo "invalid dispatched LLGo commit: ${DISPATCH_LLGO_COMMIT:-missing}" >&2
-              exit 1
-            fi
-            LLGO_REPOSITORY="$DISPATCH_LLGO_REPOSITORY"
-            LLGO_COMMIT="$DISPATCH_LLGO_COMMIT"
-          elif [[ -n "$MANUAL_LLGO_COMMIT" ]]; then
+          if [[ -n "$MANUAL_LLGO_COMMIT" ]]; then
             if [[ ! "$MANUAL_LLGO_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
               echo "manual LLGo commit must be a full 40-character SHA" >&2
               exit 1
@@ -173,7 +209,7 @@ jobs:
           if-no-files-found: error
 
       - name: Publish binary-size history to Pages
-        if: github.event_name == 'repository_dispatch' || (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         env:
           PAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -187,7 +223,7 @@ jobs:
             "$pages_dir" \
             ci/llgo-size/site
   deploy-pages:
-    if: github.event_name == 'repository_dispatch' || (github.event_name != 'pull_request' && github.ref == 'refs/heads/main')
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: binary-size
     runs-on: ubuntu-24.04
     permissions:

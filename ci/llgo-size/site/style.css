@@ -36,7 +36,7 @@ h2 { margin-bottom: 4px; font-size: 21px; letter-spacing: -.02em; }
 label { display: grid; gap: 7px; color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; }
 select { width: 100%; padding: 10px 32px 10px 12px; border: 1px solid #cbd7eb; border-radius: 10px; background: #fbfcff; color: var(--ink); font: 600 14px/1.35 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 select:focus { border-color: #5c82e8; outline: 3px solid rgba(71, 118, 226, .16); }
-.run-meta { display: grid; grid-template-columns: 1.25fr .95fr 1fr .95fr 1.2fr 1.25fr; gap: 0; padding: 7px 10px; margin-bottom: 18px; }
+.run-meta { display: grid; grid-template-columns: 1.35fr 1fr 1.1fr 1.05fr 1.35fr; gap: 0; padding: 7px 10px; margin-bottom: 18px; }
 .run-meta > div { display: grid; gap: 4px; min-width: 0; padding: 10px 13px; border-right: 1px solid var(--line); font-size: 13px; }
 .run-meta > div:last-child { border-right: 0; }
 .label { color: var(--muted); font-size: 10px; }

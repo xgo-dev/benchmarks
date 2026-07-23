@@ -151,8 +151,6 @@ run = {
     "llvmVersion": os.environ.get("LLVM_VERSION", ""),
     "event": env("LLGO_SIZE_EVENT", "GITHUB_EVENT_NAME"),
     "workflowUrl": workflow_url,
-    "binaryArtifactName": os.environ.get("LLGO_SIZE_BINARY_ARTIFACT_NAME", ""),
-    "binaryArtifactUrl": os.environ.get("LLGO_SIZE_BINARY_ARTIFACT_URL", ""),
 }
 
 document = {

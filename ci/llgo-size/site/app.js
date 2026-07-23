@@ -88,11 +88,6 @@ function runLabel(run) {
   return commitLabel(run) + " · " + dateLabel(run.createdAt);
 }
 
-function artifactLink(run, label) {
-  if (!run.binaryArtifactUrl) return "—";
-  return '<a href="' + escapeHtml(run.binaryArtifactUrl) + '">' + escapeHtml(label || run.binaryArtifactName || "Download binaries") + "</a>";
-}
-
 async function loadRun(meta) {
   if (!state.runs.has(meta.key)) {
     const response = await fetch("data/" + meta.path, { cache: "no-store" });
@@ -134,7 +129,6 @@ function renderMeta(newer, baseline) {
     '<div><span class="label">LLGo</span><code>' + escapeHtml(shortSha(run.llgoCommit)) + "</code></div>" +
     '<div><span class="label">Toolchain</span>' + escapeHtml(run.goVersion || "—") + " / LLVM " + escapeHtml(run.llvmVersion || "—") + "</div>" +
     '<div><span class="label">Link</span>' + workflow + "</div>" +
-    '<div><span class="label">Artifacts</span>' + artifactLink(run, "Download test binaries") + "</div>" +
     '<div><span class="label">Baseline</span>' + (baseline ? escapeHtml(dateLabel(baseline.run.createdAt)) : "none") + "</div>";
 }
 
@@ -194,8 +188,7 @@ function renderHistoryTable(runs) {
       "<td>" + escapeHtml(dateLabel(run.createdAt)) + "</td>" +
       "<td>" + escapeHtml(run.goVersion || "—") + "</td>" +
       "<td>" + escapeHtml(run.llvmVersion || "—") + "</td>" +
-      "<td>" + escapeHtml(run.ref || "—") + "</td>" +
-      "<td>" + artifactLink(run, "Download test binaries") + "</td>";
+      "<td>" + escapeHtml(run.ref || "—") + "</td>";
     body.appendChild(row);
   }
 }

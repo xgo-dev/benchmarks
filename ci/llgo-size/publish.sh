@@ -23,6 +23,46 @@ for legacy in "$pages_dir"/data/runs/*.json; do
   mkdir -p "$legacy_dir"
   mv "$legacy" "$legacy_dir/results.json"
 done
+
+# Consolidate historical runs under the LLGo commit that produced them. This
+# keeps reruns of the same commit as one comparable history entry instead of
+# creating a new entry for every Actions run number.
+python3 - "$pages_dir/data/runs" <<'PY'
+import json
+import os
+import re
+import shutil
+import sys
+
+runs_dir = sys.argv[1]
+for source in sorted(os.listdir(runs_dir)):
+    source_dir = os.path.join(runs_dir, source)
+    result_path = os.path.join(source_dir, "results.json")
+    if not os.path.isdir(source_dir) or not os.path.isfile(result_path):
+        continue
+    try:
+        with open(result_path, encoding="utf-8") as f:
+            run = json.load(f).get("run", {})
+    except (OSError, ValueError):
+        continue
+    key = run.get("llgoCommit") or run.get("sourceCommit") or source
+    if not re.fullmatch(r"[A-Za-z0-9._-]+", str(key)) or str(key) == source:
+        continue
+    target_dir = os.path.join(runs_dir, str(key))
+    if os.path.exists(target_dir):
+        existing_path = os.path.join(target_dir, "results.json")
+        try:
+            with open(existing_path, encoding="utf-8") as f:
+                existing = json.load(f).get("run", {})
+        except (OSError, ValueError):
+            existing = {}
+        if str(run.get("createdAt", "")) >= str(existing.get("createdAt", "")):
+            shutil.rmtree(target_dir)
+        else:
+            shutil.rmtree(source_dir)
+            continue
+    os.rename(source_dir, target_dir)
+PY
 cp "$site_dir/index.html" "$pages_dir/index.html"
 cp "$site_dir/app.js" "$pages_dir/app.js"
 cp "$site_dir/style.css" "$pages_dir/style.css"
@@ -36,9 +76,7 @@ import sys
 
 with open(sys.argv[1], encoding="utf-8") as f:
     run = json.load(f)["run"]
-run_id = str(run.get("id") or "manual")
-attempt = run.get("attempt")
-key = run_id if not attempt else run_id + "-" + str(attempt)
+key = str(run.get("llgoCommit") or run.get("sourceCommit") or run.get("id") or "manual")
 if not re.fullmatch(r"[A-Za-z0-9._-]+", key):
     raise SystemExit("invalid run key: " + repr(key))
 print(key)

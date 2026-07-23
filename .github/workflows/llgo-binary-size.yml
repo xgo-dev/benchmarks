@@ -245,11 +245,7 @@ jobs:
           set -euo pipefail
           artifact_dir="$GITHUB_WORKSPACE/.ci/binary-artifact"
           rm -rf "$artifact_dir"
-          mkdir -p "$artifact_dir/llgo" "$artifact_dir/benchmarks"
-          install -m 0755 .ci/llgo/llgo "$artifact_dir/llgo/llgo"
-          install -m 0755 \
-            .ci/llgo/ltoplugin/build/LLGOLTOPlugin.so \
-            "$artifact_dir/llgo/LLGOLTOPlugin.so"
+          mkdir -p "$artifact_dir/benchmarks"
           cp -a .ci/bent-run/testbin "$artifact_dir/benchmarks/"
           {
             printf 'repository=%s\n' "$GITHUB_REPOSITORY"
@@ -259,8 +255,6 @@ jobs:
             printf 'go_version=%s\n' "$GO_VERSION"
             printf 'llvm_version=%s\n' "$LLVM_VERSION"
             printf '\nContents:\n'
-            printf '%s\n' '  llgo/llgo'
-            printf '%s\n' '  llgo/LLGOLTOPlugin.so'
             printf '%s\n' '  benchmarks/testbin/*'
           } > "$artifact_dir/README.txt"
           tar -czf .ci/llgo-binary-size-binaries.tar.gz \
@@ -270,7 +264,7 @@ jobs:
         id: upload-binaries
         uses: actions/upload-artifact@v4
         with:
-          name: llgo-binary-size-binaries
+          name: llgo-binary-size-test-binaries
           path: .ci/llgo-binary-size-binaries.tar.gz
           if-no-files-found: error
           retention-days: 30

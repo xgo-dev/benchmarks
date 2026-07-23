@@ -29,12 +29,14 @@ and TSV result as an artifact. The summary also contains Bent's native per-case
 build timings; `build-times.tsv`, `timing-summary.md`, `download-timings.log`,
 and raw `.build` files are retained for diagnosing slow downloads or builds.
 
-The `llgo-main-updated` repository-dispatch event from `xgo-dev/llgo` replaces
-the default pin with its complete `llgo_commit` for that run. That exact commit
-is retained in `results.json` and the Pages history, so every LLGo `main`
-update has a comparable data point without committing a moving pin back to
-this repository. GitHub requires the receiver workflow to be on the
-benchmarks repository's default branch before it can receive this event.
+The `llgo-main-updated` repository-dispatch event from `xgo-dev/llgo` first
+updates `LLGO_COMMIT` on the benchmarks `main` branch, then explicitly starts a
+`workflow_dispatch` build with that complete SHA. This makes the version-file
+update and the published result one ordered operation without relying on a
+`GITHUB_TOKEN`-created push to trigger another workflow. The exact commit is
+retained in `results.json` and the Pages history, so every LLGo `main` update
+has a comparable data point. GitHub requires the receiver workflow to be on
+the benchmarks repository's default branch before it can receive this event.
 The workflow sources `timing.sh` for its shared CI step timing output.
 It invokes Bent with four configurable build workers (`BENT_BUILD_WORKERS=4`);
 set that environment value to `1` to reproduce a serial build.

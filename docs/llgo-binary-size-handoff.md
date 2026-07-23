@@ -28,7 +28,7 @@
 
 入口工作流：[.github/workflows/llgo-binary-size.yml](../.github/workflows/llgo-binary-size.yml)
 
-1. 读取 [ci/llgo-size/llgo-version.env](../ci/llgo-size/llgo-version.env) 的默认 LLGo、Go 和 LLVM 版本；LLGo `main` 的跨仓库事件会以其精确提交覆盖默认 LLGo pin。
+1. 读取 [ci/llgo-size/llgo-version.env](../ci/llgo-size/llgo-version.env) 的默认 LLGo、Go 和 LLVM 版本；LLGo `main` 的跨仓库事件会先更新该 pin，再显式启动一次构建和 Pages 发布。
 2. 安装 LLVM 19、构建 LLGo 命令与 LTO plugin。
 3. 用 Bent 对每个 suite 运行 Go + 4 个 LLGo 配置，产出 `benchsize` 的 JSON/TSV/raw 文件；CI 通过 `-j="$BENT_BUILD_WORKERS"` 并发构建，当前值为 4。
 4. [report.sh](../ci/llgo-size/report.sh) 整理结果和构建/下载耗时。

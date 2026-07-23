@@ -2,19 +2,19 @@
   "schemaVersion": 1,
   "format": "bent-benchsize",
   "run": {
-    "id": "30016057138",
-    "attempt": 2,
-    "number": 20,
-    "createdAt": "2026-07-23T16:05:06.849518Z",
+    "id": "30052964771",
+    "attempt": 1,
+    "number": 22,
+    "createdAt": "2026-07-23T23:44:31.741331Z",
     "repository": "xgo-dev/benchmarks",
-    "sourceCommit": "16b63a4eb184b95b48f9af6ebe6a4374f34b6d33",
+    "sourceCommit": "0794d5ee38d1f048c129211acc946360b95ed31f",
     "ref": "main",
     "llgoRepository": "xgo-dev/llgo",
     "llgoCommit": "4768133fe75e91729f524c67b1e4544aef3f3506",
     "goVersion": "1.26.2",
     "llvmVersion": "19",
-    "event": "workflow_dispatch",
-    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30016057138"
+    "event": "push",
+    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30052964771"
   },
   "configs": [
     "Go",
@@ -30,8 +30,8 @@
       "values": {
         "Go": 14639564,
         "LLGoNoLTO": 14955536,
-        "LLGoFullLTONoGlobalDCE": 16255744,
-        "LLGoFullLTOGlobalDCE": 12421416,
+        "LLGoFullLTONoGlobalDCE": 16255680,
+        "LLGoFullLTOGlobalDCE": 12421480,
         "LLGoFullLTOGlobalDCEPlugin": 12421480
       }
     },
@@ -39,9 +39,9 @@
       "name": "Dustin_humanize",
       "values": {
         "Go": 4989852,
-        "LLGoNoLTO": 5588216,
+        "LLGoNoLTO": 5588152,
         "LLGoFullLTONoGlobalDCE": 5870736,
-        "LLGoFullLTOGlobalDCE": 3890328,
+        "LLGoFullLTOGlobalDCE": 3890264,
         "LLGoFullLTOGlobalDCEPlugin": 3890328
       }
     },
@@ -49,20 +49,20 @@
       "name": "Gorm_schema",
       "values": {
         "Go": 9421659,
-        "LLGoNoLTO": 8271216,
+        "LLGoNoLTO": 8271280,
         "LLGoFullLTONoGlobalDCE": 8763040,
         "LLGoFullLTOGlobalDCE": 7649528,
-        "LLGoFullLTOGlobalDCEPlugin": 7649528
+        "LLGoFullLTOGlobalDCEPlugin": 6055640
       }
     },
     {
       "name": "K8s_workqueue",
       "values": {
         "Go": 10168201,
-        "LLGoNoLTO": 12400968,
-        "LLGoFullLTONoGlobalDCE": 13470280,
+        "LLGoNoLTO": 12401024,
+        "LLGoFullLTONoGlobalDCE": 13470344,
         "LLGoFullLTOGlobalDCE": 12870024,
-        "LLGoFullLTOGlobalDCEPlugin": 12870024
+        "LLGoFullLTOGlobalDCEPlugin": 12869960
       }
     },
     {
@@ -71,7 +71,7 @@
         "Go": 7213510,
         "LLGoNoLTO": 7099152,
         "LLGoFullLTONoGlobalDCE": 7520008,
-        "LLGoFullLTOGlobalDCE": 5710544,
+        "LLGoFullLTOGlobalDCE": 5710608,
         "LLGoFullLTOGlobalDCEPlugin": 5710608
       }
     },

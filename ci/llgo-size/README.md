@@ -49,8 +49,9 @@ The workflow keeps Bent's native benchsize files, the existing Markdown summary,
 For pushes to `main`, LLGo merge dispatches, and manual runs from `main`, the
 workflow copies the structured result into the pages branch. The static page at
 the Pages root lists all published runs and lets you compare any two runs by
-benchmark and configuration. Pull requests still build and upload an artifact
-but do not modify the history.
+benchmark and configuration. Pull requests use the lightweight Go-only
+validation job described below; they do not produce a binary-size artifact or
+modify the history.
 
 Changes that only touch the dashboard source or its publication scripts use the
 separate `llgo-binary-size-pages.yml` workflow. That path publishes the updated
@@ -60,6 +61,13 @@ restricted to `main`; pull-request builds cannot publish Pages.
 The benchmark and page-only workflows use separate concurrency queues. A page
 refresh can therefore wait independently without replacing a pending
 binary-size run.
+
+Pull requests are split by whether they change `llgo-version.env`. A normal PR
+uses a separate Go-only validation job: dependency acquisition, compilation,
+and execution are checked without building LLGo or the four LLGo binary-size
+variants. A PR that changes the committed LLGo version runs the full five-way
+matrix and uploads the `llgo-binary-size` artifact for review, but still does
+not publish history.
 
 ### First-time repository setup
 

@@ -162,8 +162,8 @@ function filteredRuns() {
   });
 }
 
-function cellHtml(benchmark, config, baselineBenchmark, showComparison) {
-  if (!benchmark || !benchmark.values || benchmark.values[config] == null) return '<td class="matrix-cell missing">—</td>';
+function cellHtml(benchmark, config, baselineBenchmark, showComparison, columnClass) {
+  if (!benchmark || !benchmark.values || benchmark.values[config] == null) return '<td class="matrix-cell missing ' + columnClass + '">—</td>';
   const value = Number(benchmark.values[config]);
   const goValue = Number(benchmark.values.Go);
   const relative = config === "Go"
@@ -173,7 +173,7 @@ function cellHtml(benchmark, config, baselineBenchmark, showComparison) {
   const comparison = showComparison && Number.isFinite(oldValue)
     ? '<span class="selected-delta ' + deltaClass(percentDelta(value, oldValue)) + '">Δ A ' + formatPercent(percentDelta(value, oldValue), 1) + "</span>"
     : "";
-  return '<td class="matrix-cell"><strong>' + formatBytes(value) + "</strong><span class=\"go-delta\">" + relative + "</span>" + comparison + "</td>";
+  return '<td class="matrix-cell ' + columnClass + '"><strong>' + formatBytes(value) + "</strong><span class=\"go-delta\">" + relative + "</span>" + comparison + "</td>";
 }
 
 function pageNumbers(page, pageCount) {
@@ -207,42 +207,35 @@ async function renderComparison() {
   const pageRuns = runs.slice(start, start + state.pageSize);
   const documents = await Promise.all(pageRuns.map(loadRun));
   const baselineByName = benchmarkMap(baseline || {});
-  const columns = state.benchmarkNames.length ? state.benchmarkNames : [];
-  const span = columns.length * configs.length;
-  const headerGroups = columns.map(function (name) {
-    return '<th scope="colgroup" colspan="' + configs.length + '">' + escapeHtml(name) + "</th>";
-  }).join("");
-  const headerModes = columns.map(function () {
-    return configs.map(function (config) {
-      return '<th scope="col" title="' + escapeHtml(configLabels[config]) + '">' + escapeHtml(compactConfigLabels[config]) + "</th>";
-    }).join("");
-  }).join("");
-
-  const rows = documents.map(function (document, index) {
-    const meta = pageRuns[index];
-    const byName = benchmarkMap(document || {});
+  const benchmarkNames = state.benchmarkNames.length ? state.benchmarkNames : [];
+  const headers = pageRuns.map(function (meta) {
     const isBaseline = selected.baselineMeta && meta.key === selected.baselineMeta.key;
     const isNewer = selected.newerMeta && meta.key === selected.newerMeta.key;
-    const rowClass = (isBaseline ? " baseline-row" : "") + (isNewer ? " selected-row" : "");
+    const columnClass = (isBaseline ? " baseline-column" : "") + (isNewer ? " selected-column" : "");
+    const workflow = meta.workflowUrl ? '<a href="' + escapeHtml(meta.workflowUrl) + '"><code>' + escapeHtml(commitLabel(meta)) + "</code></a>" : '<code>' + escapeHtml(commitLabel(meta)) + "</code>";
     const roleButtons = '<div class="commit-picks"><button type="button" data-select-role="baseline" data-run-key="' + escapeHtml(meta.key) + '" class="' + (isBaseline ? "active" : "") + '" aria-label="Set ' + escapeHtml(commitLabel(meta)) + ' as baseline">A</button>' +
       '<button type="button" data-select-role="newer" data-run-key="' + escapeHtml(meta.key) + '" class="' + (isNewer ? "active" : "") + '" aria-label="Set ' + escapeHtml(commitLabel(meta)) + ' as selected commit">B</button></div>';
-    const values = columns.map(function (name) {
-      const benchmark = byName.get(name);
-      const baselineBenchmark = baselineByName.get(name);
-      return configs.map(function (config) {
-        return cellHtml(benchmark, config, baselineBenchmark, isNewer && !isBaseline);
+    return '<th scope="col" class="commit-header' + columnClass + '"><div>' + workflow + '<span>' + escapeHtml(dateLabel(meta.createdAt)) + '</span></div>' + roleButtons + "</th>";
+  }).join("");
+  const rows = benchmarkNames.map(function (name) {
+    return configs.map(function (config, configIndex) {
+      const values = documents.map(function (document, index) {
+        const meta = pageRuns[index];
+        const isBaseline = selected.baselineMeta && meta.key === selected.baselineMeta.key;
+        const isNewer = selected.newerMeta && meta.key === selected.newerMeta.key;
+        const columnClass = (isBaseline ? " baseline-column" : "") + (isNewer ? " selected-column" : "");
+        return cellHtml(benchmarkMap(document || {}).get(name), config, baselineByName.get(name), isNewer && !isBaseline, columnClass);
       }).join("");
+      const benchmarkCell = configIndex === 0 ? '<th scope="rowgroup" rowspan="' + configs.length + '" class="sticky benchmark-cell">' + escapeHtml(name) + "</th>" : "";
+      return "<tr>" + benchmarkCell + '<th scope="row" class="sticky config-cell" title="' + escapeHtml(configLabels[config]) + '">' + escapeHtml(compactConfigLabels[config]) + "</th>" + values + "</tr>";
     }).join("");
-    const workflow = meta.workflowUrl ? '<a href="' + escapeHtml(meta.workflowUrl) + '"><code>' + escapeHtml(commitLabel(meta)) + "</code></a>" : '<code>' + escapeHtml(commitLabel(meta)) + "</code>";
-    return '<tr class="' + rowClass.trim() + '"><td class="sticky pick-cell">' + roleButtons + '</td><th scope="row" class="sticky commit-cell">' + workflow + "</th>" +
-      '<td class="sticky date-cell">' + escapeHtml(dateLabel(meta.createdAt)) + '</td><td class="sticky branch-cell">' + escapeHtml(meta.ref || "—") + "</td>" + values + "</tr>";
   }).join("");
 
-  comparisonGrid.style.minWidth = (560 + span * 124) + "px";
-  comparisonGrid.innerHTML = '<thead><tr><th class="sticky pick-cell" rowspan="2">Pick</th><th class="sticky commit-cell" rowspan="2">Commit</th><th class="sticky date-cell" rowspan="2">Created</th><th class="sticky branch-cell" rowspan="2">Branch</th>' + headerGroups + '</tr><tr>' + headerModes + "</tr></thead><tbody>" +
-    (rows || '<tr><td colspan="' + (4 + span) + '" class="empty-state">No commits match this filter.</td></tr>') + "</tbody>";
+  comparisonGrid.style.minWidth = (278 + pageRuns.length * 150) + "px";
+  comparisonGrid.innerHTML = '<thead><tr><th class="sticky benchmark-cell">Benchmark</th><th class="sticky config-cell">Build option</th>' + headers + "</tr></thead><tbody>" +
+    (rows || '<tr><td colspan="' + (2 + pageRuns.length) + '" class="empty-state">No commits match this filter.</td></tr>') + "</tbody>";
   document.querySelector("#commit-count").textContent = runs.length + " commit" + (runs.length === 1 ? "" : "s") + " · showing " + (runs.length ? (start + 1) + "–" + Math.min(start + state.pageSize, runs.length) : "0");
-  document.querySelector("#table-note").textContent = "A/B selections persist while you page or filter commits; use the horizontal scrollbar for benchmark columns.";
+  document.querySelector("#table-note").textContent = "Newest commits are on the left. Select A/B in a commit header; page for older commits.";
 }
 
 function renderChoiceControls() {

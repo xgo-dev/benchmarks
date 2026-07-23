@@ -21,7 +21,7 @@
       <div>
         <p class="eyebrow">commit comparison</p>
         <h2 id="compare-heading">Choose a baseline and selected commit</h2>
-        <p class="muted">The selected commit row displays its change from the baseline, while every LLGo value keeps its own difference from Go.</p>
+        <p class="muted">The selected commit column displays its change from the baseline, while every LLGo value keeps its own difference from Go.</p>
       </div>
       <label>Baseline (A)<select id="baseline-run"></select></label>
       <label>Selected (B)<select id="newer-run"></select></label>
@@ -32,14 +32,14 @@
     <section class="card" aria-labelledby="table-heading">
       <div class="card-heading">
         <div>
-          <p class="eyebrow">commits as rows · benchmark modes as columns</p>
+          <p class="eyebrow">benchmark modes as rows · commits as columns</p>
           <h2 id="table-heading">Commit comparison matrix</h2>
         </div>
         <span id="table-note" class="muted"></span>
       </div>
       <div class="matrix-controls">
         <p id="commit-count" class="commit-count"></p>
-        <label class="page-size-label">Rows per page<select id="page-size"><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option></select></label>
+        <label class="page-size-label">Commits per page<select id="page-size"><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option></select></label>
         <div id="pagination" class="pagination" aria-label="Commit pages"></div>
         <label class="filter-label">Filter commits<input id="commit-filter" type="search" placeholder="Commit or branch"></label>
       </div>

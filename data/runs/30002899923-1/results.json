@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "format": "bent-benchsize",
+  "run": {
+    "id": "30002899923",
+    "attempt": 1,
+    "number": 12,
+    "createdAt": "2026-07-23T12:51:12.031694Z",
+    "repository": "xgo-dev/benchmarks",
+    "sourceCommit": "c699b5a2d286cc6240cabd5f78ef1a5797ae97c3",
+    "ref": "main",
+    "llgoRepository": "xgo-dev/llgo",
+    "llgoCommit": "fdc1c881473e5d69d90dd7a80e67f0033af39d69",
+    "goVersion": "1.26.2",
+    "llvmVersion": "19",
+    "event": "push",
+    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30002899923"
+  },
+  "configs": [
+    "Go",
+    "LLGoNoLTO",
+    "LLGoFullLTONoGlobalDCE",
+    "LLGoFullLTOGlobalDCE",
+    "LLGoFullLTOGlobalDCEPlugin"
+  ],
+  "metric": "total-bytes",
+  "benchmarks": [
+    {
+      "name": "Aws_restjson",
+      "values": {
+        "Go": 14639564,
+        "LLGoNoLTO": 14955536,
+        "LLGoFullLTONoGlobalDCE": 16255744,
+        "LLGoFullLTOGlobalDCE": 12421480,
+        "LLGoFullLTOGlobalDCEPlugin": 12421480
+      }
+    },
+    {
+      "name": "Dustin_humanize",
+      "values": {
+        "Go": 4989852,
+        "LLGoNoLTO": 5588208,
+        "LLGoFullLTONoGlobalDCE": 5870672,
+        "LLGoFullLTOGlobalDCE": 3890328,
+        "LLGoFullLTOGlobalDCEPlugin": 3890328
+      }
+    },
+    {
+      "name": "Gorm_schema",
+      "values": {
+        "Go": 9421659,
+        "LLGoNoLTO": 8271280,
+        "LLGoFullLTONoGlobalDCE": 8763040,
+        "LLGoFullLTOGlobalDCE": 7649528,
+        "LLGoFullLTOGlobalDCEPlugin": 6055640
+      }
+    },
+    {
+      "name": "K8s_workqueue",
+      "values": {
+        "Go": 10168201,
+        "LLGoNoLTO": 12401024,
+        "LLGoFullLTONoGlobalDCE": 13470344,
+        "LLGoFullLTOGlobalDCE": 12870024,
+        "LLGoFullLTOGlobalDCEPlugin": 12869960
+      }
+    },
+    {
+      "name": "Toml",
+      "values": {
+        "Go": 7213510,
+        "LLGoNoLTO": 7099088,
+        "LLGoFullLTONoGlobalDCE": 7520008,
+        "LLGoFullLTOGlobalDCE": 5710608,
+        "LLGoFullLTOGlobalDCEPlugin": 5710608
+      }
+    },
+    {
+      "name": "Uber_zap",
+      "values": {
+        "Go": 8729830,
+        "LLGoNoLTO": 13312088,
+        "LLGoFullLTONoGlobalDCE": 14451840,
+        "LLGoFullLTOGlobalDCE": 10522040,
+        "LLGoFullLTOGlobalDCEPlugin": 10522040
+      }
+    }
+  ],
+  "native": {
+    "summary": "summary.md",
+    "tsv": "total-bytes.tsv",
+    "timingSummary": "timing-summary.md",
+    "buildTimes": "build-times.tsv",
+    "downloadTimings": "download-timings.log",
+    "rawDir": "raw"
+  }
+}

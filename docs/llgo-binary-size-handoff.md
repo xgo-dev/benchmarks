@@ -35,6 +35,10 @@
 5. [publish.sh](../ci/llgo-size/publish.sh) 将结果归档到 `pages/data/runs/<run>-<attempt>/`，更新 `data/index.json`。
 6. `deploy-pages` job 检出 `pages` 分支，用 Jekyll 构建后通过 GitHub Pages artifact 部署。
 
+只修改仪表盘源码或页面发布脚本时，不进入二进制大小构建；独立的
+`llgo-binary-size-pages.yml` 会直接刷新 `pages` 分支并部署站点。该工作流和
+主工作流的发布 job 都限制在 `main`，PR 构建只验证和上传 artifact，不会发布。
+
 核心文件：
 
 - [Bent suites](../cmd/bent/configs/benchmarks-llgo-size.toml)

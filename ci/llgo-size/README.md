@@ -52,6 +52,11 @@ the Pages root lists all published runs and lets you compare any two runs by
 benchmark and configuration. Pull requests still build and upload an artifact
 but do not modify the history.
 
+Changes that only touch the dashboard source or its publication scripts use the
+separate `llgo-binary-size-pages.yml` workflow. That path publishes the updated
+site directly without rebuilding benchmarks, and its publication jobs are
+restricted to `main`; pull-request builds cannot publish Pages.
+
 ### First-time repository setup
 
 The first publisher run creates the `pages` branch automatically. Before that

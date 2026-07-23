@@ -20,6 +20,9 @@ concurrency:
 
 jobs:
   publish-site:
+    # Page-only publication is allowed only from the canonical main branch.
+    # Keep this guard even though pull_request is not currently a trigger.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +38,7 @@ jobs:
           ci/llgo-size/publish-site.sh "$pages_dir" ci/llgo-size/site
 
   deploy-pages:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: publish-site
     runs-on: ubuntu-24.04
     permissions:

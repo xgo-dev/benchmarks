@@ -41,6 +41,8 @@
 PR 修改 `llgo-version.env`，则运行完整的 LLGo 二进制大小矩阵并上传 artifact
 供开发者参考，但两种 PR 都不会发布 Pages。
 两个工作流使用独立的并发队列，页面刷新不会淘汰等待中的二进制大小构建。
+历史目录和索引使用完整 LLGo commit 作为 key，不再使用 Actions 构建轮次作为
+历史标识。
 
 核心文件：
 

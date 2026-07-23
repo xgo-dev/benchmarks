@@ -80,8 +80,12 @@ function runNumber(run) {
   return run.number == null ? run.key : "#" + run.number;
 }
 
+function commitLabel(run) {
+  return shortSha(run.llgoCommit || run.sourceCommit || run.key);
+}
+
 function runLabel(run) {
-  return runNumber(run) + " · " + dateLabel(run.createdAt);
+  return commitLabel(run) + " · " + dateLabel(run.createdAt);
 }
 
 async function loadRun(meta) {
@@ -154,8 +158,8 @@ function renderComparison(newer, baseline) {
   const baselineByName = baseline ? benchmarkMap(baseline) : new Map();
   const benchmarkNames = Array.from(new Set(Array.from(newerByName.keys()).concat(Array.from(baselineByName.keys())))).sort();
 
-  const newerHeading = "Newer · " + runNumber(newer.run);
-  const baselineHeading = baseline ? "Older · " + runNumber(baseline.run) : "Older";
+  const newerHeading = "Newer · " + commitLabel(newer.run);
+  const baselineHeading = baseline ? "Older · " + commitLabel(baseline.run) : "Older";
   grid.innerHTML = benchmarkNames.map(function (name) {
     const newerBenchmark = newerByName.get(name);
     const baselineBenchmark = baselineByName.get(name);
@@ -178,13 +182,10 @@ function renderHistoryTable(runs) {
   const body = document.querySelector("#history-body");
   body.replaceChildren();
   for (const run of runs) {
-    const link = run.workflowUrl
-      ? '<a href="' + escapeHtml(run.workflowUrl) + '">' + escapeHtml(runNumber(run)) + "</a>"
-      : escapeHtml(runNumber(run));
     const row = document.createElement("tr");
     row.innerHTML =
-      "<td>" + link + "<small>" + escapeHtml(dateLabel(run.createdAt)) + "</small></td>" +
-      "<td><code>" + escapeHtml(shortSha(run.llgoCommit)) + "</code></td>" +
+      "<td><code>" + (run.workflowUrl ? '<a href="' + escapeHtml(run.workflowUrl) + '">' : "") + escapeHtml(commitLabel(run)) + (run.workflowUrl ? "</a>" : "") + "</td>" +
+      "<td>" + escapeHtml(dateLabel(run.createdAt)) + "</td>" +
       "<td>" + escapeHtml(run.goVersion || "—") + "</td>" +
       "<td>" + escapeHtml(run.llvmVersion || "—") + "</td>" +
       "<td>" + escapeHtml(run.ref || "—") + "</td>";
@@ -238,11 +239,11 @@ function renderHistoryChart(name, documents) {
     const color = seriesColors[configIndex % seriesColors.length];
     return '<path d="' + chartPath(points, x, y) + '" fill="none" stroke="' + color + '" stroke-width="2.5"></path>' + points.map(function (point) {
       return '<circle cx="' + x(point.index) + '" cy="' + y(point.value) + '" r="3.5" fill="' + color + '"><title>' +
-        escapeHtml(name + " · " + config + " · " + runNumber(point.document.run) + ": " + formatBytes(point.value)) + "</title></circle>";
+        escapeHtml(name + " · " + config + " · " + commitLabel(point.document.run) + ": " + formatBytes(point.value)) + "</title></circle>";
     }).join("");
   }).join("");
   const labels = documents.map(function (document, index) {
-    return '<text class="chart-axis-label" text-anchor="middle" x="' + x(index) + '" y="' + (height - 14) + '">' + escapeHtml(runNumber(document.run)) + "</text>";
+    return '<text class="chart-axis-label" text-anchor="middle" x="' + x(index) + '" y="' + (height - 14) + '">' + escapeHtml(commitLabel(document.run)) + "</text>";
   }).join("");
   const legend = configs.map(function (config, index) {
     return '<span style="--series:' + seriesColors[index % seriesColors.length] + '">' + escapeHtml(configLabels[config] || config) + "</span>";

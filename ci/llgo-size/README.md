@@ -69,6 +69,9 @@ variants. A PR that changes the committed LLGo version runs the full five-way
 matrix and uploads the `llgo-binary-size` artifact for review, but still does
 not publish history.
 
+Published history is keyed by the full LLGo commit, so rerunning one commit
+updates its existing entry instead of adding another build-round entry.
+
 ### First-time repository setup
 
 The first publisher run creates the `pages` branch automatically. Before that

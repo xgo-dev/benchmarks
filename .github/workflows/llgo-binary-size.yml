@@ -261,7 +261,9 @@ jobs:
             "$pages_dir" \
             ci/llgo-size/site
   deploy-pages:
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: >-
+      always() && github.ref == 'refs/heads/main' &&
+      github.event_name != 'pull_request' && needs.binary-size.result == 'success'
     needs: binary-size
     runs-on: ubuntu-24.04
     permissions:

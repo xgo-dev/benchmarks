@@ -62,12 +62,12 @@ The benchmark and page-only workflows use separate concurrency queues. A page
 refresh can therefore wait independently without replacing a pending
 binary-size run.
 
-Pull requests are split by whether they change `llgo-version.env`. A normal PR
-uses a separate Go-only validation job: dependency acquisition, compilation,
-and execution are checked without building LLGo or the four LLGo binary-size
-variants. A PR that changes the committed LLGo version runs the full five-way
-matrix and uploads the `llgo-binary-size` artifact for review, but still does
-not publish history.
+Pull requests that change the committed LLGo version, Bent, the LLGo-size
+benchmark/configuration files, or the suite definitions used by those cases
+run the full five-way matrix and upload the `llgo-binary-size` artifact for
+review. They do not publish history. A PR outside that scope uses the separate
+Go-only validation job, so dependency acquisition, compilation, and execution
+remain checked without rebuilding LLGo or the four LLGo binary-size variants.
 
 Published history is keyed by the full LLGo commit, so rerunning one commit
 updates its existing entry instead of adding another build-round entry.

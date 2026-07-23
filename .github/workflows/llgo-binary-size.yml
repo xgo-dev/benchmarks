@@ -99,31 +99,37 @@ jobs:
       contents: read
     runs-on: ubuntu-24.04
     outputs:
-      version_changed: ${{ steps.changed.outputs.version_changed }}
+      full_matrix: ${{ steps.changed.outputs.full_matrix }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Detect a committed LLGo version change
+      - name: Detect an LLGo pin or benchmark-case change
         id: changed
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           PR_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          if git diff --name-only "$BASE_SHA" "$PR_SHA" | grep -Fxq 'ci/llgo-size/llgo-version.env'; then
-            echo 'version_changed=true' >> "$GITHUB_OUTPUT"
-            echo 'The PR changes the committed LLGo version; the full matrix will run.'
+          if git diff --quiet "$BASE_SHA" "$PR_SHA" -- \
+              ci/llgo-size/llgo-version.env \
+              ci/llgo-size/bin/go \
+              cmd/bent \
+              cmd/bent/configs/benchmarks-llgo-size.toml \
+              cmd/bent/configs/configurations-llgo-size.toml \
+              cmd/bent/configs/suites.toml; then
+            echo 'full_matrix=false' >> "$GITHUB_OUTPUT"
+            echo 'The PR does not change the LLGo pin, Bent, or benchmark cases; only Go validation will run.'
           else
-            echo 'version_changed=false' >> "$GITHUB_OUTPUT"
-            echo 'The PR does not change the committed LLGo version; only Go validation will run.'
+            echo 'full_matrix=true' >> "$GITHUB_OUTPUT"
+            echo 'The PR changes the LLGo pin, Bent, or benchmark cases; the full matrix will run without publishing.'
           fi
 
   binary-size:
     if: >-
       always() && github.event_name != 'repository_dispatch' &&
-      (github.event_name != 'pull_request' || needs.pr-scope.outputs.version_changed == 'true')
+      (github.event_name != 'pull_request' || needs.pr-scope.outputs.full_matrix == 'true')
     needs: pr-scope
     permissions:
       contents: write
@@ -297,7 +303,7 @@ jobs:
   pr-validation:
     if: >-
       always() && github.event_name == 'pull_request' &&
-      needs.pr-scope.result == 'success' && needs.pr-scope.outputs.version_changed != 'true'
+      needs.pr-scope.result == 'success' && needs.pr-scope.outputs.full_matrix != 'true'
     needs: pr-scope
     permissions:
       contents: read

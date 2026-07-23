@@ -4,24 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LLGo binary-size history</title>
-  <link rel="stylesheet" href="style.css?v=20260723-1200">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="shell">
     <header class="hero">
-      <p class="eyebrow">LLGo compiler benchmarks</p>
-      <h1>Binary-size history</h1>
-      <p class="lede">ELF sizes collected by Bent <code>benchsize</code>. Compare two CI runs side by side and trace each benchmark over time.</p>
+      <div>
+        <p class="eyebrow">LLGo compiler benchmarks</p>
+        <h1>Binary-size history</h1>
+        <p class="lede">Inspect every published commit across Go and LLGo build modes. Pick two commits to surface their direct size difference without losing the Go baseline.</p>
+      </div>
       <p id="status" class="status" role="status">Loading results…</p>
     </header>
 
     <section class="controls" aria-labelledby="compare-heading">
       <div>
-        <h2 id="compare-heading">Compare runs</h2>
-        <p class="muted">The newer and baseline runs become adjacent columns, grouped by use case and build mode.</p>
+        <p class="eyebrow">commit comparison</p>
+        <h2 id="compare-heading">Choose a baseline and selected commit</h2>
+        <p class="muted">The selected commit row displays its change from the baseline, while every LLGo value keeps its own difference from Go.</p>
       </div>
-      <label>Newer run<select id="newer-run"></select></label>
-      <label>Baseline run<select id="baseline-run"></select></label>
+      <label>Baseline (A)<select id="baseline-run"></select></label>
+      <label>Selected (B)<select id="newer-run"></select></label>
     </section>
 
     <section id="run-meta" class="run-meta" aria-live="polite"></section>
@@ -29,27 +32,38 @@
     <section class="card" aria-labelledby="table-heading">
       <div class="card-heading">
         <div>
-          <p class="eyebrow">total size · LLGo relative to Go</p>
-          <h2 id="table-heading">Size comparison</h2>
+          <p class="eyebrow">commits as rows · benchmark modes as columns</p>
+          <h2 id="table-heading">Commit comparison matrix</h2>
         </div>
         <span id="table-note" class="muted"></span>
       </div>
-      <div id="comparison-grid" class="comparison-grid" aria-live="polite"></div>
+      <div class="matrix-controls">
+        <p id="commit-count" class="commit-count"></p>
+        <label class="page-size-label">Rows per page<select id="page-size"><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option></select></label>
+        <div id="pagination" class="pagination" aria-label="Commit pages"></div>
+        <label class="filter-label">Filter commits<input id="commit-filter" type="search" placeholder="Commit or branch"></label>
+      </div>
+      <div class="matrix-wrap" tabindex="0" aria-label="Scrollable commit comparison matrix">
+        <table id="comparison-grid" class="comparison-table" aria-live="polite"></table>
+      </div>
     </section>
 
     <section class="card" aria-labelledby="history-heading">
-      <div class="card-heading">
+      <div class="card-heading history-heading">
         <div>
-          <p class="eyebrow">one chart per benchmark</p>
-          <h2 id="history-heading">Size history</h2>
+          <p class="eyebrow">interactive trends</p>
+          <h2 id="history-heading">Explore history</h2>
         </div>
+        <label class="history-range">History range<select id="history-range"><option value="0">All commits</option><option value="10">Latest 10</option><option value="20">Latest 20</option><option value="50">Latest 50</option></select></label>
       </div>
-      <div id="history-charts" class="chart-grid" aria-live="polite"></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>LLGo commit</th><th>Created</th><th>Go</th><th>LLVM</th><th>Workflow</th></tr></thead>
-          <tbody id="history-body"></tbody>
-        </table>
+      <div class="history-controls">
+        <div><span class="control-label">Benchmarks</span><div id="benchmark-filter" class="choice-row"></div></div>
+        <div><span class="control-label">Build modes</span><div id="config-filter" class="choice-row"></div></div>
+        <label class="metric-select">Metric<select id="history-metric"><option value="absolute">Absolute size</option><option value="vs-go">vs Go</option><option value="commit-delta">Commit delta</option></select></label>
+      </div>
+      <div class="history-layout">
+        <div id="history-chart" class="history-chart" aria-live="polite"></div>
+        <aside id="history-inspector" class="history-inspector" aria-live="polite"></aside>
       </div>
     </section>
 
@@ -59,6 +73,6 @@
       <a href="data/index.json">Raw run index</a>
     </footer>
   </main>
-  <script src="app.js?v=20260723-1200"></script>
+  <script src="app.js"></script>
 </body>
 </html>

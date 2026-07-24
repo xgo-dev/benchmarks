@@ -51,8 +51,10 @@ select:focus, input:focus { border-color: #5c82e8; outline: 3px solid rgba(71, 1
 .comparison-table tbody th { text-align: left; font-weight: 750; }
 .comparison-table .sticky { position: sticky; z-index: 2; background: inherit; }
 .comparison-table thead .sticky { z-index: 5; background: #f7f9fe; }
-.benchmark-cell { left: 0; width: 154px; min-width: 154px; white-space: normal !important; }
-.config-cell { left: 154px; width: 124px; min-width: 124px; }
+.matrix-label-cell { left: 0; width: 184px; min-width: 184px; white-space: normal !important; }
+.benchmark-name { display: block; color: #1d365a; font-size: 11px; }
+.config-name { display: block; margin-top: 2px; color: #63738b; font-size: 10px; font-weight: 750; }
+.config-continuation { padding-left: 10px; }
 .commit-header { width: 150px; min-width: 150px; }
 .commit-header > div { display: flex; flex-direction: column; gap: 4px; align-items: center; min-height: 35px; }
 .commit-header span { color: #718099; font-size: 9px; font-weight: 650; letter-spacing: 0; }

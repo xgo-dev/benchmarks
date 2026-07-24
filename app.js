@@ -226,14 +226,16 @@ async function renderComparison() {
         const columnClass = (isBaseline ? " baseline-column" : "") + (isNewer ? " selected-column" : "");
         return cellHtml(benchmarkMap(document || {}).get(name), config, baselineByName.get(name), isNewer && !isBaseline, columnClass);
       }).join("");
-      const benchmarkCell = configIndex === 0 ? '<th scope="rowgroup" rowspan="' + configs.length + '" class="sticky benchmark-cell">' + escapeHtml(name) + "</th>" : "";
-      return "<tr>" + benchmarkCell + '<th scope="row" class="sticky config-cell" title="' + escapeHtml(configLabels[config]) + '">' + escapeHtml(compactConfigLabels[config]) + "</th>" + values + "</tr>";
+      const label = configIndex === 0
+        ? '<strong class="benchmark-name">' + escapeHtml(name) + '</strong><span class="config-name">' + escapeHtml(compactConfigLabels[config]) + "</span>"
+        : '<span class="config-name config-continuation">' + escapeHtml(compactConfigLabels[config]) + "</span>";
+      return "<tr><th scope=\"row\" class=\"sticky matrix-label-cell\" title=\"" + escapeHtml(name + " · " + configLabels[config]) + "\" aria-label=\"" + escapeHtml(name + " · " + compactConfigLabels[config]) + "\">" + label + "</th>" + values + "</tr>";
     }).join("");
   }).join("");
 
-  comparisonGrid.style.minWidth = (278 + pageRuns.length * 150) + "px";
-  comparisonGrid.innerHTML = '<thead><tr><th class="sticky benchmark-cell">Benchmark</th><th class="sticky config-cell">Build option</th>' + headers + "</tr></thead><tbody>" +
-    (rows || '<tr><td colspan="' + (2 + pageRuns.length) + '" class="empty-state">No commits match this filter.</td></tr>') + "</tbody>";
+  comparisonGrid.style.minWidth = (184 + pageRuns.length * 150) + "px";
+  comparisonGrid.innerHTML = '<thead><tr><th class="sticky matrix-label-cell">Benchmark / build option</th>' + headers + "</tr></thead><tbody>" +
+    (rows || '<tr><td colspan="' + (1 + pageRuns.length) + '" class="empty-state">No commits match this filter.</td></tr>') + "</tbody>";
   document.querySelector("#commit-count").textContent = runs.length + " commit" + (runs.length === 1 ? "" : "s") + " · showing " + (runs.length ? (start + 1) + "–" + Math.min(start + state.pageSize, runs.length) : "0");
   document.querySelector("#table-note").textContent = "Newest commits are on the left. Select A/B in a commit header; page for older commits.";
 }

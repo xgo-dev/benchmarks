@@ -1,0 +1,96 @@
+toolchain: Go
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkGorm_schema 1 9421659 total-bytes
+Unit text-bytes assume=exact
+BenchmarkGorm_schema 1 3020785 text-bytes
+Unit data-bytes assume=exact
+BenchmarkGorm_schema 1 1136084 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkGorm_schema 1 884737 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkGorm_schema 1 2425080 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkGorm_schema 1 2007407 debug-bytes
+toolchain: Go
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkDustin_humanize 1 4989852 total-bytes
+Unit text-bytes assume=exact
+BenchmarkDustin_humanize 1 1531025 text-bytes
+Unit data-bytes assume=exact
+BenchmarkDustin_humanize 1 574292 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkDustin_humanize 1 429665 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkDustin_humanize 1 1309941 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkDustin_humanize 1 1153641 debug-bytes
+toolchain: Go
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkK8s_workqueue 1 10168201 total-bytes
+Unit text-bytes assume=exact
+BenchmarkK8s_workqueue 1 3156657 text-bytes
+Unit data-bytes assume=exact
+BenchmarkK8s_workqueue 1 1216876 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkK8s_workqueue 1 855001 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkK8s_workqueue 1 2654799 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkK8s_workqueue 1 2230357 debug-bytes
+toolchain: Go
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkUber_zap 1 8729830 total-bytes
+Unit text-bytes assume=exact
+BenchmarkUber_zap 1 2728049 text-bytes
+Unit data-bytes assume=exact
+BenchmarkUber_zap 1 1147340 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkUber_zap 1 782297 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkUber_zap 1 2187789 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkUber_zap 1 1907650 debug-bytes
+toolchain: Go
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkToml 1 7213510 total-bytes
+Unit text-bytes assume=exact
+BenchmarkToml 1 2250257 text-bytes
+Unit data-bytes assume=exact
+BenchmarkToml 1 982612 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkToml 1 833217 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkToml 1 1806911 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkToml 1 1566786 debug-bytes
+toolchain: Go
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkAws_restjson 1 14639564 total-bytes
+Unit text-bytes assume=exact
+BenchmarkAws_restjson 1 5291601 text-bytes
+Unit data-bytes assume=exact
+BenchmarkAws_restjson 1 1733036 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkAws_restjson 1 1341849 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkAws_restjson 1 3738191 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkAws_restjson 1 2731155 debug-bytes

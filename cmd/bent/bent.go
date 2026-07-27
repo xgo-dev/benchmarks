@@ -109,7 +109,7 @@ var shuffle = 2             // Dimensionality of (build) shuffling; 0 = none, 1 
 var reportBuildTime = true
 var experiment = false    // Don't reset go.mod, for testing purposes
 var buildOnly = false     // Build and run AfterBuild commands, but do not execute binaries.
-var minGoVersion = "1.22" // This is the release the toolchain started caring about versions of Go that are too new.
+var minGoVersion = "1.26" // This is the release the toolchain started caring about versions of Go that are too new.
 
 //go:embed scripts/*
 var scripts embed.FS
@@ -597,7 +597,7 @@ results will also appear in 'bench'.
 			fmt.Print("Go getting")
 		}
 
-		// Obtain (go get -d -t -v bench.Repo) all benchmarks, once, populating src
+		// Obtain (go get -t -v bench.Repo) all benchmarks, once, populating src
 		for i := range todo.Benchmarks {
 			bench := &todo.Benchmarks[i]
 
@@ -645,7 +645,7 @@ results will also appear in 'bench'.
 					fmt.Print(".")
 				}
 
-				cmd := exec.Command("go", "get", "-d", "-t", "-v", bench.Repo+bench.Version)
+				cmd := exec.Command("go", "get", "-t", "-v", bench.Repo+bench.Version)
 				cmd.Env = DefaultEnv()
 				cmd.Dir = bench.BuildDir
 

@@ -32,17 +32,17 @@ type Configuration struct {
 	UseBuildCache bool     // Reuse package-cache entries unless Bent's -a flag is explicitly requested
 	PgoGen        string   // Name of sub-directory to put profiles for later loading
 	PgoUse        string   // Name of sub-directory to take generated profile files
-	BuildFlags    []string // BuildFlags supplied to 'go test -c' for building (e.g., "-p 1")
+	BuildFlags    []string // BuildFlags supplied to the configured build command (e.g., "-p 1")
 	AfterBuild    []string // Array of commands to run, output of all commands for a configuration (across binaries) is collected in <runstamp>.<config>.<cmd>
-	GcFlags       string   // GcFlags supplied to 'go test -c' for building
-	LdFlags       string   // LdFlags supplied to 'go test -c' for building
-	GcEnv         []string // Environment variables supplied to 'go test -c' for building
-	RunFlags      []string // Extra flags passed to the test binary
-	RunEnv        []string // Extra environment variables passed to the test binary
+	GcFlags       string   // GcFlags supplied to the configured build command
+	LdFlags       string   // LdFlags supplied to the configured build command
+	GcEnv         []string // Environment variables supplied to the configured build command
+	RunFlags      []string // Extra flags passed to the built binary
+	RunEnv        []string // Extra environment variables passed to the built binary
 	RunWrapper    []string // (Outermost) Command and args to precede whatever the operation is; may fail in the sandbox.
 	Disabled      bool     // True if this configuration is temporarily disabled
 	benchWriter   *os.File
-	rootCopy      string // The contents of GOROOT are copied here to allow benchmarking of just the test compilation.
+	rootCopy      string // The contents of GOROOT are copied here to isolate compilation benchmarking.
 	resultMu      *sync.Mutex
 }
 
@@ -91,12 +91,15 @@ func (c *Configuration) goCommandCopy() string {
 	return gocmd
 }
 
-func (config *Configuration) testCommandArgs(randomizingBinaries bool) []string {
-	args := []string{"test"}
-	if !config.OmitVetFlag {
-		args = append(args, "-vet=off")
+func (config *Configuration) buildCommandArgs(bench *Benchmark, randomizingBinaries bool) []string {
+	mode := bench.effectiveBuildMode()
+	args := []string{mode}
+	if mode == "test" {
+		if !config.OmitVetFlag {
+			args = append(args, "-vet=off")
+		}
+		args = append(args, "-c")
 	}
-	args = append(args, "-c")
 	// Preserve Bent's historic default of a fresh build. Configurations which
 	// can safely share a cache may opt in, while an explicit -a always wins.
 	if !randomizingBinaries && (!config.UseBuildCache || explicitAll != 0) {
@@ -202,7 +205,7 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 	gocmd := config.goCommandCopy()
 	gopath := path.Join(cwd, "gopath")
 
-	cmd := exec.Command(gocmd, config.testCommandArgs(randomizingBinaries)...)
+	cmd := exec.Command(gocmd, config.buildCommandArgs(bench, randomizingBinaries)...)
 	compileTo := path.Join(dirs.wd, dirs.testBinDir, config.benchName(bench, count, randomizingBinaries))
 
 	cmd.Env = DefaultEnv()
@@ -263,11 +266,12 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 	realTime := time.Since(start)
 	if err != nil {
 		s := ""
+		buildCommand := fmt.Sprintf("%s %s", gocmd, bench.effectiveBuildMode())
 		switch e := err.(type) {
 		case *exec.ExitError:
-			s = fmt.Sprintf("There was an error running 'go test', output = %s", output)
+			s = fmt.Sprintf("There was an error running %q, output = %s", buildCommand, output)
 		default:
-			s = fmt.Sprintf("There was an error running 'go test', output = %s, error = %v", output, e)
+			s = fmt.Sprintf("There was an error running %q, output = %s, error = %v", buildCommand, output, e)
 		}
 		fmt.Println(s + "DISABLING benchmark " + bench.Name)
 		bench.disable() // if it won't compile, it won't run, either.

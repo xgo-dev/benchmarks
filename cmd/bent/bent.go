@@ -38,9 +38,10 @@ type Benchmark struct {
 	Name       string   // Short name for benchmark/test
 	Contact    string   // Contact not used, but may be present in description
 	Repo       string   // Repo + subdir where test resides, used for "go get -t -d ..."
+	BuildMode  string   // "test" (default) builds a test binary; "build" builds a main package
 	Tests      string   // Tests to run (regex for -test.run= )
 	Benchmarks string   // Benchmarks to run (regex for -test.bench= )
-	GcEnv      []string // Environment variables supplied to 'go test -c' for building, getting
+	GcEnv      []string // Environment variables supplied while building and getting
 	BuildFlags []string // Flags for building test (e.g., -tags purego)
 	RunWrapper []string // (Inner) Command and args to precede whatever the operation is; may fail in the sandbox.
 	// e.g. benchmark may run as ConfigWrapper ConfigArg BenchWrapper BenchArg ActualBenchmark
@@ -48,8 +49,28 @@ type Benchmark struct {
 	Disabled     bool     // True if this benchmark is temporarily disabled.
 	RunDir       string   // Parent directory of testdata.
 	ExtraFiles   []string // other directories expected for running tests/benchmarks
-	BuildDir     string   // Location of go.mod for this benchmark; download here, go test -c here.
+	BuildDir     string   // Location of go.mod for this benchmark; download and build here.
 	Version      string   // To pin a benchmark at a version.
+}
+
+func (b *Benchmark) effectiveBuildMode() string {
+	if b.BuildMode == "" {
+		return "test"
+	}
+	return b.BuildMode
+}
+
+func (b *Benchmark) validateBuildMode() error {
+	switch b.effectiveBuildMode() {
+	case "test", "build":
+		return nil
+	default:
+		return fmt.Errorf("BuildMode for benchmark %s is %q; want \"test\" or \"build\"", b.Name, b.BuildMode)
+	}
+}
+
+func (b *Benchmark) buildsTestBinary() bool {
+	return b.effectiveBuildMode() == "test"
 }
 
 // Benchmark disabling can be triggered by any build worker. The rest of the
@@ -96,12 +117,12 @@ var requireSandbox = false
 var getOnly = false
 var runContainer = ""       // if nonempty, skip builds and use existing named container (or binaries if -U )
 var wikiTable = false       // emit the tests in a form usable in a wiki table
-var explicitAll counterFlag // Include "-a" on "go test -c" test build ; repeating flag causes multiple rebuilds, useful for build benchmarking.
+var explicitAll counterFlag // Include "-a" on builds; repeating the flag causes multiple rebuilds, useful for build benchmarking.
 var shuffle = 2             // Dimensionality of (build) shuffling; 0 = none, 1 = per-benchmark, configuration ordering, 2 = bench, config pairs, 3 = across repetitions.
 var reportBuildTime = true
 var experiment = false    // Don't reset go.mod, for testing purposes
-var buildOnly = false     // Build and run AfterBuild commands, but do not execute test binaries.
-var buildWorkers = 1      // Maximum concurrent test-binary builds; one preserves the historic serial behavior.
+var buildOnly = false     // Build and run AfterBuild commands, but do not execute binaries.
+var buildWorkers = 1      // Maximum concurrent binary builds; one preserves the historic serial behavior.
 var minGoVersion = "1.22" // This is the release the toolchain started caring about versions of Go that are too new.
 
 //go:embed scripts/*
@@ -146,7 +167,7 @@ type compileResult struct {
 	failure string
 }
 
-// runCompileTasks performs independent test-binary builds with at most workers
+// runCompileTasks performs independent binary builds with at most workers
 // concurrent processes. Failures are returned in task order so diagnostics stay
 // stable even when the builds finish in a different order.
 func runCompileTasks(tasks []compileTask, workers int, build func(compileTask) string) []string {
@@ -213,7 +234,7 @@ func main() {
 	flag.IntVar(&R, "R", R, "randomize binary layouts to reduce alignment artifacts (subsumes and is incompatible with -a, -N)")
 	flag.BoolVar(&groupRuns, "G", groupRuns, "group runs by benchmark (give them similar platform noise)")
 
-	flag.Var(&explicitAll, "a", "add '-a' flag to 'go test -c' to demand full recompile. Repeat or assign a value for repeat builds for benchmarking")
+	flag.Var(&explicitAll, "a", "add '-a' to build commands to demand full recompile. Repeat or assign a value for repeat builds for benchmarking")
 	flag.IntVar(&shuffle, "s", shuffle, "dimensionality of (build) shuffling (0-3), 0 = none, 1 = per-benchmark, configuration ordering, 2 = bench, config pairs, 3 = across repetitions.")
 
 	flag.StringVar(&benchmarksString, "b", "", "comma-separated list of test/benchmark names (default is all)")
@@ -236,8 +257,8 @@ func main() {
 
 	flag.BoolVar(&wikiTable, "W", wikiTable, "print benchmark info for a wiki table")
 	flag.BoolVar(&experiment, "X", experiment, "for experimental changes to 3rd party software, do not reset build/*/go.mod")
-	flag.BoolVar(&buildOnly, "build-only", buildOnly, "build binaries and AfterBuild commands, but do not run test binaries")
-	flag.IntVar(&buildWorkers, "j", buildWorkers, "maximum concurrent test-binary builds (1 keeps builds serial)")
+	flag.BoolVar(&buildOnly, "build-only", buildOnly, "build binaries and AfterBuild commands, but do not run binaries")
+	flag.IntVar(&buildWorkers, "j", buildWorkers, "maximum concurrent binary builds (1 keeps builds serial)")
 
 	flag.BoolVar(&reportBuildTime, "report-build-time", reportBuildTime, "report build real/CPU time as benchmark results")
 
@@ -254,7 +275,7 @@ func main() {
 compiles and runs them according to the flags and environment
 variables supplied in %s.
 
-Specifying "-a" will pass "-a" to test compilations, but normally this
+Specifying "-a" will pass "-a" to build commands, but normally this
 should not be needed and only slows down builds; -a with a number that
 is not 1 can be used for benchmarking builds of the tests themselves.
 (Don't forget to specify "all=..." for GCFLAGS if you want those
@@ -281,7 +302,7 @@ runs together so that they experience most-similar platform noise
 LdFlags to "-randlayout=0x${BENT_K}a${BENT_I}".  Bent supplies BENT_I,
 setting BENT_K allows runs with different sets of random link orders
 
-All the test binaries will appear in the subdirectory 'testbin', and
+All built binaries will appear in the subdirectory 'testbin', and
 test (benchmark) output will appear in the subdirectory 'bench' with
 the suffix '.stdout'.  The test output is grouped by configuration to
 allow easy benchmark comparisons with benchstat.  Other benchmarking
@@ -396,6 +417,7 @@ results will also appear in 'bench'.
 		}
 		update(&b.Repo, s.Repo)
 		update(&b.Version, s.Version)
+		update(&b.BuildMode, s.BuildMode)
 		update(&b.Tests, s.Tests)
 		update(&b.Benchmarks, s.Benchmarks)
 
@@ -483,6 +505,10 @@ results will also appear in 'bench'.
 			os.Exit(1)
 		}
 		duplicates[bench.Name] = true
+		if err := bench.validateBuildMode(); err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 
 		if benchmarks != nil {
 			_, present := benchmarks[bench.Name]
@@ -737,7 +763,7 @@ results will also appear in 'bench'.
 			todo.Configurations[ci].createFilesForLater()
 		}
 
-		// Compile tests and move to ./testbin/Bench_Config.
+		// Compile binaries and move them to ./testbin/Bench_Config.
 		// If any test needs sandboxing, then one docker container will be created
 		// (that contains all the tests).
 
@@ -1206,8 +1232,10 @@ func benchOne(c *Configuration, b *Benchmark, i int, moreArgs []string) (s strin
 		wrappersAndBin = append(wrappersAndBin, bin)
 
 		cmd := exec.Command(wrappersAndBin[0], wrappersAndBin[1:]...)
-		cmd.Args = append(cmd.Args, "-test.run="+b.Tests)
-		cmd.Args = append(cmd.Args, "-test.bench="+b.Benchmarks)
+		if b.buildsTestBinary() {
+			cmd.Args = append(cmd.Args, "-test.run="+b.Tests)
+			cmd.Args = append(cmd.Args, "-test.bench="+b.Benchmarks)
+		}
 
 		cmd.Dir = b.RunDir
 		cmd.Env = DefaultEnv()
@@ -1256,8 +1284,10 @@ func benchOne(c *Configuration, b *Benchmark, i int, moreArgs []string) (s strin
 
 		cmd.Args = append(cmd.Args, container)
 		cmd.Args = append(cmd.Args, wrappersAndBin...)
-		cmd.Args = append(cmd.Args, "-test.run="+b.Tests)
-		cmd.Args = append(cmd.Args, "-test.bench="+b.Benchmarks)
+		if b.buildsTestBinary() {
+			cmd.Args = append(cmd.Args, "-test.run="+b.Tests)
+			cmd.Args = append(cmd.Args, "-test.bench="+b.Benchmarks)
+		}
 
 		cmd.Args = append(cmd.Args, c.RunFlags...)
 		cmd.Args = append(cmd.Args, moreArgs...)

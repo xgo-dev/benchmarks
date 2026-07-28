@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path"
 	"reflect"
 	"runtime"
 	"strings"
@@ -37,13 +38,14 @@ func TestMain(m *testing.M) {
 	m.Run()
 }
 
-func TestConfigurationTestCommandArgs(t *testing.T) {
+func TestConfigurationBuildCommandArgs(t *testing.T) {
 	originalExplicitAll := explicitAll
 	defer func() { explicitAll = originalExplicitAll }()
 
 	tests := []struct {
 		name          string
 		configuration Configuration
+		benchmark     Benchmark
 		randomizing   bool
 		explicitAll   counterFlag
 		want          []string
@@ -56,6 +58,17 @@ func TestConfigurationTestCommandArgs(t *testing.T) {
 			name:          "cached alternate compiler",
 			configuration: Configuration{OmitVetFlag: true, UseBuildCache: true},
 			want:          []string{"test", "-c"},
+		},
+		{
+			name:      "main package fresh build",
+			benchmark: Benchmark{BuildMode: "build"},
+			want:      []string{"build", "-a"},
+		},
+		{
+			name:          "main package cached alternate compiler",
+			configuration: Configuration{OmitVetFlag: true, UseBuildCache: true},
+			benchmark:     Benchmark{BuildMode: "build"},
+			want:          []string{"build"},
 		},
 		{
 			name:          "explicit a overrides cache opt in",
@@ -74,11 +87,77 @@ func TestConfigurationTestCommandArgs(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			explicitAll = test.explicitAll
-			got := test.configuration.testCommandArgs(test.randomizing)
+			got := test.configuration.buildCommandArgs(&test.benchmark, test.randomizing)
 			if !reflect.DeepEqual(got, test.want) {
-				t.Fatalf("testCommandArgs() = %q, want %q", got, test.want)
+				t.Fatalf("buildCommandArgs() = %q, want %q", got, test.want)
 			}
 		})
+	}
+}
+
+func TestBenchmarkBuildMode(t *testing.T) {
+	tests := []struct {
+		mode     string
+		wantMode string
+		wantTest bool
+		wantErr  bool
+	}{
+		{wantMode: "test", wantTest: true},
+		{mode: "test", wantMode: "test", wantTest: true},
+		{mode: "build", wantMode: "build"},
+		{mode: "install", wantMode: "install", wantErr: true},
+	}
+	for _, test := range tests {
+		t.Run(test.mode, func(t *testing.T) {
+			benchmark := Benchmark{Name: "example", BuildMode: test.mode}
+			if got := benchmark.effectiveBuildMode(); got != test.wantMode {
+				t.Errorf("effectiveBuildMode() = %q, want %q", got, test.wantMode)
+			}
+			if got := benchmark.buildsTestBinary(); got != test.wantTest {
+				t.Errorf("buildsTestBinary() = %t, want %t", got, test.wantTest)
+			}
+			if err := benchmark.validateBuildMode(); (err != nil) != test.wantErr {
+				t.Errorf("validateBuildMode() error = %v, wantErr %t", err, test.wantErr)
+			}
+		})
+	}
+}
+
+func TestCompileOneBuildsMainPackage(t *testing.T) {
+	goCommand, err := exec.LookPath("go")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	workspace := t.TempDir()
+	buildDir := t.TempDir()
+	if err := os.MkdirAll(path.Join(workspace, "testbin"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(path.Join(buildDir, "go.mod"), []byte("module example.com/main\n\ngo 1.22\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(path.Join(buildDir, "main.go"), []byte("package main\n\nfunc main() {}\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+
+	oldDirs, oldDefaultEnv, oldReportBuildTime := dirs, defaultEnv, reportBuildTime
+	defer func() {
+		dirs = oldDirs
+		defaultEnv = oldDefaultEnv
+		reportBuildTime = oldReportBuildTime
+	}()
+	dirs = &directories{wd: workspace, testBinDir: "testbin"}
+	defaultEnv = replaceEnv(os.Environ(), "GOCACHE", t.TempDir())
+	reportBuildTime = false
+
+	config := Configuration{Name: "Main", Compiler: goCommand, UseBuildCache: true}
+	benchmark := Benchmark{Name: "hello", Repo: ".", BuildMode: "build", BuildDir: buildDir, NotSandboxed: true}
+	if failure := config.compileOne(&benchmark, workspace, 1, false); failure != "" {
+		t.Fatal(failure)
+	}
+	if _, err := os.Stat(path.Join(workspace, "testbin", "hello_Main")); err != nil {
+		t.Fatalf("main binary was not created: %v", err)
 	}
 }
 

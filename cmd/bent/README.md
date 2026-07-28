@@ -83,9 +83,19 @@ and what version, plus any always-necessary flags:
   Repo = "github.com/BurntSushi/toml"
   Version = "@v1.3.2"
   ExtraFiles = ["_example"]
+
+ [[Suites]]
+  Name = "my_command"
+  Repo = "example.com/my/module/cmd/my-command"
+  BuildMode = "build"
+  Version = "@v1.0.0"
 ```
 Here, `gonum_mat` is checked out at version `0.9.3` and is always build with `-tags safe`.
 And to run the toml benchmarks, the contents of the `_example` directory are also required.
+`BuildMode = "build"` selects a `main` package and builds its executable with
+`go build` or, when the configuration has `Compiler = "$LLGO_BIN"`, `llgo build`.
+The default build mode is `test`, which retains the existing `go test -c` behavior.
+`BuildMode` may be set in either a suite or an individual benchmark entry.
 
 A sample benchmark entry:
 ```
@@ -122,9 +132,10 @@ Set `OmitVetFlag` only when that command does not accept Go's `-vet=off` flag. B
 historic fresh-build default; a configuration may set `UseBuildCache` for a compiler with a
 correctly keyed package cache, and an explicit Bent `-a` still forces a rebuild.
 The `-build-only` flag stops after binary construction and `AfterBuild` collection; it is useful
-for binary-size CI. See `configurations-llgo-size.toml`.
+for binary-size CI, including comparisons of executables produced from `main` packages. See
+`configurations-llgo-size.toml`.
 Use `-j=<workers>` to build independent configuration/benchmark pairs concurrently. Bent defaults
-to one worker for reproducible serial runs; each worker writes a distinct test binary while Bent
+to one worker for reproducible serial runs; each worker writes a distinct binary while Bent
 serializes shared result files and GOPATH cleanup.
 A `RunWrapper` command receives the entire command line as arguments, plus the environment variable `BENT_BINARY` set to the filename
 (excluding path) of the binary being run (for example, "uuid_Tip") and `BENT_I` set to the run number for this binary.

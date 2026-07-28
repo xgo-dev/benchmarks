@@ -21,7 +21,7 @@ expected_benchmarks=(
   K8s_workqueue
   Uber_zap
   Gorm_schema
-  Etcd_server
+  Etcd_client
 )
 
 summary="$result_dir/summary.md"

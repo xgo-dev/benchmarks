@@ -189,22 +189,13 @@ func runCompileTasks(tasks []compileTask, workers int, build func(compileTask) s
 	jobs := make(chan int)
 	results := make(chan compileResult, len(tasks))
 	var wg sync.WaitGroup
-	var buildMu sync.RWMutex
 	for range workers {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
 			for index := range jobs {
 				task := tasks[index]
-				if task.configuration != nil && task.configuration.BuildSerial {
-					buildMu.Lock()
-					results <- compileResult{index: index, failure: build(task)}
-					buildMu.Unlock()
-				} else {
-					buildMu.RLock()
-					results <- compileResult{index: index, failure: build(task)}
-					buildMu.RUnlock()
-				}
+				results <- compileResult{index: index, failure: build(task)}
 			}
 		}()
 	}

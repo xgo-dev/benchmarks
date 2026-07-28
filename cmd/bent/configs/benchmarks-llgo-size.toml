@@ -1,7 +1,7 @@
 # A small, stable subset of the Bent suites for binary-size CI.
 #
 # The packages cover AWS SDK request handling, human-readable byte parsing,
-# Kubernetes, logging, TOML, GORM, and the etcd server executable. They are
+# Kubernetes, logging, TOML, GORM, and the etcd client. They are
 # deliberately limited to keep the five-way compiler matrix practical on a
 # GitHub hosted runner, and have been verified against the pinned LLGo revision.
 
@@ -25,7 +25,7 @@
   Name = "gorm_schema"
 
 [[Benchmarks]]
-  Name = "etcd_server"
+  Name = "etcd_client"
 
 [[Benchmarks]]
   Name = "XGo"

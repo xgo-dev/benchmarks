@@ -233,9 +233,10 @@
   Version = "@v1.31.2"
 
 [[Suites]]
-  Name = "etcd_client"
-  Repo = "go.etcd.io/etcd/client/v3"
+  Name = "etcdctl"
+  Repo = "go.etcd.io/etcd/etcdctl/v3"
   Version = "@v3.6.14"
+  BuildMode = "build"
 
 [[Suites]]
   Name = "uber_tally"

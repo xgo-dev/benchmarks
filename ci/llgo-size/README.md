@@ -10,14 +10,15 @@ The workflow builds a small Bent subset in five configurations:
 
 The Bent suites include `toml`, `aws_restjson`, `dustin_humanize` (its
 `BenchmarkParseBigBytes` case), `k8s_workqueue`, `uber_zap`, `gorm_schema`,
-`etcd_client`, `XGo`, and `iXGo`. These cover widely used AWS SDK,
-human-readable byte parsing, Kubernetes, Uber, GORM, the etcd client,
+`etcdctl`, `XGo`, and `iXGo`. These cover widely used AWS SDK,
+human-readable byte parsing, Kubernetes, Uber, GORM, the etcd command-line client,
 and the Go+ toolchain. The GORM schema package is a real MethodByName consumer: its
 package-global readonly `callbackTypes` slice supplies the callback names used
 by `reflect.Value.MethodByName`. It therefore exercises the plugin through the
 same `go test -c` path as the other test-mode results.
-The etcd client also uses the default test mode. All configurations use Bent's
-configured build concurrency.
+The etcdctl case sets `BuildMode = "build"` and exercises the new `go build` /
+`llgo build` path against `go.etcd.io/etcd/etcdctl/v3`. All configurations use
+Bent's configured build concurrency.
 
 Every benchmark/configuration pair is built exactly once. LLGo's package cache
 separates archives that contain LTO plugin markers from ordinary archives, so

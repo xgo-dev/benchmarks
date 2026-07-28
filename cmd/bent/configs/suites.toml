@@ -422,3 +422,13 @@
   Name = "uber_tchannel_benchmark"
   Repo = "github.com/uber/tchannel-go/benchmark"
   Version = "@v1.22.0"
+
+[[Suites]]
+  Name = "XGo"
+  Repo = "github.com/goplus/xgo/cl"
+  Version = "@v1.7.5"
+
+[[Suites]]
+  Name = "iXGo"
+  Repo = "github.com/goplus/ixgo"
+  Version = "@v1.1.1"

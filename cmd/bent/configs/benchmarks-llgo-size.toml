@@ -23,3 +23,9 @@
 
 [[Benchmarks]]
   Name = "gorm_schema"
+
+[[Benchmarks]]
+  Name = "XGo"
+
+[[Benchmarks]]
+  Name = "iXGo"

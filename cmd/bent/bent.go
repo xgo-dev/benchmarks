@@ -34,6 +34,11 @@ type BenchStat struct {
 	RealTime, UserTime, SysTime time.Duration
 }
 
+const (
+	buildModeTest  = "test"
+	buildModeBuild = "build"
+)
+
 type Benchmark struct {
 	Name       string   // Short name for benchmark/test
 	Contact    string   // Contact not used, but may be present in description
@@ -55,22 +60,22 @@ type Benchmark struct {
 
 func (b *Benchmark) effectiveBuildMode() string {
 	if b.BuildMode == "" {
-		return "test"
+		return buildModeTest
 	}
 	return b.BuildMode
 }
 
 func (b *Benchmark) validateBuildMode() error {
 	switch b.effectiveBuildMode() {
-	case "test", "build":
+	case buildModeTest, buildModeBuild:
 		return nil
 	default:
-		return fmt.Errorf("BuildMode for benchmark %s is %q; want \"test\" or \"build\"", b.Name, b.BuildMode)
+		return fmt.Errorf("BuildMode for benchmark %s is %q; want %q or %q", b.Name, b.BuildMode, buildModeTest, buildModeBuild)
 	}
 }
 
 func (b *Benchmark) buildsTestBinary() bool {
-	return b.effectiveBuildMode() == "test"
+	return b.effectiveBuildMode() == buildModeTest
 }
 
 // Benchmark disabling can be triggered by any build worker. The rest of the

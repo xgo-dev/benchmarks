@@ -127,7 +127,8 @@ A sample configuration entry with all the options supplied:
 ```
 The `Gc...` attributes apply to the test or benchmark compilation, the `Run...` attributes apply to the test or benchmark run.
 A configuration may set `Compiler` to an alternate Go-compatible compiler command. Bent invokes
-`<Compiler> test` directly and skips copying/installing a Go toolchain root for that configuration.
+`<Compiler> test` or `<Compiler> build`, according to `BuildMode`, and skips copying/installing a
+Go toolchain root for that configuration.
 Set `OmitVetFlag` only when that command does not accept Go's `-vet=off` flag. Bent keeps its
 historic fresh-build default; a configuration may set `UseBuildCache` for a compiler with a
 correctly keyed package cache, and an explicit Bent `-a` still forces a rebuild.
@@ -137,6 +138,9 @@ for binary-size CI, including comparisons of executables produced from `main` pa
 Use `-j=<workers>` to build independent configuration/benchmark pairs concurrently. Bent defaults
 to one worker for reproducible serial runs; each worker writes a distinct binary while Bent
 serializes shared result files and GOPATH cleanup.
+Configuration `RunFlags` and additional arguments after `--` are passed to both test and `main`
+binaries, so they must be valid for the selected benchmark's `BuildMode`. In particular, do not
+use test-only flags such as `-test.benchmem` with a `build`-mode benchmark.
 A `RunWrapper` command receives the entire command line as arguments, plus the environment variable `BENT_BINARY` set to the filename
 (excluding path) of the binary being run (for example, "uuid_Tip") and `BENT_I` set to the run number for this binary.
 One useful example is `cpuprofile`:

@@ -233,6 +233,12 @@
   Version = "@v1.31.2"
 
 [[Suites]]
+  Name = "etcd_server"
+  Repo = "go.etcd.io/etcd/server/v3"
+  Version = "@v3.6.14"
+  BuildMode = "build"
+
+[[Suites]]
   Name = "uber_tally"
   Repo = "github.com/uber-go/tally"
   Version = "@v3.4.2+incompatible"

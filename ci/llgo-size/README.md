@@ -17,7 +17,9 @@ package-global readonly `callbackTypes` slice supplies the callback names used
 by `reflect.Value.MethodByName`. It therefore exercises the plugin through the
 same `go test -c` path as the other test-mode results.
 The etcd case sets `BuildMode = "build"` and exercises the new `go build` /
-`llgo build` path against the `go.etcd.io/etcd/server/v3` command.
+`llgo build` path against the `go.etcd.io/etcd/server/v3` command. Its
+`BuildSerial` setting prevents multiple memory-intensive etcd LTO links from
+running concurrently, while the remaining matrix retains four build workers.
 
 Every benchmark/configuration pair is built exactly once. LLGo's package cache
 separates archives that contain LTO plugin markers from ordinary archives, so

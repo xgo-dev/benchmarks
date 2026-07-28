@@ -194,6 +194,50 @@ func TestRunCompileTasks(t *testing.T) {
 	}
 }
 
+func TestRunCompileTasksSerialBuild(t *testing.T) {
+	ordinary := Benchmark{Name: "ordinary"}
+	serial := Benchmark{Name: "serial", BuildSerial: true}
+	tasks := []compileTask{
+		{benchmark: &ordinary},
+		{benchmark: &serial},
+		{benchmark: &ordinary},
+		{benchmark: &serial},
+	}
+
+	var mu sync.Mutex
+	active, serialActive := 0, false
+	var overlaps []string
+	runCompileTasks(tasks, len(tasks), func(task compileTask) string {
+		mu.Lock()
+		if task.benchmark.BuildSerial {
+			if active != 0 || serialActive {
+				overlaps = append(overlaps, "serial build overlapped another build")
+			}
+			serialActive = true
+		} else {
+			if serialActive {
+				overlaps = append(overlaps, "ordinary build overlapped a serial build")
+			}
+			active++
+		}
+		mu.Unlock()
+
+		time.Sleep(10 * time.Millisecond)
+
+		mu.Lock()
+		if task.benchmark.BuildSerial {
+			serialActive = false
+		} else {
+			active--
+		}
+		mu.Unlock()
+		return ""
+	})
+	if len(overlaps) != 0 {
+		t.Fatal(strings.Join(overlaps, "; "))
+	}
+}
+
 func TestBuildWorkersMustBePositive(t *testing.T) {
 	cmd := bentCmd(t, "-j=0", "-l")
 	output, err := cmd.CombinedOutput()

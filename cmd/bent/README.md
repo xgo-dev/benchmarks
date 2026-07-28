@@ -96,6 +96,8 @@ And to run the toml benchmarks, the contents of the `_example` directory are als
 `go build` or, when the configuration has `Compiler = "$LLGO_BIN"`, `llgo build`.
 The default build mode is `test`, which retains the existing `go test -c` behavior.
 `BuildMode` may be set in either a suite or an individual benchmark entry.
+Memory-intensive suites may set `BuildSerial = true`; their configuration builds
+run exclusively while other suites continue to use Bent's configured build concurrency.
 
 A sample benchmark entry:
 ```

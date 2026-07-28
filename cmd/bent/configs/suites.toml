@@ -237,7 +237,6 @@
   Repo = "go.etcd.io/etcd/server/v3"
   Version = "@v3.6.14"
   BuildMode = "build"
-  BuildSerial = true
 
 [[Suites]]
   Name = "uber_tally"

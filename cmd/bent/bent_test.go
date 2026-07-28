@@ -195,13 +195,13 @@ func TestRunCompileTasks(t *testing.T) {
 }
 
 func TestRunCompileTasksSerialBuild(t *testing.T) {
-	ordinary := Benchmark{Name: "ordinary"}
-	serial := Benchmark{Name: "serial", BuildSerial: true}
+	ordinary := Configuration{Name: "ordinary"}
+	serial := Configuration{Name: "serial", BuildSerial: true}
 	tasks := []compileTask{
-		{benchmark: &ordinary},
-		{benchmark: &serial},
-		{benchmark: &ordinary},
-		{benchmark: &serial},
+		{configuration: &ordinary},
+		{configuration: &serial},
+		{configuration: &ordinary},
+		{configuration: &serial},
 	}
 
 	var mu sync.Mutex
@@ -209,7 +209,7 @@ func TestRunCompileTasksSerialBuild(t *testing.T) {
 	var overlaps []string
 	runCompileTasks(tasks, len(tasks), func(task compileTask) string {
 		mu.Lock()
-		if task.benchmark.BuildSerial {
+		if task.configuration.BuildSerial {
 			if active != 0 || serialActive {
 				overlaps = append(overlaps, "serial build overlapped another build")
 			}
@@ -225,7 +225,7 @@ func TestRunCompileTasksSerialBuild(t *testing.T) {
 		time.Sleep(10 * time.Millisecond)
 
 		mu.Lock()
-		if task.benchmark.BuildSerial {
+		if task.configuration.BuildSerial {
 			serialActive = false
 		} else {
 			active--

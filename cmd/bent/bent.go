@@ -40,16 +40,15 @@ const (
 )
 
 type Benchmark struct {
-	Name        string   // Short name for benchmark/test
-	Contact     string   // Contact not used, but may be present in description
-	Repo        string   // Repo + subdir where test resides, used for "go get -t -d ..."
-	BuildMode   string   // "test" (default) builds a test binary; "build" builds a main package
-	BuildSerial bool     // Build this benchmark exclusively to limit peak resource use
-	Tests       string   // Tests to run (regex for -test.run= )
-	Benchmarks  string   // Benchmarks to run (regex for -test.bench= )
-	GcEnv       []string // Environment variables supplied while building and getting
-	BuildFlags  []string // Flags for building test (e.g., -tags purego)
-	RunWrapper  []string // (Inner) Command and args to precede whatever the operation is; may fail in the sandbox.
+	Name       string   // Short name for benchmark/test
+	Contact    string   // Contact not used, but may be present in description
+	Repo       string   // Repo + subdir where test resides, used for "go get -t -d ..."
+	BuildMode  string   // "test" (default) builds a test binary; "build" builds a main package
+	Tests      string   // Tests to run (regex for -test.run= )
+	Benchmarks string   // Benchmarks to run (regex for -test.bench= )
+	GcEnv      []string // Environment variables supplied while building and getting
+	BuildFlags []string // Flags for building test (e.g., -tags purego)
+	RunWrapper []string // (Inner) Command and args to precede whatever the operation is; may fail in the sandbox.
 	// e.g. benchmark may run as ConfigWrapper ConfigArg BenchWrapper BenchArg ActualBenchmark
 	NotSandboxed bool     // True if this benchmark cannot or should not be run in a container.
 	Disabled     bool     // True if this benchmark is temporarily disabled.
@@ -197,7 +196,7 @@ func runCompileTasks(tasks []compileTask, workers int, build func(compileTask) s
 			defer wg.Done()
 			for index := range jobs {
 				task := tasks[index]
-				if task.benchmark != nil && task.benchmark.BuildSerial {
+				if task.configuration != nil && task.configuration.BuildSerial {
 					buildMu.Lock()
 					results <- compileResult{index: index, failure: build(task)}
 					buildMu.Unlock()
@@ -439,7 +438,6 @@ results will also appear in 'bench'.
 
 		b.Disabled = s.Disabled || b.Disabled
 		b.NotSandboxed = s.NotSandboxed || b.NotSandboxed
-		b.BuildSerial = s.BuildSerial || b.BuildSerial
 
 		updateFlags(&b.ExtraFiles, s.ExtraFiles)
 		updateFlags(&b.BuildFlags, s.BuildFlags)

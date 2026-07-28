@@ -25,6 +25,7 @@
   Root = "$GOROOT"
   OmitVetFlag = true
   UseBuildCache = true
+  BuildSerial = true
   BuildFlags = ["-lto=full", "-globaldce=false"]
   AfterBuild = ["benchsize"]
 
@@ -34,6 +35,7 @@
   Root = "$GOROOT"
   OmitVetFlag = true
   UseBuildCache = true
+  BuildSerial = true
   BuildFlags = ["-lto=full"]
   AfterBuild = ["benchsize"]
 
@@ -43,5 +45,6 @@
   Root = "$GOROOT"
   OmitVetFlag = true
   UseBuildCache = true
+  BuildSerial = true
   BuildFlags = ["-lto=full", "-lto-pass-plugin=$LLGO_LTO_PLUGIN"]
   AfterBuild = ["benchsize"]

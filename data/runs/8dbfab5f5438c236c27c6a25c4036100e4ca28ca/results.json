@@ -2,19 +2,19 @@
   "schemaVersion": 1,
   "format": "bent-benchsize",
   "run": {
-    "id": "30325982391",
+    "id": "30343079933",
     "attempt": 1,
-    "number": 62,
-    "createdAt": "2026-07-28T03:53:05.982556Z",
+    "number": 64,
+    "createdAt": "2026-07-28T09:12:56.543877Z",
     "repository": "xgo-dev/benchmarks",
-    "sourceCommit": "b12dfb2bccb9d64a044b97f9217dd0b237b153cd",
+    "sourceCommit": "2e7afad7fa006a371fcb35c9b38f5f91b18aad8c",
     "ref": "main",
     "llgoRepository": "xgo-dev/llgo",
     "llgoCommit": "8dbfab5f5438c236c27c6a25c4036100e4ca28ca",
     "goVersion": "1.26.2",
     "llvmVersion": "19",
-    "event": "workflow_dispatch",
-    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30325982391"
+    "event": "push",
+    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30343079933"
   },
   "configs": [
     "Go",
@@ -49,19 +49,29 @@
       "name": "Gorm_schema",
       "values": {
         "Go": 9421659,
-        "LLGoNoLTO": 8422656,
-        "LLGoFullLTONoGlobalDCE": 8909584,
+        "LLGoNoLTO": 8422592,
+        "LLGoFullLTONoGlobalDCE": 8909648,
         "LLGoFullLTOGlobalDCE": 7796504,
-        "LLGoFullLTOGlobalDCEPlugin": 6205752
+        "LLGoFullLTOGlobalDCEPlugin": 6205816
+      }
+    },
+    {
+      "name": "IXGo",
+      "values": {
+        "Go": 16593279,
+        "LLGoNoLTO": 14829928,
+        "LLGoFullLTONoGlobalDCE": 16059320,
+        "LLGoFullLTOGlobalDCE": 15604392,
+        "LLGoFullLTOGlobalDCEPlugin": 15604456
       }
     },
     {
       "name": "K8s_workqueue",
       "values": {
         "Go": 10168201,
-        "LLGoNoLTO": 12606504,
+        "LLGoNoLTO": 12606440,
         "LLGoFullLTONoGlobalDCE": 13666544,
-        "LLGoFullLTOGlobalDCE": 13066872,
+        "LLGoFullLTOGlobalDCE": 13066936,
         "LLGoFullLTOGlobalDCEPlugin": 13066936
       }
     },
@@ -71,7 +81,7 @@
         "Go": 7213510,
         "LLGoNoLTO": 7238680,
         "LLGoFullLTONoGlobalDCE": 7655144,
-        "LLGoFullLTOGlobalDCE": 5847864,
+        "LLGoFullLTOGlobalDCE": 5847928,
         "LLGoFullLTOGlobalDCEPlugin": 5847928
       }
     },
@@ -79,10 +89,20 @@
       "name": "Uber_zap",
       "values": {
         "Go": 8729830,
-        "LLGoNoLTO": 13538904,
-        "LLGoFullLTONoGlobalDCE": 14669480,
+        "LLGoNoLTO": 13538968,
+        "LLGoFullLTONoGlobalDCE": 14669416,
         "LLGoFullLTOGlobalDCE": 10745784,
         "LLGoFullLTOGlobalDCEPlugin": 10745720
+      }
+    },
+    {
+      "name": "XGo",
+      "values": {
+        "Go": 13792869,
+        "LLGoNoLTO": 18940888,
+        "LLGoFullLTONoGlobalDCE": 20554208,
+        "LLGoFullLTOGlobalDCE": 15799768,
+        "LLGoFullLTOGlobalDCEPlugin": 15799768
       }
     }
   ],

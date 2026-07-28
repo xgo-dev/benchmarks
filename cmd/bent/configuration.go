@@ -30,6 +30,7 @@ type Configuration struct {
 	Compiler      string   // Optional go-compatible compiler command; defaults to Go from Root
 	OmitVetFlag   bool     // Do not pass Go's -vet=off flag to this compiler
 	UseBuildCache bool     // Reuse package-cache entries unless Bent's -a flag is explicitly requested
+	BuildSerial   bool     // Build this configuration exclusively to limit peak resource use
 	PgoGen        string   // Name of sub-directory to put profiles for later loading
 	PgoUse        string   // Name of sub-directory to take generated profile files
 	BuildFlags    []string // BuildFlags supplied to the configured build command (e.g., "-p 1")

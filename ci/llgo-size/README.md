@@ -8,12 +8,16 @@ The workflow builds a small Bent subset in five configurations:
 4. LLGo full LTO with GlobalDCE enabled;
 5. LLGo full LTO, GlobalDCE, and the MethodByName LTO plugin.
 
-The Bent suites are `toml`, `aws_restjson`, `dustin_humanize` (its
-`BenchmarkParseBigBytes` case), `k8s_workqueue`, `uber_zap`, and `gorm_schema`.
-These cover widely used AWS SDK, human-readable byte parsing, Kubernetes, Uber, and GORM code. The GORM schema package is a real MethodByName consumer: its
+The Bent suites include `toml`, `aws_restjson`, `dustin_humanize` (its
+`BenchmarkParseBigBytes` case), `k8s_workqueue`, `uber_zap`, `gorm_schema`,
+`etcd_server`, `XGo`, and `iXGo`. These cover widely used AWS SDK,
+human-readable byte parsing, Kubernetes, Uber, GORM, the etcd server executable,
+and the Go+ toolchain. The GORM schema package is a real MethodByName consumer: its
 package-global readonly `callbackTypes` slice supplies the callback names used
 by `reflect.Value.MethodByName`. It therefore exercises the plugin through the
-same `go test -c` path as every other result.
+same `go test -c` path as the other test-mode results.
+The etcd case sets `BuildMode = "build"` and exercises the new `go build` /
+`llgo build` path against the `go.etcd.io/etcd/server/v3` command.
 
 Every benchmark/configuration pair is built exactly once. LLGo's package cache
 separates archives that contain LTO plugin markers from ordinary archives, so

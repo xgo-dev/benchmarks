@@ -37,7 +37,7 @@ type Configuration struct {
 	GcFlags       string   // GcFlags supplied to the configured build command
 	LdFlags       string   // LdFlags supplied to the configured build command
 	GcEnv         []string // Environment variables supplied to the configured build command
-	RunFlags      []string // Extra flags passed to the built binary
+	RunFlags      []string // Extra flags passed to every built binary; they must suit its BuildMode
 	RunEnv        []string // Extra environment variables passed to the built binary
 	RunWrapper    []string // (Outermost) Command and args to precede whatever the operation is; may fail in the sandbox.
 	Disabled      bool     // True if this configuration is temporarily disabled
@@ -94,7 +94,7 @@ func (c *Configuration) goCommandCopy() string {
 func (config *Configuration) buildCommandArgs(bench *Benchmark, randomizingBinaries bool) []string {
 	mode := bench.effectiveBuildMode()
 	args := []string{mode}
-	if mode == "test" {
+	if mode == buildModeTest {
 		if !config.OmitVetFlag {
 			args = append(args, "-vet=off")
 		}

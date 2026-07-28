@@ -102,9 +102,9 @@ func TestBenchmarkBuildMode(t *testing.T) {
 		wantTest bool
 		wantErr  bool
 	}{
-		{wantMode: "test", wantTest: true},
-		{mode: "test", wantMode: "test", wantTest: true},
-		{mode: "build", wantMode: "build"},
+		{wantMode: buildModeTest, wantTest: true},
+		{mode: buildModeTest, wantMode: buildModeTest, wantTest: true},
+		{mode: buildModeBuild, wantMode: buildModeBuild},
 		{mode: "install", wantMode: "install", wantErr: true},
 	}
 	for _, test := range tests {

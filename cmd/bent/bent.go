@@ -89,9 +89,9 @@ type Todo struct {
 
 var verbose counterFlag
 
-var benchFile = "benchmarks-50.toml" // default list of benchmarks
-var confFile = "configurations.toml" // default list of configurations
-var suiteFile = "suites.toml"        // default list of suites
+var benchFile = "benchmarks-100.toml" // default list of benchmarks
+var confFile = "configurations.toml"  // default list of configurations
+var suiteFile = "suites.toml"         // default list of suites
 var container = ""
 var N = 1 // benchmark repeat count
 var R = 0 // randomized build/benchmark repeat count
@@ -122,7 +122,7 @@ var copyExes = []string{
 }
 
 var copyConfigs = []string{
-	"benchmarks-all.toml", "benchmarks-50.toml", "benchmarks-gc.toml", "benchmarks-gcplus.toml", "benchmarks-trial.toml",
+	"benchmarks-all.toml", "benchmarks-100.toml", "benchmarks-gc.toml", "benchmarks-gcplus.toml", "benchmarks-trial.toml",
 	"configurations-sample.toml", "configurations-gollvm.toml", "configurations-cronjob.toml", "configurations-cmpjob.toml",
 	"configurations-pgo.toml", "configurations-random.toml", "suites.toml",
 	"configurations-llgo-size.toml", "benchmarks-llgo-size.toml",

@@ -37,9 +37,9 @@ type Configuration struct {
 	GcFlags       string   // GcFlags supplied to the configured build command
 	LdFlags       string   // LdFlags supplied to the configured build command
 	GcEnv         []string // Environment variables supplied to the configured build command
-	RunFlags      []string // Extra flags passed to every built binary; they must suit its BuildMode
-	RunEnv        []string // Extra environment variables passed to the built binary
-	RunWrapper    []string // (Outermost) Command and args to precede whatever the operation is; may fail in the sandbox.
+	RunFlags      []string // Extra flags passed to every runnable test binary
+	RunEnv        []string // Extra environment variables passed to the runnable test binary
+	RunWrapper    []string // (Outermost) Command and args to precede the runnable test binary; may fail in the sandbox.
 	Disabled      bool     // True if this configuration is temporarily disabled
 	benchWriter   *os.File
 	rootCopy      string // The contents of GOROOT are copied here to isolate compilation benchmarking.

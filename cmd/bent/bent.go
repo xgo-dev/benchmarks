@@ -1102,7 +1102,7 @@ benchmarks_loop:
 
 	var runs []*Run
 
-	// N repetitions for each configurationm, run all the benchmarks.
+	// N repetitions for each configuration, run all test-mode benchmarks.
 	// TODO randomize the benchmarks and configurations, like for builds.
 	for i := 0; i < N; i++ {
 		// For each configuration, run all the benchmarks.
@@ -1114,7 +1114,7 @@ benchmarks_loop:
 
 			for k := range todo.Benchmarks {
 				b := &todo.Benchmarks[k]
-				if b.Disabled {
+				if b.Disabled || !b.buildsTestBinary() {
 					continue
 				}
 
@@ -1180,10 +1180,11 @@ func (r *Run) String() string {
 // benchOne runs a single benchmarks b in configuration c at iteration i, applying moreArgs to the run.
 // it returns the output and the return code.
 //
-// if either the configuration or benchmark is disabled, return with empty output and no change (0)
-// to the return code.
+// If either the configuration or benchmark is disabled, or the benchmark only
+// builds a main package, return with empty output and no change (0) to the
+// return code.
 func benchOne(c *Configuration, b *Benchmark, i int, moreArgs []string) (s string, rc int) {
-	if c.Disabled || b.Disabled {
+	if c.Disabled || b.Disabled || !b.buildsTestBinary() {
 		return
 	}
 

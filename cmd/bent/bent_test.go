@@ -123,6 +123,16 @@ func TestBenchmarkBuildMode(t *testing.T) {
 	}
 }
 
+func TestBenchOneSkipsBuildMode(t *testing.T) {
+	config := Configuration{RunWrapper: []string{"/must-not-run"}}
+	benchmark := Benchmark{Name: "command", BuildMode: buildModeBuild}
+
+	output, rc := benchOne(&config, &benchmark, 0, nil)
+	if output != "" || rc != 0 {
+		t.Fatalf("benchOne(build mode) = (%q, %d), want (\"\", 0)", output, rc)
+	}
+}
+
 func TestCompileOneBuildsMainPackage(t *testing.T) {
 	goCommand, err := exec.LookPath("go")
 	if err != nil {

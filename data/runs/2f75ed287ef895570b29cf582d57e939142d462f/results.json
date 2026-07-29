@@ -2,19 +2,19 @@
   "schemaVersion": 1,
   "format": "bent-benchsize",
   "run": {
-    "id": "30414804624",
+    "id": "30414916839",
     "attempt": 1,
-    "number": 77,
-    "createdAt": "2026-07-29T02:16:06.443397Z",
+    "number": 78,
+    "createdAt": "2026-07-29T03:38:50.355868Z",
     "repository": "xgo-dev/benchmarks",
-    "sourceCommit": "89f51dbad1028d103d355f7bbd49389e459efccf",
+    "sourceCommit": "17a1f0f0279145df49f6cab9932524e1811f12c2",
     "ref": "main",
     "llgoRepository": "xgo-dev/llgo",
     "llgoCommit": "2f75ed287ef895570b29cf582d57e939142d462f",
     "goVersion": "1.26.2",
     "llvmVersion": "19",
-    "event": "workflow_dispatch",
-    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30414804624"
+    "event": "push",
+    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30414916839"
   },
   "configs": [
     "Go",
@@ -29,9 +29,9 @@
       "name": "Aws_restjson",
       "values": {
         "Go": 14639564,
-        "LLGoNoLTO": 15190688,
+        "LLGoNoLTO": 15190616,
         "LLGoFullLTONoGlobalDCE": 16481344,
-        "LLGoFullLTOGlobalDCE": 12651512,
+        "LLGoFullLTOGlobalDCE": 12651576,
         "LLGoFullLTOGlobalDCEPlugin": 12651576
       }
     },
@@ -39,27 +39,37 @@
       "name": "Dustin_humanize",
       "values": {
         "Go": 4989852,
-        "LLGoNoLTO": 5704480,
-        "LLGoFullLTONoGlobalDCE": 5982728,
+        "LLGoNoLTO": 5704544,
+        "LLGoFullLTONoGlobalDCE": 5982664,
         "LLGoFullLTOGlobalDCE": 4004864,
         "LLGoFullLTOGlobalDCEPlugin": 4004864
+      }
+    },
+    {
+      "name": "Etcdctl",
+      "values": {
+        "Go": 25896983,
+        "LLGoNoLTO": 27198504,
+        "LLGoFullLTONoGlobalDCE": 29726216,
+        "LLGoFullLTOGlobalDCE": 25907392,
+        "LLGoFullLTOGlobalDCEPlugin": 25907392
       }
     },
     {
       "name": "Gorm_schema",
       "values": {
         "Go": 9421659,
-        "LLGoNoLTO": 8423496,
+        "LLGoNoLTO": 8423488,
         "LLGoFullLTONoGlobalDCE": 8909488,
         "LLGoFullLTOGlobalDCE": 7796336,
-        "LLGoFullLTOGlobalDCEPlugin": 6205656
+        "LLGoFullLTOGlobalDCEPlugin": 6205592
       }
     },
     {
       "name": "IXGo",
       "values": {
         "Go": 16593279,
-        "LLGoNoLTO": 14830784,
+        "LLGoNoLTO": 14830776,
         "LLGoFullLTONoGlobalDCE": 16059192,
         "LLGoFullLTOGlobalDCE": 15604328,
         "LLGoFullLTOGlobalDCEPlugin": 15604328
@@ -69,7 +79,7 @@
       "name": "K8s_workqueue",
       "values": {
         "Go": 10168201,
-        "LLGoNoLTO": 12606816,
+        "LLGoNoLTO": 12606808,
         "LLGoFullLTONoGlobalDCE": 13665848,
         "LLGoFullLTOGlobalDCE": 13066256,
         "LLGoFullLTOGlobalDCEPlugin": 13066256
@@ -79,27 +89,27 @@
       "name": "Toml",
       "values": {
         "Go": 7213510,
-        "LLGoNoLTO": 7239616,
-        "LLGoFullLTONoGlobalDCE": 7654992,
+        "LLGoNoLTO": 7239608,
+        "LLGoFullLTONoGlobalDCE": 7655056,
         "LLGoFullLTOGlobalDCE": 5847848,
-        "LLGoFullLTOGlobalDCEPlugin": 5847848
+        "LLGoFullLTOGlobalDCEPlugin": 5847784
       }
     },
     {
       "name": "Uber_zap",
       "values": {
         "Go": 8729830,
-        "LLGoNoLTO": 13539224,
+        "LLGoNoLTO": 13539216,
         "LLGoFullLTONoGlobalDCE": 14668712,
-        "LLGoFullLTOGlobalDCE": 10745000,
-        "LLGoFullLTOGlobalDCEPlugin": 10744936
+        "LLGoFullLTOGlobalDCE": 10744936,
+        "LLGoFullLTOGlobalDCEPlugin": 10745000
       }
     },
     {
       "name": "XGo",
       "values": {
         "Go": 13792869,
-        "LLGoNoLTO": 18941824,
+        "LLGoNoLTO": 18941816,
         "LLGoFullLTONoGlobalDCE": 20554120,
         "LLGoFullLTOGlobalDCE": 15799688,
         "LLGoFullLTOGlobalDCEPlugin": 15799688

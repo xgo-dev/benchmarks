@@ -431,10 +431,12 @@
 
 [[Suites]]
   Name = "XGo"
-  Repo = "github.com/goplus/xgo/cl"
+  Repo = "github.com/goplus/xgo/cmd/xgo"
   Version = "@v1.7.5"
+  BuildMode = "build"
 
 [[Suites]]
   Name = "iXGo"
-  Repo = "github.com/goplus/ixgo"
+  Repo = "github.com/goplus/ixgo/cmd/ixgo"
   Version = "@v1.1.1"
+  BuildMode = "build"

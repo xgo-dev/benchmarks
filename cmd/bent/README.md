@@ -94,6 +94,7 @@ Here, `gonum_mat` is checked out at version `0.9.3` and is always build with `-t
 And to run the toml benchmarks, the contents of the `_example` directory are also required.
 `BuildMode = "build"` selects a `main` package and builds its executable with
 `go build` or, when the configuration has `Compiler = "$LLGO_BIN"`, `llgo build`.
+Bent does not execute build-mode binaries during the benchmark/test run phase.
 The default build mode is `test`, which retains the existing `go test -c` behavior.
 `BuildMode` may be set in either a suite or an individual benchmark entry.
 
@@ -138,9 +139,9 @@ for binary-size CI, including comparisons of executables produced from `main` pa
 Use `-j=<workers>` to build independent configuration/benchmark pairs concurrently. Bent defaults
 to one worker for reproducible serial runs; each worker writes a distinct binary while Bent
 serializes shared result files and GOPATH cleanup.
-Configuration `RunFlags` and additional arguments after `--` are passed to both test and `main`
-binaries, so they must be valid for the selected benchmark's `BuildMode`. In particular, do not
-use test-only flags such as `-test.benchmem` with a `build`-mode benchmark.
+Configuration `RunFlags` and additional arguments after `--` are passed only to runnable
+test-mode binaries. Build-mode binaries are constructed and processed by `AfterBuild`, but are
+never executed by Bent.
 A `RunWrapper` command receives the entire command line as arguments, plus the environment variable `BENT_BINARY` set to the filename
 (excluding path) of the binary being run (for example, "uuid_Tip") and `BENT_I` set to the run number for this binary.
 One useful example is `cpuprofile`:

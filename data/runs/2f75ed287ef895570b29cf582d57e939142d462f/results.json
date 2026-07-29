@@ -2,19 +2,19 @@
   "schemaVersion": 1,
   "format": "bent-benchsize",
   "run": {
-    "id": "30414916839",
+    "id": "30457950906",
     "attempt": 1,
-    "number": 78,
-    "createdAt": "2026-07-29T03:38:50.355868Z",
+    "number": 80,
+    "createdAt": "2026-07-29T14:57:55.155067Z",
     "repository": "xgo-dev/benchmarks",
-    "sourceCommit": "17a1f0f0279145df49f6cab9932524e1811f12c2",
+    "sourceCommit": "df8df980bf9a1c4a9739722f55a9ec6f46e576d6",
     "ref": "main",
     "llgoRepository": "xgo-dev/llgo",
     "llgoCommit": "2f75ed287ef895570b29cf582d57e939142d462f",
     "goVersion": "1.26.2",
     "llvmVersion": "19",
     "event": "push",
-    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30414916839"
+    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30457950906"
   },
   "configs": [
     "Go",
@@ -29,7 +29,7 @@
       "name": "Aws_restjson",
       "values": {
         "Go": 14639564,
-        "LLGoNoLTO": 15190616,
+        "LLGoNoLTO": 15190688,
         "LLGoFullLTONoGlobalDCE": 16481344,
         "LLGoFullLTOGlobalDCE": 12651576,
         "LLGoFullLTOGlobalDCEPlugin": 12651576
@@ -40,9 +40,9 @@
       "values": {
         "Go": 4989852,
         "LLGoNoLTO": 5704544,
-        "LLGoFullLTONoGlobalDCE": 5982664,
+        "LLGoFullLTONoGlobalDCE": 5982728,
         "LLGoFullLTOGlobalDCE": 4004864,
-        "LLGoFullLTOGlobalDCEPlugin": 4004864
+        "LLGoFullLTOGlobalDCEPlugin": 4004800
       }
     },
     {
@@ -61,25 +61,25 @@
         "Go": 9421659,
         "LLGoNoLTO": 8423488,
         "LLGoFullLTONoGlobalDCE": 8909488,
-        "LLGoFullLTOGlobalDCE": 7796336,
-        "LLGoFullLTOGlobalDCEPlugin": 6205592
+        "LLGoFullLTOGlobalDCE": 7796272,
+        "LLGoFullLTOGlobalDCEPlugin": 6205656
       }
     },
     {
       "name": "IXGo",
       "values": {
-        "Go": 16593279,
-        "LLGoNoLTO": 14830776,
-        "LLGoFullLTONoGlobalDCE": 16059192,
-        "LLGoFullLTOGlobalDCE": 15604328,
-        "LLGoFullLTOGlobalDCEPlugin": 15604328
+        "Go": 41390530,
+        "LLGoNoLTO": 33297648,
+        "LLGoFullLTONoGlobalDCE": 36755448,
+        "LLGoFullLTOGlobalDCE": 35611664,
+        "LLGoFullLTOGlobalDCEPlugin": 35611664
       }
     },
     {
       "name": "K8s_workqueue",
       "values": {
         "Go": 10168201,
-        "LLGoNoLTO": 12606808,
+        "LLGoNoLTO": 12606752,
         "LLGoFullLTONoGlobalDCE": 13665848,
         "LLGoFullLTOGlobalDCE": 13066256,
         "LLGoFullLTOGlobalDCEPlugin": 13066256
@@ -89,10 +89,10 @@
       "name": "Toml",
       "values": {
         "Go": 7213510,
-        "LLGoNoLTO": 7239608,
+        "LLGoNoLTO": 7239616,
         "LLGoFullLTONoGlobalDCE": 7655056,
         "LLGoFullLTOGlobalDCE": 5847848,
-        "LLGoFullLTOGlobalDCEPlugin": 5847784
+        "LLGoFullLTOGlobalDCEPlugin": 5847848
       }
     },
     {
@@ -101,18 +101,18 @@
         "Go": 8729830,
         "LLGoNoLTO": 13539216,
         "LLGoFullLTONoGlobalDCE": 14668712,
-        "LLGoFullLTOGlobalDCE": 10744936,
+        "LLGoFullLTOGlobalDCE": 10745000,
         "LLGoFullLTOGlobalDCEPlugin": 10745000
       }
     },
     {
       "name": "XGo",
       "values": {
-        "Go": 13792869,
-        "LLGoNoLTO": 18941816,
-        "LLGoFullLTONoGlobalDCE": 20554120,
-        "LLGoFullLTOGlobalDCE": 15799688,
-        "LLGoFullLTOGlobalDCEPlugin": 15799688
+        "Go": 18662549,
+        "LLGoNoLTO": 21196704,
+        "LLGoFullLTONoGlobalDCE": 23095088,
+        "LLGoFullLTOGlobalDCE": 20267008,
+        "LLGoFullLTOGlobalDCEPlugin": 20267008
       }
     }
   ],

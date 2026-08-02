@@ -33,7 +33,7 @@ Entry workflow: [.github/workflows/llgo-binary-size.yml](../.github/workflows/ll
 5. [publish.sh](../ci/llgo-size/publish.sh) archives the results to `pages/data/runs/<run>-<attempt>/` and updates `data/index.json`.
 6. The `deploy-pages` job checks out the `pages` branch, builds it with Jekyll, and deploys via the GitHub Pages artifact.
 
-When only the dashboard source or the page-publishing script is changed, the binary-size build is not triggered; a separate `llgo-binary-size-pages.yml` workflow refreshes the `pages` branch directly and deploys the site. Both this workflow and the publish job of the main workflow are restricted to `main`. PRs that change the committed LLGo pin, Bent, the LLGo-size benchmark/configuration files, or their suite definitions run the full LLGo binary-size matrix and upload the artifact for developer reference; neither PR path publishes to Pages.
+When only the dashboard source or the page-publishing script is changed, the binary-size build is not triggered; a separate `llgo-binary-size-pages.yml` workflow refreshes the `pages` branch directly and deploys the site. Both this workflow and the publish job of the main workflow are restricted to `main`. Ordinary PRs only run the Go-configuration case validation; if a PR modifies `llgo-version.env`, the full LLGo binary-size matrix runs and the artifact is uploaded for developer reference, but neither type of PR publishes to Pages.
 The two workflows use independent concurrency queues, so a page refresh does not preempt a pending binary-size build.
 The history directory and index now use the full LLGo commit as the key, rather than the Actions run number, as the history identifier.
 
@@ -55,13 +55,8 @@ Core files:
 - `k8s_workqueue`
 - `uber_zap`
 - `gorm_schema`
-- `etcdctl`
-- `XGo`
-- `iXGo`
 
 `hugo_hugolib` was removed in [7fbe18a](https://github.com/zhouguangyuan0718/benchmarks/commit/7fbe18ad2ab96146c036a1a463dd3779961c601a): it made the LTO build stage significantly slower. Sarama was silently disabled by Bent in #18, and has now been replaced with `dustin_humanize`, which has been verified to build and produce `benchsize` output.
-
-The `etcdctl`, `XGo`, and `iXGo` suites use `BuildMode = "build"`; the other suites use Bent's test-binary path. The complete matrix therefore contains 9 workloads and 6 configurations.
 
 ## Key Issues Resolved
 
@@ -95,7 +90,7 @@ This deployment pipeline has been verified in the personal testing repository. B
 
 ## Follow-up Recommendations
 
-1. After configuring `BENCHMARKS_DISPATCH_TOKEN` in `xgo-dev/llgo`, monitor the run automatically triggered by each `main` update: it will pin to the corresponding commit, use four Bent build workers, and require complete results for all 9 workloads across the 6 configurations.
+1. After configuring `BENCHMARKS_DISPATCH_TOKEN` in `xgo-dev/llgo`, monitor the run automatically triggered by each `main` update: it will pin to the corresponding commit, use four Bent build workers, and require complete results for all six cases.
 2. If a run fails, first check the failed step in its `binary-size` job and the `[toolchain]`, `[timing]`, and `[bent-download]` lines in the logs.
 3. After success, check whether a new run appears on the Pages dashboard and compare it against the previous historical result.
 5. If further time reduction is still needed, use `build-times.tsv` and `timing-summary.md` first to identify the slowest suite, then replace that single suite; do not remove any of the six compilation configurations, as doing so would reduce the comparative value of Go deadcode drop, LTO, and GlobalDCE.

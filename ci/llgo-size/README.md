@@ -1,12 +1,13 @@
 # LLGo binary-size CI
 
-The workflow builds a small Bent subset in five configurations:
+The workflow builds a small Bent subset in six configurations:
 
 1. native Go;
 2. LLGo without LTO;
-3. LLGo full LTO with GlobalDCE disabled;
-4. LLGo full LTO with GlobalDCE enabled;
-5. LLGo full LTO, GlobalDCE, and the MethodByName LTO plugin.
+3. LLGo without LTO and with Go deadcode drop enabled;
+4. LLGo full LTO with GlobalDCE disabled;
+5. LLGo full LTO with GlobalDCE enabled;
+6. LLGo full LTO, GlobalDCE, and the MethodByName LTO plugin.
 
 The Bent suites include `toml`, `aws_restjson`, `dustin_humanize` (its
 `BenchmarkParseBigBytes` case), `k8s_workqueue`, `uber_zap`, `gorm_schema`,
@@ -69,10 +70,10 @@ binary-size run.
 
 Pull requests that change the committed LLGo version, Bent, the LLGo-size
 benchmark/configuration files, or the suite definitions used by those cases
-run the full five-way matrix and upload the `llgo-binary-size` artifact for
+run the full six-way matrix and upload the `llgo-binary-size` artifact for
 review. They do not publish history. A PR outside that scope uses the separate
 Go-only validation job, so dependency acquisition, compilation, and execution
-remain checked without rebuilding LLGo or the four LLGo binary-size variants.
+remain checked without rebuilding LLGo or the five LLGo binary-size variants.
 
 Published history is keyed by the full LLGo commit, so rerunning one commit
 updates its existing entry instead of adding another build-round entry.

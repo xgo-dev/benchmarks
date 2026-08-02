@@ -10,6 +10,7 @@ mkdir -p "$result_dir"
 configs=(
   Go
   LLGoNoLTO
+  LLGoDeadcodeDrop
   LLGoFullLTONoGlobalDCE
   LLGoFullLTOGlobalDCE
   LLGoFullLTOGlobalDCEPlugin
@@ -109,6 +110,7 @@ output = os.environ["LLGO_SIZE_JSON"]
 configs = [
     "Go",
     "LLGoNoLTO",
+    "LLGoDeadcodeDrop",
     "LLGoFullLTONoGlobalDCE",
     "LLGoFullLTOGlobalDCE",
     "LLGoFullLTOGlobalDCEPlugin",

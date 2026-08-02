@@ -30,7 +30,7 @@
 
 1. 读取 [ci/llgo-size/llgo-version.env](../ci/llgo-size/llgo-version.env) 的默认 LLGo、Go 和 LLVM 版本；LLGo `main` 的跨仓库事件会先更新该 pin，再显式启动一次构建和 Pages 发布。
 2. 安装 LLVM 19、构建 LLGo 命令与 LTO plugin。
-3. 用 Bent 对每个 suite 运行 Go + 4 个 LLGo 配置，产出 `benchsize` 的 JSON/TSV/raw 文件；CI 通过 `-j="$BENT_BUILD_WORKERS"` 并发构建，当前值为 4。
+3. 用 Bent 对每个 suite 运行 Go + 5 个 LLGo 配置，产出 `benchsize` 的 JSON/TSV/raw 文件；CI 通过 `-j="$BENT_BUILD_WORKERS"` 并发构建，当前值为 4。
 4. [report.sh](../ci/llgo-size/report.sh) 整理结果和构建/下载耗时。
 5. [publish.sh](../ci/llgo-size/publish.sh) 将结果归档到 `pages/data/runs/<run>-<attempt>/`，更新 `data/index.json`。
 6. `deploy-pages` job 检出 `pages` 分支，用 Jekyll 构建后通过 GitHub Pages artifact 部署。
@@ -47,7 +47,7 @@ PR 修改 `llgo-version.env`，则运行完整的 LLGo 二进制大小矩阵并�
 核心文件：
 
 - [Bent suites](../cmd/bent/configs/benchmarks-llgo-size.toml)
-- [五种编译配置](../cmd/bent/configs/configurations-llgo-size.toml)
+- [六种编译配置](../cmd/bent/configs/configurations-llgo-size.toml)
 - [结果发布脚本](../ci/llgo-size/publish.sh)
 - [工作流计时 helper](../ci/llgo-size/timing.sh)
 - [仪表盘页面](../ci/llgo-size/site/index.html)
@@ -100,7 +100,7 @@ Invalid attribute group entry (Producer: 'LLVM19.1.1' Reader: 'LLVM 18.1.3')
 1. 在 `xgo-dev/llgo` 配置 `BENCHMARKS_DISPATCH_TOKEN` 后，观察每次 `main` 更新自动触发的运行：它会固定到对应提交、使用四个 Bent 构建 worker，并要求六个用例完整结果。
 2. 若运行失败，优先查看其 `binary-size` job 的失败步骤和日志中的 `[toolchain]`、`[timing]`、`[bent-download]` 行。
 3. 成功后检查 Pages 仪表盘是否出现新 run，并与上一条历史结果比较。
-5. 若仍需缩短时间，优先依据 `build-times.tsv` 和 `timing-summary.md` 找出最慢 suite，再替换单个 suite；不要移除五种编译配置，否则会降低 LTO/GlobalDCE 的对比价值。
+5. 若仍需缩短时间，优先依据 `build-times.tsv` 和 `timing-summary.md` 找出最慢 suite，再替换单个 suite；不要移除六种编译配置，否则会降低 deadcode drop、LTO 和 GlobalDCE 的对比价值。
 
 ## 常用排查入口
 

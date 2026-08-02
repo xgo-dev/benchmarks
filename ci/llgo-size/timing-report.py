@@ -9,6 +9,7 @@ from collections import defaultdict
 CONFIGS = [
     "Go",
     "LLGoNoLTO",
+    "LLGoDeadcodeDrop",
     "LLGoFullLTONoGlobalDCE",
     "LLGoFullLTOGlobalDCE",
     "LLGoFullLTOGlobalDCEPlugin",

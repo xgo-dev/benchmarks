@@ -1,4 +1,4 @@
-# Five-way binary-size comparison used by ci/llgo-size.
+# Six-way binary-size comparison used by ci/llgo-size.
 #
 # LLGO_BIN and LLGO_LTO_PLUGIN are built by the workflow. LLGo's command is
 # Go-compatible but does not support the standard go command's -vet option.
@@ -17,6 +17,15 @@
   Root = "$GOROOT"
   OmitVetFlag = true
   UseBuildCache = true
+  AfterBuild = ["benchsize"]
+
+[[Configurations]]
+  Name = "LLGoDeadcodeDrop"
+  Compiler = "$LLGO_BIN"
+  Root = "$GOROOT"
+  OmitVetFlag = true
+  UseBuildCache = true
+  BuildFlags = ["-deadcodedrop"]
   AfterBuild = ["benchsize"]
 
 [[Configurations]]

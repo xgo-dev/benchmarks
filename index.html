@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LLGo binary-size history</title>
+  <title>LLGo binary size and build-time history</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
     <header class="hero">
       <div>
         <p class="eyebrow">LLGo compiler benchmarks</p>
-        <h1>Binary-size history</h1>
-        <p class="lede">Inspect every published commit across Go and LLGo build modes. Pick two commits to surface their direct size difference without losing the Go baseline.</p>
+        <h1>Binary size &amp; build-time history</h1>
+        <p class="lede">Inspect binary size and build CPU time across Go and LLGo modes. CPU time is user + sys; wall time is shown only as a scheduling reference.</p>
       </div>
       <p id="status" class="status" role="status">Loading results…</p>
     </header>
@@ -39,6 +39,7 @@
       </div>
       <div class="matrix-controls">
         <p id="commit-count" class="commit-count"></p>
+        <label class="measure-label">Measure<select id="comparison-measure"><option value="size">Binary size</option><option value="build-cpu">Build CPU time</option></select></label>
         <label class="page-size-label">Commits per page<select id="page-size"><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option></select></label>
         <div id="pagination" class="pagination" aria-label="Commit pages"></div>
         <label class="filter-label">Filter commits<input id="commit-filter" type="search" placeholder="Commit or branch"></label>
@@ -59,7 +60,8 @@
       <div class="history-controls">
         <div><span class="control-label">Benchmarks</span><div id="benchmark-filter" class="choice-row"></div></div>
         <div><span class="control-label">Build modes</span><div id="config-filter" class="choice-row"></div></div>
-        <label class="metric-select">Metric<select id="history-metric"><option value="absolute">Absolute size</option><option value="vs-go">vs Go</option><option value="commit-delta">Commit delta</option></select></label>
+        <label class="measure-label">Measure<select id="history-measure"><option value="size">Binary size</option><option value="build-cpu">Build CPU time</option></select></label>
+        <label class="metric-select">View<select id="history-metric"><option value="absolute">Absolute value</option><option value="vs-go">vs Go</option><option value="commit-delta">Commit delta</option></select></label>
       </div>
       <div class="history-layout">
         <div id="history-chart" class="history-chart" aria-live="polite"></div>

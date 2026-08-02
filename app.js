@@ -22,6 +22,7 @@ const historyRange = document.querySelector("#history-range");
 const configs = [
   "Go",
   "LLGoNoLTO",
+  "LLGoDeadcodeDrop",
   "LLGoFullLTONoGlobalDCE",
   "LLGoFullLTOGlobalDCE",
   "LLGoFullLTOGlobalDCEPlugin",
@@ -30,6 +31,7 @@ const configs = [
 const configLabels = {
   Go: "Go",
   LLGoNoLTO: "LLGo · no LTO",
+  LLGoDeadcodeDrop: "LLGo · Go deadcode drop",
   LLGoFullLTONoGlobalDCE: "LLGo · full LTO, no GlobalDCE",
   LLGoFullLTOGlobalDCE: "LLGo · full LTO + GlobalDCE",
   LLGoFullLTOGlobalDCEPlugin: "LLGo · full LTO + GlobalDCE + plugin",
@@ -38,12 +40,13 @@ const configLabels = {
 const compactConfigLabels = {
   Go: "Go",
   LLGoNoLTO: "No LTO",
+  LLGoDeadcodeDrop: "Deadcode drop",
   LLGoFullLTONoGlobalDCE: "Full LTO",
   LLGoFullLTOGlobalDCE: "LTO + DCE",
   LLGoFullLTOGlobalDCEPlugin: "LTO + DCE + P",
 };
 
-const seriesColors = ["#2457d6", "#7c3aed", "#d97706", "#0f766e", "#c92a2a"];
+const seriesColors = ["#2457d6", "#7c3aed", "#4d7c0f", "#d97706", "#0f766e", "#c92a2a"];
 const seriesDashes = ["", "7 3", "2 3"];
 
 function escapeHtml(value) {

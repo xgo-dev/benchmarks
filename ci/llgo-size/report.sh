@@ -97,6 +97,7 @@ fi
 python3 "$script_dir/timing-report.py" "$bench_dir" "$build_tsv" "$timing_summary"
 
 export LLGO_SIZE_TSV="$tsv"
+export LLGO_BUILD_TIMES_TSV="$build_tsv"
 export LLGO_SIZE_JSON="$json"
 python3 - <<'PY'
 import csv
@@ -105,6 +106,7 @@ import os
 from datetime import datetime, timezone
 
 tsv = os.environ["LLGO_SIZE_TSV"]
+build_times_tsv = os.environ["LLGO_BUILD_TIMES_TSV"]
 output = os.environ["LLGO_SIZE_JSON"]
 configs = [
     "Go",
@@ -114,12 +116,25 @@ configs = [
     "LLGoFullLTOGlobalDCEPlugin",
 ]
 
+build_times = {}
+with open(build_times_tsv, newline="", encoding="utf-8") as f:
+    for row in csv.DictReader(f, delimiter="\t"):
+        user_ns = int(row["user-ns"])
+        sys_ns = int(row["sys-ns"])
+        build_times.setdefault(row["benchmark"], {})[row["configuration"]] = {
+            "cpuNs": user_ns + sys_ns,
+            "userNs": user_ns,
+            "sysNs": sys_ns,
+            "wallNs": int(row["real-ns"]),
+        }
+
 benchmarks = []
 with open(tsv, newline="", encoding="utf-8") as f:
     for row in csv.DictReader(f, delimiter="\t"):
         benchmarks.append({
             "name": row["benchmark"],
             "values": {name: int(row[name]) for name in configs},
+            "buildTimes": build_times.get(row["benchmark"], {}),
         })
 
 def env(name, fallback=""):
@@ -160,6 +175,7 @@ document = {
     "run": run,
     "configs": configs,
     "metric": "total-bytes",
+    "buildTimeMetric": "user-plus-sys-ns",
     "benchmarks": benchmarks,
     "native": {
         "summary": "summary.md",

@@ -16,6 +16,8 @@ const comparisonGrid = document.querySelector("#comparison-grid");
 const pagination = document.querySelector("#pagination");
 const filterInput = document.querySelector("#commit-filter");
 const pageSizeSelect = document.querySelector("#page-size");
+const comparisonMeasure = document.querySelector("#comparison-measure");
+const historyMeasure = document.querySelector("#history-measure");
 const historyMetric = document.querySelector("#history-metric");
 const historyRange = document.querySelector("#history-range");
 
@@ -68,6 +70,17 @@ function formatBytes(value) {
   return (number < 0 ? "-" : "") + scaled.toFixed(3) + " " + units[unit];
 }
 
+function formatDuration(value) {
+  const nanoseconds = Number(value);
+  if (!Number.isFinite(nanoseconds)) return "—";
+  const seconds = Math.abs(nanoseconds) / 1e9;
+  const sign = nanoseconds < 0 ? "-" : "";
+  if (seconds >= 60) return sign + Math.floor(seconds / 60) + "m " + (seconds % 60).toFixed(1) + "s";
+  if (seconds >= 10) return sign + seconds.toFixed(1) + "s";
+  if (seconds >= 1) return sign + seconds.toFixed(2) + "s";
+  return sign + (seconds * 1000).toFixed(1) + "ms";
+}
+
 function formatPercent(value, digits) {
   if (!Number.isFinite(value)) return "—";
   return (value > 0 ? "+" : "") + value.toFixed(digits == null ? 3 : digits) + "%";
@@ -107,12 +120,56 @@ function benchmarkMap(document) {
   return new Map((document.benchmarks || []).map(function (item) { return [item.name, item]; }));
 }
 
+function parseBuildTimes(text) {
+  const lines = String(text || "").trim().split(/\r?\n/);
+  if (lines.length < 2) return new Map();
+  const header = lines[0].split("\t");
+  const column = function (name) { return header.indexOf(name); };
+  const benchmarkColumn = column("benchmark");
+  const configColumn = column("configuration");
+  const realColumn = column("real-ns");
+  const userColumn = column("user-ns");
+  const sysColumn = column("sys-ns");
+  if ([benchmarkColumn, configColumn, realColumn, userColumn, sysColumn].some(function (index) { return index < 0; })) return new Map();
+  const result = new Map();
+  lines.slice(1).forEach(function (line) {
+    if (!line) return;
+    const fields = line.split("\t");
+    const userNs = Number(fields[userColumn]);
+    const sysNs = Number(fields[sysColumn]);
+    const wallNs = Number(fields[realColumn]);
+    if (![userNs, sysNs, wallNs].every(Number.isFinite)) return;
+    const name = fields[benchmarkColumn];
+    const config = fields[configColumn];
+    if (!result.has(name)) result.set(name, {});
+    result.get(name)[config] = { cpuNs: userNs + sysNs, userNs: userNs, sysNs: sysNs, wallNs: wallNs };
+  });
+  return result;
+}
+
+async function loadLegacyBuildTimes(meta, document) {
+  if ((document.benchmarks || []).some(function (benchmark) { return benchmark.buildTimes && Object.keys(benchmark.buildTimes).length; })) return;
+  const nativePath = document.native && document.native.buildTimes;
+  if (!nativePath) return;
+  const basePath = meta.path.slice(0, meta.path.lastIndexOf("/") + 1);
+  const response = await fetch("data/" + basePath + nativePath, { cache: "no-store" });
+  if (!response.ok) return;
+  const timings = parseBuildTimes(await response.text());
+  (document.benchmarks || []).forEach(function (benchmark) {
+    benchmark.buildTimes = timings.get(benchmark.name) || {};
+  });
+}
+
 async function loadRun(meta) {
   if (!meta) return null;
   if (!state.runs.has(meta.key)) {
-    const response = await fetch("data/" + meta.path, { cache: "no-store" });
-    if (!response.ok) throw new Error("Cannot load " + meta.path);
-    state.runs.set(meta.key, await response.json());
+    state.runs.set(meta.key, (async function () {
+      const response = await fetch("data/" + meta.path, { cache: "no-store" });
+      if (!response.ok) throw new Error("Cannot load " + meta.path);
+      const document = await response.json();
+      await loadLegacyBuildTimes(meta, document);
+      return document;
+    })());
   }
   return state.runs.get(meta.key);
 }
@@ -165,18 +222,35 @@ function filteredRuns() {
   });
 }
 
-function cellHtml(benchmark, config, baselineBenchmark, showComparison, columnClass) {
-  if (!benchmark || !benchmark.values || benchmark.values[config] == null) return '<td class="matrix-cell missing ' + columnClass + '">—</td>';
-  const value = Number(benchmark.values[config]);
-  const goValue = Number(benchmark.values.Go);
+function measureValue(benchmark, config, measure) {
+  if (!benchmark) return NaN;
+  if (measure === "build-cpu") return Number(benchmark.buildTimes && benchmark.buildTimes[config] && benchmark.buildTimes[config].cpuNs);
+  return Number(benchmark.values && benchmark.values[config]);
+}
+
+function wallValue(benchmark, config) {
+  return Number(benchmark && benchmark.buildTimes && benchmark.buildTimes[config] && benchmark.buildTimes[config].wallNs);
+}
+
+function formatMeasure(value, measure) {
+  return measure === "build-cpu" ? formatDuration(value) : formatBytes(value);
+}
+
+function cellHtml(benchmark, config, baselineBenchmark, showComparison, columnClass, measure) {
+  const value = measureValue(benchmark, config, measure);
+  if (!Number.isFinite(value)) return '<td class="matrix-cell missing ' + columnClass + '">—</td>';
+  const goValue = measureValue(benchmark, "Go", measure);
   const relative = config === "Go"
     ? '<span class="flat reference">reference</span>'
     : '<span class="' + deltaClass(percentDelta(value, goValue)) + '">' + formatPercent(percentDelta(value, goValue), 1) + " vs Go</span>";
-  const oldValue = baselineBenchmark && baselineBenchmark.values ? Number(baselineBenchmark.values[config]) : NaN;
+  const oldValue = measureValue(baselineBenchmark, config, measure);
   const comparison = showComparison && Number.isFinite(oldValue)
     ? '<span class="selected-delta ' + deltaClass(percentDelta(value, oldValue)) + '">Δ A ' + formatPercent(percentDelta(value, oldValue), 1) + "</span>"
     : "";
-  return '<td class="matrix-cell ' + columnClass + '"><strong>' + formatBytes(value) + "</strong><span class=\"go-delta\">" + relative + "</span>" + comparison + "</td>";
+  const wall = measure === "build-cpu" && Number.isFinite(wallValue(benchmark, config))
+    ? '<span class="wall-reference">wall ' + formatDuration(wallValue(benchmark, config)) + " · ref</span>"
+    : "";
+  return '<td class="matrix-cell ' + columnClass + '"><strong>' + formatMeasure(value, measure) + "</strong><span class=\"go-delta\">" + relative + "</span>" + wall + comparison + "</td>";
 }
 
 function pageNumbers(page, pageCount) {
@@ -211,6 +285,7 @@ async function renderComparison() {
   const documents = await Promise.all(pageRuns.map(loadRun));
   const baselineByName = benchmarkMap(baseline || {});
   const benchmarkNames = state.benchmarkNames.length ? state.benchmarkNames : [];
+  const measure = comparisonMeasure.value;
   const headers = pageRuns.map(function (meta) {
     const isBaseline = selected.baselineMeta && meta.key === selected.baselineMeta.key;
     const isNewer = selected.newerMeta && meta.key === selected.newerMeta.key;
@@ -227,7 +302,7 @@ async function renderComparison() {
         const isBaseline = selected.baselineMeta && meta.key === selected.baselineMeta.key;
         const isNewer = selected.newerMeta && meta.key === selected.newerMeta.key;
         const columnClass = (isBaseline ? " baseline-column" : "") + (isNewer ? " selected-column" : "");
-        return cellHtml(benchmarkMap(document || {}).get(name), config, baselineByName.get(name), isNewer && !isBaseline, columnClass);
+        return cellHtml(benchmarkMap(document || {}).get(name), config, baselineByName.get(name), isNewer && !isBaseline, columnClass, measure);
       }).join("");
       const label = configIndex === 0
         ? '<strong class="benchmark-name">' + escapeHtml(name) + '</strong><span class="config-name">' + escapeHtml(compactConfigLabels[config]) + "</span>"
@@ -240,7 +315,9 @@ async function renderComparison() {
   comparisonGrid.innerHTML = '<thead><tr><th class="sticky matrix-label-cell">Benchmark / build option</th>' + headers + "</tr></thead><tbody>" +
     (rows || '<tr><td colspan="' + (1 + pageRuns.length) + '" class="empty-state">No commits match this filter.</td></tr>') + "</tbody>";
   document.querySelector("#commit-count").textContent = runs.length + " commit" + (runs.length === 1 ? "" : "s") + " · showing " + (runs.length ? (start + 1) + "–" + Math.min(start + state.pageSize, runs.length) : "0");
-  document.querySelector("#table-note").textContent = "Newest commits are on the left. Select A/B in a commit header; page for older commits.";
+  document.querySelector("#table-note").textContent = measure === "build-cpu"
+    ? "CPU time is user + sys. Wall time is reference only."
+    : "Newest commits are on the left. Select A/B in a commit header; page for older commits.";
 }
 
 function renderChoiceControls() {
@@ -254,12 +331,12 @@ function renderChoiceControls() {
   }).join("");
 }
 
-function metricValue(documents, benchmarkName, config, metric) {
+function metricValue(documents, benchmarkName, config, metric, measure) {
   let previous = null;
   return documents.map(function (document, index) {
     const benchmark = benchmarkMap(document).get(benchmarkName);
-    const value = benchmark && benchmark.values ? Number(benchmark.values[config]) : NaN;
-    const goValue = benchmark && benchmark.values ? Number(benchmark.values.Go) : NaN;
+    const value = measureValue(benchmark, config, measure);
+    const goValue = measureValue(benchmark, "Go", measure);
     let plotted = value;
     if (metric === "vs-go") plotted = config === "Go" ? 0 : percentDelta(value, goValue);
     if (metric === "commit-delta") {
@@ -270,26 +347,26 @@ function metricValue(documents, benchmarkName, config, metric) {
   }).filter(function (point) { return Number.isFinite(point.value); });
 }
 
-function chartMetricLabel(metric) {
+function chartMetricLabel(metric, measure) {
   if (metric === "vs-go") return "vs Go (%)";
   if (metric === "commit-delta") return "change from previous commit (%)";
-  return "binary size";
+  return measure === "build-cpu" ? "build CPU time (user + sys)" : "binary size";
 }
 
-function chartFormat(value, metric) {
-  return metric === "absolute" ? formatBytes(value) : formatPercent(value, 1);
+function chartFormat(value, metric, measure) {
+  return metric === "absolute" ? formatMeasure(value, measure) : formatPercent(value, 1);
 }
 
 function chartPath(points, x, y) {
   return points.map(function (point, index) { return (index === 0 ? "M" : "L") + x(point.index).toFixed(2) + " " + y(point.value).toFixed(2); }).join(" ");
 }
 
-function runValue(document, benchmarkName, config) {
+function runValue(document, benchmarkName, config, measure) {
   const benchmark = benchmarkMap(document || {}).get(benchmarkName);
-  return benchmark && benchmark.values ? Number(benchmark.values[config]) : NaN;
+  return measureValue(benchmark, config, measure);
 }
 
-function renderInspector(baseline, newer) {
+function renderInspector(baseline, newer, measure) {
   const name = Array.from(state.activeBenchmarks)[0];
   const config = Array.from(state.activeConfigs)[0];
   const inspector = document.querySelector("#history-inspector");
@@ -297,14 +374,17 @@ function renderInspector(baseline, newer) {
     inspector.innerHTML = '<p class="muted">Select at least one benchmark and build mode to inspect a series.</p>';
     return;
   }
-  const newerValue = runValue(newer, name, config);
-  const newerGo = runValue(newer, name, "Go");
-  const baselineValue = runValue(baseline, name, config);
+  const newerValue = runValue(newer, name, config, measure);
+  const newerGo = runValue(newer, name, "Go", measure);
+  const baselineValue = runValue(baseline, name, config, measure);
+  const newerBenchmark = benchmarkMap(newer || {}).get(name);
+  const wall = wallValue(newerBenchmark, config);
   const relative = config === "Go" ? 0 : percentDelta(newerValue, newerGo);
   const comparison = percentDelta(newerValue, baselineValue);
-  inspector.innerHTML = '<p class="eyebrow">Selected series</p><h3>' + escapeHtml(name) + " · " + escapeHtml(compactConfigLabels[config]) + '</h3><strong class="inspector-value">' + formatBytes(newerValue) + "</strong>" +
+  const wallRow = measure === "build-cpu" && Number.isFinite(wall) ? '<div><dt>Wall reference</dt><dd>' + formatDuration(wall) + "</dd></div>" : "";
+  inspector.innerHTML = '<p class="eyebrow">Selected series</p><h3>' + escapeHtml(name) + " · " + escapeHtml(compactConfigLabels[config]) + '</h3><strong class="inspector-value">' + formatMeasure(newerValue, measure) + "</strong>" +
     '<p class="inspector-delta ' + deltaClass(relative) + '">' + (config === "Go" ? "Go reference" : formatPercent(relative, 1) + " vs Go") + "</p>" +
-    '<dl><div><dt>A → B</dt><dd class="' + deltaClass(comparison) + '">' + formatPercent(comparison, 1) + "</dd></div><div><dt>Baseline</dt><dd><code>" + escapeHtml(commitLabel(baseline.run || {})) + "</code></dd></div><div><dt>Selected</dt><dd><code>" + escapeHtml(commitLabel(newer.run || {})) + "</code></dd></div></dl>";
+    '<dl><div><dt>A → B</dt><dd class="' + deltaClass(comparison) + '">' + formatPercent(comparison, 1) + "</dd></div>" + wallRow + '<div><dt>Baseline</dt><dd><code>' + escapeHtml(commitLabel(baseline.run || {})) + "</code></dd></div><div><dt>Selected</dt><dd><code>" + escapeHtml(commitLabel(newer.run || {})) + "</code></dd></div></dl>";
 }
 
 async function renderHistory() {
@@ -312,10 +392,11 @@ async function renderHistory() {
   const metas = (range ? state.index.runs.slice(0, range) : state.index.runs).slice().reverse();
   const documents = await Promise.all(metas.map(loadRun));
   const metric = historyMetric.value;
+  const measure = historyMeasure.value;
   const series = [];
   Array.from(state.activeBenchmarks).forEach(function (name, benchmarkIndex) {
     Array.from(state.activeConfigs).forEach(function (config) {
-      const points = metricValue(documents, name, config, metric);
+      const points = metricValue(documents, name, config, metric, measure);
       if (points.length) series.push({ name: name, config: config, benchmarkIndex: benchmarkIndex, points: points });
     });
   });
@@ -323,7 +404,7 @@ async function renderHistory() {
   const selected = selection();
   const baseline = await loadRun(selected.baselineMeta);
   const newer = await loadRun(selected.newerMeta);
-  renderInspector(baseline, newer);
+  renderInspector(baseline, newer, measure);
   if (!series.length || !documents.length) {
     chart.innerHTML = '<p class="muted">No matching history is available for this selection.</p>';
     return;
@@ -345,7 +426,7 @@ async function renderHistory() {
   const grid = [0, 0.25, 0.5, 0.75, 1].map(function (ratio) {
     const value = yMin + (yMax - yMin) * ratio;
     const position = y(value);
-    return '<line class="chart-grid-line" x1="' + left + '" x2="' + (width - right) + '" y1="' + position + '" y2="' + position + '"></line><text class="chart-axis-label" x="3" y="' + (position + 3) + '">' + escapeHtml(chartFormat(value, metric)) + "</text>";
+    return '<line class="chart-grid-line" x1="' + left + '" x2="' + (width - right) + '" y1="' + position + '" y2="' + position + '"></line><text class="chart-axis-label" x="3" y="' + (position + 3) + '">' + escapeHtml(chartFormat(value, metric, measure)) + "</text>";
   }).join("");
   const markers = [[selected.baselineMeta, "A"], [selected.newerMeta, "B"]].map(function (item) {
     const index = metas.findIndex(function (meta) { return item[0] && meta.key === item[0].key; });
@@ -359,7 +440,7 @@ async function renderHistory() {
     const dash = seriesDashes[item.benchmarkIndex % seriesDashes.length];
     const label = item.name + " · " + compactConfigLabels[item.config];
     return '<path class="history-series" d="' + chartPath(item.points, x, y) + '" fill="none" stroke="' + color + '" stroke-dasharray="' + dash + '"></path>' + item.points.map(function (point) {
-      return '<circle cx="' + x(point.index) + '" cy="' + y(point.value) + '" r="3.4" fill="' + color + '"><title>' + escapeHtml(label + " · " + commitLabel(point.document.run) + ": " + chartFormat(point.value, metric)) + "</title></circle>";
+      return '<circle cx="' + x(point.index) + '" cy="' + y(point.value) + '" r="3.4" fill="' + color + '"><title>' + escapeHtml(label + " · " + commitLabel(point.document.run) + ": " + chartFormat(point.value, metric, measure)) + "</title></circle>";
     }).join("");
   }).join("");
   const labels = documents.map(function (document, index) {
@@ -370,7 +451,7 @@ async function renderHistory() {
     const configIndex = configs.indexOf(item.config);
     return '<span class="history-legend-item"><i style="--series:' + seriesColors[configIndex] + '; --dash:' + seriesDashes[item.benchmarkIndex % seriesDashes.length] + '"></i>' + escapeHtml(item.name + " · " + compactConfigLabels[item.config]) + "</span>";
   }).join("");
-  chart.innerHTML = '<div class="chart-title"><span>' + escapeHtml(chartMetricLabel(metric)) + '</span><span>' + documents.length + " commits</span></div><svg viewBox=\"0 0 " + width + " " + height + '\" role="img" aria-label="Selected binary-size history">' + grid + markers + lines + labels + '</svg><div class="history-legend">' + legend + "</div>";
+  chart.innerHTML = '<div class="chart-title"><span>' + escapeHtml(chartMetricLabel(metric, measure)) + '</span><span>' + documents.length + " commits</span></div><svg viewBox=\"0 0 " + width + " " + height + '\" role="img" aria-label="Selected benchmark history">' + grid + markers + lines + labels + '</svg><div class="history-legend">' + legend + "</div>";
 }
 
 async function refresh() {
@@ -392,6 +473,7 @@ function attachEvents() {
   });
   filterInput.addEventListener("input", function () { state.query = filterInput.value; state.page = 1; renderComparison(); });
   pageSizeSelect.addEventListener("change", function () { state.pageSize = Number(pageSizeSelect.value); state.page = 1; renderComparison(); });
+  comparisonMeasure.addEventListener("change", renderComparison);
   pagination.addEventListener("click", function (event) {
     const button = event.target.closest("button[data-page]");
     if (!button || button.disabled) return;
@@ -431,6 +513,7 @@ function attachEvents() {
     renderHistory();
   });
   historyMetric.addEventListener("change", renderHistory);
+  historyMeasure.addEventListener("change", renderHistory);
   historyRange.addEventListener("change", renderHistory);
 }
 

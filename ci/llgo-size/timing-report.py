@@ -45,8 +45,9 @@ def read_rows(bench_dir):
                         "real_ns": real_ns,
                         "user_ns": user_ns,
                         "sys_ns": sys_ns,
+                        "cpu_ns": user_ns + sys_ns,
                     })
-    return sorted(rows, key=lambda row: row["real_ns"], reverse=True)
+    return sorted(rows, key=lambda row: row["cpu_ns"], reverse=True)
 
 
 def format_ms(nanoseconds):
@@ -64,32 +65,36 @@ def write_tsv(path, rows):
 def write_markdown(path, rows):
     with open(path, "w", encoding="utf-8") as f:
         f.write("## Build timing diagnostics\n\n")
-        f.write("Native Bent `-report-build-time` records, sorted by real time (slowest first).\n\n")
-        f.write("| Benchmark | Configuration | Real | User | Sys |\n")
-        f.write("| --- | --- | ---: | ---: | ---: |\n")
+        f.write("Native Bent `-report-build-time` records, sorted by CPU time (`user + sys`, slowest first). Wall time is diagnostic only.\n\n")
+        f.write("| Benchmark | Configuration | CPU (user + sys) | User | Sys | Wall (reference) |\n")
+        f.write("| --- | --- | ---: | ---: | ---: | ---: |\n")
         if not rows:
-            f.write("| no records | — | — | — | — |\n")
+            f.write("| no records | — | — | — | — | — |\n")
             return
         for row in rows:
-            f.write("| {benchmark} | {configuration} | {real} | {user} | {sys} |\n".format(
+            f.write("| {benchmark} | {configuration} | {cpu} | {user} | {sys} | {real} |\n".format(
                 benchmark=row["benchmark"],
                 configuration=row["configuration"],
+                cpu=format_ms(row["cpu_ns"]),
                 real=format_ms(row["real_ns"]),
                 user=format_ms(row["user_ns"]),
                 sys=format_ms(row["sys_ns"]),
             ))
-        totals = defaultdict(int)
+        cpu_totals = defaultdict(int)
+        wall_totals = defaultdict(int)
         counts = defaultdict(int)
         for row in rows:
-            totals[row["configuration"]] += row["real_ns"]
+            cpu_totals[row["configuration"]] += row["cpu_ns"]
+            wall_totals[row["configuration"]] += row["real_ns"]
             counts[row["configuration"]] += 1
         f.write("\n### Configuration totals\n\n")
-        f.write("| Configuration | Total real | Cases |\n")
-        f.write("| --- | ---: | ---: |\n")
-        for config in sorted(totals, key=totals.get, reverse=True):
-            f.write("| {config} | {total} | {count} |\n".format(
+        f.write("| Configuration | Total CPU (user + sys) | Total wall (reference) | Cases |\n")
+        f.write("| --- | ---: | ---: | ---: |\n")
+        for config in sorted(cpu_totals, key=cpu_totals.get, reverse=True):
+            f.write("| {config} | {cpu} | {wall} | {count} |\n".format(
                 config=config,
-                total=format_ms(totals[config]),
+                cpu=format_ms(cpu_totals[config]),
+                wall=format_ms(wall_totals[config]),
                 count=counts[config],
             ))
         f.write("\nDependency download details are in `download-timings.log`.\n")

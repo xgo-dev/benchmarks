@@ -34,6 +34,9 @@ compiler integration remains covered. The workflow stores a Markdown summary
 and TSV result as an artifact. The summary also contains Bent's native per-case
 build timings; `build-times.tsv`, `timing-summary.md`, `download-timings.log`,
 and raw `.build` files are retained for diagnosing slow downloads or builds.
+The dashboard treats Bent's `user + sys` time as the comparable build-time
+metric. Wall time remains visible as a reference because concurrent builds and
+runner scheduling can make it unsuitable for commit-to-commit comparisons.
 
 The `llgo-main-updated` repository-dispatch event from `xgo-dev/llgo` first
 updates `LLGO_COMMIT` on the benchmarks `main` branch, then explicitly starts a
@@ -58,6 +61,8 @@ the Pages root lists all published runs and lets you compare any two runs by
 benchmark and configuration. Pull requests use the lightweight Go-only
 validation job described below; they do not produce a binary-size artifact or
 modify the history.
+Existing published runs load their retained `build-times.tsv` directly, while
+new `results.json` documents also embed the same timing fields for each cell.
 
 Changes that only touch the dashboard source or its publication scripts use the
 separate `llgo-binary-size-pages.yml` workflow. That path publishes the updated

@@ -2,24 +2,14 @@ const state = {
   index: null,
   runs: new Map(),
   benchmarkNames: [],
-  activeBenchmarks: new Set(),
+  activeBenchmark: "",
   activeConfigs: new Set(),
   page: 1,
-  pageSize: 20,
+  pageSize: 8,
   query: "",
+  comparisonMode: false,
+  selectedKeys: [],
 };
-
-const newerSelect = document.querySelector("#newer-run");
-const baselineSelect = document.querySelector("#baseline-run");
-const status = document.querySelector("#status");
-const comparisonGrid = document.querySelector("#comparison-grid");
-const pagination = document.querySelector("#pagination");
-const filterInput = document.querySelector("#commit-filter");
-const pageSizeSelect = document.querySelector("#page-size");
-const comparisonMeasure = document.querySelector("#comparison-measure");
-const historyMeasure = document.querySelector("#history-measure");
-const historyMetric = document.querySelector("#history-metric");
-const historyRange = document.querySelector("#history-range");
 
 const configs = [
   "Go",
@@ -33,10 +23,10 @@ const configs = [
 const configLabels = {
   Go: "Go",
   LLGoNoLTO: "LLGo · no LTO",
-  LLGoDeadcodeDrop: "LLGo · Go deadcode drop",
-  LLGoFullLTONoGlobalDCE: "LLGo · full LTO, no GlobalDCE",
-  LLGoFullLTOGlobalDCE: "LLGo · full LTO + GlobalDCE",
-  LLGoFullLTOGlobalDCEPlugin: "LLGo · full LTO + GlobalDCE + plugin",
+  LLGoDeadcodeDrop: "LLGo · deadcode drop",
+  LLGoFullLTONoGlobalDCE: "LLGo · full LTO",
+  LLGoFullLTOGlobalDCE: "LLGo · LTO + GlobalDCE",
+  LLGoFullLTOGlobalDCEPlugin: "LLGo · LTO + DCE + plugin",
 };
 
 const compactConfigLabels = {
@@ -49,7 +39,33 @@ const compactConfigLabels = {
 };
 
 const seriesColors = ["#2457d6", "#7c3aed", "#4d7c0f", "#d97706", "#0f766e", "#c92a2a"];
-const seriesDashes = ["", "7 3", "2 3"];
+const dom = {
+  status: document.querySelector("#status"),
+  sizeGrid: document.querySelector("#size-grid"),
+  timeGrid: document.querySelector("#time-grid"),
+  sizeWrap: document.querySelector("#size-wrap"),
+  timeWrap: document.querySelector("#time-wrap"),
+  filter: document.querySelector("#commit-filter"),
+  pageSize: document.querySelector("#page-size"),
+  commitCount: document.querySelector("#commit-count"),
+  pagination: document.querySelector("#pagination"),
+  compareToggle: document.querySelector("#compare-toggle"),
+  compareHint: document.querySelector("#compare-hint"),
+  comparisonStrip: document.querySelector("#comparison-strip"),
+  compareA: document.querySelector("#compare-a"),
+  compareB: document.querySelector("#compare-b"),
+  compareSize: document.querySelector("#compare-size"),
+  compareTime: document.querySelector("#compare-time"),
+  clearComparison: document.querySelector("#clear-comparison"),
+  historyRange: document.querySelector("#history-range"),
+  benchmarkSelect: document.querySelector("#benchmark-select"),
+  configFilter: document.querySelector("#config-filter"),
+  trendChart: document.querySelector("#trend-chart"),
+  envRunner: document.querySelector("#env-runner"),
+  envToolchain: document.querySelector("#env-toolchain"),
+  envLlgo: document.querySelector("#env-llgo"),
+  envProtocol: document.querySelector("#env-protocol"),
+};
 
 function escapeHtml(value) {
   return String(value == null ? "" : value).replace(/[&<>"']/g, function (char) {
@@ -67,7 +83,7 @@ function formatBytes(value) {
     scaled /= 1024;
     unit++;
   }
-  return (number < 0 ? "-" : "") + scaled.toFixed(3) + " " + units[unit];
+  return (number < 0 ? "-" : "") + scaled.toFixed(unit ? 3 : 0) + " " + units[unit];
 }
 
 function formatDuration(value) {
@@ -83,12 +99,14 @@ function formatDuration(value) {
 
 function formatPercent(value, digits) {
   if (!Number.isFinite(value)) return "—";
-  return (value > 0 ? "+" : "") + value.toFixed(digits == null ? 3 : digits) + "%";
+  return (value > 0 ? "+" : "") + value.toFixed(digits == null ? 1 : digits) + "%";
 }
 
 function percentDelta(value, base) {
-  if (!Number.isFinite(Number(value)) || !Number.isFinite(Number(base)) || Number(base) === 0) return null;
-  return ((Number(value) - Number(base)) / Number(base)) * 100;
+  const current = Number(value);
+  const reference = Number(base);
+  if (!Number.isFinite(current) || !Number.isFinite(reference) || reference === 0) return null;
+  return ((current - reference) / reference) * 100;
 }
 
 function deltaClass(delta) {
@@ -104,20 +122,12 @@ function dateLabel(value) {
   return new Date(value).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
 }
 
-function runNumber(run) {
-  return run.number == null ? run.key : "#" + run.number;
-}
-
 function commitLabel(run) {
-  return shortSha(run.llgoCommit || run.sourceCommit || run.key);
-}
-
-function runLabel(run) {
-  return commitLabel(run) + " · " + dateLabel(run.createdAt);
+  return shortSha(run && (run.llgoCommit || run.sourceCommit || run.key));
 }
 
 function benchmarkMap(document) {
-  return new Map((document.benchmarks || []).map(function (item) { return [item.name, item]; }));
+  return new Map((document && document.benchmarks || []).map(function (item) { return [item.name, item]; }));
 }
 
 function parseBuildTimes(text) {
@@ -148,15 +158,20 @@ function parseBuildTimes(text) {
 }
 
 async function loadLegacyBuildTimes(meta, document) {
-  if ((document.benchmarks || []).some(function (benchmark) { return benchmark.buildTimes && Object.keys(benchmark.buildTimes).length; })) return;
   const nativePath = document.native && document.native.buildTimes;
   if (!nativePath) return;
+  const incomplete = (document.benchmarks || []).some(function (benchmark) {
+    return configs.some(function (config) {
+      return !benchmark.buildTimes || !benchmark.buildTimes[config] || !Number.isFinite(Number(benchmark.buildTimes[config].wallNs));
+    });
+  });
+  if (!incomplete) return;
   const basePath = meta.path.slice(0, meta.path.lastIndexOf("/") + 1);
   const response = await fetch("data/" + basePath + nativePath, { cache: "no-store" });
   if (!response.ok) return;
   const timings = parseBuildTimes(await response.text());
   (document.benchmarks || []).forEach(function (benchmark) {
-    benchmark.buildTimes = timings.get(benchmark.name) || {};
+    benchmark.buildTimes = Object.assign({}, timings.get(benchmark.name) || {}, benchmark.buildTimes || {});
   });
 }
 
@@ -175,42 +190,19 @@ async function loadRun(meta) {
 }
 
 function findMeta(key) {
-  return state.index.runs.find(function (run) { return run.key === key; });
+  return state.index && state.index.runs.find(function (run) { return run.key === key; });
 }
 
-function selection() {
-  const baselineMeta = findMeta(baselineSelect.value);
-  const newerMeta = findMeta(newerSelect.value);
-  return { baselineMeta: baselineMeta, newerMeta: newerMeta };
+function measureValue(benchmark, config, measure) {
+  if (!benchmark) return NaN;
+  if (measure === "size") return Number(benchmark.values && benchmark.values[config]);
+  const timing = benchmark.buildTimes && benchmark.buildTimes[config];
+  if (measure === "wall") return Number(timing && timing.wallNs);
+  return Number(timing && timing.cpuNs);
 }
 
-function fillRunSelects(runs) {
-  function options() {
-    return runs.map(function (run) {
-      return '<option value="' + escapeHtml(run.key) + '">' + escapeHtml(runLabel(run)) + "</option>";
-    }).join("");
-  }
-  baselineSelect.innerHTML = options();
-  newerSelect.innerHTML = options();
-  baselineSelect.value = runs.length > 1 ? runs[1].key : runs[0].key;
-  newerSelect.value = runs[0].key;
-}
-
-function renderRunMeta(baseline, newer) {
-  const item = function (label, run, extra) {
-    if (!run) return "";
-    const workflow = run.workflowUrl
-      ? '<a href="' + escapeHtml(run.workflowUrl) + '">workflow ' + escapeHtml(runNumber(run)) + "</a>"
-      : "run " + escapeHtml(runNumber(run));
-    return '<div><span class="label">' + label + "</span><strong><code>" + escapeHtml(commitLabel(run)) + "</code></strong>" +
-      '<span class="meta-detail">' + escapeHtml(dateLabel(run.createdAt)) + (extra ? " · " + extra : "") + "</span>" +
-      '<span class="meta-detail">' + workflow + "</span></div>";
-  };
-  document.querySelector("#run-meta").innerHTML =
-    item("A · baseline", baseline, baseline ? escapeHtml(baseline.ref || "—") : "") +
-    item("B · selected", newer, newer ? escapeHtml(newer.ref || "—") : "") +
-    '<div><span class="label">Toolchain</span><strong>' + escapeHtml(newer && newer.goVersion || "—") + " / LLVM " + escapeHtml(newer && newer.llvmVersion || "—") + "</strong>" +
-      '<span class="meta-detail">Each LLGo cell remains relative to Go from the same commit.</span></div>';
+function formatMeasure(value, measure) {
+  return measure === "size" ? formatBytes(value) : formatDuration(value);
 }
 
 function filteredRuns() {
@@ -222,35 +214,12 @@ function filteredRuns() {
   });
 }
 
-function measureValue(benchmark, config, measure) {
-  if (!benchmark) return NaN;
-  if (measure === "build-cpu") return Number(benchmark.buildTimes && benchmark.buildTimes[config] && benchmark.buildTimes[config].cpuNs);
-  return Number(benchmark.values && benchmark.values[config]);
-}
-
-function wallValue(benchmark, config) {
-  return Number(benchmark && benchmark.buildTimes && benchmark.buildTimes[config] && benchmark.buildTimes[config].wallNs);
-}
-
-function formatMeasure(value, measure) {
-  return measure === "build-cpu" ? formatDuration(value) : formatBytes(value);
-}
-
-function cellHtml(benchmark, config, baselineBenchmark, showComparison, columnClass, measure) {
-  const value = measureValue(benchmark, config, measure);
-  if (!Number.isFinite(value)) return '<td class="matrix-cell missing ' + columnClass + '">—</td>';
-  const goValue = measureValue(benchmark, "Go", measure);
-  const relative = config === "Go"
-    ? '<span class="flat reference">reference</span>'
-    : '<span class="' + deltaClass(percentDelta(value, goValue)) + '">' + formatPercent(percentDelta(value, goValue), 1) + " vs Go</span>";
-  const oldValue = measureValue(baselineBenchmark, config, measure);
-  const comparison = showComparison && Number.isFinite(oldValue)
-    ? '<span class="selected-delta ' + deltaClass(percentDelta(value, oldValue)) + '">Δ A ' + formatPercent(percentDelta(value, oldValue), 1) + "</span>"
-    : "";
-  const wall = measure === "build-cpu" && Number.isFinite(wallValue(benchmark, config))
-    ? '<span class="wall-reference">wall ' + formatDuration(wallValue(benchmark, config)) + " · ref</span>"
-    : "";
-  return '<td class="matrix-cell ' + columnClass + '"><strong>' + formatMeasure(value, measure) + "</strong><span class=\"go-delta\">" + relative + "</span>" + wall + comparison + "</td>";
+function currentPageRuns() {
+  const runs = filteredRuns();
+  const pageCount = Math.max(1, Math.ceil(runs.length / state.pageSize));
+  state.page = Math.min(Math.max(1, state.page), pageCount);
+  const start = (state.page - 1) * state.pageSize;
+  return runs.slice(start, start + state.pageSize);
 }
 
 function pageNumbers(page, pageCount) {
@@ -258,283 +227,353 @@ function pageNumbers(page, pageCount) {
   return Array.from(values).filter(function (value) { return value >= 1 && value <= pageCount; }).sort(function (a, b) { return a - b; });
 }
 
-function renderPagination(runCount) {
-  const pageCount = Math.max(1, Math.ceil(runCount / state.pageSize));
+function renderPagination() {
+  const runs = filteredRuns();
+  const pageCount = Math.max(1, Math.ceil(runs.length / state.pageSize));
   state.page = Math.min(state.page, pageCount);
+  dom.commitCount.textContent = runs.length + " commit" + (runs.length === 1 ? "" : "s") + " · page " + state.page + "/" + pageCount;
   const numbers = pageNumbers(state.page, pageCount);
   let previous = 0;
-  const pageButtons = numbers.map(function (number) {
-    const gap = number - previous > 1 ? '<span class="page-gap">…</span>' : "";
-    previous = number;
-    return gap + '<button type="button" data-page="' + number + '" class="' + (number === state.page ? "active" : "") + '" aria-current="' + (number === state.page ? "page" : "false") + '">' + number + "</button>";
-  }).join("");
-  pagination.innerHTML = '<button type="button" data-page="' + Math.max(1, state.page - 1) + '" ' + (state.page === 1 ? "disabled" : "") + ">Previous</button>" +
-    pageButtons + '<button type="button" data-page="' + Math.min(pageCount, state.page + 1) + '" ' + (state.page === pageCount ? "disabled" : "") + ">Next</button>";
+  const buttons = ['<button type="button" data-page="' + (state.page - 1) + '"' + (state.page === 1 ? " disabled" : "") + '>←</button>'];
+  numbers.forEach(function (page) {
+    if (previous && page - previous > 1) buttons.push('<span class="page-gap">…</span>');
+    buttons.push('<button type="button" data-page="' + page + '" class="' + (page === state.page ? "active" : "") + '">' + page + "</button>");
+    previous = page;
+  });
+  buttons.push('<button type="button" data-page="' + (state.page + 1) + '"' + (state.page === pageCount ? " disabled" : "") + '>→</button>');
+  dom.pagination.innerHTML = buttons.join("");
 }
 
-async function renderComparison() {
-  const selected = selection();
-  const baseline = await loadRun(selected.baselineMeta);
-  const newer = await loadRun(selected.newerMeta);
-  renderRunMeta(selected.baselineMeta, selected.newerMeta);
-
-  const runs = filteredRuns();
-  renderPagination(runs.length);
-  const start = (state.page - 1) * state.pageSize;
-  const pageRuns = runs.slice(start, start + state.pageSize);
-  const documents = await Promise.all(pageRuns.map(loadRun));
-  const baselineByName = benchmarkMap(baseline || {});
-  const benchmarkNames = state.benchmarkNames.length ? state.benchmarkNames : [];
-  const measure = comparisonMeasure.value;
-  const headers = pageRuns.map(function (meta) {
-    const isBaseline = selected.baselineMeta && meta.key === selected.baselineMeta.key;
-    const isNewer = selected.newerMeta && meta.key === selected.newerMeta.key;
-    const columnClass = (isBaseline ? " baseline-column" : "") + (isNewer ? " selected-column" : "");
-    const workflow = meta.workflowUrl ? '<a href="' + escapeHtml(meta.workflowUrl) + '"><code>' + escapeHtml(commitLabel(meta)) + "</code></a>" : '<code>' + escapeHtml(commitLabel(meta)) + "</code>";
-    const roleButtons = '<div class="commit-picks"><button type="button" data-select-role="baseline" data-run-key="' + escapeHtml(meta.key) + '" class="' + (isBaseline ? "active" : "") + '" aria-label="Set ' + escapeHtml(commitLabel(meta)) + ' as baseline">A</button>' +
-      '<button type="button" data-select-role="newer" data-run-key="' + escapeHtml(meta.key) + '" class="' + (isNewer ? "active" : "") + '" aria-label="Set ' + escapeHtml(commitLabel(meta)) + ' as selected commit">B</button></div>';
-    return '<th scope="col" class="commit-header' + columnClass + '"><div>' + workflow + '<span>' + escapeHtml(dateLabel(meta.createdAt)) + '</span></div>' + roleButtons + "</th>";
-  }).join("");
-  const rows = benchmarkNames.map(function (name) {
-    return configs.map(function (config, configIndex) {
-      const values = documents.map(function (document, index) {
-        const meta = pageRuns[index];
-        const isBaseline = selected.baselineMeta && meta.key === selected.baselineMeta.key;
-        const isNewer = selected.newerMeta && meta.key === selected.newerMeta.key;
-        const columnClass = (isBaseline ? " baseline-column" : "") + (isNewer ? " selected-column" : "");
-        return cellHtml(benchmarkMap(document || {}).get(name), config, baselineByName.get(name), isNewer && !isBaseline, columnClass, measure);
-      }).join("");
-      const label = configIndex === 0
-        ? '<strong class="benchmark-name">' + escapeHtml(name) + '</strong><span class="config-name">' + escapeHtml(compactConfigLabels[config]) + "</span>"
-        : '<span class="config-name config-continuation">' + escapeHtml(compactConfigLabels[config]) + "</span>";
-      return "<tr><th scope=\"row\" class=\"sticky matrix-label-cell\" title=\"" + escapeHtml(name + " · " + configLabels[config]) + "\" aria-label=\"" + escapeHtml(name + " · " + compactConfigLabels[config]) + "\">" + label + "</th>" + values + "</tr>";
-    }).join("");
-  }).join("");
-
-  comparisonGrid.style.minWidth = (184 + pageRuns.length * 150) + "px";
-  comparisonGrid.innerHTML = '<thead><tr><th class="sticky matrix-label-cell">Benchmark / build option</th>' + headers + "</tr></thead><tbody>" +
-    (rows || '<tr><td colspan="' + (1 + pageRuns.length) + '" class="empty-state">No commits match this filter.</td></tr>') + "</tbody>";
-  document.querySelector("#commit-count").textContent = runs.length + " commit" + (runs.length === 1 ? "" : "s") + " · showing " + (runs.length ? (start + 1) + "–" + Math.min(start + state.pageSize, runs.length) : "0");
-  document.querySelector("#table-note").textContent = measure === "build-cpu"
-    ? "CPU time is user + sys. Wall time is reference only."
-    : "Newest commits are on the left. Select A/B in a commit header; page for older commits.";
+function rankFor(benchmark, config, measure) {
+  const value = measureValue(benchmark, config, measure);
+  if (!Number.isFinite(value)) return null;
+  const values = configs.map(function (name) { return measureValue(benchmark, name, measure); }).filter(Number.isFinite);
+  const unique = Array.from(new Set(values)).sort(function (a, b) { return a - b; });
+  const rank = unique.indexOf(value) + 1;
+  const ties = values.filter(function (candidate) { return candidate === value; }).length;
+  const position = unique.length <= 1 ? 0 : (rank - 1) / (unique.length - 1);
+  let tone = "rank-mid";
+  if (rank === 1) tone = "rank-best";
+  else if (rank === unique.length) tone = "rank-worst";
+  else if (position <= .34) tone = "rank-good";
+  else if (position >= .67) tone = "rank-slow";
+  return { rank: rank, ties: ties, tone: tone };
 }
 
-function renderChoiceControls() {
-  const benchmarks = document.querySelector("#benchmark-filter");
-  benchmarks.innerHTML = state.benchmarkNames.map(function (name) {
-    return '<button type="button" class="choice-button ' + (state.activeBenchmarks.has(name) ? "active" : "") + '" data-benchmark="' + escapeHtml(name) + '" aria-pressed="' + state.activeBenchmarks.has(name) + '">' + escapeHtml(name) + "</button>";
-  }).join("");
-  const configFilter = document.querySelector("#config-filter");
-  configFilter.innerHTML = configs.map(function (config, index) {
-    return '<button type="button" class="choice-button config-choice ' + (state.activeConfigs.has(config) ? "active" : "") + '" style="--series:' + seriesColors[index] + '" data-config="' + escapeHtml(config) + '" aria-pressed="' + state.activeConfigs.has(config) + '">' + escapeHtml(compactConfigLabels[config]) + "</button>";
-  }).join("");
+function columnClass(key) {
+  const index = state.selectedKeys.indexOf(key);
+  return index === 0 ? "selected-a" : index === 1 ? "selected-b" : "";
 }
 
-function metricValue(documents, benchmarkName, config, metric, measure) {
-  let previous = null;
-  return documents.map(function (document, index) {
-    const benchmark = benchmarkMap(document).get(benchmarkName);
-    const value = measureValue(benchmark, config, measure);
-    const goValue = measureValue(benchmark, "Go", measure);
-    let plotted = value;
-    if (metric === "vs-go") plotted = config === "Go" ? 0 : percentDelta(value, goValue);
-    if (metric === "commit-delta") {
-      plotted = previous == null ? NaN : percentDelta(value, previous);
-      previous = Number.isFinite(value) ? value : previous;
-    }
-    return { index: index, value: Number(plotted), document: document, raw: value, go: goValue };
-  }).filter(function (point) { return Number.isFinite(point.value); });
+function headerHtml(run) {
+  const selected = state.selectedKeys.indexOf(run.key);
+  const marker = selected >= 0 ? '<b class="pick-marker">' + (selected === 0 ? "A" : "B") + "</b>" : "";
+  return '<th class="commit-header ' + columnClass(run.key) + '"><button class="commit-button" type="button" data-run-key="' + escapeHtml(run.key) + '" title="' + escapeHtml(dateLabel(run.createdAt)) + '">' + marker + "<code>" + escapeHtml(commitLabel(run)) + "</code><span>" + escapeHtml(dateLabel(run.createdAt)) + "</span></button></th>";
 }
 
-function chartMetricLabel(metric, measure) {
-  if (metric === "vs-go") return "vs Go (%)";
-  if (metric === "commit-delta") return "change from previous commit (%)";
-  return measure === "build-cpu" ? "build CPU time (user + sys)" : "binary size";
-}
-
-function chartFormat(value, metric, measure) {
-  return metric === "absolute" ? formatMeasure(value, measure) : formatPercent(value, 1);
-}
-
-function chartPath(points, x, y) {
-  return points.map(function (point, index) { return (index === 0 ? "M" : "L") + x(point.index).toFixed(2) + " " + y(point.value).toFixed(2); }).join(" ");
-}
-
-function runValue(document, benchmarkName, config, measure) {
-  const benchmark = benchmarkMap(document || {}).get(benchmarkName);
-  return measureValue(benchmark, config, measure);
-}
-
-function renderInspector(baseline, newer, measure) {
-  const name = Array.from(state.activeBenchmarks)[0];
-  const config = Array.from(state.activeConfigs)[0];
-  const inspector = document.querySelector("#history-inspector");
-  if (!name || !config || !newer) {
-    inspector.innerHTML = '<p class="muted">Select at least one benchmark and build mode to inspect a series.</p>';
-    return;
+function cellHtml(benchmark, config, measure, runKey, baselineBenchmark) {
+  const value = measureValue(benchmark, config, measure);
+  const selectedClass = columnClass(runKey);
+  if (!Number.isFinite(value)) return '<td class="matrix-cell missing ' + selectedClass + '">—</td>';
+  const rank = rankFor(benchmark, config, measure);
+  const rankText = "#" + rank.rank + (rank.ties > 1 ? "=" : "");
+  let secondary = "";
+  if (measure === "wall") {
+    const cpu = measureValue(benchmark, config, "cpu");
+    if (Number.isFinite(cpu)) secondary = '<span class="secondary-value">CPU ' + formatDuration(cpu) + "</span>";
   }
-  const newerValue = runValue(newer, name, config, measure);
-  const newerGo = runValue(newer, name, "Go", measure);
-  const baselineValue = runValue(baseline, name, config, measure);
-  const newerBenchmark = benchmarkMap(newer || {}).get(name);
-  const wall = wallValue(newerBenchmark, config);
-  const relative = config === "Go" ? 0 : percentDelta(newerValue, newerGo);
-  const comparison = percentDelta(newerValue, baselineValue);
-  const wallRow = measure === "build-cpu" && Number.isFinite(wall) ? '<div><dt>Wall reference</dt><dd>' + formatDuration(wall) + "</dd></div>" : "";
-  inspector.innerHTML = '<p class="eyebrow">Selected series</p><h3>' + escapeHtml(name) + " · " + escapeHtml(compactConfigLabels[config]) + '</h3><strong class="inspector-value">' + formatMeasure(newerValue, measure) + "</strong>" +
-    '<p class="inspector-delta ' + deltaClass(relative) + '">' + (config === "Go" ? "Go reference" : formatPercent(relative, 1) + " vs Go") + "</p>" +
-    '<dl><div><dt>A → B</dt><dd class="' + deltaClass(comparison) + '">' + formatPercent(comparison, 1) + "</dd></div>" + wallRow + '<div><dt>Baseline</dt><dd><code>' + escapeHtml(commitLabel(baseline.run || {})) + "</code></dd></div><div><dt>Selected</dt><dd><code>" + escapeHtml(commitLabel(newer.run || {})) + "</code></dd></div></dl>";
+  let context = "";
+  if (state.selectedKeys.length === 2 && selectedClass) {
+    const goValue = measureValue(benchmark, "Go", measure);
+    if (config === "Go") context = '<span class="comparison-context flat">Go reference</span>';
+    else {
+      const vsGo = percentDelta(value, goValue);
+      if (Number.isFinite(vsGo)) context = '<span class="comparison-context ' + deltaClass(vsGo) + '">' + formatPercent(vsGo) + " vs Go</span>";
+    }
+  }
+  let comparison = "";
+  if (state.selectedKeys.length === 2 && runKey === state.selectedKeys[1]) {
+    const baseline = measureValue(baselineBenchmark, config, measure);
+    const delta = percentDelta(value, baseline);
+    if (Number.isFinite(delta)) comparison = '<span class="selected-delta ' + deltaClass(delta) + '">Δ A ' + formatPercent(delta) + "</span>";
+  }
+  return '<td class="matrix-cell ' + rank.tone + " " + selectedClass + '"><span class="rank-number">' + rankText + "</span><strong>" + formatMeasure(value, measure) + "</strong>" + secondary + context + comparison + "</td>";
 }
 
-async function renderHistory() {
-  const range = Number(historyRange.value);
-  const metas = (range ? state.index.runs.slice(0, range) : state.index.runs).slice().reverse();
-  const documents = await Promise.all(metas.map(loadRun));
-  const metric = historyMetric.value;
-  const measure = historyMeasure.value;
-  const series = [];
-  Array.from(state.activeBenchmarks).forEach(function (name, benchmarkIndex) {
-    Array.from(state.activeConfigs).forEach(function (config) {
-      const points = metricValue(documents, name, config, metric, measure);
-      if (points.length) series.push({ name: name, config: config, benchmarkIndex: benchmarkIndex, points: points });
+function renderMatrix(target, runs, documents, baselineDocument, measure) {
+  const maps = documents.map(benchmarkMap);
+  const baselineMap = benchmarkMap(baselineDocument);
+  const head = '<thead><tr><th class="matrix-label-cell">Benchmark / mode</th>' + runs.map(headerHtml).join("") + "</tr></thead>";
+  const rows = [];
+  state.benchmarkNames.forEach(function (benchmarkName) {
+    configs.forEach(function (config) {
+      const label = '<th class="matrix-label-cell"><span class="benchmark-name">' + escapeHtml(benchmarkName) + '</span><span class="config-name">' + escapeHtml(compactConfigLabels[config]) + "</span></th>";
+      const cells = runs.map(function (run, index) {
+        return cellHtml(maps[index].get(benchmarkName), config, measure, run.key, baselineMap.get(benchmarkName));
+      }).join("");
+      rows.push("<tr>" + label + cells + "</tr>");
     });
   });
-  const chart = document.querySelector("#history-chart");
-  const selected = selection();
-  const baseline = await loadRun(selected.baselineMeta);
-  const newer = await loadRun(selected.newerMeta);
-  renderInspector(baseline, newer, measure);
-  if (!series.length || !documents.length) {
-    chart.innerHTML = '<p class="muted">No matching history is available for this selection.</p>';
-    return;
-  }
-  const values = series.flatMap(function (item) { return item.points.map(function (point) { return point.value; }); });
-  const width = 1080;
-  const height = 380;
-  const left = 72;
-  const right = 22;
-  const top = 30;
-  const bottom = 58;
-  const minimum = Math.min.apply(null, values);
-  const maximum = Math.max.apply(null, values);
-  const spread = maximum === minimum ? Math.max(1, Math.abs(maximum) * 0.1) : maximum - minimum;
-  const yMin = metric === "absolute" ? Math.max(0, minimum - spread * 0.08) : minimum - spread * 0.12;
-  const yMax = maximum + spread * 0.12;
-  const x = function (index) { return documents.length === 1 ? (left + width - right) / 2 : left + index * (width - left - right) / (documents.length - 1); };
-  const y = function (value) { return top + (yMax - value) * (height - top - bottom) / (yMax - yMin); };
-  const grid = [0, 0.25, 0.5, 0.75, 1].map(function (ratio) {
-    const value = yMin + (yMax - yMin) * ratio;
-    const position = y(value);
-    return '<line class="chart-grid-line" x1="' + left + '" x2="' + (width - right) + '" y1="' + position + '" y2="' + position + '"></line><text class="chart-axis-label" x="3" y="' + (position + 3) + '">' + escapeHtml(chartFormat(value, metric, measure)) + "</text>";
-  }).join("");
-  const markers = [[selected.baselineMeta, "A"], [selected.newerMeta, "B"]].map(function (item) {
-    const index = metas.findIndex(function (meta) { return item[0] && meta.key === item[0].key; });
-    if (index < 0) return "";
-    const position = x(index);
-    return '<line class="selection-marker" x1="' + position + '" x2="' + position + '" y1="' + top + '" y2="' + (height - bottom) + '"></line><text class="marker-label" text-anchor="middle" x="' + position + '" y="18">' + item[1] + "</text>";
-  }).join("");
-  const lines = series.map(function (item) {
-    const configIndex = configs.indexOf(item.config);
-    const color = seriesColors[configIndex];
-    const dash = seriesDashes[item.benchmarkIndex % seriesDashes.length];
-    const label = item.name + " · " + compactConfigLabels[item.config];
-    return '<path class="history-series" d="' + chartPath(item.points, x, y) + '" fill="none" stroke="' + color + '" stroke-dasharray="' + dash + '"></path>' + item.points.map(function (point) {
-      return '<circle cx="' + x(point.index) + '" cy="' + y(point.value) + '" r="3.4" fill="' + color + '"><title>' + escapeHtml(label + " · " + commitLabel(point.document.run) + ": " + chartFormat(point.value, metric, measure)) + "</title></circle>";
-    }).join("");
-  }).join("");
-  const labels = documents.map(function (document, index) {
-    if (documents.length > 12 && index % Math.ceil(documents.length / 10) !== 0 && index !== documents.length - 1) return "";
-    return '<text class="chart-axis-label" text-anchor="middle" x="' + x(index) + '" y="' + (height - 22) + '">' + escapeHtml(commitLabel(document.run)) + "</text>";
-  }).join("");
-  const legend = series.map(function (item) {
-    const configIndex = configs.indexOf(item.config);
-    return '<span class="history-legend-item"><i style="--series:' + seriesColors[configIndex] + '; --dash:' + seriesDashes[item.benchmarkIndex % seriesDashes.length] + '"></i>' + escapeHtml(item.name + " · " + compactConfigLabels[item.config]) + "</span>";
-  }).join("");
-  chart.innerHTML = '<div class="chart-title"><span>' + escapeHtml(chartMetricLabel(metric, measure)) + '</span><span>' + documents.length + " commits</span></div><svg viewBox=\"0 0 " + width + " " + height + '\" role="img" aria-label="Selected benchmark history">' + grid + markers + lines + labels + '</svg><div class="history-legend">' + legend + "</div>";
+  target.classList.toggle("comparison-mode", state.comparisonMode);
+  target.style.minWidth = (136 + runs.length * 132) + "px";
+  target.innerHTML = head + "<tbody>" + (rows.length ? rows.join("") : '<tr><td class="empty-state">No benchmark data.</td></tr>') + "</tbody>";
 }
 
-async function refresh() {
-  try {
-    await Promise.all([renderComparison(), renderHistory()]);
-    status.textContent = state.index.runs.length + " published commit" + (state.index.runs.length === 1 ? "" : "s");
-    status.className = "status";
-  } catch (error) {
-    status.textContent = error.message;
-    status.className = "status error";
+function geometricMeanDelta(values) {
+  const ratios = values.filter(function (pair) { return pair[0] > 0 && pair[1] > 0; }).map(function (pair) { return pair[1] / pair[0]; });
+  if (!ratios.length) return NaN;
+  return (Math.exp(ratios.reduce(function (sum, ratio) { return sum + Math.log(ratio); }, 0) / ratios.length) - 1) * 100;
+}
+
+function comparisonPairs(aDocument, bDocument, measure) {
+  const aMap = benchmarkMap(aDocument);
+  const bMap = benchmarkMap(bDocument);
+  const pairs = [];
+  state.benchmarkNames.forEach(function (name) {
+    configs.forEach(function (config) {
+      const a = measureValue(aMap.get(name), config, measure);
+      const b = measureValue(bMap.get(name), config, measure);
+      if (Number.isFinite(a) && Number.isFinite(b)) pairs.push([a, b]);
+    });
+  });
+  return pairs;
+}
+
+async function renderComparisonSummary() {
+  const complete = state.comparisonMode && state.selectedKeys.length === 2;
+  dom.compareHint.hidden = !state.comparisonMode || complete;
+  dom.comparisonStrip.hidden = !complete;
+  if (!complete) return;
+  const aMeta = findMeta(state.selectedKeys[0]);
+  const bMeta = findMeta(state.selectedKeys[1]);
+  const documents = await Promise.all([loadRun(aMeta), loadRun(bMeta)]);
+  dom.compareA.textContent = "A " + commitLabel(aMeta);
+  dom.compareB.textContent = "B " + commitLabel(bMeta);
+  const sizeDelta = geometricMeanDelta(comparisonPairs(documents[0], documents[1], "size"));
+  const timeDelta = geometricMeanDelta(comparisonPairs(documents[0], documents[1], "wall"));
+  dom.compareSize.textContent = formatPercent(sizeDelta);
+  dom.compareSize.className = deltaClass(sizeDelta);
+  dom.compareTime.textContent = formatPercent(timeDelta);
+  dom.compareTime.className = deltaClass(timeDelta);
+}
+
+function normalizeRunner(run) {
+  let image = run.runnerImage || "Ubuntu 24.04";
+  image = String(image).replace(/^ubuntu(\d{2})$/i, "Ubuntu $1.04");
+  const arch = String(run.runnerArch || "x86_64").replace(/^X64$/i, "x86_64");
+  const os = run.runnerOS && !String(image).toLowerCase().includes(String(run.runnerOS).toLowerCase()) ? run.runnerOS + " · " : "";
+  return os + image + " · " + arch;
+}
+
+function goVersionLabel(value) {
+  const version = String(value || "—");
+  return /^go\s/i.test(version) ? version : "Go " + version;
+}
+
+async function renderEnvironment() {
+  const key = state.selectedKeys.length === 2 ? state.selectedKeys[1] : state.index.runs[0].key;
+  const meta = findMeta(key) || state.index.runs[0];
+  const document = await loadRun(meta);
+  const run = document.run || {};
+  dom.envRunner.textContent = normalizeRunner(run);
+  dom.envToolchain.textContent = goVersionLabel(run.goVersion || meta.goVersion) + " · LLVM " + (run.llvmVersion || meta.llvmVersion || "—");
+  dom.envLlgo.textContent = commitLabel(meta) + " · " + (run.ref || meta.ref || "main");
+  const workers = run.buildWorkers || 4;
+  const runNumber = run.number || meta.number || meta.key;
+  dom.envProtocol.textContent = "Bent -j=" + workers + " · run #" + runNumber;
+}
+
+async function renderTables() {
+  renderPagination();
+  const runs = currentPageRuns();
+  const documents = await Promise.all(runs.map(loadRun));
+  const baselineDocument = state.selectedKeys.length === 2 ? await loadRun(findMeta(state.selectedKeys[0])) : null;
+  renderMatrix(dom.sizeGrid, runs, documents, baselineDocument, "size");
+  renderMatrix(dom.timeGrid, runs, documents, baselineDocument, "wall");
+}
+
+function chartRuns() {
+  const limit = Number(dom.historyRange.value);
+  const newest = limit > 0 ? state.index.runs.slice(0, limit) : state.index.runs.slice();
+  return newest.reverse();
+}
+
+function chartBand(documents, metas, benchmarkName, measure, title) {
+  const width = 1120;
+  const height = 225;
+  const margin = { top: 17, right: 18, bottom: 32, left: 75 };
+  const plotWidth = width - margin.left - margin.right;
+  const plotHeight = height - margin.top - margin.bottom;
+  const selectedConfigs = configs.filter(function (config) { return state.activeConfigs.has(config); });
+  const series = selectedConfigs.map(function (config) {
+    const values = documents.map(function (document) { return measureValue(benchmarkMap(document).get(benchmarkName), config, measure); });
+    return { config: config, values: values };
+  });
+  const finite = series.flatMap(function (item) { return item.values.filter(Number.isFinite); });
+  if (!finite.length) return '<div class="chart-band"><div class="empty-state">No ' + escapeHtml(title.toLowerCase()) + " data for this benchmark.</div></div>";
+  let min = Math.min.apply(null, finite);
+  let max = Math.max.apply(null, finite);
+  const padding = (max - min || Math.abs(max) * .1 || 1) * .09;
+  min = Math.max(0, min - padding);
+  max += padding;
+  const x = function (index) { return margin.left + (metas.length <= 1 ? plotWidth / 2 : index * plotWidth / (metas.length - 1)); };
+  const y = function (value) { return margin.top + (max - value) * plotHeight / (max - min); };
+  const parts = [];
+  for (let tick = 0; tick <= 4; tick++) {
+    const value = max - (max - min) * tick / 4;
+    const py = margin.top + plotHeight * tick / 4;
+    parts.push('<line class="chart-grid-line" x1="' + margin.left + '" y1="' + py + '" x2="' + (width - margin.right) + '" y2="' + py + '"></line>');
+    parts.push('<text class="chart-axis-label" x="' + (margin.left - 8) + '" y="' + (py + 3) + '" text-anchor="end">' + escapeHtml(formatMeasure(value, measure)) + "</text>");
   }
+  const labelStep = Math.max(1, Math.ceil(metas.length / 8));
+  metas.forEach(function (meta, index) {
+    if (index % labelStep === 0 || index === metas.length - 1) parts.push('<text class="chart-axis-label" x="' + x(index) + '" y="' + (height - 9) + '" text-anchor="middle">' + escapeHtml(shortSha(meta.llgoCommit || meta.key).slice(0, 7)) + "</text>");
+  });
+  if (state.selectedKeys.length === 2) {
+    state.selectedKeys.forEach(function (key, markerIndex) {
+      const index = metas.findIndex(function (meta) { return meta.key === key; });
+      if (index < 0) return;
+      const px = x(index);
+      parts.push('<line class="selection-marker" x1="' + px + '" y1="' + margin.top + '" x2="' + px + '" y2="' + (height - margin.bottom) + '"></line>');
+      parts.push('<text class="marker-label" x="' + (px + 5) + '" y="' + (margin.top + 10) + '">' + (markerIndex === 0 ? "A" : "B") + "</text>");
+    });
+  }
+  series.forEach(function (item) {
+    const color = seriesColors[configs.indexOf(item.config)];
+    let path = "";
+    let drawing = false;
+    item.values.forEach(function (value, index) {
+      if (!Number.isFinite(value)) { drawing = false; return; }
+      path += (drawing ? " L " : " M ") + x(index).toFixed(2) + " " + y(value).toFixed(2);
+      drawing = true;
+    });
+    parts.push('<path class="history-series" stroke="' + color + '" d="' + path + '"></path>');
+    item.values.forEach(function (value, index) {
+      if (!Number.isFinite(value)) return;
+      parts.push('<circle class="history-point" fill="' + color + '" cx="' + x(index) + '" cy="' + y(value) + '" r="3"><title>' + escapeHtml(configLabels[item.config] + " · " + commitLabel(metas[index]) + " · " + formatMeasure(value, measure)) + "</title></circle>");
+    });
+  });
+  return '<div class="chart-band"><div class="chart-title"><span>' + escapeHtml(title) + '</span><span>' + escapeHtml(measure === "size" ? "bytes" : "wall time") + '</span></div><svg viewBox="0 0 ' + width + " " + height + '" role="img" aria-label="' + escapeHtml(title + " trend") + '">' + parts.join("") + "</svg></div>";
+}
+
+async function renderTrend() {
+  const metas = chartRuns();
+  const documents = await Promise.all(metas.map(loadRun));
+  const benchmarkName = state.activeBenchmark || state.benchmarkNames[0];
+  const legend = configs.filter(function (config) { return state.activeConfigs.has(config); }).map(function (config) {
+    return '<span class="history-legend-item"><i style="--series:' + seriesColors[configs.indexOf(config)] + '"></i>' + escapeHtml(configLabels[config]) + "</span>";
+  }).join("");
+  dom.trendChart.innerHTML = chartBand(documents, metas, benchmarkName, "size", "Binary size") + chartBand(documents, metas, benchmarkName, "wall", "Build wall time") + '<div class="history-legend">' + legend + "</div>";
+}
+
+function renderConfigFilter() {
+  dom.configFilter.innerHTML = configs.map(function (config, index) {
+    return '<button type="button" class="choice-button config-choice ' + (state.activeConfigs.has(config) ? "active" : "") + '" data-config="' + config + '" style="--series:' + seriesColors[index] + '">' + escapeHtml(compactConfigLabels[config]) + "</button>";
+  }).join("");
+}
+
+async function refreshAll() {
+  await renderTables();
+  await Promise.all([renderComparisonSummary(), renderEnvironment(), renderTrend()]);
+}
+
+async function selectCommit(key) {
+  if (!state.comparisonMode) return;
+  const existing = state.selectedKeys.indexOf(key);
+  if (existing >= 0) state.selectedKeys.splice(existing, 1);
+  else if (state.selectedKeys.length < 2) state.selectedKeys.push(key);
+  else state.selectedKeys = [state.selectedKeys[1], key];
+  await refreshAll();
+}
+
+function clearSelection() {
+  state.selectedKeys = [];
 }
 
 function attachEvents() {
-  newerSelect.addEventListener("change", refresh);
-  baselineSelect.addEventListener("change", function () {
-    if (baselineSelect.value === newerSelect.value && state.index.runs.length > 1) newerSelect.value = state.index.runs[0].key === baselineSelect.value ? state.index.runs[1].key : state.index.runs[0].key;
-    refresh();
+  dom.filter.addEventListener("input", async function () {
+    state.query = dom.filter.value;
+    state.page = 1;
+    clearSelection();
+    await refreshAll();
   });
-  filterInput.addEventListener("input", function () { state.query = filterInput.value; state.page = 1; renderComparison(); });
-  pageSizeSelect.addEventListener("change", function () { state.pageSize = Number(pageSizeSelect.value); state.page = 1; renderComparison(); });
-  comparisonMeasure.addEventListener("change", renderComparison);
-  pagination.addEventListener("click", function (event) {
+  dom.pageSize.addEventListener("change", async function () {
+    state.pageSize = Number(dom.pageSize.value);
+    state.page = 1;
+    clearSelection();
+    await refreshAll();
+  });
+  dom.pagination.addEventListener("click", async function (event) {
     const button = event.target.closest("button[data-page]");
     if (!button || button.disabled) return;
     state.page = Number(button.dataset.page);
-    renderComparison();
+    clearSelection();
+    await refreshAll();
   });
-  comparisonGrid.addEventListener("click", function (event) {
-    const button = event.target.closest("button[data-select-role]");
-    if (!button) return;
-    const role = button.dataset.selectRole;
-    const key = button.dataset.runKey;
-    if (role === "baseline") baselineSelect.value = key;
-    else newerSelect.value = key;
-    if (baselineSelect.value === newerSelect.value && state.index.runs.length > 1) {
-      const alternative = state.index.runs.find(function (run) { return run.key !== key; });
-      if (role === "baseline") newerSelect.value = alternative.key;
-      else baselineSelect.value = alternative.key;
-    }
-    refresh();
+  [dom.sizeGrid, dom.timeGrid].forEach(function (table) {
+    table.addEventListener("click", function (event) {
+      const button = event.target.closest("button[data-run-key]");
+      if (button) selectCommit(button.dataset.runKey);
+    });
   });
-  document.querySelector("#benchmark-filter").addEventListener("click", function (event) {
-    const button = event.target.closest("button[data-benchmark]");
-    if (!button) return;
-    const name = button.dataset.benchmark;
-    if (state.activeBenchmarks.has(name) && state.activeBenchmarks.size > 1) state.activeBenchmarks.delete(name);
-    else state.activeBenchmarks.add(name);
-    renderChoiceControls();
-    renderHistory();
+  dom.compareToggle.addEventListener("click", async function () {
+    state.comparisonMode = !state.comparisonMode;
+    clearSelection();
+    dom.compareToggle.setAttribute("aria-pressed", String(state.comparisonMode));
+    dom.compareToggle.textContent = state.comparisonMode ? "Exit comparison" : "Compare commits";
+    await refreshAll();
   });
-  document.querySelector("#config-filter").addEventListener("click", function (event) {
+  dom.clearComparison.addEventListener("click", async function () {
+    clearSelection();
+    await refreshAll();
+  });
+  dom.historyRange.addEventListener("change", renderTrend);
+  dom.benchmarkSelect.addEventListener("change", function () {
+    state.activeBenchmark = dom.benchmarkSelect.value;
+    renderTrend();
+  });
+  dom.configFilter.addEventListener("click", function (event) {
     const button = event.target.closest("button[data-config]");
     if (!button) return;
     const config = button.dataset.config;
     if (state.activeConfigs.has(config) && state.activeConfigs.size > 1) state.activeConfigs.delete(config);
     else state.activeConfigs.add(config);
-    renderChoiceControls();
-    renderHistory();
+    renderConfigFilter();
+    renderTrend();
   });
-  historyMetric.addEventListener("change", renderHistory);
-  historyMeasure.addEventListener("change", renderHistory);
-  historyRange.addEventListener("change", renderHistory);
+  let syncing = false;
+  function syncScroll(source, target) {
+    source.addEventListener("scroll", function () {
+      if (syncing) return;
+      syncing = true;
+      target.scrollLeft = source.scrollLeft;
+      requestAnimationFrame(function () { syncing = false; });
+    });
+  }
+  syncScroll(dom.sizeWrap, dom.timeWrap);
+  syncScroll(dom.timeWrap, dom.sizeWrap);
 }
 
 async function main() {
   try {
     const response = await fetch("data/index.json", { cache: "no-store" });
-    if (!response.ok) throw new Error("No published benchmark results yet");
+    if (!response.ok) throw new Error("Cannot load the run index");
     state.index = await response.json();
-    state.index.runs = (state.index.runs || []).slice().sort(function (a, b) { return String(b.createdAt).localeCompare(String(a.createdAt)); });
-    if (!state.index.runs.length) throw new Error("No published benchmark results yet");
+    if (!state.index.runs || !state.index.runs.length) throw new Error("No benchmark runs are available");
     const latest = await loadRun(state.index.runs[0]);
-    state.benchmarkNames = Array.from(benchmarkMap(latest).keys()).sort();
-    state.activeBenchmarks = new Set(state.benchmarkNames.slice(0, Math.min(3, state.benchmarkNames.length)));
-    state.activeConfigs = new Set(configs);
-    fillRunSelects(state.index.runs);
-    renderChoiceControls();
+    state.benchmarkNames = (latest.benchmarks || []).map(function (benchmark) { return benchmark.name; });
+    state.activeBenchmark = state.benchmarkNames[0] || "";
+    configs.forEach(function (config) { state.activeConfigs.add(config); });
+    dom.benchmarkSelect.innerHTML = state.benchmarkNames.map(function (name) { return '<option value="' + escapeHtml(name) + '">' + escapeHtml(name) + "</option>"; }).join("");
+    dom.pageSize.value = String(state.pageSize);
+    renderConfigFilter();
     attachEvents();
-    await refresh();
+    await refreshAll();
+    dom.status.textContent = "Updated " + dateLabel(state.index.generatedAt || state.index.runs[0].createdAt);
   } catch (error) {
-    status.textContent = error.message;
-    status.className = "status error";
+    dom.status.textContent = error.message;
+    dom.status.classList.add("error");
+    dom.sizeGrid.innerHTML = '<tbody><tr><td class="empty-state">Unable to load benchmark history.</td></tr></tbody>';
   }
 }
 

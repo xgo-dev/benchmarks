@@ -37,6 +37,11 @@ and raw `.build` files are retained for diagnosing slow downloads or builds.
 The dashboard treats Bent's `user + sys` time as the comparable build-time
 metric. Wall time remains visible as a reference because concurrent builds and
 runner scheduling can make it unsuitable for commit-to-commit comparisons.
+The published dashboard presents wall time as its primary human-facing duration
+and retains `user + sys` as secondary diagnostic context. Binary size and wall
+time use separate commit matrices on the same page; each cell is ranked against
+the other build modes for the same benchmark and commit, with smaller values
+receiving the stronger favorable background.
 
 The `llgo-main-updated` repository-dispatch event from `xgo-dev/llgo` first
 updates `LLGO_COMMIT` on the benchmarks `main` branch, then explicitly starts a
@@ -63,6 +68,10 @@ validation job described below; they do not produce a binary-size artifact or
 modify the history.
 Existing published runs load their retained `build-times.tsv` directly, while
 new `results.json` documents also embed the same timing fields for each cell.
+New documents additionally record runner and Bent worker metadata for the
+prominent environment strip. The fixed workflow configuration supplies a
+compatible fallback for older history entries. Commit-to-commit deltas remain
+hidden until the reader enables comparison and selects two commit columns.
 
 Changes that only touch the dashboard source or its publication scripts use the
 separate `llgo-binary-size-pages.yml` workflow. That path publishes the updated

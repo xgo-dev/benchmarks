@@ -169,6 +169,10 @@ run = {
     "llvmVersion": os.environ.get("LLVM_VERSION", ""),
     "event": env("LLGO_SIZE_EVENT", "GITHUB_EVENT_NAME"),
     "workflowUrl": workflow_url,
+    "runnerOS": os.environ.get("RUNNER_OS", ""),
+    "runnerArch": os.environ.get("RUNNER_ARCH", ""),
+    "runnerImage": os.environ.get("ImageOS", ""),
+    "buildWorkers": number("BENT_BUILD_WORKERS", ""),
 }
 
 document = {

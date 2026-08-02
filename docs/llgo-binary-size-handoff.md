@@ -28,7 +28,7 @@ Entry workflow: [.github/workflows/llgo-binary-size.yml](../.github/workflows/ll
 
 1. Reads the default LLGo, Go, and LLVM versions from [ci/llgo-size/llgo-version.env](../ci/llgo-size/llgo-version.env); a cross-repo event from LLGo `main` first updates this pin, then explicitly triggers one build and Pages publish.
 2. Installs LLVM 19 and builds the LLGo command and the LTO plugin.
-3. Uses Bent to run Go plus 4 LLGo configurations for each suite, producing `benchsize`'s JSON/TSV/raw files; CI builds concurrently via `-j="$BENT_BUILD_WORKERS"`, currently set to 4.
+3. Uses Bent to run Go plus 5 LLGo configurations for each suite, producing `benchsize`'s JSON/TSV/raw files; CI builds concurrently via `-j="$BENT_BUILD_WORKERS"`, currently set to 4.
 4. [report.sh](../ci/llgo-size/report.sh) collates the results along with build/download timing.
 5. [publish.sh](../ci/llgo-size/publish.sh) archives the results to `pages/data/runs/<run>-<attempt>/` and updates `data/index.json`.
 6. The `deploy-pages` job checks out the `pages` branch, builds it with Jekyll, and deploys via the GitHub Pages artifact.
@@ -40,7 +40,7 @@ The history directory and index now use the full LLGo commit as the key, rather 
 Core files:
 
 - [Bent suites](../cmd/bent/configs/benchmarks-llgo-size.toml)
-- [Five compilation configurations](../cmd/bent/configs/configurations-llgo-size.toml)
+- [Six compilation configurations](../cmd/bent/configs/configurations-llgo-size.toml)
 - [Result publishing script](../ci/llgo-size/publish.sh)
 - [Workflow timing helper](../ci/llgo-size/timing.sh)
 - [Dashboard page](../ci/llgo-size/site/index.html)
@@ -93,7 +93,7 @@ This deployment pipeline has been verified in the personal testing repository. B
 1. After configuring `BENCHMARKS_DISPATCH_TOKEN` in `xgo-dev/llgo`, monitor the run automatically triggered by each `main` update: it will pin to the corresponding commit, use four Bent build workers, and require complete results for all six cases.
 2. If a run fails, first check the failed step in its `binary-size` job and the `[toolchain]`, `[timing]`, and `[bent-download]` lines in the logs.
 3. After success, check whether a new run appears on the Pages dashboard and compare it against the previous historical result.
-5. If further time reduction is still needed, use `build-times.tsv` and `timing-summary.md` first to identify the slowest suite, then replace that single suite; do not remove any of the five compilation configurations, as doing so would reduce the comparative value of LTO/GlobalDCE.
+5. If further time reduction is still needed, use `build-times.tsv` and `timing-summary.md` first to identify the slowest suite, then replace that single suite; do not remove any of the six compilation configurations, as doing so would reduce the comparative value of Go deadcode drop, LTO, and GlobalDCE.
 
 ## Common Troubleshooting Entry Points
 

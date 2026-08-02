@@ -203,7 +203,7 @@ jobs:
               -DCMAKE_BUILD_TYPE=Release -G Ninja
           time_command "Build LLGo LTO plugin" \
             cmake --build "$LLGO_ROOT/ltoplugin/build" --parallel 2 --verbose
-      - name: Build five binary-size configurations with Bent
+      - name: Build six binary-size configurations with Bent
         env:
           BENT_BUILD_WORKERS: 4
           LLGO_BIN: ${{ github.workspace }}/.ci/llgo/llgo
@@ -237,7 +237,7 @@ jobs:
             cd .ci/bent-run
             time_command "Bent initialize run directory" \
               "$GITHUB_WORKSPACE/.ci/bent" -I
-            time_command "Bent dependency acquisition and five-configuration build" \
+            time_command "Bent dependency acquisition and six-configuration build" \
               "$GITHUB_WORKSPACE/.ci/bent" -v -report-build-time -build-only \
                 -j="$BENT_BUILD_WORKERS" \
                 -B=benchmarks-llgo-size.toml \

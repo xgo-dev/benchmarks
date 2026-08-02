@@ -2,7 +2,7 @@
 #
 # The packages cover AWS SDK request handling, human-readable byte parsing,
 # Kubernetes, logging, TOML, GORM, and etcdctl. They are
-# deliberately limited to keep the five-way compiler matrix practical on a
+# deliberately limited to keep the six-way compiler matrix practical on a
 # GitHub hosted runner, and have been verified against the pinned LLGo revision.
 
 [[Benchmarks]]

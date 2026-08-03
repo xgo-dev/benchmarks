@@ -1,0 +1,435 @@
+{
+  "schemaVersion": 1,
+  "format": "bent-benchsize",
+  "run": {
+    "id": "30818245991",
+    "attempt": 1,
+    "number": 134,
+    "createdAt": "2026-08-03T14:14:37.729799Z",
+    "repository": "xgo-dev/benchmarks",
+    "sourceCommit": "f405fd88a741354d40e7d8862433f10d2d7fdc8f",
+    "ref": "main",
+    "llgoRepository": "xgo-dev/llgo",
+    "llgoCommit": "91d416bb12f237811d5efa7a632b3db83e7218d2",
+    "goVersion": "1.26.2",
+    "llvmVersion": "19",
+    "event": "workflow_dispatch",
+    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30818245991",
+    "runnerOS": "Linux",
+    "runnerArch": "X64",
+    "runnerImage": "ubuntu24",
+    "buildWorkers": 4
+  },
+  "configs": [
+    "Go",
+    "LLGoNoLTO",
+    "LLGoDeadcodeDrop",
+    "LLGoFullLTONoGlobalDCE",
+    "LLGoFullLTOGlobalDCE",
+    "LLGoFullLTOGlobalDCEPlugin"
+  ],
+  "metric": "total-bytes",
+  "buildTimeMetric": "user-plus-sys-ns",
+  "benchmarks": [
+    {
+      "name": "Aws_restjson",
+      "values": {
+        "Go": 14639564,
+        "LLGoNoLTO": 13865064,
+        "LLGoDeadcodeDrop": 10250504,
+        "LLGoFullLTONoGlobalDCE": 15160208,
+        "LLGoFullLTOGlobalDCE": 12653424,
+        "LLGoFullLTOGlobalDCEPlugin": 12653424
+      },
+      "buildTimes": {
+        "LLGoFullLTOGlobalDCE": {
+          "cpuNs": 168443269000,
+          "userNs": 164810723000,
+          "sysNs": 3632546000,
+          "wallNs": 149009232591
+        },
+        "LLGoFullLTONoGlobalDCE": {
+          "cpuNs": 133140103000,
+          "userNs": 130981458000,
+          "sysNs": 2158645000,
+          "wallNs": 118715511268
+        },
+        "LLGoFullLTOGlobalDCEPlugin": {
+          "cpuNs": 126725144000,
+          "userNs": 124356940000,
+          "sysNs": 2368204000,
+          "wallNs": 125475675808
+        },
+        "LLGoDeadcodeDrop": {
+          "cpuNs": 68855234000,
+          "userNs": 66923652000,
+          "sysNs": 1931582000,
+          "wallNs": 67394335898
+        },
+        "LLGoNoLTO": {
+          "cpuNs": 59408938000,
+          "userNs": 57611399000,
+          "sysNs": 1797539000,
+          "wallNs": 45723783076
+        },
+        "Go": {
+          "cpuNs": 5015476000,
+          "userNs": 4601600000,
+          "sysNs": 413876000,
+          "wallNs": 5323963851
+        }
+      }
+    },
+    {
+      "name": "Dustin_humanize",
+      "values": {
+        "Go": 4989852,
+        "LLGoNoLTO": 5208448,
+        "LLGoDeadcodeDrop": 3547504,
+        "LLGoFullLTONoGlobalDCE": 5492008,
+        "LLGoFullLTOGlobalDCE": 4001240,
+        "LLGoFullLTOGlobalDCEPlugin": 4001240
+      },
+      "buildTimes": {
+        "LLGoFullLTONoGlobalDCE": {
+          "cpuNs": 46121138000,
+          "userNs": 45013153000,
+          "sysNs": 1107985000,
+          "wallNs": 45858291310
+        },
+        "LLGoFullLTOGlobalDCE": {
+          "cpuNs": 34572981000,
+          "userNs": 33484309000,
+          "sysNs": 1088672000,
+          "wallNs": 35937313039
+        },
+        "LLGoFullLTOGlobalDCEPlugin": {
+          "cpuNs": 33368482000,
+          "userNs": 32243114000,
+          "sysNs": 1125368000,
+          "wallNs": 33976814062
+        },
+        "LLGoDeadcodeDrop": {
+          "cpuNs": 13608385000,
+          "userNs": 12589592000,
+          "sysNs": 1018793000,
+          "wallNs": 13700492971
+        },
+        "LLGoNoLTO": {
+          "cpuNs": 11786067000,
+          "userNs": 10860338000,
+          "sysNs": 925729000,
+          "wallNs": 5663186092
+        },
+        "Go": {
+          "cpuNs": 679392000,
+          "userNs": 587815000,
+          "sysNs": 91577000,
+          "wallNs": 773231036
+        }
+      }
+    },
+    {
+      "name": "Etcdctl",
+      "values": {
+        "Go": 25896983,
+        "LLGoNoLTO": 23899176,
+        "LLGoDeadcodeDrop": 22599888,
+        "LLGoFullLTONoGlobalDCE": 26450512,
+        "LLGoFullLTOGlobalDCE": 25730448,
+        "LLGoFullLTOGlobalDCEPlugin": 25730448
+      },
+      "buildTimes": {
+        "LLGoFullLTOGlobalDCEPlugin": {
+          "cpuNs": 344333998000,
+          "userNs": 338609544000,
+          "sysNs": 5724454000,
+          "wallNs": 319675023248
+        },
+        "LLGoFullLTONoGlobalDCE": {
+          "cpuNs": 343352188000,
+          "userNs": 337918597000,
+          "sysNs": 5433591000,
+          "wallNs": 317561223038
+        },
+        "LLGoFullLTOGlobalDCE": {
+          "cpuNs": 285800773000,
+          "userNs": 282724264000,
+          "sysNs": 3076509000,
+          "wallNs": 249485325247
+        },
+        "LLGoDeadcodeDrop": {
+          "cpuNs": 182431311000,
+          "userNs": 179581880000,
+          "sysNs": 2849431000,
+          "wallNs": 159098353314
+        },
+        "LLGoNoLTO": {
+          "cpuNs": 80780326000,
+          "userNs": 78371837000,
+          "sysNs": 2408489000,
+          "wallNs": 60945781038
+        },
+        "Go": {
+          "cpuNs": 15997607000,
+          "userNs": 15039252000,
+          "sysNs": 958355000,
+          "wallNs": 14327899597
+        }
+      }
+    },
+    {
+      "name": "Gorm_schema",
+      "values": {
+        "Go": 9421659,
+        "LLGoNoLTO": 7662256,
+        "LLGoDeadcodeDrop": 5174360,
+        "LLGoFullLTONoGlobalDCE": 8157592,
+        "LLGoFullLTOGlobalDCE": 7873912,
+        "LLGoFullLTOGlobalDCEPlugin": 6288072
+      },
+      "buildTimes": {
+        "LLGoFullLTOGlobalDCE": {
+          "cpuNs": 81142880000,
+          "userNs": 78848354000,
+          "sysNs": 2294526000,
+          "wallNs": 76674328152
+        },
+        "LLGoFullLTONoGlobalDCE": {
+          "cpuNs": 66685222000,
+          "userNs": 65239461000,
+          "sysNs": 1445761000,
+          "wallNs": 64596998956
+        },
+        "LLGoNoLTO": {
+          "cpuNs": 57865630000,
+          "userNs": 56386688000,
+          "sysNs": 1478942000,
+          "wallNs": 49541083370
+        },
+        "LLGoFullLTOGlobalDCEPlugin": {
+          "cpuNs": 54077271000,
+          "userNs": 52814488000,
+          "sysNs": 1262783000,
+          "wallNs": 51496914586
+        },
+        "LLGoDeadcodeDrop": {
+          "cpuNs": 29112408000,
+          "userNs": 27888397000,
+          "sysNs": 1224011000,
+          "wallNs": 23278259567
+        },
+        "Go": {
+          "cpuNs": 3490742000,
+          "userNs": 3244200000,
+          "sysNs": 246542000,
+          "wallNs": 3056414035
+        }
+      }
+    },
+    {
+      "name": "K8s_workqueue",
+      "values": {
+        "Go": 10168201,
+        "LLGoNoLTO": 11479080,
+        "LLGoDeadcodeDrop": 7129704,
+        "LLGoFullLTONoGlobalDCE": 12543816,
+        "LLGoFullLTOGlobalDCE": 12319296,
+        "LLGoFullLTOGlobalDCEPlugin": 12319296
+      },
+      "buildTimes": {
+        "LLGoFullLTONoGlobalDCE": {
+          "cpuNs": 120766791000,
+          "userNs": 118454909000,
+          "sysNs": 2311882000,
+          "wallNs": 140927692422
+        },
+        "LLGoFullLTOGlobalDCEPlugin": {
+          "cpuNs": 88271365000,
+          "userNs": 86334660000,
+          "sysNs": 1936705000,
+          "wallNs": 76910103105
+        },
+        "LLGoFullLTOGlobalDCE": {
+          "cpuNs": 87117911000,
+          "userNs": 85081854000,
+          "sysNs": 2036057000,
+          "wallNs": 73476514718
+        },
+        "LLGoNoLTO": {
+          "cpuNs": 72926115000,
+          "userNs": 70805653000,
+          "sysNs": 2120462000,
+          "wallNs": 61992147667
+        },
+        "LLGoDeadcodeDrop": {
+          "cpuNs": 32582870000,
+          "userNs": 30865455000,
+          "sysNs": 1717415000,
+          "wallNs": 26273937515
+        },
+        "Go": {
+          "cpuNs": 1559264000,
+          "userNs": 1374118000,
+          "sysNs": 185146000,
+          "wallNs": 708143179
+        }
+      }
+    },
+    {
+      "name": "Toml",
+      "values": {
+        "Go": 7213510,
+        "LLGoNoLTO": 6588920,
+        "LLGoDeadcodeDrop": 4695528,
+        "LLGoFullLTONoGlobalDCE": 7013584,
+        "LLGoFullLTOGlobalDCE": 5843368,
+        "LLGoFullLTOGlobalDCEPlugin": 5843368
+      },
+      "buildTimes": {
+        "LLGoDeadcodeDrop": {
+          "cpuNs": 85335787000,
+          "userNs": 83304906000,
+          "sysNs": 2030881000,
+          "wallNs": 102483976869
+        },
+        "LLGoFullLTOGlobalDCEPlugin": {
+          "cpuNs": 60890643000,
+          "userNs": 59182586000,
+          "sysNs": 1708057000,
+          "wallNs": 52339256959
+        },
+        "LLGoFullLTONoGlobalDCE": {
+          "cpuNs": 50423356000,
+          "userNs": 49240571000,
+          "sysNs": 1182785000,
+          "wallNs": 46448715478
+        },
+        "LLGoFullLTOGlobalDCE": {
+          "cpuNs": 48287129000,
+          "userNs": 47064636000,
+          "sysNs": 1222493000,
+          "wallNs": 47738730933
+        },
+        "LLGoNoLTO": {
+          "cpuNs": 13662431000,
+          "userNs": 12677119000,
+          "sysNs": 985312000,
+          "wallNs": 8666436014
+        },
+        "Go": {
+          "cpuNs": 472024000,
+          "userNs": 386782000,
+          "sysNs": 85242000,
+          "wallNs": 279626787
+        }
+      }
+    },
+    {
+      "name": "Uber_zap",
+      "values": {
+        "Go": 8729830,
+        "LLGoNoLTO": 12333480,
+        "LLGoDeadcodeDrop": 7816648,
+        "LLGoFullLTONoGlobalDCE": 13465440,
+        "LLGoFullLTOGlobalDCE": 10708232,
+        "LLGoFullLTOGlobalDCEPlugin": 10708232
+      },
+      "buildTimes": {
+        "LLGoFullLTONoGlobalDCE": {
+          "cpuNs": 138542463000,
+          "userNs": 135901832000,
+          "sysNs": 2640631000,
+          "wallNs": 123027603002
+        },
+        "LLGoFullLTOGlobalDCE": {
+          "cpuNs": 87008071000,
+          "userNs": 84919852000,
+          "sysNs": 2088219000,
+          "wallNs": 73772854607
+        },
+        "LLGoFullLTOGlobalDCEPlugin": {
+          "cpuNs": 85672205000,
+          "userNs": 83714218000,
+          "sysNs": 1957987000,
+          "wallNs": 74776612778
+        },
+        "LLGoDeadcodeDrop": {
+          "cpuNs": 42181927000,
+          "userNs": 40411210000,
+          "sysNs": 1770717000,
+          "wallNs": 33633652530
+        },
+        "LLGoNoLTO": {
+          "cpuNs": 37273904000,
+          "userNs": 35695032000,
+          "sysNs": 1578872000,
+          "wallNs": 26094416798
+        },
+        "Go": {
+          "cpuNs": 5661598000,
+          "userNs": 5263091000,
+          "sysNs": 398507000,
+          "wallNs": 9339055908
+        }
+      }
+    },
+    {
+      "name": "XGo",
+      "values": {
+        "Go": 18662549,
+        "LLGoNoLTO": 18971056,
+        "LLGoDeadcodeDrop": 16631304,
+        "LLGoFullLTONoGlobalDCE": 20872264,
+        "LLGoFullLTOGlobalDCE": 20295616,
+        "LLGoFullLTOGlobalDCEPlugin": 20295616
+      },
+      "buildTimes": {
+        "LLGoFullLTOGlobalDCE": {
+          "cpuNs": 191612348000,
+          "userNs": 188672627000,
+          "sysNs": 2939721000,
+          "wallNs": 179936040373
+        },
+        "LLGoFullLTONoGlobalDCE": {
+          "cpuNs": 181047600000,
+          "userNs": 178298419000,
+          "sysNs": 2749181000,
+          "wallNs": 160996560657
+        },
+        "LLGoFullLTOGlobalDCEPlugin": {
+          "cpuNs": 153199809000,
+          "userNs": 150648429000,
+          "sysNs": 2551380000,
+          "wallNs": 131586242988
+        },
+        "LLGoDeadcodeDrop": {
+          "cpuNs": 115475779000,
+          "userNs": 113099763000,
+          "sysNs": 2376016000,
+          "wallNs": 103513107495
+        },
+        "LLGoNoLTO": {
+          "cpuNs": 90371042000,
+          "userNs": 88047615000,
+          "sysNs": 2323427000,
+          "wallNs": 66806123818
+        },
+        "Go": {
+          "cpuNs": 17170308000,
+          "userNs": 16037397000,
+          "sysNs": 1132911000,
+          "wallNs": 12774058626
+        }
+      }
+    }
+  ],
+  "native": {
+    "summary": "summary.md",
+    "tsv": "total-bytes.tsv",
+    "timingSummary": "timing-summary.md",
+    "buildTimes": "build-times.tsv",
+    "downloadTimings": "download-timings.log",
+    "rawDir": "raw"
+  }
+}

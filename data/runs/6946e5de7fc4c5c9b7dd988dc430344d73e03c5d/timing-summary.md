@@ -4,70 +4,70 @@ Native Bent `-report-build-time` records, sorted by CPU time (`user + sys`, slow
 
 | Benchmark | Configuration | CPU (user + sys) | User | Sys | Wall (reference) |
 | --- | --- | ---: | ---: | ---: | ---: |
-| IXGo | LLGoFullLTONoGlobalDCE | 513398.4 ms | 505606.9 ms | 7791.5 ms | 450387.0 ms |
-| Etcdctl | LLGoFullLTOGlobalDCEPlugin | 483814.0 ms | 476231.0 ms | 7583.0 ms | 441907.9 ms |
-| IXGo | LLGoFullLTOGlobalDCE | 473904.4 ms | 468057.2 ms | 5847.2 ms | 441853.3 ms |
-| IXGo | LLGoFullLTOGlobalDCEPlugin | 455008.9 ms | 448548.9 ms | 6460.0 ms | 413145.8 ms |
-| IXGo | LLGoDeadcodeDrop | 370121.8 ms | 365204.8 ms | 4917.1 ms | 335744.1 ms |
-| XGo | LLGoFullLTOGlobalDCE | 361263.4 ms | 354917.9 ms | 6345.5 ms | 343641.5 ms |
-| Etcdctl | LLGoFullLTONoGlobalDCE | 323324.3 ms | 319583.1 ms | 3741.2 ms | 283357.8 ms |
-| Etcdctl | LLGoFullLTOGlobalDCE | 317709.2 ms | 313970.0 ms | 3739.2 ms | 277091.8 ms |
-| IXGo | LLGoNoLTO | 301227.3 ms | 296679.1 ms | 4548.2 ms | 262584.8 ms |
-| Etcdctl | LLGoDeadcodeDrop | 217060.2 ms | 214137.6 ms | 2922.6 ms | 176255.9 ms |
-| Uber_zap | LLGoDeadcodeDrop | 212561.4 ms | 208456.1 ms | 4105.3 ms | 219949.9 ms |
-| XGo | LLGoFullLTONoGlobalDCE | 211519.4 ms | 208141.7 ms | 3377.7 ms | 189554.3 ms |
-| XGo | LLGoFullLTOGlobalDCEPlugin | 210061.7 ms | 206946.8 ms | 3114.9 ms | 185952.3 ms |
-| Uber_zap | LLGoFullLTONoGlobalDCE | 194026.5 ms | 190320.9 ms | 3705.6 ms | 189456.3 ms |
-| Aws_restjson | LLGoFullLTONoGlobalDCE | 184624.6 ms | 181430.4 ms | 3194.2 ms | 179782.4 ms |
-| XGo | LLGoNoLTO | 160875.9 ms | 157989.5 ms | 2886.4 ms | 148808.1 ms |
-| Aws_restjson | LLGoFullLTOGlobalDCE | 150536.7 ms | 147502.7 ms | 3033.9 ms | 133403.3 ms |
-| K8s_workqueue | LLGoFullLTONoGlobalDCE | 134262.7 ms | 131434.6 ms | 2828.1 ms | 133672.7 ms |
-| Uber_zap | LLGoFullLTOGlobalDCE | 131502.8 ms | 128634.2 ms | 2868.6 ms | 130328.8 ms |
-| Aws_restjson | LLGoFullLTOGlobalDCEPlugin | 130372.0 ms | 127967.7 ms | 2404.2 ms | 111635.6 ms |
-| K8s_workqueue | LLGoFullLTOGlobalDCEPlugin | 128780.5 ms | 125867.2 ms | 2913.3 ms | 119881.8 ms |
-| K8s_workqueue | LLGoFullLTOGlobalDCE | 117930.9 ms | 115281.0 ms | 2649.9 ms | 109515.3 ms |
-| Uber_zap | LLGoFullLTOGlobalDCEPlugin | 103042.5 ms | 100733.1 ms | 2309.4 ms | 86148.7 ms |
-| XGo | LLGoDeadcodeDrop | 102478.4 ms | 99551.8 ms | 2926.5 ms | 87865.2 ms |
-| Aws_restjson | LLGoDeadcodeDrop | 100161.8 ms | 97621.3 ms | 2540.5 ms | 94468.4 ms |
-| Dustin_humanize | LLGoDeadcodeDrop | 93936.9 ms | 91391.3 ms | 2545.6 ms | 117176.1 ms |
-| Toml | LLGoFullLTONoGlobalDCE | 91733.2 ms | 89756.9 ms | 1976.3 ms | 96747.6 ms |
-| Etcdctl | LLGoNoLTO | 86682.9 ms | 83770.8 ms | 2912.1 ms | 53805.5 ms |
-| Aws_restjson | LLGoNoLTO | 80630.2 ms | 78273.9 ms | 2356.3 ms | 63885.4 ms |
-| Gorm_schema | LLGoFullLTOGlobalDCE | 77403.7 ms | 75630.2 ms | 1773.6 ms | 74768.0 ms |
-| Toml | LLGoFullLTOGlobalDCE | 73223.6 ms | 71480.3 ms | 1743.3 ms | 78765.9 ms |
-| Gorm_schema | LLGoFullLTONoGlobalDCE | 71530.7 ms | 69879.8 ms | 1650.9 ms | 62047.7 ms |
-| Dustin_humanize | LLGoFullLTONoGlobalDCE | 68219.7 ms | 66596.7 ms | 1623.0 ms | 68726.3 ms |
-| Gorm_schema | LLGoFullLTOGlobalDCEPlugin | 59588.0 ms | 57938.7 ms | 1649.4 ms | 52557.6 ms |
-| Dustin_humanize | LLGoFullLTOGlobalDCEPlugin | 53899.7 ms | 52375.3 ms | 1524.4 ms | 61088.1 ms |
-| Toml | LLGoFullLTOGlobalDCEPlugin | 51720.3 ms | 50276.9 ms | 1443.4 ms | 42268.5 ms |
-| K8s_workqueue | LLGoDeadcodeDrop | 43025.6 ms | 40767.3 ms | 2258.3 ms | 35078.5 ms |
-| Dustin_humanize | LLGoFullLTOGlobalDCE | 42299.5 ms | 40806.6 ms | 1493.0 ms | 39702.7 ms |
-| Gorm_schema | LLGoDeadcodeDrop | 40992.1 ms | 39542.0 ms | 1450.2 ms | 29150.7 ms |
-| IXGo | Go | 35504.9 ms | 33211.0 ms | 2293.9 ms | 10752.0 ms |
-| Uber_zap | LLGoNoLTO | 34774.6 ms | 32760.9 ms | 2013.7 ms | 19100.2 ms |
-| K8s_workqueue | LLGoNoLTO | 32468.9 ms | 30472.6 ms | 1996.3 ms | 24025.8 ms |
-| Toml | LLGoDeadcodeDrop | 30124.3 ms | 28646.0 ms | 1478.3 ms | 34398.9 ms |
-| Toml | LLGoNoLTO | 20431.5 ms | 18939.4 ms | 1492.1 ms | 21684.0 ms |
-| Gorm_schema | LLGoNoLTO | 19262.7 ms | 17917.6 ms | 1345.1 ms | 9704.5 ms |
-| Etcdctl | Go | 18920.9 ms | 17986.3 ms | 934.7 ms | 13393.4 ms |
-| Dustin_humanize | LLGoNoLTO | 15224.3 ms | 13916.2 ms | 1308.2 ms | 15839.5 ms |
-| XGo | Go | 10732.2 ms | 10230.8 ms | 501.4 ms | 8804.4 ms |
-| Gorm_schema | Go | 6452.2 ms | 6118.6 ms | 333.6 ms | 4537.3 ms |
-| Aws_restjson | Go | 6035.4 ms | 5590.0 ms | 445.4 ms | 8129.6 ms |
-| Uber_zap | Go | 3900.4 ms | 3658.5 ms | 241.9 ms | 5971.1 ms |
-| K8s_workqueue | Go | 2646.5 ms | 2310.5 ms | 336.0 ms | 1186.5 ms |
-| Dustin_humanize | Go | 815.2 ms | 717.3 ms | 98.0 ms | 1004.4 ms |
-| Toml | Go | 691.4 ms | 575.0 ms | 116.5 ms | 531.6 ms |
+| IXGo | LLGoFullLTONoGlobalDCE | 486031.2 ms | 476444.7 ms | 9586.6 ms | 468855.0 ms |
+| IXGo | LLGoFullLTOGlobalDCE | 474449.4 ms | 468476.8 ms | 5972.6 ms | 427585.0 ms |
+| IXGo | LLGoDeadcodeDrop | 469691.3 ms | 461244.3 ms | 8447.0 ms | 402018.6 ms |
+| IXGo | LLGoFullLTOGlobalDCEPlugin | 449318.2 ms | 440340.9 ms | 8977.2 ms | 414231.8 ms |
+| Etcdctl | LLGoFullLTOGlobalDCEPlugin | 396634.3 ms | 389557.9 ms | 7076.4 ms | 350146.7 ms |
+| Etcdctl | LLGoFullLTOGlobalDCE | 374921.0 ms | 367430.7 ms | 7490.3 ms | 365794.2 ms |
+| Etcdctl | LLGoFullLTONoGlobalDCE | 312638.6 ms | 308720.1 ms | 3918.5 ms | 274087.4 ms |
+| XGo | LLGoFullLTONoGlobalDCE | 296692.7 ms | 290876.9 ms | 5815.8 ms | 275706.7 ms |
+| XGo | LLGoFullLTOGlobalDCE | 251266.0 ms | 243872.9 ms | 7393.1 ms | 260687.3 ms |
+| Etcdctl | LLGoDeadcodeDrop | 218307.5 ms | 213679.9 ms | 4627.6 ms | 193115.0 ms |
+| XGo | LLGoFullLTOGlobalDCEPlugin | 196107.5 ms | 192849.1 ms | 3258.4 ms | 169465.0 ms |
+| Aws_restjson | LLGoFullLTONoGlobalDCE | 150506.3 ms | 147768.8 ms | 2737.5 ms | 132880.2 ms |
+| Aws_restjson | LLGoFullLTOGlobalDCEPlugin | 133682.8 ms | 131017.4 ms | 2665.4 ms | 115793.8 ms |
+| Aws_restjson | LLGoFullLTOGlobalDCE | 129687.9 ms | 127074.3 ms | 2613.6 ms | 111916.8 ms |
+| K8s_workqueue | LLGoFullLTONoGlobalDCE | 129017.2 ms | 125839.7 ms | 3177.5 ms | 137106.9 ms |
+| Uber_zap | LLGoFullLTONoGlobalDCE | 124122.9 ms | 121426.7 ms | 2696.2 ms | 112301.3 ms |
+| IXGo | LLGoNoLTO | 123342.0 ms | 118076.1 ms | 5266.0 ms | 100549.1 ms |
+| Gorm_schema | LLGoFullLTOGlobalDCE | 120214.0 ms | 116904.2 ms | 3309.8 ms | 130723.9 ms |
+| K8s_workqueue | LLGoFullLTOGlobalDCEPlugin | 107406.2 ms | 104726.0 ms | 2680.2 ms | 91524.2 ms |
+| Gorm_schema | LLGoFullLTONoGlobalDCE | 106051.3 ms | 103847.3 ms | 2204.0 ms | 116648.1 ms |
+| K8s_workqueue | LLGoFullLTOGlobalDCE | 102491.9 ms | 100000.1 ms | 2491.9 ms | 87661.9 ms |
+| Uber_zap | LLGoFullLTOGlobalDCEPlugin | 101233.1 ms | 98619.3 ms | 2613.9 ms | 85727.7 ms |
+| XGo | LLGoNoLTO | 100631.0 ms | 97110.4 ms | 3520.6 ms | 96764.9 ms |
+| Uber_zap | LLGoFullLTOGlobalDCE | 100234.7 ms | 97625.7 ms | 2608.9 ms | 87794.3 ms |
+| Toml | LLGoFullLTOGlobalDCEPlugin | 93004.8 ms | 90312.6 ms | 2692.3 ms | 99931.2 ms |
+| Toml | LLGoDeadcodeDrop | 87161.7 ms | 84433.4 ms | 2728.3 ms | 101956.9 ms |
+| Aws_restjson | LLGoDeadcodeDrop | 84990.0 ms | 82109.5 ms | 2880.5 ms | 81250.2 ms |
+| XGo | LLGoDeadcodeDrop | 82001.6 ms | 79300.3 ms | 2701.2 ms | 59615.8 ms |
+| Aws_restjson | LLGoNoLTO | 80419.6 ms | 77572.1 ms | 2847.5 ms | 63629.5 ms |
+| Etcdctl | LLGoNoLTO | 78152.3 ms | 74950.1 ms | 3202.1 ms | 41114.4 ms |
+| Dustin_humanize | LLGoDeadcodeDrop | 77289.6 ms | 74718.5 ms | 2571.1 ms | 92917.3 ms |
+| Gorm_schema | LLGoFullLTOGlobalDCEPlugin | 66264.2 ms | 64047.2 ms | 2217.0 ms | 72337.5 ms |
+| Toml | LLGoFullLTONoGlobalDCE | 62200.5 ms | 60556.4 ms | 1644.1 ms | 55879.5 ms |
+| Dustin_humanize | LLGoFullLTONoGlobalDCE | 58719.3 ms | 57126.1 ms | 1593.2 ms | 62354.6 ms |
+| Uber_zap | LLGoDeadcodeDrop | 56662.5 ms | 53820.7 ms | 2841.8 ms | 55295.8 ms |
+| Toml | LLGoFullLTOGlobalDCE | 53603.4 ms | 51902.7 ms | 1700.7 ms | 46053.2 ms |
+| Uber_zap | LLGoNoLTO | 45845.8 ms | 43762.3 ms | 2083.5 ms | 29880.7 ms |
+| K8s_workqueue | LLGoNoLTO | 43272.2 ms | 40837.4 ms | 2434.7 ms | 44727.1 ms |
+| Dustin_humanize | LLGoFullLTOGlobalDCE | 37627.4 ms | 36047.5 ms | 1579.8 ms | 36683.6 ms |
+| IXGo | Go | 37329.3 ms | 34148.2 ms | 3181.1 ms | 23346.4 ms |
+| Dustin_humanize | LLGoFullLTOGlobalDCEPlugin | 37060.3 ms | 35631.8 ms | 1428.6 ms | 32968.0 ms |
+| K8s_workqueue | LLGoDeadcodeDrop | 35352.8 ms | 33300.3 ms | 2052.5 ms | 25248.1 ms |
+| Gorm_schema | LLGoDeadcodeDrop | 31350.9 ms | 29955.9 ms | 1395.0 ms | 22423.0 ms |
+| Gorm_schema | LLGoNoLTO | 20631.7 ms | 19066.9 ms | 1564.8 ms | 17517.8 ms |
+| Etcdctl | Go | 17081.3 ms | 16120.2 ms | 961.1 ms | 7886.6 ms |
+| Toml | LLGoNoLTO | 16063.4 ms | 14677.5 ms | 1385.9 ms | 9976.8 ms |
+| Dustin_humanize | LLGoNoLTO | 13422.2 ms | 12134.7 ms | 1287.4 ms | 9656.5 ms |
+| XGo | Go | 10210.6 ms | 9638.5 ms | 572.1 ms | 11738.6 ms |
+| Uber_zap | Go | 5562.9 ms | 5123.8 ms | 439.1 ms | 1938.5 ms |
+| Aws_restjson | Go | 5525.6 ms | 5033.6 ms | 491.9 ms | 4645.8 ms |
+| Gorm_schema | Go | 4301.4 ms | 4029.7 ms | 271.7 ms | 8763.0 ms |
+| K8s_workqueue | Go | 1788.4 ms | 1574.1 ms | 214.3 ms | 874.1 ms |
+| Dustin_humanize | Go | 712.5 ms | 615.4 ms | 97.1 ms | 496.4 ms |
+| Toml | Go | 561.2 ms | 451.4 ms | 109.9 ms | 335.1 ms |
 
 ### Configuration totals
 
 | Configuration | Total CPU (user + sys) | Total wall (reference) | Cases |
 | --- | ---: | ---: | ---: |
-| LLGoFullLTONoGlobalDCE | 1792639.5 ms | 1653732.0 ms | 9 |
-| LLGoFullLTOGlobalDCE | 1745774.3 ms | 1629070.6 ms | 9 |
-| LLGoFullLTOGlobalDCEPlugin | 1676287.7 ms | 1514586.3 ms | 9 |
-| LLGoDeadcodeDrop | 1210462.4 ms | 1130087.5 ms | 9 |
-| LLGoNoLTO | 751578.3 ms | 619437.7 ms | 9 |
-| Go | 85699.1 ms | 54310.3 ms | 9 |
+| LLGoFullLTONoGlobalDCE | 1725980.0 ms | 1635819.7 ms | 9 |
+| LLGoFullLTOGlobalDCE | 1644495.7 ms | 1554900.3 ms | 9 |
+| LLGoFullLTOGlobalDCEPlugin | 1580711.5 ms | 1432125.9 ms | 9 |
+| LLGoDeadcodeDrop | 1142807.9 ms | 1033840.5 ms | 9 |
+| LLGoNoLTO | 521780.1 ms | 413816.9 ms | 9 |
+| Go | 83073.1 ms | 60024.5 ms | 9 |
 
 Dependency download details are in `download-timings.log`.

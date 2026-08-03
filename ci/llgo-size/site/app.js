@@ -306,12 +306,15 @@ function renderMatrix(target, runs, documents, baselineDocument, measure) {
   const head = '<thead><tr><th class="matrix-label-cell">Benchmark / mode</th>' + runs.map(headerHtml).join("") + "</tr></thead>";
   const rows = [];
   state.benchmarkNames.forEach(function (benchmarkName) {
-    configs.forEach(function (config) {
-      const label = '<th class="matrix-label-cell"><span class="benchmark-name">' + escapeHtml(benchmarkName) + '</span><span class="config-name">' + escapeHtml(compactConfigLabels[config]) + "</span></th>";
+    configs.forEach(function (config, configIndex) {
+      const benchmarkLabel = configIndex === 0 ? '<span class="benchmark-name">' + escapeHtml(benchmarkName) + "</span>" : "";
+      const configClass = configIndex === 0 ? "config-name" : "config-name config-continuation";
+      const label = '<th class="matrix-label-cell" aria-label="' + escapeHtml(benchmarkName + " · " + compactConfigLabels[config]) + '">' + benchmarkLabel + '<span class="' + configClass + '">' + escapeHtml(compactConfigLabels[config]) + "</span></th>";
       const cells = runs.map(function (run, index) {
         return cellHtml(maps[index].get(benchmarkName), config, measure, run.key, baselineMap.get(benchmarkName));
       }).join("");
-      rows.push("<tr>" + label + cells + "</tr>");
+      const groupClass = configIndex === 0 ? "benchmark-group-start" : "";
+      rows.push('<tr class="' + groupClass + '">' + label + cells + "</tr>");
     });
   });
   target.classList.toggle("comparison-mode", state.comparisonMode);

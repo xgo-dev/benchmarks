@@ -41,7 +41,9 @@ The published dashboard presents wall time as its primary human-facing duration
 and retains `user + sys` as secondary diagnostic context. Binary size and wall
 time use separate commit matrices on the same page; each cell is ranked against
 the other build modes for the same benchmark and commit, with smaller values
-receiving the stronger favorable background.
+receiving the stronger favorable background. Matrix rows are visually grouped
+by benchmark: the benchmark name appears once at the start of its build modes,
+and a full-width separator marks the next benchmark.
 
 The `llgo-main-updated` repository-dispatch event from `xgo-dev/llgo` first
 updates `LLGO_COMMIT` on the benchmarks `main` branch, then explicitly starts a

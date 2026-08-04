@@ -43,7 +43,9 @@ time use separate commit matrices on the same page; each cell is ranked against
 the other build modes for the same benchmark and commit, with smaller values
 receiving the stronger favorable background. Matrix rows are visually grouped
 by benchmark: the benchmark name appears once at the start of its build modes,
-and a full-width separator marks the next benchmark.
+and a full-width separator marks the next benchmark. The row set is the union
+of every published run, so a historical benchmark remains visible with `—` in
+commit columns where it was not produced.
 
 The `llgo-main-updated` repository-dispatch event from `xgo-dev/llgo` first
 updates `LLGO_COMMIT` on the benchmarks `main` branch, then explicitly starts a

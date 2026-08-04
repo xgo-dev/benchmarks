@@ -130,6 +130,14 @@ function benchmarkMap(document) {
   return new Map((document && document.benchmarks || []).map(function (item) { return [item.name, item]; }));
 }
 
+function benchmarkNamesFromDocuments(documents) {
+  const names = new Set();
+  documents.forEach(function (document) {
+    (document && document.benchmarks || []).forEach(function (benchmark) { names.add(benchmark.name); });
+  });
+  return Array.from(names).sort(function (a, b) { return a.localeCompare(b, undefined, { sensitivity: "base" }); });
+}
+
 function parseBuildTimes(text) {
   const lines = String(text || "").trim().split(/\r?\n/);
   if (lines.length < 2) return new Map();
@@ -563,8 +571,8 @@ async function main() {
     if (!response.ok) throw new Error("Cannot load the run index");
     state.index = await response.json();
     if (!state.index.runs || !state.index.runs.length) throw new Error("No benchmark runs are available");
-    const latest = await loadRun(state.index.runs[0]);
-    state.benchmarkNames = (latest.benchmarks || []).map(function (benchmark) { return benchmark.name; });
+    const documents = await Promise.all(state.index.runs.map(loadRun));
+    state.benchmarkNames = benchmarkNamesFromDocuments(documents);
     state.activeBenchmark = state.benchmarkNames[0] || "";
     configs.forEach(function (config) { state.activeConfigs.add(config); });
     dom.benchmarkSelect.innerHTML = state.benchmarkNames.map(function (name) { return '<option value="' + escapeHtml(name) + '">' + escapeHtml(name) + "</option>"; }).join("");

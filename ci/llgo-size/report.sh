@@ -172,7 +172,6 @@ run = {
     "runnerOS": os.environ.get("RUNNER_OS", ""),
     "runnerArch": os.environ.get("RUNNER_ARCH", ""),
     "runnerImage": os.environ.get("ImageOS", ""),
-    "buildWorkers": number("BENT_BUILD_WORKERS", ""),
 }
 
 document = {

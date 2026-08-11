@@ -205,7 +205,6 @@ jobs:
             cmake --build "$LLGO_ROOT/ltoplugin/build" --parallel 2 --verbose
       - name: Build six binary-size configurations with Bent
         env:
-          BENT_BUILD_WORKERS: 4
           LLGO_BIN: ${{ github.workspace }}/.ci/llgo/llgo
           LLGO_LTO_PLUGIN: ${{ github.workspace }}/.ci/llgo/ltoplugin/build/LLGOLTOPlugin.so
           LLGO_ROOT: ${{ github.workspace }}/.ci/llgo
@@ -239,7 +238,6 @@ jobs:
               "$GITHUB_WORKSPACE/.ci/bent" -I
             time_command "Bent dependency acquisition and six-configuration build" \
               "$GITHUB_WORKSPACE/.ci/bent" -v -report-build-time -build-only \
-                -j="$BENT_BUILD_WORKERS" \
                 -B=benchmarks-llgo-size.toml \
                 -C=configurations-llgo-size.toml
           )
@@ -324,8 +322,6 @@ jobs:
           go-version-file: .ci/go-version
 
       - name: Run the LLGo-size benchmark cases with Go
-        env:
-          BENT_BUILD_WORKERS: 4
         run: |
           set -euo pipefail
           go build -o .ci/bent ./cmd/bent
@@ -336,5 +332,5 @@ jobs:
             "$GITHUB_WORKSPACE/.ci/bent" -v \
               -B=benchmarks-llgo-size.toml \
               -C=configurations-llgo-size.toml \
-              -c=Go -j="$BENT_BUILD_WORKERS"
+              -c=Go
           )

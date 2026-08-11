@@ -136,9 +136,6 @@ correctly keyed package cache, and an explicit Bent `-a` still forces a rebuild.
 The `-build-only` flag stops after binary construction and `AfterBuild` collection; it is useful
 for binary-size CI, including comparisons of executables produced from `main` packages. See
 `configurations-llgo-size.toml`.
-Use `-j=<workers>` to build independent configuration/benchmark pairs concurrently. Bent defaults
-to one worker for reproducible serial runs; each worker writes a distinct binary while Bent
-serializes shared result files and GOPATH cleanup.
 Configuration `RunFlags` and additional arguments after `--` are passed only to runnable
 test-mode binaries. Build-mode binaries are constructed and processed by `AfterBuild`, but are
 never executed by Bent.

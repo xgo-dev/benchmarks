@@ -43,22 +43,9 @@ type Configuration struct {
 	Disabled      bool     // True if this configuration is temporarily disabled
 	benchWriter   *os.File
 	rootCopy      string // The contents of GOROOT are copied here to isolate compilation benchmarking.
-	resultMu      *sync.Mutex
 }
-
-// gopathBinMu keeps cleanup of the shared GOPATH/bin from deleting a binary
-// while another build worker is still using that GOPATH.
-var gopathBinMu sync.RWMutex
 
 var dirs *directories // constant across all configurations, useful in other contexts.
-
-func (c *Configuration) lockResults() {
-	c.resultMu.Lock()
-}
-
-func (c *Configuration) unlockResults() {
-	c.resultMu.Unlock()
-}
 
 func (c *Configuration) buildBenchName() string {
 	return c.thingBenchName("build")
@@ -112,7 +99,6 @@ func (config *Configuration) createFilesForLater() {
 	if config.Disabled {
 		return
 	}
-	config.resultMu = new(sync.Mutex)
 	f, err := os.Create(config.buildBenchName())
 	if err != nil {
 		fmt.Println("Error creating build benchmark file ", config.buildBenchName(), ", err=", err)
@@ -142,11 +128,9 @@ func (config *Configuration) runOtherBenchmarks(b *Benchmark, cwd string, cmdEnv
 	}
 
 	for _, cmd := range config.AfterBuild {
-		config.lockResults()
 		tbn := config.thingBenchName(cmd)
 		f, err := os.OpenFile(tbn, os.O_WRONLY|os.O_APPEND, os.ModePerm)
 		if err != nil {
-			config.unlockResults()
 			fmt.Printf("There was an error opening %s for append, error %v\n", tbn, err)
 			continue
 		}
@@ -160,8 +144,7 @@ func (config *Configuration) runOtherBenchmarks(b *Benchmark, cwd string, cmdEnv
 		if !strings.ContainsAny(cmd, "/") {
 			cmd = path.Join(cwd, cmd)
 		}
-		if b.isDisabled() {
-			config.unlockResults()
+		if b.Disabled {
 			f.Close()
 			continue
 		}
@@ -184,14 +167,12 @@ func (config *Configuration) runOtherBenchmarks(b *Benchmark, cwd string, cmdEnv
 		}
 		if err != nil {
 			fmt.Printf("Error running %s\n", cmd)
-			config.unlockResults()
 			f.Close()
 			continue
 		}
 		f.Write(output)
 		f.Sync()
 		f.Close()
-		config.unlockResults()
 	}
 }
 
@@ -253,13 +234,7 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 		fmt.Print(".")
 	}
 
-	gopathBinMu.RLock()
-	defer func() {
-		gopathBinMu.RUnlock()
-		gopathBinMu.Lock()
-		cleanup(gopath)
-		gopathBinMu.Unlock()
-	}()
+	defer cleanup(gopath)
 
 	start := time.Now()
 	output, err := cmd.CombinedOutput()
@@ -274,7 +249,7 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 			s = fmt.Sprintf("There was an error running %q, output = %s, error = %v", buildCommand, output, e)
 		}
 		fmt.Println(s + "DISABLING benchmark " + bench.Name)
-		bench.disable() // if it won't compile, it won't run, either.
+		bench.Disabled = true // if it won't compile, it won't run, either.
 		return s + "(" + bench.Name + ")\n"
 	}
 
@@ -307,17 +282,15 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 			fmt.Print(s)
 		}
 		buf.WriteString(s)
-		config.lockResults()
 		f, err := os.OpenFile(config.buildBenchName(), os.O_WRONLY|os.O_APPEND, os.ModePerm)
 		if err != nil {
-			config.unlockResults()
 			fmt.Printf("There was an error opening %s for append, error %v\n", config.buildBenchName(), err)
+			cleanup(gopath)
 			os.Exit(2)
 		}
 		f.Write(buf.Bytes())
 		f.Sync()
 		f.Close()
-		config.unlockResults()
 	}
 
 	// Trim /usr/bin/time info from soutput, it's ugly

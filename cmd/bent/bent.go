@@ -21,7 +21,6 @@ import (
 	"slices"
 	"strconv"
 	"strings"
-	"sync"
 	"time"
 
 	"golang.org/x/benchmarks/sweet/common/fileutil"
@@ -78,23 +77,6 @@ func (b *Benchmark) buildsTestBinary() bool {
 	return b.effectiveBuildMode() == buildModeTest
 }
 
-// Benchmark disabling can be triggered by any build worker. The rest of the
-// benchmark setup and run phases remain serial, so one mutex is sufficient for
-// the small concurrent build section.
-var benchmarkStateMu sync.RWMutex
-
-func (b *Benchmark) isDisabled() bool {
-	benchmarkStateMu.RLock()
-	defer benchmarkStateMu.RUnlock()
-	return b.Disabled
-}
-
-func (b *Benchmark) disable() {
-	benchmarkStateMu.Lock()
-	b.Disabled = true
-	benchmarkStateMu.Unlock()
-}
-
 type Suite struct {
 	Benchmark
 }
@@ -127,7 +109,6 @@ var shuffle = 2             // Dimensionality of (build) shuffling; 0 = none, 1 
 var reportBuildTime = true
 var experiment = false    // Don't reset go.mod, for testing purposes
 var buildOnly = false     // Build and run AfterBuild commands, but do not execute binaries.
-var buildWorkers = 1      // Maximum concurrent binary builds; one preserves the historic serial behavior.
 var minGoVersion = "1.22" // This is the release the toolchain started caring about versions of Go that are too new.
 
 //go:embed scripts/*
@@ -159,66 +140,6 @@ type pair struct {
 }
 type triple struct {
 	b, c, k int
-}
-
-type compileTask struct {
-	configuration *Configuration
-	benchmark     *Benchmark
-	count         int
-}
-
-type compileResult struct {
-	index   int
-	failure string
-}
-
-// runCompileTasks performs independent binary builds with at most workers
-// concurrent processes. Failures are returned in task order so diagnostics stay
-// stable even when the builds finish in a different order.
-func runCompileTasks(tasks []compileTask, workers int, build func(compileTask) string) []string {
-	if len(tasks) == 0 {
-		return nil
-	}
-	if workers < 1 {
-		workers = 1
-	}
-	if workers > len(tasks) {
-		workers = len(tasks)
-	}
-
-	jobs := make(chan int)
-	results := make(chan compileResult, len(tasks))
-	var wg sync.WaitGroup
-	for range workers {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			for index := range jobs {
-				task := tasks[index]
-				results <- compileResult{index: index, failure: build(task)}
-			}
-		}()
-	}
-	go func() {
-		for index := range tasks {
-			jobs <- index
-		}
-		close(jobs)
-		wg.Wait()
-		close(results)
-	}()
-
-	failures := make([]string, len(tasks))
-	for result := range results {
-		failures[result.index] = result.failure
-	}
-	var ordered []string
-	for _, failure := range failures {
-		if failure != "" {
-			ordered = append(ordered, failure)
-		}
-	}
-	return ordered
 }
 
 // To disambiguate repeated test runs in the same directory.
@@ -264,7 +185,6 @@ func main() {
 	flag.BoolVar(&wikiTable, "W", wikiTable, "print benchmark info for a wiki table")
 	flag.BoolVar(&experiment, "X", experiment, "for experimental changes to 3rd party software, do not reset build/*/go.mod")
 	flag.BoolVar(&buildOnly, "build-only", buildOnly, "build binaries and AfterBuild commands, but do not run binaries")
-	flag.IntVar(&buildWorkers, "j", buildWorkers, "maximum concurrent binary builds (1 keeps builds serial)")
 
 	flag.BoolVar(&reportBuildTime, "report-build-time", reportBuildTime, "report build real/CPU time as benchmark results")
 
@@ -318,10 +238,6 @@ results will also appear in 'bench'.
 	}
 
 	flag.Parse()
-	if buildWorkers < 1 {
-		fmt.Println("j must be at least 1")
-		os.Exit(1)
-	}
 
 	if R > 0 {
 		if R > 1000000 {
@@ -856,12 +772,13 @@ results will also appear in 'bench'.
 			fmt.Print("\nCompiling")
 		}
 
-		var compileTasks []compileTask
-		queueCompile := func(config *Configuration, bench *Benchmark, count int) {
+		compileOne := func(config *Configuration, bench *Benchmark, count int) {
 			if config.Disabled || bench.Disabled {
 				return
 			}
-			compileTasks = append(compileTasks, compileTask{configuration: config, benchmark: bench, count: count})
+			if failure := config.compileOne(bench, dirs.wd, count, R > 0); failure != "" {
+				getAndBuildFailures = append(getAndBuildFailures, failure)
+			}
 		}
 
 		switch shuffle {
@@ -869,7 +786,7 @@ results will also appear in 'bench'.
 			for yyy := 0; yyy < buildCount; yyy++ {
 				for bi := range todo.Benchmarks {
 					for ci := range todo.Configurations {
-						queueCompile(&todo.Configurations[ci], &todo.Benchmarks[bi], yyy)
+						compileOne(&todo.Configurations[ci], &todo.Benchmarks[bi], yyy)
 					}
 				}
 			}
@@ -885,7 +802,7 @@ results will also appear in 'bench'.
 
 					for ci := range todo.Configurations {
 						config := &todo.Configurations[permute[ci]]
-						queueCompile(config, &todo.Benchmarks[bi], yyy)
+						compileOne(config, &todo.Benchmarks[bi], yyy)
 					}
 				}
 			}
@@ -904,7 +821,7 @@ results will also appear in 'bench'.
 				for _, p := range permute {
 					bench := &todo.Benchmarks[p.b]
 					config := &todo.Configurations[p.c]
-					queueCompile(config, bench, yyy)
+					compileOne(config, bench, yyy)
 				}
 			}
 
@@ -924,15 +841,9 @@ results will also appear in 'bench'.
 			for _, p := range permute {
 				bench := &todo.Benchmarks[p.b]
 				config := &todo.Configurations[p.c]
-				queueCompile(config, bench, p.k)
+				compileOne(config, bench, p.k)
 			}
 		}
-		getAndBuildFailures = append(getAndBuildFailures, runCompileTasks(compileTasks, buildWorkers, func(task compileTask) string {
-			if task.configuration.Disabled || task.benchmark.isDisabled() {
-				return ""
-			}
-			return task.configuration.compileOne(task.benchmark, dirs.wd, task.count, R > 0)
-		})...)
 
 		if verbose == 0 {
 			fmt.Println()

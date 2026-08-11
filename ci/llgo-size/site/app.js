@@ -389,9 +389,8 @@ async function renderEnvironment() {
   dom.envRunner.textContent = normalizeRunner(run);
   dom.envToolchain.textContent = goVersionLabel(run.goVersion || meta.goVersion) + " · LLVM " + (run.llvmVersion || meta.llvmVersion || "—");
   dom.envLlgo.textContent = commitLabel(meta) + " · " + (run.ref || meta.ref || "main");
-  const workers = run.buildWorkers || 4;
   const runNumber = run.number || meta.number || meta.key;
-  dom.envProtocol.textContent = "Bent -j=" + workers + " · run #" + runNumber;
+  dom.envProtocol.textContent = "Bent · run #" + runNumber;
 }
 
 async function renderTables() {

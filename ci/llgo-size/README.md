@@ -56,8 +56,8 @@ retained in `results.json` and the Pages history, so every LLGo `main` update
 has a comparable data point. GitHub requires the receiver workflow to be on
 the benchmarks repository's default branch before it can receive this event.
 The workflow sources `timing.sh` for its shared CI step timing output.
-It invokes Bent with four configurable build workers (`BENT_BUILD_WORKERS=4`);
-set that environment value to `1` to reproduce a serial build.
+Bent schedules benchmark/configuration builds serially; each LLGo invocation
+uses the compiler's own package-level parallelism.
 
 
 ## Publishing and history
@@ -72,10 +72,9 @@ validation job described below; they do not produce a binary-size artifact or
 modify the history.
 Existing published runs load their retained `build-times.tsv` directly, while
 new `results.json` documents also embed the same timing fields for each cell.
-New documents additionally record runner and Bent worker metadata for the
-prominent environment strip. The fixed workflow configuration supplies a
-compatible fallback for older history entries. Commit-to-commit deltas remain
-hidden until the reader enables comparison and selects two commit columns.
+New documents additionally record runner metadata for the prominent
+environment strip. Commit-to-commit deltas remain hidden until the reader
+enables comparison and selects two commit columns.
 
 Changes that only touch the dashboard source or its publication scripts use the
 separate `llgo-binary-size-pages.yml` workflow. That path publishes the updated

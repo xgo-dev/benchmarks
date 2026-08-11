@@ -13,10 +13,7 @@ import (
 	"path"
 	"reflect"
 	"runtime"
-	"strings"
-	"sync"
 	"testing"
-	"time"
 )
 
 var dir string
@@ -168,50 +165,6 @@ func TestCompileOneBuildsMainPackage(t *testing.T) {
 	}
 	if _, err := os.Stat(path.Join(workspace, "testbin", "hello_Main")); err != nil {
 		t.Fatalf("main binary was not created: %v", err)
-	}
-}
-
-func TestRunCompileTasks(t *testing.T) {
-	tasks := make([]compileTask, 4)
-	for index := range tasks {
-		tasks[index].count = index
-	}
-
-	var mu sync.Mutex
-	active, maxActive := 0, 0
-	failures := runCompileTasks(tasks, 2, func(task compileTask) string {
-		mu.Lock()
-		active++
-		maxActive = max(maxActive, active)
-		mu.Unlock()
-
-		time.Sleep(10 * time.Millisecond)
-
-		mu.Lock()
-		active--
-		mu.Unlock()
-		if task.count%2 != 0 {
-			return fmt.Sprintf("failure %d", task.count)
-		}
-		return ""
-	})
-
-	if maxActive != 2 {
-		t.Fatalf("maximum concurrent builds = %d, want 2", maxActive)
-	}
-	if want := []string{"failure 1", "failure 3"}; !reflect.DeepEqual(failures, want) {
-		t.Fatalf("failures = %q, want %q", failures, want)
-	}
-}
-
-func TestBuildWorkersMustBePositive(t *testing.T) {
-	cmd := bentCmd(t, "-j=0", "-l")
-	output, err := cmd.CombinedOutput()
-	if err == nil {
-		t.Fatalf("bent -j=0 succeeded, output = %s", output)
-	}
-	if !strings.Contains(string(output), "j must be at least 1") {
-		t.Fatalf("bent -j=0 output = %q, want validation error", output)
 	}
 }
 

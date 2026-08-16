@@ -1,0 +1,144 @@
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkUber_zap 1 10035176 total-bytes
+Unit text-bytes assume=exact
+BenchmarkUber_zap 1 3703287 text-bytes
+Unit data-bytes assume=exact
+BenchmarkUber_zap 1 3889992 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkUber_zap 1 3844952 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkUber_zap 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkUber_zap 1 0 debug-bytes
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkXGo 1 18655480 total-bytes
+Unit text-bytes assume=exact
+BenchmarkXGo 1 7166567 text-bytes
+Unit data-bytes assume=exact
+BenchmarkXGo 1 6089416 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkXGo 1 6042536 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkXGo 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkXGo 1 0 debug-bytes
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkAws_restjson 1 11754360 total-bytes
+Unit text-bytes assume=exact
+BenchmarkAws_restjson 1 4695767 text-bytes
+Unit data-bytes assume=exact
+BenchmarkAws_restjson 1 4273488 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkAws_restjson 1 4228360 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkAws_restjson 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkAws_restjson 1 0 debug-bytes
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkK8s_workqueue 1 11348472 total-bytes
+Unit text-bytes assume=exact
+BenchmarkK8s_workqueue 1 4667127 text-bytes
+Unit data-bytes assume=exact
+BenchmarkK8s_workqueue 1 3687544 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkK8s_workqueue 1 3642480 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkK8s_workqueue 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkK8s_workqueue 1 0 debug-bytes
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkDustin_humanize 1 3781416 total-bytes
+Unit text-bytes assume=exact
+BenchmarkDustin_humanize 1 1253751 text-bytes
+Unit data-bytes assume=exact
+BenchmarkDustin_humanize 1 1620040 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkDustin_humanize 1 1614840 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkDustin_humanize 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkDustin_humanize 1 0 debug-bytes
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkIXGo 1 30601432 total-bytes
+Unit text-bytes assume=exact
+BenchmarkIXGo 1 12926599 text-bytes
+Unit data-bytes assume=exact
+BenchmarkIXGo 1 9255752 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkIXGo 1 9159208 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkIXGo 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkIXGo 1 0 debug-bytes
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkToml 1 5526704 total-bytes
+Unit text-bytes assume=exact
+BenchmarkToml 1 1972087 text-bytes
+Unit data-bytes assume=exact
+BenchmarkToml 1 2188136 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkToml 1 2182760 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkToml 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkToml 1 0 debug-bytes
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkGorm_schema 1 7515552 total-bytes
+Unit text-bytes assume=exact
+BenchmarkGorm_schema 1 2819639 text-bytes
+Unit data-bytes assume=exact
+BenchmarkGorm_schema 1 2638048 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkGorm_schema 1 2594696 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkGorm_schema 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkGorm_schema 1 0 debug-bytes
+toolchain: LLGoFullLTOGlobalDCE
+goos: linux
+goarch: amd64
+pkg:
+Unit total-bytes assume=exact
+BenchmarkEtcdctl 1 23476808 total-bytes
+Unit text-bytes assume=exact
+BenchmarkEtcdctl 1 9290327 text-bytes
+Unit data-bytes assume=exact
+BenchmarkEtcdctl 1 7684504 data-bytes
+Unit rodata-bytes assume=exact
+BenchmarkEtcdctl 1 7558424 rodata-bytes
+Unit pclntab-bytes assume=exact
+BenchmarkEtcdctl 1 0 pclntab-bytes
+Unit debug-bytes assume=exact
+BenchmarkEtcdctl 1 0 debug-bytes

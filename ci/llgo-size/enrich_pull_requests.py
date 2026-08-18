@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Add LLGo commit and merged pull-request links to the Pages run index."""
+"""Add dashboard metadata and merged pull-request links to the Pages index."""
 
 import argparse
+import csv
 import json
 import os
 import re
@@ -81,22 +82,90 @@ def github_pull_request_lookup(repository, commit, api_url, token):
     return select_merged_pull_request(pulls, commit)
 
 
-def repository_from_result(run, data_dir):
+def result_path(run, data_dir):
     path_value = run.get("path")
     if not path_value:
-        return ""
+        return None
     data_root = data_dir.resolve()
-    result_path = (data_dir / str(path_value)).resolve()
+    path = (data_dir / str(path_value)).resolve()
     try:
-        result_path.relative_to(data_root)
+        path.relative_to(data_root)
     except ValueError:
-        return ""
+        return None
+    return path
+
+
+def result_document(run, data_dir):
+    path = result_path(run, data_dir)
+    if path is None:
+        return {}
     try:
-        with result_path.open(encoding="utf-8") as result_file:
-            document = json.load(result_file)
+        with path.open(encoding="utf-8") as result_file:
+            return json.load(result_file)
     except (OSError, ValueError):
-        return ""
-    return str(document.get("run", {}).get("llgoRepository", ""))
+        return {}
+
+
+def repository_from_result(run, data_dir):
+    return str(result_document(run, data_dir).get("run", {}).get("llgoRepository", ""))
+
+
+def legacy_wall_times(run, document, data_dir):
+    native_path = document.get("native", {}).get("buildTimes")
+    path = result_path(run, data_dir)
+    if not native_path or path is None:
+        return {}
+    timing_path = (path.parent / str(native_path)).resolve()
+    try:
+        timing_path.relative_to(data_dir.resolve())
+        with timing_path.open(newline="", encoding="utf-8") as timing_file:
+            return {
+                (row["benchmark"], row["configuration"]): int(row["real-ns"])
+                for row in csv.DictReader(timing_file, delimiter="\t")
+            }
+    except (KeyError, OSError, TypeError, ValueError):
+        return {}
+
+
+def build_trends(index, data_dir):
+    names = set()
+    runs = []
+    for run in index.get("runs", []):
+        document = result_document(run, data_dir)
+        legacy_timings = legacy_wall_times(run, document, data_dir)
+        benchmarks = []
+        for benchmark in document.get("benchmarks", []):
+            name = benchmark.get("name")
+            if not name:
+                continue
+            name = str(name)
+            names.add(name)
+            values = {
+                config: value
+                for config, value in benchmark.get("values", {}).items()
+                if isinstance(value, (int, float)) and not isinstance(value, bool)
+            }
+            build_times = {}
+            for config, timing in benchmark.get("buildTimes", {}).items():
+                wall_ns = timing.get("wallNs") if isinstance(timing, dict) else None
+                if isinstance(wall_ns, (int, float)) and not isinstance(wall_ns, bool):
+                    build_times[config] = {"wallNs": wall_ns}
+            for (benchmark_name, config), wall_ns in legacy_timings.items():
+                if benchmark_name == name and config not in build_times:
+                    build_times[config] = {"wallNs": wall_ns}
+            benchmarks.append({
+                "name": name,
+                "values": values,
+                "buildTimes": build_times,
+            })
+        runs.append({"key": run.get("key", ""), "benchmarks": benchmarks})
+    if names:
+        index["benchmarkNames"] = sorted(names, key=str.casefold)
+    return {
+        "schemaVersion": 1,
+        "generatedAt": index.get("generatedAt", ""),
+        "runs": runs,
+    }
 
 
 def enrich_runs(index, data_dir, lookup, default_repository):
@@ -166,13 +235,24 @@ def main(argv=None):
     def lookup(repository, commit):
         return github_pull_request_lookup(repository, commit, args.api_url, token)
 
+    trends = build_trends(index, args.index.parent)
     queries, linked = enrich_runs(index, args.index.parent, lookup, args.default_repository)
+    trends_path = args.index.parent / "trends.json"
+    trends_temporary = trends_path.with_suffix(trends_path.suffix + ".tmp")
+    with trends_temporary.open("w", encoding="utf-8") as trends_file:
+        json.dump(trends, trends_file, separators=(",", ":"))
+        trends_file.write("\n")
+    os.replace(trends_temporary, trends_path)
     temporary = args.index.with_suffix(args.index.suffix + ".tmp")
     with temporary.open("w", encoding="utf-8") as index_file:
         json.dump(index, index_file, indent=2)
         index_file.write("\n")
     os.replace(temporary, args.index)
-    print("Resolved {} LLGo commit(s); {} run(s) link to merged PRs".format(queries, linked))
+    print(
+        "Indexed {} benchmark name(s); resolved {} LLGo commit(s); {} run(s) link to merged PRs".format(
+            len(index.get("benchmarkNames", [])), queries, linked
+        )
+    )
     return 0
 
 

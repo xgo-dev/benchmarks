@@ -126,6 +126,35 @@ function commitLabel(run) {
   return shortSha(run && (run.llgoCommit || run.sourceCommit || run.key));
 }
 
+function commitHref(run) {
+  const pullRequestUrl = String(run && run.pullRequestUrl || "");
+  if (/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/pull\/[1-9][0-9]*$/.test(pullRequestUrl)) {
+    return pullRequestUrl;
+  }
+  const commitUrl = String(run && run.commitUrl || "");
+  if (/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/commit\/[0-9a-fA-F]{40}$/.test(commitUrl)) {
+    return commitUrl;
+  }
+  const repository = String(run && run.llgoRepository || "xgo-dev/llgo");
+  const commit = String(run && run.llgoCommit || "");
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository) || !/^[0-9a-fA-F]{40}$/.test(commit)) return "";
+  return "https://github.com/" + repository + "/commit/" + commit;
+}
+
+function commitLinkTitle(run) {
+  if (run && run.pullRequestUrl) {
+    const number = Number(run.pullRequestNumber);
+    return "Open the pull request that landed this commit" + (Number.isInteger(number) ? " (#" + number + ")" : "");
+  }
+  return "Open this LLGo commit";
+}
+
+function commitLinkHtml(run, content, className, ariaLabel) {
+  const href = commitHref(run);
+  if (!href) return content;
+  return '<a class="' + className + '" href="' + escapeHtml(href) + '" target="_blank" rel="noopener noreferrer" aria-label="' + escapeHtml(ariaLabel || commitLinkTitle(run)) + '" title="' + escapeHtml(commitLinkTitle(run)) + '">' + content + "</a>";
+}
+
 function benchmarkMap(document) {
   return new Map((document && document.benchmarks || []).map(function (item) { return [item.name, item]; }));
 }
@@ -276,7 +305,12 @@ function columnClass(key) {
 function headerHtml(run) {
   const selected = state.selectedKeys.indexOf(run.key);
   const marker = selected >= 0 ? '<b class="pick-marker">' + (selected === 0 ? "A" : "B") + "</b>" : "";
-  return '<th class="commit-header ' + columnClass(run.key) + '"><button class="commit-button" type="button" data-run-key="' + escapeHtml(run.key) + '" title="' + escapeHtml(dateLabel(run.createdAt)) + '">' + marker + "<code>" + escapeHtml(commitLabel(run)) + "</code><span>" + escapeHtml(dateLabel(run.createdAt)) + "</span></button></th>";
+  const commit = commitLinkHtml(run, "<code>" + escapeHtml(commitLabel(run)) + "</code>", "commit-link", commitLinkTitle(run) + ": " + commitLabel(run));
+  const date = escapeHtml(dateLabel(run.createdAt));
+  const detail = state.comparisonMode
+    ? '<button class="commit-select" type="button" data-run-key="' + escapeHtml(run.key) + '" title="Select ' + escapeHtml(commitLabel(run)) + ' for comparison">' + marker + "<span>" + date + "</span></button>"
+    : '<span class="commit-date">' + date + "</span>";
+  return '<th class="commit-header ' + columnClass(run.key) + '"><div class="commit-header-content">' + commit + detail + "</div></th>";
 }
 
 function cellHtml(benchmark, config, measure, runKey, baselineBenchmark) {
@@ -437,7 +471,10 @@ function chartBand(documents, metas, benchmarkName, measure, title) {
   }
   const labelStep = Math.max(1, Math.ceil(metas.length / 8));
   metas.forEach(function (meta, index) {
-    if (index % labelStep === 0 || index === metas.length - 1) parts.push('<text class="chart-axis-label" x="' + x(index) + '" y="' + (height - 9) + '" text-anchor="middle">' + escapeHtml(shortSha(meta.llgoCommit || meta.key).slice(0, 7)) + "</text>");
+    if (index % labelStep === 0 || index === metas.length - 1) {
+      const label = '<text class="chart-axis-label" x="' + x(index) + '" y="' + (height - 9) + '" text-anchor="middle">' + escapeHtml(shortSha(meta.llgoCommit || meta.key).slice(0, 7)) + "</text>";
+      parts.push(commitLinkHtml(meta, label, "chart-commit-link", commitLinkTitle(meta) + ": " + commitLabel(meta)));
+    }
   });
   if (state.selectedKeys.length === 2) {
     state.selectedKeys.forEach(function (key, markerIndex) {
@@ -460,7 +497,8 @@ function chartBand(documents, metas, benchmarkName, measure, title) {
     parts.push('<path class="history-series" stroke="' + color + '" d="' + path + '"></path>');
     item.values.forEach(function (value, index) {
       if (!Number.isFinite(value)) return;
-      parts.push('<circle class="history-point" fill="' + color + '" cx="' + x(index) + '" cy="' + y(value) + '" r="3"><title>' + escapeHtml(configLabels[item.config] + " · " + commitLabel(metas[index]) + " · " + formatMeasure(value, measure)) + "</title></circle>");
+      const point = '<circle class="history-point" fill="' + color + '" cx="' + x(index) + '" cy="' + y(value) + '" r="3"><title>' + escapeHtml(configLabels[item.config] + " · " + commitLabel(metas[index]) + " · " + formatMeasure(value, measure) + " · " + commitLinkTitle(metas[index])) + "</title></circle>";
+      parts.push(commitLinkHtml(metas[index], point, "history-point-link", commitLinkTitle(metas[index]) + ": " + commitLabel(metas[index])));
     });
   });
   return '<div class="chart-band"><div class="chart-title"><span>' + escapeHtml(title) + '</span><span>' + escapeHtml(measure === "size" ? "bytes" : "wall time") + '</span></div><svg viewBox="0 0 ' + width + " " + height + '" role="img" aria-label="' + escapeHtml(title + " trend") + '">' + parts.join("") + "</svg></div>";
@@ -522,7 +560,7 @@ function attachEvents() {
   });
   [dom.sizeGrid, dom.timeGrid].forEach(function (table) {
     table.addEventListener("click", function (event) {
-      const button = event.target.closest("button[data-run-key]");
+      const button = event.target.closest("button.commit-select[data-run-key]");
       if (button) selectCommit(button.dataset.runKey);
     });
   });

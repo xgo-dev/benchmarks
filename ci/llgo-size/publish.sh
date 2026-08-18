@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 results_dir="$1"
 pages_dir="$2"
 site_dir="$3"
@@ -106,13 +107,24 @@ import sys
 from datetime import datetime, timezone
 
 data_dir = sys.argv[1]
+runs_index_path = os.path.join(data_dir, "index.json")
+existing_runs = {}
+try:
+    with open(runs_index_path, encoding="utf-8") as f:
+        existing_runs = {
+            item.get("key"): item
+            for item in json.load(f).get("runs", [])
+            if item.get("key")
+        }
+except (OSError, ValueError):
+    pass
 runs = []
 for path in glob.glob(os.path.join(data_dir, "runs", "*", "results.json")):
     with open(path, encoding="utf-8") as f:
         document = json.load(f)
     run = document.get("run", {})
     key = os.path.basename(os.path.dirname(path))
-    runs.append({
+    item = {
         "key": key,
         "id": run.get("id", ""),
         "attempt": run.get("attempt"),
@@ -120,12 +132,24 @@ for path in glob.glob(os.path.join(data_dir, "runs", "*", "results.json")):
         "createdAt": run.get("createdAt", ""),
         "sourceCommit": run.get("sourceCommit", ""),
         "ref": run.get("ref", ""),
+        "llgoRepository": run.get("llgoRepository", ""),
         "llgoCommit": run.get("llgoCommit", ""),
         "goVersion": run.get("goVersion", ""),
         "llvmVersion": run.get("llvmVersion", ""),
         "workflowUrl": run.get("workflowUrl", ""),
         "path": "runs/" + key + "/results.json",
-    })
+    }
+    previous = existing_runs.get(key, {})
+    for field in (
+        "commitUrl",
+        "pullRequestResolved",
+        "pullRequestNumber",
+        "pullRequestUrl",
+        "pullRequestTitle",
+    ):
+        if field in previous:
+            item[field] = previous[field]
+    runs.append(item)
 runs.sort(key=lambda item: item["createdAt"], reverse=True)
 
 index = {
@@ -133,10 +157,11 @@ index = {
     "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     "runs": runs,
 }
-with open(os.path.join(data_dir, "index.json"), "w", encoding="utf-8") as f:
+with open(runs_index_path, "w", encoding="utf-8") as f:
     json.dump(index, f, indent=2)
     f.write("\n")
 PY
+python3 "$script_dir/enrich_pull_requests.py" "$pages_dir/data/index.json"
 
 git -C "$pages_dir" config user.name "github-actions[bot]"
 git -C "$pages_dir" config user.email "41898282+github-actions[bot]@users.noreply.github.com"

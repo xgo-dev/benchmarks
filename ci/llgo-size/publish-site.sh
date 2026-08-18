@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 pages_dir="$1"
 site_dir="$2"
 if [[ -z "$pages_dir" || -z "$site_dir" ]]; then
@@ -12,6 +13,9 @@ for file in index.html app.js style.css _config.yml; do
   cp "$site_dir/$file" "$pages_dir/$file"
 done
 rm -f "$pages_dir/.nojekyll"
+if [[ -s "$pages_dir/data/index.json" ]]; then
+  python3 "$script_dir/enrich_pull_requests.py" "$pages_dir/data/index.json"
+fi
 
 git -C "$pages_dir" config user.name "github-actions[bot]"
 git -C "$pages_dir" config user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -46,7 +46,7 @@ h2 { margin-bottom: 0; font-size: 19px; letter-spacing: -.02em; }
 .commit-toolbar { display: grid; grid-template-columns: minmax(190px, 1fr) 118px auto auto minmax(260px, auto); gap: 10px; align-items: end; margin-bottom: 11px; padding: 10px 13px; border-radius: 12px; }
 label { display: grid; gap: 4px; color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
 select, input { width: 100%; padding: 7px 9px; border: 1px solid #cbd7eb; border-radius: 7px; background: #fbfcff; color: var(--ink); font-weight: 650; letter-spacing: normal; text-transform: none; }
-select:focus, input:focus, button:focus-visible { border-color: #5c82e8; outline: 3px solid rgba(71, 118, 226, .16); }
+select:focus, input:focus, button:focus-visible, a:focus-visible { border-color: #5c82e8; outline: 3px solid rgba(71, 118, 226, .16); }
 .compare-toggle, .comparison-strip button { min-height: 33px; padding: 7px 11px; border: 1px solid #b9c8df; border-radius: 7px; background: #fff; color: #334b70; font-size: 11px; font-weight: 800; }
 .compare-toggle:hover, .compare-toggle[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: #fff; }
 .commit-count { align-self: center; margin: 0; color: #3d5272; font-size: 11px; font-weight: 800; white-space: nowrap; }
@@ -92,11 +92,13 @@ select:focus, input:focus, button:focus-visible { border-color: #5c82e8; outline
 .config-name { display: block; margin-top: 2px; color: #718097; font-size: 9px; font-weight: 700; line-height: 1.15; }
 .config-continuation { margin-top: 0; padding-left: 9px; border-left: 2px solid #d5deea; }
 .commit-header { width: 132px; min-width: 132px; padding: 0 !important; }
-.commit-button { display: grid; width: 100%; min-height: 53px; padding: 7px 6px; border: 0; background: transparent; color: inherit; place-content: center; }
-.comparison-mode .commit-button:hover { background: #edf3ff; color: #204ba8; }
-.commit-button code { color: #25446e; font-weight: 850; }
-.commit-button span { margin-top: 2px; color: #718099; font-size: 8px; font-weight: 700; }
-.commit-button .pick-marker { display: inline-grid; width: 17px; height: 17px; margin: 0 auto 3px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 9px; place-items: center; }
+.commit-header-content { display: grid; min-height: 53px; padding: 6px; place-content: center; }
+.commit-link { color: #25446e; font-weight: 850; text-decoration: underline; text-decoration-color: #9ab1d1; text-decoration-style: dotted; text-underline-offset: 3px; }
+.commit-link:hover { color: #173f9e; text-decoration-color: currentColor; text-decoration-style: solid; }
+.commit-date, .commit-select span { display: block; margin-top: 4px; color: #718099; font-size: 8px; font-weight: 700; }
+.commit-select { display: grid; min-width: 100%; margin-top: 1px; padding: 0; border: 0; background: transparent; color: inherit; place-content: center; }
+.comparison-mode .commit-select:hover { background: #edf3ff; color: #204ba8; }
+.commit-select .pick-marker { display: inline-grid; width: 17px; height: 17px; margin: 3px auto 0; border-radius: 50%; background: var(--accent); color: #fff; font-size: 9px; place-items: center; }
 .matrix-cell { position: relative; width: 132px; min-width: 132px; text-align: right; }
 .matrix-cell strong { display: block; color: #173354; font-size: 11px; line-height: 1.25; }
 .rank-number { position: absolute; top: 7px; left: 7px; color: rgba(43, 59, 78, .67); font-size: 8px; font-weight: 900; }
@@ -126,8 +128,13 @@ select:focus, input:focus, button:focus-visible { border-color: #5c82e8; outline
 .chart-band svg { display: block; width: 100%; height: auto; }
 .chart-grid-line { stroke: #e3e9f3; stroke-width: 1; }
 .chart-axis-label { fill: var(--muted); font: 9px system-ui, sans-serif; }
+.chart-commit-link { cursor: pointer; }
+.chart-commit-link .chart-axis-label { text-decoration: underline; text-decoration-style: dotted; }
+.chart-commit-link:hover .chart-axis-label, .chart-commit-link:focus .chart-axis-label { fill: #173f9e; text-decoration-style: solid; }
 .history-series { fill: none; stroke-width: 2; }
 .history-point { stroke: #fff; stroke-width: 1.3; }
+.history-point-link { cursor: pointer; }
+.history-point-link:hover .history-point, .history-point-link:focus .history-point { stroke: #173f9e; stroke-width: 2.5; }
 .selection-marker { stroke: var(--accent); stroke-width: 1.3; stroke-dasharray: 4 4; }
 .marker-label { fill: #fff; font: 800 9px system-ui, sans-serif; paint-order: stroke; stroke: var(--accent); stroke-width: 7px; stroke-linejoin: round; }
 .history-legend { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 9px; font-weight: 700; }

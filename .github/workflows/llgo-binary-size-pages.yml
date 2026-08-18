@@ -7,6 +7,7 @@ on:
     paths:
       - ci/llgo-size/site/**
       - ci/llgo-size/publish-site.sh
+      - ci/llgo-size/enrich_pull_requests.py
       - ci/llgo-size/prepare-pages-branch.sh
       - .github/workflows/llgo-binary-size-pages.yml
   workflow_dispatch:
@@ -32,6 +33,7 @@ jobs:
       - name: Refresh the Pages source without rebuilding benchmarks
         env:
           PAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           pages_dir="$GITHUB_WORKSPACE/.ci/pages"

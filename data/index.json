@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-18T07:18:27.225719Z",
+  "generatedAt": "2026-08-18T09:02:53.775492Z",
   "runs": [
+    {
+      "key": "95b3ff5d135ec64008a763c2d843c9f5fda8c37f",
+      "id": "32115426904",
+      "attempt": 1,
+      "number": 245,
+      "createdAt": "2026-08-18T09:02:50.006176Z",
+      "sourceCommit": "0900b54f2398286a551b0eb0f9b804fc21c88666",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "95b3ff5d135ec64008a763c2d843c9f5fda8c37f",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32115426904",
+      "path": "runs/95b3ff5d135ec64008a763c2d843c9f5fda8c37f/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/95b3ff5d135ec64008a763c2d843c9f5fda8c37f",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2358,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2358",
+      "pullRequestTitle": "runtime: fix trace stop deadlock on Go 1.25"
+    },
     {
       "key": "fcf13771682aeec0bbe7646639d7b3d0f13d223c",
       "id": "32106866635",

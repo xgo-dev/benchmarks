@@ -79,6 +79,43 @@ class PullRequestSelectionTest(unittest.TestCase):
 
 
 class IndexEnrichmentTest(unittest.TestCase):
+    def test_builds_compact_trends_and_historical_benchmark_union(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            data_dir = Path(temporary)
+            index = {"runs": []}
+            for key, names in (("a", ["Zeta", "alpha"]), ("b", ["Historical", "alpha"])):
+                result_dir = data_dir / "runs" / key
+                result_dir.mkdir(parents=True)
+                benchmarks = [
+                    {
+                        "name": name,
+                        "values": {"Go": len(name)},
+                        "buildTimes": {"Go": {"wallNs": len(name) * 10}} if key == "a" else {},
+                    }
+                    for name in names
+                ]
+                (result_dir / "results.json").write_text(
+                    json.dumps({
+                        "benchmarks": benchmarks,
+                        "native": {"buildTimes": "build-times.tsv"},
+                    }),
+                    encoding="utf-8",
+                )
+                (result_dir / "build-times.tsv").write_text(
+                    "benchmark\tconfiguration\treal-ns\tuser-ns\tsys-ns\n"
+                    + "\n".join("{}\tGo\t{}\t1\t1".format(name, len(name) * 100) for name in names)
+                    + "\n",
+                    encoding="utf-8",
+                )
+                index["runs"].append({"path": "runs/{}/results.json".format(key)})
+
+            trends = MODULE.build_trends(index, data_dir)
+
+            self.assertEqual(index["benchmarkNames"], ["alpha", "Historical", "Zeta"])
+            self.assertEqual(trends["runs"][0]["benchmarks"][0]["values"]["Go"], 4)
+            self.assertEqual(trends["runs"][0]["benchmarks"][0]["buildTimes"]["Go"]["wallNs"], 40)
+            self.assertEqual(trends["runs"][1]["benchmarks"][0]["buildTimes"]["Go"]["wallNs"], 1000)
+
     def test_reads_legacy_repository_and_caches_resolution(self):
         with tempfile.TemporaryDirectory() as temporary:
             data_dir = Path(temporary)

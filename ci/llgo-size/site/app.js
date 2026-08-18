@@ -1,6 +1,7 @@
 const state = {
   index: null,
   runs: new Map(),
+  trends: null,
   benchmarkNames: [],
   activeBenchmark: "",
   activeConfigs: new Set(),
@@ -164,7 +165,12 @@ function benchmarkNamesFromDocuments(documents) {
   documents.forEach(function (document) {
     (document && document.benchmarks || []).forEach(function (benchmark) { names.add(benchmark.name); });
   });
-  return Array.from(names).sort(function (a, b) { return a.localeCompare(b, undefined, { sensitivity: "base" }); });
+  return sortedBenchmarkNames(names);
+}
+
+function sortedBenchmarkNames(names) {
+  return Array.from(new Set(Array.from(names || []).filter(function (name) { return typeof name === "string" && name; })))
+    .sort(function (a, b) { return a.localeCompare(b, undefined, { sensitivity: "base" }); });
 }
 
 function parseBuildTimes(text) {
@@ -194,6 +200,12 @@ function parseBuildTimes(text) {
   return result;
 }
 
+function runAssetUrl(meta, path) {
+  const version = [meta.id || meta.key, meta.attempt || 1, meta.createdAt || ""]
+    .map(String).join("-");
+  return "data/" + path + "?v=" + encodeURIComponent(version);
+}
+
 async function loadLegacyBuildTimes(meta, document) {
   const nativePath = document.native && document.native.buildTimes;
   if (!nativePath) return;
@@ -204,7 +216,7 @@ async function loadLegacyBuildTimes(meta, document) {
   });
   if (!incomplete) return;
   const basePath = meta.path.slice(0, meta.path.lastIndexOf("/") + 1);
-  const response = await fetch("data/" + basePath + nativePath, { cache: "no-store" });
+  const response = await fetch(runAssetUrl(meta, basePath + nativePath));
   if (!response.ok) return;
   const timings = parseBuildTimes(await response.text());
   (document.benchmarks || []).forEach(function (benchmark) {
@@ -216,7 +228,7 @@ async function loadRun(meta) {
   if (!meta) return null;
   if (!state.runs.has(meta.key)) {
     state.runs.set(meta.key, (async function () {
-      const response = await fetch("data/" + meta.path, { cache: "no-store" });
+      const response = await fetch(runAssetUrl(meta, meta.path));
       if (!response.ok) throw new Error("Cannot load " + meta.path);
       const document = await response.json();
       await loadLegacyBuildTimes(meta, document);
@@ -224,6 +236,19 @@ async function loadRun(meta) {
     })());
   }
   return state.runs.get(meta.key);
+}
+
+async function loadTrends() {
+  if (!state.trends) {
+    state.trends = (async function () {
+      const version = encodeURIComponent(state.index.generatedAt || "latest");
+      const response = await fetch("data/trends.json?v=" + version);
+      if (!response.ok) return null;
+      const document = await response.json();
+      return new Map((document.runs || []).map(function (run) { return [run.key, run]; }));
+    })();
+  }
+  return state.trends;
 }
 
 function findMeta(key) {
@@ -506,7 +531,10 @@ function chartBand(documents, metas, benchmarkName, measure, title) {
 
 async function renderTrend() {
   const metas = chartRuns();
-  const documents = await Promise.all(metas.map(loadRun));
+  const trends = await loadTrends();
+  const documents = trends
+    ? await Promise.all(metas.map(function (meta) { return trends.get(meta.key) || loadRun(meta); }))
+    : await Promise.all(metas.map(loadRun));
   const benchmarkName = state.activeBenchmark || state.benchmarkNames[0];
   const legend = configs.filter(function (config) { return state.activeConfigs.has(config); }).map(function (config) {
     return '<span class="history-legend-item"><i style="--series:' + seriesColors[configs.indexOf(config)] + '"></i>' + escapeHtml(configLabels[config]) + "</span>";
@@ -521,8 +549,7 @@ function renderConfigFilter() {
 }
 
 async function refreshAll() {
-  await renderTables();
-  await Promise.all([renderComparisonSummary(), renderEnvironment(), renderTrend()]);
+  await Promise.all([renderTables(), renderComparisonSummary(), renderEnvironment(), renderTrend()]);
 }
 
 async function selectCommit(key) {
@@ -608,8 +635,10 @@ async function main() {
     if (!response.ok) throw new Error("Cannot load the run index");
     state.index = await response.json();
     if (!state.index.runs || !state.index.runs.length) throw new Error("No benchmark runs are available");
-    const documents = await Promise.all(state.index.runs.map(loadRun));
-    state.benchmarkNames = benchmarkNamesFromDocuments(documents);
+    state.benchmarkNames = sortedBenchmarkNames(state.index.benchmarkNames);
+    if (!state.benchmarkNames.length) {
+      state.benchmarkNames = benchmarkNamesFromDocuments([await loadRun(state.index.runs[0])]);
+    }
     state.activeBenchmark = state.benchmarkNames[0] || "";
     configs.forEach(function (config) { state.activeConfigs.add(config); });
     dom.benchmarkSelect.innerHTML = state.benchmarkNames.map(function (name) { return '<option value="' + escapeHtml(name) + '">' + escapeHtml(name) + "</option>"; }).join("");

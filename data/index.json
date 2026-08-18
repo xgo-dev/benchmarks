@@ -1682,5 +1682,16 @@
       "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2141",
       "pullRequestTitle": "debug: establish Go DWARF foundation with stock LLDB support"
     }
+  ],
+  "benchmarkNames": [
+    "Aws_restjson",
+    "Dustin_humanize",
+    "Etcdctl",
+    "Gorm_schema",
+    "IXGo",
+    "K8s_workqueue",
+    "Toml",
+    "Uber_zap",
+    "XGo"
   ]
 }

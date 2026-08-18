@@ -14,7 +14,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32097007358",
-      "path": "runs/fcf13771682aeec0bbe7646639d7b3d0f13d223c/results.json"
+      "path": "runs/fcf13771682aeec0bbe7646639d7b3d0f13d223c/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/fcf13771682aeec0bbe7646639d7b3d0f13d223c",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2346,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2346",
+      "pullRequestTitle": "go1.25"
     },
     {
       "key": "0f480253029a7946e07ca454c3ac72ebd18e0762",
@@ -28,7 +34,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32026012039",
-      "path": "runs/0f480253029a7946e07ca454c3ac72ebd18e0762/results.json"
+      "path": "runs/0f480253029a7946e07ca454c3ac72ebd18e0762/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/0f480253029a7946e07ca454c3ac72ebd18e0762",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2314,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2314",
+      "pullRequestTitle": "runtime: restore native process-entry caller tail"
     },
     {
       "key": "fe934c4f5a46623d6ee4781e06f2275a59c66af1",
@@ -42,7 +54,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32015020855",
-      "path": "runs/fe934c4f5a46623d6ee4781e06f2275a59c66af1/results.json"
+      "path": "runs/fe934c4f5a46623d6ee4781e06f2275a59c66af1/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/fe934c4f5a46623d6ee4781e06f2275a59c66af1",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2348,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2348",
+      "pullRequestTitle": "modpath: github.com/goplus/llgo => github.com/xgo-dev/llgo"
     },
     {
       "key": "7d9f052513f25d6e641d7cf3aaeb3f1a2b5d3564",
@@ -56,7 +74,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32009198294",
-      "path": "runs/7d9f052513f25d6e641d7cf3aaeb3f1a2b5d3564/results.json"
+      "path": "runs/7d9f052513f25d6e641d7cf3aaeb3f1a2b5d3564/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/7d9f052513f25d6e641d7cf3aaeb3f1a2b5d3564",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2293,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2293",
+      "pullRequestTitle": "cl: preserve recover-visible panic source lines"
     },
     {
       "key": "1803218f4dbbd347d9cf09a4f80d499e5ff8f227",
@@ -70,7 +94,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32003191929",
-      "path": "runs/1803218f4dbbd347d9cf09a4f80d499e5ff8f227/results.json"
+      "path": "runs/1803218f4dbbd347d9cf09a4f80d499e5ff8f227/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/1803218f4dbbd347d9cf09a4f80d499e5ff8f227",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2231,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2231",
+      "pullRequestTitle": "cl: preserve zero values for blank struct fields"
     },
     {
       "key": "7f954d6182d175860b028fed8a6302913b6dc8f6",
@@ -84,7 +114,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31945443577",
-      "path": "runs/7f954d6182d175860b028fed8a6302913b6dc8f6/results.json"
+      "path": "runs/7f954d6182d175860b028fed8a6302913b6dc8f6/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/7f954d6182d175860b028fed8a6302913b6dc8f6",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2300,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2300",
+      "pullRequestTitle": "runtime: support assignable finalizer arguments"
     },
     {
       "key": "81fca482daf6434dbb0537e4a23fa66d998f27b5",
@@ -98,7 +134,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31942395542",
-      "path": "runs/81fca482daf6434dbb0537e4a23fa66d998f27b5/results.json"
+      "path": "runs/81fca482daf6434dbb0537e4a23fa66d998f27b5/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/81fca482daf6434dbb0537e4a23fa66d998f27b5",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2316,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2316",
+      "pullRequestTitle": "cl: preserve nil checks for unused dereferences"
     },
     {
       "key": "92dd0f353e61dcaa52de41992b535afa96e3b24f",
@@ -112,7 +154,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31938869851",
-      "path": "runs/92dd0f353e61dcaa52de41992b535afa96e3b24f/results.json"
+      "path": "runs/92dd0f353e61dcaa52de41992b535afa96e3b24f/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/92dd0f353e61dcaa52de41992b535afa96e3b24f",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2225,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2225",
+      "pullRequestTitle": "runtime: fix runtime.Stack goroutine id"
     },
     {
       "key": "13b3630b79ec4206e25ef07d6d26aa928ec60405",
@@ -126,7 +174,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31932167538",
-      "path": "runs/13b3630b79ec4206e25ef07d6d26aa928ec60405/results.json"
+      "path": "runs/13b3630b79ec4206e25ef07d6d26aa928ec60405/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/13b3630b79ec4206e25ef07d6d26aa928ec60405",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2331,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2331",
+      "pullRequestTitle": "refactor(runtime): reuse more official stdlib sources"
     },
     {
       "key": "e7aa5ed00377462dd479e48dd3e0b4337d86345d",
@@ -140,7 +194,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31929561301",
-      "path": "runs/e7aa5ed00377462dd479e48dd3e0b4337d86345d/results.json"
+      "path": "runs/e7aa5ed00377462dd479e48dd3e0b4337d86345d/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e7aa5ed00377462dd479e48dd3e0b4337d86345d",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2306,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2306",
+      "pullRequestTitle": "runtime: add optimized map fast paths"
     },
     {
       "key": "9a344b47dddb2f62392340404f96395ec428aebd",
@@ -154,7 +214,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31919633250",
-      "path": "runs/9a344b47dddb2f62392340404f96395ec428aebd/results.json"
+      "path": "runs/9a344b47dddb2f62392340404f96395ec428aebd/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/9a344b47dddb2f62392340404f96395ec428aebd",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2326,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2326",
+      "pullRequestTitle": "fix: align indirect map slot sizes"
     },
     {
       "key": "4a5bd7615b555d97f041a06adcf81aef373ed46e",
@@ -168,7 +234,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31872902142",
-      "path": "runs/4a5bd7615b555d97f041a06adcf81aef373ed46e/results.json"
+      "path": "runs/4a5bd7615b555d97f041a06adcf81aef373ed46e/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/4a5bd7615b555d97f041a06adcf81aef373ed46e",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2329,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2329",
+      "pullRequestTitle": "ssa: honor saturating uint32 conversion on amd64"
     },
     {
       "key": "f65ddd1b0b4e81836153bb37cc31f471d273e9fb",
@@ -182,7 +254,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31868431977",
-      "path": "runs/f65ddd1b0b4e81836153bb37cc31f471d273e9fb/results.json"
+      "path": "runs/f65ddd1b0b4e81836153bb37cc31f471d273e9fb/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/f65ddd1b0b4e81836153bb37cc31f471d273e9fb",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2253,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2253",
+      "pullRequestTitle": "ssa: saturate float-to-uint32 conversions"
     },
     {
       "key": "2e0c73ea40ce825dafa89773bdf1419c0c4601cc",
@@ -196,7 +274,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31864694814",
-      "path": "runs/2e0c73ea40ce825dafa89773bdf1419c0c4601cc/results.json"
+      "path": "runs/2e0c73ea40ce825dafa89773bdf1419c0c4601cc/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/2e0c73ea40ce825dafa89773bdf1419c0c4601cc",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2315,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2315",
+      "pullRequestTitle": "ssa: match gc float-to-integer conversions on amd64"
     },
     {
       "key": "8b76e388fd6ab3ac28a7c206d8bdd683760ba570",
@@ -210,7 +294,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31814975838",
-      "path": "runs/8b76e388fd6ab3ac28a7c206d8bdd683760ba570/results.json"
+      "path": "runs/8b76e388fd6ab3ac28a7c206d8bdd683760ba570/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/8b76e388fd6ab3ac28a7c206d8bdd683760ba570",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2267,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2267",
+      "pullRequestTitle": "pclnpost: physically compact the deduplicated funcinfo carrier"
     },
     {
       "key": "7b0e00a8b7287b06cf3f852fa1a268a28d4e1275",
@@ -224,7 +314,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31766374989",
-      "path": "runs/7b0e00a8b7287b06cf3f852fa1a268a28d4e1275/results.json"
+      "path": "runs/7b0e00a8b7287b06cf3f852fa1a268a28d4e1275/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/7b0e00a8b7287b06cf3f852fa1a268a28d4e1275",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2323,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2323",
+      "pullRequestTitle": "build(deps): bump github.com/goplus/mod from 0.21.1 to 0.21.2"
     },
     {
       "key": "8212ff22c95de25adc263b5d4535ec25c1426fb9",
@@ -238,7 +334,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31762726620",
-      "path": "runs/8212ff22c95de25adc263b5d4535ec25c1426fb9/results.json"
+      "path": "runs/8212ff22c95de25adc263b5d4535ec25c1426fb9/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/8212ff22c95de25adc263b5d4535ec25c1426fb9",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2307,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2307",
+      "pullRequestTitle": "chore(litgen): add updater and curated FileCheck snapshots"
     },
     {
       "key": "9084d6ec39f93f57c66d5ceaf3e138f75419bc95",
@@ -252,7 +354,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31747931668",
-      "path": "runs/9084d6ec39f93f57c66d5ceaf3e138f75419bc95/results.json"
+      "path": "runs/9084d6ec39f93f57c66d5ceaf3e138f75419bc95/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/9084d6ec39f93f57c66d5ceaf3e138f75419bc95",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2313,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2313",
+      "pullRequestTitle": "test/goroot: classify precise GC and nil-check cases"
     },
     {
       "key": "7c5d462a7089ae967b116306bbfe1d9c7e5f78e0",
@@ -266,7 +374,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31742223025",
-      "path": "runs/7c5d462a7089ae967b116306bbfe1d9c7e5f78e0/results.json"
+      "path": "runs/7c5d462a7089ae967b116306bbfe1d9c7e5f78e0/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/7c5d462a7089ae967b116306bbfe1d9c7e5f78e0",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2317,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2317",
+      "pullRequestTitle": "build(deps): bump benchmark publisher to 1.0.4"
     },
     {
       "key": "3f2ec409a461d67560658cb9d2f92c12900741c4",
@@ -280,7 +394,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31664440233",
-      "path": "runs/3f2ec409a461d67560658cb9d2f92c12900741c4/results.json"
+      "path": "runs/3f2ec409a461d67560658cb9d2f92c12900741c4/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/3f2ec409a461d67560658cb9d2f92c12900741c4",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2229,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2229",
+      "pullRequestTitle": "cl: preserve generic local type identity in nested closures"
     },
     {
       "key": "a1fad9f710af6c26d5b3fe8f62ccf9494f001bd8",
@@ -294,7 +414,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31661222137",
-      "path": "runs/a1fad9f710af6c26d5b3fe8f62ccf9494f001bd8/results.json"
+      "path": "runs/a1fad9f710af6c26d5b3fe8f62ccf9494f001bd8/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/a1fad9f710af6c26d5b3fe8f62ccf9494f001bd8",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2287,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2287",
+      "pullRequestTitle": "cl: support package-scoped go:linkname"
     },
     {
       "key": "1487e50125e139b0dd083da96f64d8c5c3a1d260",
@@ -308,7 +434,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31600351025",
-      "path": "runs/1487e50125e139b0dd083da96f64d8c5c3a1d260/results.json"
+      "path": "runs/1487e50125e139b0dd083da96f64d8c5c3a1d260/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/1487e50125e139b0dd083da96f64d8c5c3a1d260",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2243,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2243",
+      "pullRequestTitle": "build: add Chrome scheduler trace"
     },
     {
       "key": "0101c3cd99766a3fe3c8826b3b6b9535d476f9de",
@@ -322,7 +454,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31594587032",
-      "path": "runs/0101c3cd99766a3fe3c8826b3b6b9535d476f9de/results.json"
+      "path": "runs/0101c3cd99766a3fe3c8826b3b6b9535d476f9de/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/0101c3cd99766a3fe3c8826b3b6b9535d476f9de",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2301,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2301",
+      "pullRequestTitle": "runtime/internal/runtime/goarch: fix endian"
     },
     {
       "key": "773642c9681c8cfe7b4f2fd134a5952b6b2f81fa",
@@ -336,7 +474,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31577204199",
-      "path": "runs/773642c9681c8cfe7b4f2fd134a5952b6b2f81fa/results.json"
+      "path": "runs/773642c9681c8cfe7b4f2fd134a5952b6b2f81fa/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/773642c9681c8cfe7b4f2fd134a5952b6b2f81fa",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2258,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2258",
+      "pullRequestTitle": "ssa: preserve package identity for unexported methods"
     },
     {
       "key": "d600859372ceb9419524a0b574127123877bb563",
@@ -350,7 +494,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31545545997",
-      "path": "runs/d600859372ceb9419524a0b574127123877bb563/results.json"
+      "path": "runs/d600859372ceb9419524a0b574127123877bb563/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/d600859372ceb9419524a0b574127123877bb563",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2295,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2295",
+      "pullRequestTitle": "runtime: replace superseded panics across nested defer frames"
     },
     {
       "key": "43cf22e6fb909ee4c19ba4cadefe82435f0b220a",
@@ -364,7 +514,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31511353518",
-      "path": "runs/43cf22e6fb909ee4c19ba4cadefe82435f0b220a/results.json"
+      "path": "runs/43cf22e6fb909ee4c19ba4cadefe82435f0b220a/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/43cf22e6fb909ee4c19ba4cadefe82435f0b220a",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2286,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2286",
+      "pullRequestTitle": "cl: prepare caller tracking inputs once"
     },
     {
       "key": "0b6720670fabd5e985d6be838fe461249ebc3e36",
@@ -378,7 +534,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31505070158",
-      "path": "runs/0b6720670fabd5e985d6be838fe461249ebc3e36/results.json"
+      "path": "runs/0b6720670fabd5e985d6be838fe461249ebc3e36/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/0b6720670fabd5e985d6be838fe461249ebc3e36",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2289,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2289",
+      "pullRequestTitle": "chore/litgen: preserve declaration directives"
     },
     {
       "key": "c454c0e65b7161c833da54643968b06eede93660",
@@ -392,7 +554,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31498982972",
-      "path": "runs/c454c0e65b7161c833da54643968b06eede93660/results.json"
+      "path": "runs/c454c0e65b7161c833da54643968b06eede93660/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/c454c0e65b7161c833da54643968b06eede93660",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2182,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2182",
+      "pullRequestTitle": "build: run LLVM package backends in parallel"
     },
     {
       "key": "6bc422655d08a310f920ed718be96d1d6a6e55b4",
@@ -406,7 +574,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31454256785",
-      "path": "runs/6bc422655d08a310f920ed718be96d1d6a6e55b4/results.json"
+      "path": "runs/6bc422655d08a310f920ed718be96d1d6a6e55b4/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/6bc422655d08a310f920ed718be96d1d6a6e55b4",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2034,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2034",
+      "pullRequestTitle": "ssa,runtime: make panic and recover Go-compatible"
     },
     {
       "key": "a31efd8949f6b768ab8652d683a44098589ecbc8",
@@ -420,7 +594,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31445647297",
-      "path": "runs/a31efd8949f6b768ab8652d683a44098589ecbc8/results.json"
+      "path": "runs/a31efd8949f6b768ab8652d683a44098589ecbc8/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/a31efd8949f6b768ab8652d683a44098589ecbc8",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2292,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2292",
+      "pullRequestTitle": "build(deps): bump setup-benchmark-go-action from 1.0.3 to 1.0.4"
     },
     {
       "key": "c9515d8cb9cf41c04f6cfdf12faa645ef19cd103",
@@ -434,7 +614,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31342505738",
-      "path": "runs/c9515d8cb9cf41c04f6cfdf12faa645ef19cd103/results.json"
+      "path": "runs/c9515d8cb9cf41c04f6cfdf12faa645ef19cd103/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/c9515d8cb9cf41c04f6cfdf12faa645ef19cd103",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2264,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2264",
+      "pullRequestTitle": "test/goroot: synchronize native run expectations"
     },
     {
       "key": "e82e95fbe84dd66f82e0dd6bb4c6db59eb7e40b2",
@@ -448,7 +634,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31307746502",
-      "path": "runs/e82e95fbe84dd66f82e0dd6bb4c6db59eb7e40b2/results.json"
+      "path": "runs/e82e95fbe84dd66f82e0dd6bb4c6db59eb7e40b2/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e82e95fbe84dd66f82e0dd6bb4c6db59eb7e40b2",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2281,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2281",
+      "pullRequestTitle": "test: replace cl out.ll files with LIT checks"
     },
     {
       "key": "ca40b8fd8caff7a4e475e0c13efb2af8be02f22b",
@@ -462,7 +654,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31295359419",
-      "path": "runs/ca40b8fd8caff7a4e475e0c13efb2af8be02f22b/results.json"
+      "path": "runs/ca40b8fd8caff7a4e475e0c13efb2af8be02f22b/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/ca40b8fd8caff7a4e475e0c13efb2af8be02f22b",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2277,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2277",
+      "pullRequestTitle": "build(deps): bump xgo-dev/setup-benchmark-go-action from 1 to 1.0.3"
     },
     {
       "key": "cdd86117df303aaa66916c32ef7e958495945d64",
@@ -476,7 +674,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31287364111",
-      "path": "runs/cdd86117df303aaa66916c32ef7e958495945d64/results.json"
+      "path": "runs/cdd86117df303aaa66916c32ef7e958495945d64/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/cdd86117df303aaa66916c32ef7e958495945d64",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2283,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2283",
+      "pullRequestTitle": "runtime: drain BDWGC finalizers during explicit GC"
     },
     {
       "key": "e9a4a52662e0202b45184d5af47adea8cd75882d",
@@ -490,7 +694,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/31285293561",
-      "path": "runs/e9a4a52662e0202b45184d5af47adea8cd75882d/results.json"
+      "path": "runs/e9a4a52662e0202b45184d5af47adea8cd75882d/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e9a4a52662e0202b45184d5af47adea8cd75882d",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2280,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2280",
+      "pullRequestTitle": "ssa: make recursive type conversion order-independent"
     },
     {
       "key": "6670dae3884d5317bb2abfeb7a6b6273a9daeed8",
@@ -504,7 +714,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30909437651",
-      "path": "runs/6670dae3884d5317bb2abfeb7a6b6273a9daeed8/results.json"
+      "path": "runs/6670dae3884d5317bb2abfeb7a6b6273a9daeed8/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/6670dae3884d5317bb2abfeb7a6b6273a9daeed8",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2143,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2143",
+      "pullRequestTitle": "debug: keep optimization and SSA rewrites DWARF-safe"
     },
     {
       "key": "9f0c76a742e9e8ddb259589791be39e409085bf2",
@@ -518,7 +734,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30903310636",
-      "path": "runs/9f0c76a742e9e8ddb259589791be39e409085bf2/results.json"
+      "path": "runs/9f0c76a742e9e8ddb259589791be39e409085bf2/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/9f0c76a742e9e8ddb259589791be39e409085bf2",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2274,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2274",
+      "pullRequestTitle": "fix: prefer compiler syntax diagnostics"
     },
     {
       "key": "d37108c853774aa32e29c29fffcb87afaf805b32",
@@ -532,7 +754,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30878701823",
-      "path": "runs/d37108c853774aa32e29c29fffcb87afaf805b32/results.json"
+      "path": "runs/d37108c853774aa32e29c29fffcb87afaf805b32/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/d37108c853774aa32e29c29fffcb87afaf805b32",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2259,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2259",
+      "pullRequestTitle": "runtime: keep workers alive after main Goexit"
     },
     {
       "key": "ca0d4199c5d904a874b277c9f2991e7ed99cc5f7",
@@ -546,7 +774,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30858309273",
-      "path": "runs/ca0d4199c5d904a874b277c9f2991e7ed99cc5f7/results.json"
+      "path": "runs/ca0d4199c5d904a874b277c9f2991e7ed99cc5f7/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/ca0d4199c5d904a874b277c9f2991e7ed99cc5f7",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2208,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2208",
+      "pullRequestTitle": "ssa/wasm: use selectors for Rund and Reth continuations"
     },
     {
       "key": "91d416bb12f237811d5efa7a632b3db83e7218d2",
@@ -560,7 +794,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30818245991",
-      "path": "runs/91d416bb12f237811d5efa7a632b3db83e7218d2/results.json"
+      "path": "runs/91d416bb12f237811d5efa7a632b3db83e7218d2/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/91d416bb12f237811d5efa7a632b3db83e7218d2",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2271,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2271",
+      "pullRequestTitle": "ci: compare benchmarks on the same runner"
     },
     {
       "key": "d39ed76b102e1899ea0d415030b321651c47a8fe",
@@ -574,7 +814,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30797712255",
-      "path": "runs/d39ed76b102e1899ea0d415030b321651c47a8fe/results.json"
+      "path": "runs/d39ed76b102e1899ea0d415030b321651c47a8fe/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/d39ed76b102e1899ea0d415030b321651c47a8fe",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2255,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2255",
+      "pullRequestTitle": "feat: add hidden closure environment ABI"
     },
     {
       "key": "11125dce30e7df558a0af8345ad917545802fa50",
@@ -588,7 +834,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30787123493",
-      "path": "runs/11125dce30e7df558a0af8345ad917545802fa50/results.json"
+      "path": "runs/11125dce30e7df558a0af8345ad917545802fa50/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/11125dce30e7df558a0af8345ad917545802fa50",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2260,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2260",
+      "pullRequestTitle": "test/goroot: separate not-applicable cases"
     },
     {
       "key": "6946e5de7fc4c5c9b7dd988dc430344d73e03c5d",
@@ -602,7 +854,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30782065971",
-      "path": "runs/6946e5de7fc4c5c9b7dd988dc430344d73e03c5d/results.json"
+      "path": "runs/6946e5de7fc4c5c9b7dd988dc430344d73e03c5d/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/6946e5de7fc4c5c9b7dd988dc430344d73e03c5d",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2175,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2175",
+      "pullRequestTitle": "build: split package compilation stages"
     },
     {
       "key": "2310ff87f1cfa57dda5d4736f98b34ee679bca6d",
@@ -616,7 +874,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30757597086",
-      "path": "runs/2310ff87f1cfa57dda5d4736f98b34ee679bca6d/results.json"
+      "path": "runs/2310ff87f1cfa57dda5d4736f98b34ee679bca6d/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/2310ff87f1cfa57dda5d4736f98b34ee679bca6d",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 1736,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/1736",
+      "pullRequestTitle": "build:  Go Linktime-like Unreachable Method Pruning"
     },
     {
       "key": "60c30f2ff79dc8b5c481581a559c3db57e1a295d",
@@ -630,7 +894,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30706875817",
-      "path": "runs/60c30f2ff79dc8b5c481581a559c3db57e1a295d/results.json"
+      "path": "runs/60c30f2ff79dc8b5c481581a559c3db57e1a295d/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/60c30f2ff79dc8b5c481581a559c3db57e1a295d",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2221,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2221",
+      "pullRequestTitle": "compiler: isolate per-invocation frontend state"
     },
     {
       "key": "551626a1de6b6c47a4dcfad7190b074ae9b0d809",
@@ -644,7 +914,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30679939347",
-      "path": "runs/551626a1de6b6c47a4dcfad7190b074ae9b0d809/results.json"
+      "path": "runs/551626a1de6b6c47a4dcfad7190b074ae9b0d809/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/551626a1de6b6c47a4dcfad7190b074ae9b0d809",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2240,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2240",
+      "pullRequestTitle": "cmd: add LLDB runtime views for strings and slices"
     },
     {
       "key": "8aa4121040416f616d353c40cab11462b7a939b8",
@@ -658,7 +934,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30670300294",
-      "path": "runs/8aa4121040416f616d353c40cab11462b7a939b8/results.json"
+      "path": "runs/8aa4121040416f616d353c40cab11462b7a939b8/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/8aa4121040416f616d353c40cab11462b7a939b8",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2250,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2250",
+      "pullRequestTitle": "Update links to goplus/llgo in README.md"
     },
     {
       "key": "3a01f8c35e069b723cec839636aeaab1255d5a46",
@@ -672,7 +954,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30667233655",
-      "path": "runs/3a01f8c35e069b723cec839636aeaab1255d5a46/results.json"
+      "path": "runs/3a01f8c35e069b723cec839636aeaab1255d5a46/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/3a01f8c35e069b723cec839636aeaab1255d5a46",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2246,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2246",
+      "pullRequestTitle": "compiler: always use main symbol prefix"
     },
     {
       "key": "f958bce5ae67eaab54d50491b720cb1c84b8cd2c",
@@ -686,7 +974,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30599509716",
-      "path": "runs/f958bce5ae67eaab54d50491b720cb1c84b8cd2c/results.json"
+      "path": "runs/f958bce5ae67eaab54d50491b720cb1c84b8cd2c/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/f958bce5ae67eaab54d50491b720cb1c84b8cd2c",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2237,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2237",
+      "pullRequestTitle": "ci: deploy published benchmark data"
     },
     {
       "key": "9e8c827d111a73062d9470638b76e32c6ca95510",
@@ -700,7 +994,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30595942579",
-      "path": "runs/9e8c827d111a73062d9470638b76e32c6ca95510/results.json"
+      "path": "runs/9e8c827d111a73062d9470638b76e32c6ca95510/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/9e8c827d111a73062d9470638b76e32c6ca95510",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2212,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2212",
+      "pullRequestTitle": "build: isolate invocation configuration and execution"
     },
     {
       "key": "ab2fe9c815232a7fc74c302f52132c18fb8a0580",
@@ -714,7 +1014,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30592941334",
-      "path": "runs/ab2fe9c815232a7fc74c302f52132c18fb8a0580/results.json"
+      "path": "runs/ab2fe9c815232a7fc74c302f52132c18fb8a0580/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/ab2fe9c815232a7fc74c302f52132c18fb8a0580",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2210,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2210",
+      "pullRequestTitle": "runtime: migrate local state to locality directives"
     },
     {
       "key": "77a72054a692d892dfe772a66a3fea60069b8d13",
@@ -728,7 +1034,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30590142425",
-      "path": "runs/77a72054a692d892dfe772a66a3fea60069b8d13/results.json"
+      "path": "runs/77a72054a692d892dfe772a66a3fea60069b8d13/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/77a72054a692d892dfe772a66a3fea60069b8d13",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2026,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2026",
+      "pullRequestTitle": "runtime,cl: preserve panic-site frames across defer and recover"
     },
     {
       "key": "22fe047cead364f8bbac2f693e2894e2be39849d",
@@ -742,7 +1054,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30580343127",
-      "path": "runs/22fe047cead364f8bbac2f693e2894e2be39849d/results.json"
+      "path": "runs/22fe047cead364f8bbac2f693e2894e2be39849d/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/22fe047cead364f8bbac2f693e2894e2be39849d",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2211,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2211",
+      "pullRequestTitle": "cmd: add LLGo-aware LLDB launcher with schema validation"
     },
     {
       "key": "4b2c78ede8f3a58ed736006f80717d426f5bdd4a",
@@ -756,7 +1074,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30555860133",
-      "path": "runs/4b2c78ede8f3a58ed736006f80717d426f5bdd4a/results.json"
+      "path": "runs/4b2c78ede8f3a58ed736006f80717d426f5bdd4a/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/4b2c78ede8f3a58ed736006f80717d426f5bdd4a",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2233,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2233",
+      "pullRequestTitle": "test(std/os/signal): tolerate signal delivery order"
     },
     {
       "key": "aa0bbe4419c49978e8559c380a9ad9054a09bcba",
@@ -770,7 +1094,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30545399660",
-      "path": "runs/aa0bbe4419c49978e8559c380a9ad9054a09bcba/results.json"
+      "path": "runs/aa0bbe4419c49978e8559c380a9ad9054a09bcba/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/aa0bbe4419c49978e8559c380a9ad9054a09bcba",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2200,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2200",
+      "pullRequestTitle": "ci: add lightweight Linux and macOS baseline benchmarks"
     },
     {
       "key": "bd72691ff93f8153ae3013e36f72d306eba3c396",
@@ -784,7 +1114,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30538433710",
-      "path": "runs/bd72691ff93f8153ae3013e36f72d306eba3c396/results.json"
+      "path": "runs/bd72691ff93f8153ae3013e36f72d306eba3c396/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/bd72691ff93f8153ae3013e36f72d306eba3c396",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2228,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2228",
+      "pullRequestTitle": "ci: avoid duplicate feature branch push runs"
     },
     {
       "key": "fc72116c09e8cfbc457abe9f40411c70fb0d7cae",
@@ -798,7 +1134,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30517325725",
-      "path": "runs/fc72116c09e8cfbc457abe9f40411c70fb0d7cae/results.json"
+      "path": "runs/fc72116c09e8cfbc457abe9f40411c70fb0d7cae/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/fc72116c09e8cfbc457abe9f40411c70fb0d7cae",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2218,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2218",
+      "pullRequestTitle": "test/goroot: match missing-comma recovery diagnostics"
     },
     {
       "key": "c54aef7625bf63e570c2784c44d2877ebff38de6",
@@ -812,7 +1154,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30504310746",
-      "path": "runs/c54aef7625bf63e570c2784c44d2877ebff38de6/results.json"
+      "path": "runs/c54aef7625bf63e570c2784c44d2877ebff38de6/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/c54aef7625bf63e570c2784c44d2877ebff38de6",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2215,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2215",
+      "pullRequestTitle": "ci: install libslirp for ESP QEMU"
     },
     {
       "key": "2f75ed287ef895570b29cf582d57e939142d462f",
@@ -826,7 +1174,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30457950906",
-      "path": "runs/2f75ed287ef895570b29cf582d57e939142d462f/results.json"
+      "path": "runs/2f75ed287ef895570b29cf582d57e939142d462f/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/2f75ed287ef895570b29cf582d57e939142d462f",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2079,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2079",
+      "pullRequestTitle": "compiler/runtime: add //llgo:tls and //llgo:gls package variables"
     },
     {
       "key": "337e76ecaaed5cf6126e217e749d7a51571c444d",
@@ -840,7 +1194,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30408795979",
-      "path": "runs/337e76ecaaed5cf6126e217e749d7a51571c444d/results.json"
+      "path": "runs/337e76ecaaed5cf6126e217e749d7a51571c444d/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/337e76ecaaed5cf6126e217e749d7a51571c444d",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2194,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2194",
+      "pullRequestTitle": "internal/build: use self overlay replace packages.config.overlay"
     },
     {
       "key": "36f829ae1236808889b980ec26ca7b162a764e81",
@@ -854,7 +1214,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30406943018",
-      "path": "runs/36f829ae1236808889b980ec26ca7b162a764e81/results.json"
+      "path": "runs/36f829ae1236808889b980ec26ca7b162a764e81/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/36f829ae1236808889b980ec26ca7b162a764e81",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2155,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2155",
+      "pullRequestTitle": "internal/build: fix linkname support main.sym"
     },
     {
       "key": "8dbfab5f5438c236c27c6a25c4036100e4ca28ca",
@@ -868,7 +1234,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30343079933",
-      "path": "runs/8dbfab5f5438c236c27c6a25c4036100e4ca28ca/results.json"
+      "path": "runs/8dbfab5f5438c236c27c6a25c4036100e4ca28ca/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/8dbfab5f5438c236c27c6a25c4036100e4ca28ca",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2193,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2193",
+      "pullRequestTitle": "test: parallelize llgo test packages"
     },
     {
       "key": "34cb1abe7b475f6d054496fb40705e6ca1206fb2",
@@ -882,7 +1254,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30324964267",
-      "path": "runs/34cb1abe7b475f6d054496fb40705e6ca1206fb2/results.json"
+      "path": "runs/34cb1abe7b475f6d054496fb40705e6ca1206fb2/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/34cb1abe7b475f6d054496fb40705e6ca1206fb2",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2189,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2189",
+      "pullRequestTitle": "build(deps): bump github.com/xgo-dev/plan9asm from 0.3.3 to 0.3.5"
     },
     {
       "key": "cecd7151ccbb88cb026783867d18706ac2d330e3",
@@ -896,7 +1274,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30318287108",
-      "path": "runs/cecd7151ccbb88cb026783867d18706ac2d330e3/results.json"
+      "path": "runs/cecd7151ccbb88cb026783867d18706ac2d330e3/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/cecd7151ccbb88cb026783867d18706ac2d330e3",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2166,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2166",
+      "pullRequestTitle": "runtime: introduce G/M/P pthread backend"
     },
     {
       "key": "1ea6545601501ab9034867e2cf8b1e8c603d88eb",
@@ -910,7 +1294,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30316859755",
-      "path": "runs/1ea6545601501ab9034867e2cf8b1e8c603d88eb/results.json"
+      "path": "runs/1ea6545601501ab9034867e2cf8b1e8c603d88eb/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/1ea6545601501ab9034867e2cf8b1e8c603d88eb",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2199,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2199",
+      "pullRequestTitle": "Update codecov.yml"
     },
     {
       "key": "14b0ec3d8c8ebf3a53966d0bc55673b413d1d1c2",
@@ -924,7 +1314,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30227877104",
-      "path": "runs/14b0ec3d8c8ebf3a53966d0bc55673b413d1d1c2/results.json"
+      "path": "runs/14b0ec3d8c8ebf3a53966d0bc55673b413d1d1c2/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/14b0ec3d8c8ebf3a53966d0bc55673b413d1d1c2",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2145,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2145",
+      "pullRequestTitle": "debug: handle storage-free Python attributes"
     },
     {
       "key": "03e747ef463da33d45a0fd72c53b0cb660ecf243",
@@ -938,7 +1334,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30226935530",
-      "path": "runs/03e747ef463da33d45a0fd72c53b0cb660ecf243/results.json"
+      "path": "runs/03e747ef463da33d45a0fd72c53b0cb660ecf243/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/03e747ef463da33d45a0fd72c53b0cb660ecf243",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2186,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2186",
+      "pullRequestTitle": "cl: run defers before loading named results"
     },
     {
       "key": "637ef7f299c3ba97a918b187a072effddc0ffc0e",
@@ -952,7 +1354,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30226234018",
-      "path": "runs/637ef7f299c3ba97a918b187a072effddc0ffc0e/results.json"
+      "path": "runs/637ef7f299c3ba97a918b187a072effddc0ffc0e/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/637ef7f299c3ba97a918b187a072effddc0ffc0e",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2151,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2151",
+      "pullRequestTitle": "runtime: start FP walks from a live caller frame"
     },
     {
       "key": "824bc8758d536ea48966b61c91a995acaebd4ab1",
@@ -966,7 +1374,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30225278201",
-      "path": "runs/824bc8758d536ea48966b61c91a995acaebd4ab1/results.json"
+      "path": "runs/824bc8758d536ea48966b61c91a995acaebd4ab1/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/824bc8758d536ea48966b61c91a995acaebd4ab1",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2098,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2098",
+      "pullRequestTitle": "runtime: support Go 1.26 stdlib calls from C libraries"
     },
     {
       "key": "6cc54167fe7ecf377482e390c89ee03a7d8e912c",
@@ -980,7 +1394,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30208998032",
-      "path": "runs/6cc54167fe7ecf377482e390c89ee03a7d8e912c/results.json"
+      "path": "runs/6cc54167fe7ecf377482e390c89ee03a7d8e912c/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/6cc54167fe7ecf377482e390c89ee03a7d8e912c",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2187,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2187",
+      "pullRequestTitle": "runtime: support large funcinfo string tables"
     },
     {
       "key": "72de8ab0dbfcf707024a894dc0844dc5ef0ca213",
@@ -994,7 +1414,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30208288856",
-      "path": "runs/72de8ab0dbfcf707024a894dc0844dc5ef0ca213/results.json"
+      "path": "runs/72de8ab0dbfcf707024a894dc0844dc5ef0ca213/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/72de8ab0dbfcf707024a894dc0844dc5ef0ca213",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2106,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2106",
+      "pullRequestTitle": "ssa: implement -B bounds-check disabling"
     },
     {
       "key": "88441a235f340a519ad46b4b9629c7c78a1dfcd6",
@@ -1008,7 +1434,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30207603045",
-      "path": "runs/88441a235f340a519ad46b4b9629c7c78a1dfcd6/results.json"
+      "path": "runs/88441a235f340a519ad46b4b9629c7c78a1dfcd6/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/88441a235f340a519ad46b4b9629c7c78a1dfcd6",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2081,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2081",
+      "pullRequestTitle": "fix(runtime): decouple wasm from native host services"
     },
     {
       "key": "6f94e06e10a7ba56b357870fefa2c15914db9a21",
@@ -1022,7 +1454,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30187063407",
-      "path": "runs/6f94e06e10a7ba56b357870fefa2c15914db9a21/results.json"
+      "path": "runs/6f94e06e10a7ba56b357870fefa2c15914db9a21/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/6f94e06e10a7ba56b357870fefa2c15914db9a21",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2082,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2082",
+      "pullRequestTitle": "fix(build): adapt Go runtime sources for LLGo wasm32"
     },
     {
       "key": "56d8423700bedca3574e649372ea97c980fbbc27",
@@ -1036,7 +1474,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30182088383",
-      "path": "runs/56d8423700bedca3574e649372ea97c980fbbc27/results.json"
+      "path": "runs/56d8423700bedca3574e649372ea97c980fbbc27/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/56d8423700bedca3574e649372ea97c980fbbc27",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2090,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2090",
+      "pullRequestTitle": "runtime: store goroutine state behind pthread-key getg"
     },
     {
       "key": "1cfb9bf098f2140bfac379568c35f9f03905596b",
@@ -1050,7 +1494,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30181349675",
-      "path": "runs/1cfb9bf098f2140bfac379568c35f9f03905596b/results.json"
+      "path": "runs/1cfb9bf098f2140bfac379568c35f9f03905596b/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/1cfb9bf098f2140bfac379568c35f9f03905596b",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2168,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2168",
+      "pullRequestTitle": "internal/build: fix library cort init"
     },
     {
       "key": "00f4c6bf5c9aee4ae7da365bf3dbd5350e523f55",
@@ -1064,7 +1514,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30180455837",
-      "path": "runs/00f4c6bf5c9aee4ae7da365bf3dbd5350e523f55/results.json"
+      "path": "runs/00f4c6bf5c9aee4ae7da365bf3dbd5350e523f55/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/00f4c6bf5c9aee4ae7da365bf3dbd5350e523f55",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2061,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2061",
+      "pullRequestTitle": "meta: emit and cache package semantic summaries"
     },
     {
       "key": "4afba75444be17cae96e2e8bb4a5464de88a1628",
@@ -1078,7 +1534,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30139577754",
-      "path": "runs/4afba75444be17cae96e2e8bb4a5464de88a1628/results.json"
+      "path": "runs/4afba75444be17cae96e2e8bb4a5464de88a1628/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/4afba75444be17cae96e2e8bb4a5464de88a1628",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2159,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2159",
+      "pullRequestTitle": "lto: analyze aggregate MethodByName string arguments"
     },
     {
       "key": "e514fb4ecf3a9df4d12c7f74799937fa1303b413",
@@ -1092,7 +1554,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30075310562",
-      "path": "runs/e514fb4ecf3a9df4d12c7f74799937fa1303b413/results.json"
+      "path": "runs/e514fb4ecf3a9df4d12c7f74799937fa1303b413/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e514fb4ecf3a9df4d12c7f74799937fa1303b413",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2169,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2169",
+      "pullRequestTitle": "ssa: fix alias recv type"
     },
     {
       "key": "1f1cae032312c347bc994fe0a133196ca7c6b6ff",
@@ -1106,7 +1574,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30063296222",
-      "path": "runs/1f1cae032312c347bc994fe0a133196ca7c6b6ff/results.json"
+      "path": "runs/1f1cae032312c347bc994fe0a133196ca7c6b6ff/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/1f1cae032312c347bc994fe0a133196ca7c6b6ff",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2150,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2150",
+      "pullRequestTitle": "runtime/internal/lib/runtime: add synctest missing func"
     },
     {
       "key": "5c0dfbf66cd86f3b01321bc52617b8fdf8eaf7c2",
@@ -1120,7 +1594,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30060955521",
-      "path": "runs/5c0dfbf66cd86f3b01321bc52617b8fdf8eaf7c2/results.json"
+      "path": "runs/5c0dfbf66cd86f3b01321bc52617b8fdf8eaf7c2/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/5c0dfbf66cd86f3b01321bc52617b8fdf8eaf7c2",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2147,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2147",
+      "pullRequestTitle": "build: separate LTO plugin cache entries"
     },
     {
       "key": "4768133fe75e91729f524c67b1e4544aef3f3506",
@@ -1134,7 +1614,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30052964771",
-      "path": "runs/4768133fe75e91729f524c67b1e4544aef3f3506/results.json"
+      "path": "runs/4768133fe75e91729f524c67b1e4544aef3f3506/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/4768133fe75e91729f524c67b1e4544aef3f3506",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2160,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2160",
+      "pullRequestTitle": "build(deps): bump github.com/xgo-dev/plan9asm from 0.3.2 to 0.3.3"
     },
     {
       "key": "fdc1c881473e5d69d90dd7a80e67f0033af39d69",
@@ -1148,7 +1634,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/30009857660",
-      "path": "runs/fdc1c881473e5d69d90dd7a80e67f0033af39d69/results.json"
+      "path": "runs/fdc1c881473e5d69d90dd7a80e67f0033af39d69/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/fdc1c881473e5d69d90dd7a80e67f0033af39d69",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2163,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2163",
+      "pullRequestTitle": "ci: trigger benchmarks after LLGo main updates"
     },
     {
       "key": "9b3f60c1ad555ae190f4545b9b1acad4899e598f",
@@ -1162,7 +1654,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/29994613987",
-      "path": "runs/9b3f60c1ad555ae190f4545b9b1acad4899e598f/results.json"
+      "path": "runs/9b3f60c1ad555ae190f4545b9b1acad4899e598f/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/9b3f60c1ad555ae190f4545b9b1acad4899e598f",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2161,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2161",
+      "pullRequestTitle": "fix(compile): support standard pragma validation"
     },
     {
       "key": "d726187ce3e34f686e1113d66b63a876466c7b10",
@@ -1176,7 +1674,13 @@
       "goVersion": "1.26.2",
       "llvmVersion": "19",
       "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/29979866860",
-      "path": "runs/d726187ce3e34f686e1113d66b63a876466c7b10/results.json"
+      "path": "runs/d726187ce3e34f686e1113d66b63a876466c7b10/results.json",
+      "llgoRepository": "xgo-dev/llgo",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/d726187ce3e34f686e1113d66b63a876466c7b10",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2141,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2141",
+      "pullRequestTitle": "debug: establish Go DWARF foundation with stock LLDB support"
     }
   ]
 }

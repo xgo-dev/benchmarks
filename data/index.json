@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-18T09:02:53.775492Z",
+  "generatedAt": "2026-08-18T12:37:47.285417Z",
   "runs": [
+    {
+      "key": "efbc66aecac4806330634b70251b6fd8b72179f4",
+      "id": "32133509772",
+      "attempt": 1,
+      "number": 247,
+      "createdAt": "2026-08-18T12:37:44.646191Z",
+      "sourceCommit": "3ef4f15da0038e4c874ae379e1e67ed411c86d7b",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "efbc66aecac4806330634b70251b6fd8b72179f4",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32133509772",
+      "path": "runs/efbc66aecac4806330634b70251b6fd8b72179f4/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/efbc66aecac4806330634b70251b6fd8b72179f4",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2360,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2360",
+      "pullRequestTitle": "cl: deduplicate same-line panic PC anchors"
+    },
     {
       "key": "95b3ff5d135ec64008a763c2d843c9f5fda8c37f",
       "id": "32115426904",

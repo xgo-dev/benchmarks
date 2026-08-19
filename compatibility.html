@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLGo open-source compatibility</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <nav class="site-nav" aria-label="Benchmark views">
+      <a href="index.html">Binary size &amp; build time</a>
+      <a href="performance.html">Runtime performance</a>
+      <a class="active" href="compatibility.html" aria-current="page">Open-source compatibility</a>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <p class="eyebrow">LLGo compiler qualification</p>
+        <h1>Open-source compatibility</h1>
+        <p class="lede">Pinned short-mode tests from representative pure-Go projects. Go is rerun as the baseline so compiler gaps are separated from upstream or environment failures.</p>
+      </div>
+      <p id="compatibility-status" class="status" role="status">Loading results…</p>
+    </header>
+
+    <section class="environment-bar" aria-label="Displayed compatibility environment" aria-live="polite">
+      <div><span class="label">LLGo release</span><strong id="compatibility-release">—</strong></div>
+      <div><span class="label">Go baseline</span><strong id="compatibility-go">—</strong></div>
+      <div><span class="label">Environment</span><strong id="compatibility-environment">—</strong></div>
+      <div><span class="label">Protocol</span><strong>pinned · short mode</strong></div>
+    </section>
+
+    <section class="compatibility-toolbar" aria-label="Compatibility result selection">
+      <label>Release<select id="compatibility-run"></select></label>
+      <label>Show<select id="compatibility-filter"><option value="all">All packages</option><option value="gaps">Gaps only</option><option value="compatible">Compatible only</option></select></label>
+      <p id="compatibility-meta" class="performance-meta"></p>
+      <div class="result-links">
+        <a id="compatibility-workflow" href="#">Workflow run</a>
+        <a id="compatibility-raw" href="#">Raw JSON</a>
+      </div>
+    </section>
+
+    <section class="compatibility-summary" aria-label="Compatibility summary">
+      <div><span class="label">Projects fully compatible</span><strong id="compatibility-projects">—</strong></div>
+      <div><span class="label">Packages compatible</span><strong id="compatibility-packages">—</strong></div>
+      <div><span class="label">LLGo packages compiled</span><strong id="compatibility-compiled">—</strong></div>
+      <div><span class="label">LLGo tests passed</span><strong id="compatibility-tests">—</strong></div>
+    </section>
+
+    <section class="card" aria-labelledby="compatibility-heading">
+      <div class="card-heading">
+        <div><p class="eyebrow">Project and package results</p><h2 id="compatibility-heading">Functional coverage</h2></div>
+        <p class="performance-note">A compatibility gap is reported only when the Go baseline passes.</p>
+      </div>
+      <div class="compatibility-table-wrap">
+        <table id="compatibility-table" class="compatibility-table" aria-live="polite"></table>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://github.com/xgo-dev/benchmarks/tree/main/ci/llgo-compatibility">Source and package configuration</a>
+      <span>·</span>
+      <a href="data/compatibility/index.json">Raw compatibility index</a>
+    </footer>
+  </main>
+  <script src="compatibility.js"></script>
+</body>
+</html>

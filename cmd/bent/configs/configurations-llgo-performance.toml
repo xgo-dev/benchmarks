@@ -1,0 +1,24 @@
+# Runtime comparison used by ci/llgo-performance.
+
+[[Configurations]]
+  Name = "Go"
+  Root = "$GOROOT"
+  UseBuildCache = true
+  RunEnv = ["GOMAXPROCS=1"]
+
+[[Configurations]]
+  Name = "LLGo"
+  Compiler = "$LLGO_BIN"
+  Root = "$GOROOT"
+  OmitVetFlag = true
+  UseBuildCache = true
+  RunEnv = ["GOMAXPROCS=1"]
+
+[[Configurations]]
+  Name = "LLGoFullLTO"
+  Compiler = "$LLGO_BIN"
+  Root = "$GOROOT"
+  OmitVetFlag = true
+  UseBuildCache = true
+  BuildFlags = ["-lto=full"]
+  RunEnv = ["GOMAXPROCS=1"]

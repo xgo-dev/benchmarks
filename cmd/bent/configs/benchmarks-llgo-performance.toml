@@ -1,0 +1,65 @@
+# Stable cases selected from a benchmarks-100 run with LLGo. The first group
+# showed an LLGo or LLGo full-LTO speedup; the second group remains in the same
+# performance range and provides useful optimization coverage.
+
+# LLGo advantages.
+[[Benchmarks]]
+  Name = "workiva_avl-ImmutableInsert"
+  Suite = "workiva_avl"
+  Benchmarks = "^BenchmarkImmutableInsert$"
+
+[[Benchmarks]]
+  Name = "gonum_mat-CholeskyInverseTo%2Fn%3D100"
+  Suite = "gonum_mat"
+  Benchmarks = "^BenchmarkCholeskyInverseTo$/^n=100$"
+
+[[Benchmarks]]
+  Name = "uber_tally-TimerReport"
+  Suite = "uber_tally"
+  Benchmarks = "^BenchmarkTimerReport$"
+
+[[Benchmarks]]
+  Name = "bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo"
+  Suite = "bloom_bits"
+  Benchmarks = "^BenchmarkBitSetExtractDeposit$/^size=64$/^fn=DepositTo$"
+
+[[Benchmarks]]
+  Name = "workiva_triey-Iterator"
+  Suite = "workiva_triey"
+  Benchmarks = "^BenchmarkIterator$"
+
+[[Benchmarks]]
+  Name = "workiva_rangetree-ImmutableInsertSecondDimension"
+  Suite = "workiva_rangetree"
+  Benchmarks = "^BenchmarkImmutableInsertSecondDimension$"
+
+# Same-range optimization coverage.
+[[Benchmarks]]
+  Name = "kanzi-BWTSmallBlock"
+  Suite = "kanzi"
+  Benchmarks = "^BenchmarkBWTSmallBlock$"
+
+[[Benchmarks]]
+  Name = "kanzi-ANS0"
+  Suite = "kanzi"
+  Benchmarks = "^BenchmarkANS0$"
+
+[[Benchmarks]]
+  Name = "kanzi-Huffman"
+  Suite = "kanzi"
+  Benchmarks = "^BenchmarkHuffman$"
+
+[[Benchmarks]]
+  Name = "gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1"
+  Suite = "gonum_community"
+  Benchmarks = "^BenchmarkNewDirectedLayers$/^graphSize=10,numGraphs=1$"
+
+[[Benchmarks]]
+  Name = "gproto_reflect-Value%2FInterface"
+  Suite = "gproto_reflect"
+  Benchmarks = "^BenchmarkValue$/^Interface$"
+
+[[Benchmarks]]
+  Name = "gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1"
+  Suite = "gonum_community"
+  Benchmarks = "^BenchmarkNewDirectedLayers$/^graphSize=1000,numGraphs=1$"

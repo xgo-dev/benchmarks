@@ -1,0 +1,114 @@
+name: LLGo runtime performance
+
+on:
+  repository_dispatch:
+    types: [llgo-tag-released]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: llgo-runtime-performance
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate the LLGo release notification
+        env:
+          DISPATCH_SOURCE_REPOSITORY: ${{ github.event.client_payload.source_repository }}
+          DISPATCH_LLGO_REPOSITORY: ${{ github.event.client_payload.llgo_repository }}
+          DISPATCH_LLGO_COMMIT: ${{ github.event.client_payload.llgo_commit }}
+          DISPATCH_LLGO_TAG: ${{ github.event.client_payload.llgo_tag }}
+        run: |
+          set -euo pipefail
+          set -a
+          source ci/llgo-size/llgo-version.env
+          set +a
+
+          if [[ "$DISPATCH_SOURCE_REPOSITORY" != "xgo-dev/llgo" || \
+                "$DISPATCH_LLGO_REPOSITORY" != "xgo-dev/llgo" ]]; then
+            echo "refusing LLGo release notification from ${DISPATCH_SOURCE_REPOSITORY:-unknown}" >&2
+            exit 1
+          fi
+          if [[ ! "$DISPATCH_LLGO_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "invalid released LLGo commit: ${DISPATCH_LLGO_COMMIT:-missing}" >&2
+            exit 1
+          fi
+          if ! git check-ref-format "refs/tags/$DISPATCH_LLGO_TAG"; then
+            echo "invalid released LLGo tag: ${DISPATCH_LLGO_TAG:-missing}" >&2
+            exit 1
+          fi
+
+          printf 'LLGO_REPOSITORY=%s\n' "$DISPATCH_LLGO_REPOSITORY" >> "$GITHUB_ENV"
+          printf 'LLGO_COMMIT=%s\n' "$DISPATCH_LLGO_COMMIT" >> "$GITHUB_ENV"
+          printf 'LLGO_TAG=%s\n' "$DISPATCH_LLGO_TAG" >> "$GITHUB_ENV"
+          printf 'LLVM_VERSION=%s\n' "$LLVM_VERSION" >> "$GITHUB_ENV"
+          mkdir -p .ci
+          printf '%s\n' "$GO_VERSION" > .ci/go-version
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: .ci/go-version
+
+      - name: Install LLVM dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y clang-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
+            libuv1-dev libgc-dev libffi-dev
+
+      - name: Build the released LLGo compiler
+        run: |
+          set -euo pipefail
+          git clone --filter=blob:none --no-checkout "https://github.com/${LLGO_REPOSITORY}.git" .ci/llgo
+          git -C .ci/llgo fetch --no-tags --depth=1 origin \
+            "refs/tags/$LLGO_TAG:refs/tags/$LLGO_TAG"
+          tag_commit=$(git -C .ci/llgo rev-parse "refs/tags/$LLGO_TAG^{commit}")
+          if [[ "$tag_commit" != "$LLGO_COMMIT" ]]; then
+            echo "LLGo tag $LLGO_TAG points to $tag_commit, not dispatched $LLGO_COMMIT" >&2
+            exit 1
+          fi
+          git -C .ci/llgo checkout --detach "$LLGO_COMMIT"
+          export GOROOT="$(go env GOROOT)"
+          export PATH="$GOROOT/bin:/usr/lib/llvm-${LLVM_VERSION}/bin:$PATH"
+          export LLGO_ROOT="$GITHUB_WORKSPACE/.ci/llgo"
+          (cd "$LLGO_ROOT" && go build -tags=dev -o "$LLGO_ROOT/llgo" ./cmd/llgo)
+
+      - name: Run the selected Bent comparison
+        env:
+          LLGO_BIN: ${{ github.workspace }}/.ci/llgo/llgo
+          LLGO_ROOT: ${{ github.workspace }}/.ci/llgo
+        run: |
+          set -euo pipefail
+          export GOROOT="$(go env GOROOT)"
+          export PATH="$GOROOT/bin:/usr/lib/llvm-${LLVM_VERSION}/bin:$PATH"
+          go build -o .ci/bent ./cmd/bent
+          GOBIN="$GITHUB_WORKSPACE/.ci/bin" \
+            go install golang.org/x/perf/cmd/benchstat@v0.0.0-20260813145340-fd4a688df892
+          mkdir -p .ci/bent-performance
+          (
+            cd .ci/bent-performance
+            "$GITHUB_WORKSPACE/.ci/bent" -I
+            "$GITHUB_WORKSPACE/.ci/bent" \
+              -B=benchmarks-llgo-performance.toml \
+              -C=configurations-llgo-performance.toml \
+              -N=10 -G
+          )
+          ci/llgo-performance/report.sh \
+            .ci/bent-performance \
+            .ci/bin/benchstat | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Bent runtime results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: llgo-runtime-performance
+          path: |
+            .ci/bent-performance/bench
+            .ci/bent-performance/benchstat.txt
+          if-no-files-found: warn

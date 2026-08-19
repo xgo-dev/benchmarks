@@ -169,6 +169,7 @@ var copyConfigs = []string{
 	"configurations-sample.toml", "configurations-gollvm.toml", "configurations-cronjob.toml", "configurations-cmpjob.toml",
 	"configurations-pgo.toml", "configurations-random.toml", "suites.toml",
 	"configurations-llgo-size.toml", "benchmarks-llgo-size.toml",
+	"configurations-llgo-performance.toml", "benchmarks-llgo-performance.toml",
 }
 
 var defaultEnv []string

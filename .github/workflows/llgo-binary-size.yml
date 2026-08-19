@@ -171,9 +171,29 @@ jobs:
         run: |
           set -euo pipefail
           source ci/llgo-size/timing.sh
-          time_command "APT package index update" sudo apt-get update
+
+          # GitHub-hosted runners prefer an Azure mirror through apt's dynamic
+          # mirror list. A bad mirror can leave apt-get update silent until the
+          # whole job times out, so use Ubuntu's HTTPS archive directly.
+          ubuntu_sources=/etc/apt/sources.list.d/ubuntu.sources
+          if [[ -f "$ubuntu_sources" ]]; then
+            sudo sed -i \
+              -e 's|mirror+file:/etc/apt/apt-mirrors.txt|https://archive.ubuntu.com/ubuntu|g' \
+              -e 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' \
+              "$ubuntu_sources"
+          fi
+
+          apt_options=(
+            -o Acquire::Retries=3
+            -o Acquire::http::Timeout=30
+            -o Acquire::https::Timeout=30
+            -o DPkg::Lock::Timeout=60
+          )
+          time_command "APT package index update" \
+            sudo timeout --kill-after=30s 5m apt-get "${apt_options[@]}" update
           time_command "APT package installation" \
-            sudo apt-get install -y cmake clang-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev ninja-build \
+            sudo timeout --kill-after=30s 15m apt-get "${apt_options[@]}" install -y \
+              cmake clang-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev ninja-build \
               libuv1-dev libgc-dev libffi-dev
       - name: Check out pinned LLGo
         run: |

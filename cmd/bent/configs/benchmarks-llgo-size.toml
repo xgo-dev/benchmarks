@@ -10,6 +10,7 @@
 
 [[Benchmarks]]
   Name = "aws_restjson"
+  Suite = "aws_restjson_v1"
 
 [[Benchmarks]]
   Name = "dustin_humanize"

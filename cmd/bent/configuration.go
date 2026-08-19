@@ -351,6 +351,7 @@ func (c *Configuration) runBinary(cwd string, cmd *exec.Cmd, printWorkingDot boo
 
 	var mu = &sync.Mutex{}
 
+	quietRunOutput := os.Getenv("BENT_QUIET_RUN_OUTPUT") != ""
 	f := func(r *bufio.Reader, done chan error) {
 		for {
 			bytes, err := r.ReadBytes('\n')
@@ -362,7 +363,9 @@ func (c *Configuration) runBinary(cwd string, cmd *exec.Cmd, printWorkingDot boo
 					fmt.Printf("Error writing, err = %v, nwritten = %d, nrequested = %d\n", err, nw, n)
 				}
 				c.benchWriter.Sync()
-				fmt.Print(string(bytes[0:n]))
+				if !quietRunOutput {
+					fmt.Print(string(bytes[0:n]))
+				}
 				mu.Unlock()
 			}
 			if err == io.EOF || n == 0 {

@@ -96,17 +96,38 @@ async function performanceLoadRun(meta) {
 }
 
 function performanceRenderTable(document) {
-  const rows = (document.benchmarks || []).map(function (entry) {
-    const values = entry.values || {};
-    return "<tr>" +
-      '<th class="performance-benchmark-cell" scope="row"><span class="benchmark-name">' + performanceEscape(entry.suite || entry.benchmark) +
-      '</span><span class="config-name">' + performanceEscape(entry.case || entry.benchmark) + "</span></th>" +
-      "<td>" + performanceMeasurement(values.Go) + "</td>" +
-      "<td>" + performanceMeasurement(values.LLGo) + "</td>" +
-      '<td class="performance-delta">' + performanceDelta(values.LLGo) + "</td>" +
-      "<td>" + performanceMeasurement(values.LLGoFullLTO) + "</td>" +
-      '<td class="performance-delta">' + performanceDelta(values.LLGoFullLTO) + "</td>" +
-      "</tr>";
+  const groups = [];
+  const groupsBySuite = new Map();
+
+  (document.benchmarks || []).forEach(function (entry) {
+    const suite = entry.suite || "Other";
+    if (!groupsBySuite.has(suite)) {
+      const group = { suite: suite, entries: [] };
+      groupsBySuite.set(suite, group);
+      groups.push(group);
+    }
+    groupsBySuite.get(suite).entries.push(entry);
+  });
+
+  const bodies = groups.map(function (group) {
+    const rows = group.entries.map(function (entry) {
+      const values = entry.values || {};
+      return "<tr>" +
+        '<th class="performance-benchmark-cell" scope="row"><span class="performance-case-name">' +
+        performanceEscape(entry.case || entry.benchmark) + "</span></th>" +
+        "<td>" + performanceMeasurement(values.Go) + "</td>" +
+        "<td>" + performanceMeasurement(values.LLGo) + "</td>" +
+        '<td class="performance-delta">' + performanceDelta(values.LLGo) + "</td>" +
+        "<td>" + performanceMeasurement(values.LLGoFullLTO) + "</td>" +
+        '<td class="performance-delta">' + performanceDelta(values.LLGoFullLTO) + "</td>" +
+        "</tr>";
+    }).join("");
+
+    return '<tbody class="performance-suite-group">' +
+      '<tr class="performance-suite-heading"><th colspan="6" scope="rowgroup">' +
+      '<span class="performance-suite-name">' + performanceEscape(group.suite) + "</span>" +
+      '<span class="performance-suite-count">' + group.entries.length + (group.entries.length === 1 ? " case" : " cases") + "</span>" +
+      "</th></tr>" + rows + "</tbody>";
   }).join("");
 
   performanceDom.table.innerHTML =
@@ -117,7 +138,7 @@ function performanceRenderTable(document) {
       '<th colspan="2">LLGo full LTO</th>' +
     "</tr><tr>" +
       "<th>sec/op</th><th>vs Go</th><th>sec/op</th><th>vs Go</th>" +
-    "</tr></thead><tbody>" + rows + "</tbody>";
+    "</tr></thead>" + bodies;
 }
 
 async function performanceRender(meta) {

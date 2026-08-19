@@ -1,0 +1,17 @@
+# Functional test configurations used by ci/llgo-compatibility.
+
+[[Configurations]]
+  Name = "Go"
+  Root = "$GOROOT"
+  UseBuildCache = true
+  RunWrapper = ["testjson"]
+  RunFlags = ["-test.v=test2json", "-test.short", "-test.count=1", "-test.timeout=5m"]
+
+[[Configurations]]
+  Name = "LLGo"
+  Compiler = "$LLGO_BIN"
+  Root = "$GOROOT"
+  OmitVetFlag = true
+  UseBuildCache = true
+  RunWrapper = ["testjson"]
+  RunFlags = ["-test.v=test2json", "-test.short", "-test.count=1", "-test.timeout=5m"]

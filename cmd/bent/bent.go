@@ -43,6 +43,7 @@ type Benchmark struct {
 	Name                string     // Short name for benchmark/test
 	Suite               string     // Suite for the benchmark.  Default is from the name, but can be specified separately
 	SuiteRepresentative *Benchmark // If there are multiple benchmarks with the same suite, one is the "representative"
+	Standalone          bool       // Permit a fully specified benchmark that is not in suites.toml
 	Contact             string     // Contact not used, but may be present in description
 	Repo                string     // Repo + subdir where test resides, used for "go get -t -d ..."
 	BuildMode           string     // "test" (default) builds a test binary; "build" builds a main package
@@ -161,7 +162,7 @@ var scripts embed.FS
 var configs embed.FS
 
 var copyExes = []string{
-	"foo", "memprofile", "cpuprofile", "tmpclr", "benchtime", "benchsize", "benchdwarf", "cronjob.sh", "cmpjob.sh", "cmpcl.sh", "cmpcl-phase.sh", "tweet-results",
+	"foo", "memprofile", "cpuprofile", "testjson", "tmpclr", "benchtime", "benchsize", "benchdwarf", "cronjob.sh", "cmpjob.sh", "cmpcl.sh", "cmpcl-phase.sh", "tweet-results",
 }
 
 var copyConfigs = []string{
@@ -170,6 +171,7 @@ var copyConfigs = []string{
 	"configurations-pgo.toml", "configurations-random.toml", "suites.toml",
 	"configurations-llgo-size.toml", "benchmarks-llgo-size.toml",
 	"configurations-llgo-performance.toml", "benchmarks-llgo-performance.toml",
+	"configurations-llgo-compatibility.toml", "benchmarks-llgo-compatibility.toml",
 }
 
 var defaultEnv []string
@@ -385,6 +387,9 @@ results will also appear in 'bench'.
 		update(&b.Suite, b.Name)
 		s := suites[b.Suite]
 		if s == nil {
+			if b.Standalone && b.Repo != "" {
+				continue
+			}
 			fmt.Printf("Benchmark %s appearing in %s is not listed in %s\n", b.Name, benchFile, suiteFile)
 			os.Exit(1)
 		}

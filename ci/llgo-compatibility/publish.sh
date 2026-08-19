@@ -10,12 +10,10 @@ if [[ -z "$run_dir" || -z "$pages_dir" || -z "$site_dir" ]]; then
 fi
 
 result_json="$run_dir/results.json"
-for file in "$result_json" "$run_dir/benchstat.txt" "$run_dir/benchstat.csv"; do
-  if [[ ! -s "$file" ]]; then
-    echo "missing performance result: $file" >&2
-    exit 1
-  fi
-done
+if [[ ! -s "$result_json" ]]; then
+  echo "missing compatibility result: $result_json" >&2
+  exit 1
+fi
 
 run_key=$(python3 - "$result_json" <<'PY'
 import json
@@ -26,26 +24,26 @@ with open(sys.argv[1], encoding="utf-8") as source:
     run = json.load(source)["run"]
 key = str(run.get("llgoTag") or run.get("llgoCommit") or run.get("id") or "manual")
 if not re.fullmatch(r"[A-Za-z0-9._-]+", key):
-    raise SystemExit("invalid performance run key: " + repr(key))
+    raise SystemExit("invalid compatibility run key: " + repr(key))
 print(key)
 PY
 )
 
-performance_dir="$pages_dir/data/performance"
-published_run_dir="$performance_dir/runs/$run_key"
-mkdir -p "$published_run_dir"
-cp "$result_json" "$published_run_dir/results.json"
-cp "$run_dir/benchstat.txt" "$published_run_dir/benchstat.txt"
-cp "$run_dir/benchstat.csv" "$published_run_dir/benchstat.csv"
-if [[ -d "$published_run_dir/raw" ]]; then
-  rm -r "$published_run_dir/raw"
-fi
+compatibility_dir="$pages_dir/data/compatibility"
+published_run_dir="$compatibility_dir/runs/$run_key"
 mkdir -p "$published_run_dir/raw"
-if compgen -G "$run_dir/bench/*.stdout" >/dev/null; then
-  cp "$run_dir/bench/"*.stdout "$published_run_dir/raw/"
-fi
+cp "$result_json" "$published_run_dir/results.json"
+for config in Go LLGo; do
+  if [[ -s "$run_dir/$config.log" ]]; then
+    cp "$run_dir/$config.log" "$published_run_dir/raw/$config.log"
+  fi
+  matches=("$run_dir"/bench/*."$config".stdout)
+  if ((${#matches[@]} == 1)) && [[ -s "${matches[0]}" ]]; then
+    cp "${matches[0]}" "$published_run_dir/raw/$config.stdout"
+  fi
+done
 
-python3 - "$performance_dir" <<'PY'
+python3 - "$compatibility_dir" <<'PY'
 import glob
 import json
 import os
@@ -71,10 +69,9 @@ for path in glob.glob(os.path.join(data_dir, "runs", "*", "results.json")):
         "goVersion": run.get("goVersion", ""),
         "llvmVersion": run.get("llvmVersion", ""),
         "workflowUrl": run.get("workflowUrl", ""),
-        "path": "performance/runs/" + key + "/results.json",
+        "path": "compatibility/runs/" + key + "/results.json",
     })
 runs.sort(key=lambda item: item["createdAt"], reverse=True)
-
 index = {
     "schemaVersion": 1,
     "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
@@ -95,8 +92,8 @@ git -C "$pages_dir" config user.name "github-actions[bot]"
 git -C "$pages_dir" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 git -C "$pages_dir" add -A
 if git -C "$pages_dir" diff --cached --quiet; then
-  echo "Performance history is already up to date"
+  echo "Compatibility history is already up to date"
 else
-  git -C "$pages_dir" commit -m "ci: publish LLGo performance run $run_key"
+  git -C "$pages_dir" commit -m "ci: publish LLGo compatibility run $run_key"
   git -C "$pages_dir" push origin HEAD:pages
 fi

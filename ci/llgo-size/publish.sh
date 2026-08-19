@@ -64,7 +64,7 @@ for source in sorted(os.listdir(runs_dir)):
             continue
     os.rename(source_dir, target_dir)
 PY
-for file in index.html app.js performance.html performance.js style.css _config.yml; do
+for file in index.html app.js performance.html performance.js compatibility.html compatibility.js style.css _config.yml; do
   cp "$site_dir/$file" "$pages_dir/$file"
 done
 rm -f "$pages_dir/.nojekyll"

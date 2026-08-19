@@ -1,0 +1,130 @@
+# Pinned module inputs for the generated 200-package compatibility manifest.
+# Limits are intentionally reviewed: changing package membership changes the
+# release-to-release compatibility contract.
+
+[[Projects]]
+  NamePrefix = "etcd_pkg"
+  Project = "etcd"
+  ProjectURL = "https://github.com/etcd-io/etcd"
+  Module = "go.etcd.io/etcd/pkg/v3"
+  Pattern = "go.etcd.io/etcd/pkg/v3/..."
+  Version = "v3.6.14"
+  Limit = 17
+
+[[Projects]]
+  NamePrefix = "etcd_client_pkg"
+  Project = "etcd"
+  ProjectURL = "https://github.com/etcd-io/etcd"
+  Module = "go.etcd.io/etcd/client/pkg/v3"
+  Pattern = "go.etcd.io/etcd/client/pkg/v3/..."
+  Version = "v3.6.14"
+  Limit = 8
+
+[[Projects]]
+  NamePrefix = "etcd_api"
+  Project = "etcd"
+  ProjectURL = "https://github.com/etcd-io/etcd"
+  Module = "go.etcd.io/etcd/api/v3"
+  Pattern = "go.etcd.io/etcd/api/v3/..."
+  Version = "v3.6.14"
+  Limit = 3
+
+[[Projects]]
+  NamePrefix = "protobuf"
+  Project = "protobuf-go"
+  ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
+  Module = "google.golang.org/protobuf"
+  Pattern = "google.golang.org/protobuf/..."
+  Version = "v1.36.11"
+  Limit = 35
+
+[[Projects]]
+  NamePrefix = "gonum"
+  Project = "gonum"
+  ProjectURL = "https://github.com/gonum/gonum"
+  Module = "gonum.org/v1/gonum"
+  Pattern = "gonum.org/v1/gonum/..."
+  Version = "v0.17.0"
+  Limit = 45
+  BuildFlags = ["-tags", "safe"]
+
+[[Projects]]
+  NamePrefix = "client_go"
+  Project = "kubernetes/client-go"
+  ProjectURL = "https://github.com/kubernetes/client-go"
+  Module = "k8s.io/client-go"
+  Pattern = "k8s.io/client-go/..."
+  Version = "v0.36.2"
+  Limit = 45
+
+[[Projects]]
+  NamePrefix = "zap"
+  Project = "uber-go/zap"
+  ProjectURL = "https://github.com/uber-go/zap"
+  Module = "go.uber.org/zap"
+  Pattern = "go.uber.org/zap/..."
+  Version = "v1.27.0"
+  Limit = 12
+
+[[Projects]]
+  NamePrefix = "gorm"
+  Project = "go-gorm/gorm"
+  ProjectURL = "https://github.com/go-gorm/gorm"
+  Module = "gorm.io/gorm"
+  Pattern = "gorm.io/gorm/..."
+  Version = "v1.31.2"
+  Limit = 6
+
+[[Projects]]
+  NamePrefix = "workiva"
+  Project = "go-datastructures"
+  ProjectURL = "https://github.com/Workiva/go-datastructures"
+  Module = "github.com/Workiva/go-datastructures"
+  Pattern = "github.com/Workiva/go-datastructures/..."
+  Version = "v1.1.7"
+  Limit = 24
+
+[[Projects]]
+  NamePrefix = "toml"
+  Project = "BurntSushi/toml"
+  ProjectURL = "https://github.com/BurntSushi/toml"
+  Module = "github.com/BurntSushi/toml"
+  Pattern = "github.com/BurntSushi/toml"
+  Version = "v1.6.0"
+  Limit = 1
+
+[[Projects]]
+  NamePrefix = "semver"
+  Project = "Masterminds/semver"
+  ProjectURL = "https://github.com/Masterminds/semver"
+  Module = "github.com/Masterminds/semver/v3"
+  Pattern = "github.com/Masterminds/semver/v3"
+  Version = "v3.3.1"
+  Limit = 1
+
+[[Projects]]
+  NamePrefix = "bitset"
+  Project = "bits-and-blooms/bitset"
+  ProjectURL = "https://github.com/bits-and-blooms/bitset"
+  Module = "github.com/bits-and-blooms/bitset"
+  Pattern = "github.com/bits-and-blooms/bitset"
+  Version = "v1.22.0"
+  Limit = 1
+
+[[Projects]]
+  NamePrefix = "humanize"
+  Project = "go-humanize"
+  ProjectURL = "https://github.com/dustin/go-humanize"
+  Module = "github.com/dustin/go-humanize"
+  Pattern = "github.com/dustin/go-humanize"
+  Version = "v1.0.1"
+  Limit = 1
+
+[[Projects]]
+  NamePrefix = "uuid"
+  Project = "google/uuid"
+  ProjectURL = "https://github.com/google/uuid"
+  Module = "github.com/google/uuid"
+  Pattern = "github.com/google/uuid"
+  Version = "v1.6.0"
+  Limit = 1

@@ -13051,4 +13051,3 @@
   Name = "gproto_json-Bool"
   Suite = "gproto_json"
   Benchmarks = "^BenchmarkBool$"
-

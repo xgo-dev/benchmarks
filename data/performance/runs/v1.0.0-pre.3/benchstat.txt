@@ -1,0 +1,88 @@
+shortname: bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo
+                     │     Go      │                 LLGo                 │             LLGoFullLTO              │
+                     │   sec/op    │    sec/op      vs base               │    sec/op      vs base               │
+BitSetExtractDeposit   21.87n ± 2%   42.10n ± 2% ¹  +92.50% (p=0.008 n=5)   16.48n ± 2% ¹  -24.65% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+                     │     Go     │              LLGo               │           LLGoFullLTO           │
+                     │    B/op    │     B/op      vs base           │     B/op      vs base           │
+BitSetExtractDeposit   0.000 ± 0%   0.000 ± 0% ¹  ~ (p=1.000 n=5) ²   0.000 ± 0% ¹  ~ (p=1.000 n=5) ²
+¹ benchmarks vary in cpu
+² all samples are equal
+
+                     │     Go     │              LLGo               │           LLGoFullLTO           │
+                     │ allocs/op  │  allocs/op    vs base           │  allocs/op    vs base           │
+BitSetExtractDeposit   0.000 ± 0%   0.000 ± 0% ¹  ~ (p=1.000 n=5) ²   0.000 ± 0% ¹  ~ (p=1.000 n=5) ²
+¹ benchmarks vary in cpu
+² all samples are equal
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1
+                  │     Go      │                 LLGo                 │             LLGoFullLTO              │
+                  │   sec/op    │    sec/op      vs base               │    sec/op      vs base               │
+NewDirectedLayers   1.208µ ± 1%   1.513µ ± 2% ¹  +25.25% (p=0.008 n=5)   1.342µ ± 1% ¹  +11.09% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1
+                  │     Go      │                 LLGo                 │             LLGoFullLTO              │
+                  │   sec/op    │    sec/op      vs base               │    sec/op      vs base               │
+NewDirectedLayers   140.0µ ± 1%   161.0µ ± 6% ¹  +15.01% (p=0.008 n=5)   157.2µ ± 1% ¹  +12.27% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+shortname: gonum_mat-CholeskyInverseTo%2Fn%3D100
+                  │     Go      │                 LLGo                 │             LLGoFullLTO              │
+                  │   sec/op    │    sec/op      vs base               │    sec/op      vs base               │
+CholeskyInverseTo   278.3µ ± 0%   554.1µ ± 2% ¹  +99.07% (p=0.008 n=5)   201.7µ ± 0% ¹  -27.54% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+shortname: gproto_reflect-Value%2FInterface
+      │     Go      │                 LLGo                 │             LLGoFullLTO             │
+      │   sec/op    │    sec/op      vs base               │    sec/op      vs base              │
+Value   27.99n ± 4%   22.04n ± 2% ¹  -21.26% (p=0.008 n=5)   29.13n ± 1% ¹  +4.07% (p=0.032 n=5)
+¹ benchmarks vary in cpu
+
+      │     Go     │                 LLGo                 │             LLGoFullLTO              │
+      │    B/op    │     B/op      vs base                │     B/op      vs base                │
+Value   15.00 ± 0%   32.00 ± 0% ¹  +113.33% (p=0.008 n=5)   32.00 ± 0% ¹  +113.33% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+      │     Go     │              LLGo               │           LLGoFullLTO           │
+      │ allocs/op  │  allocs/op    vs base           │  allocs/op    vs base           │
+Value   0.000 ± 0%   0.000 ± 0% ¹  ~ (p=1.000 n=5) ²   0.000 ± 0% ¹  ~ (p=1.000 n=5) ²
+¹ benchmarks vary in cpu
+² all samples are equal
+
+shortname: kanzi-ANS0
+     │     Go      │                 LLGo                 │             LLGoFullLTO             │
+     │   sec/op    │    sec/op      vs base               │    sec/op      vs base              │
+ANS0   1.924m ± 2%   2.716m ± 0% ¹  +41.14% (p=0.008 n=5)   1.967m ± 1% ¹  +2.21% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+shortname: kanzi-BWTSmallBlock
+              │     Go      │                 LLGo                 │             LLGoFullLTO             │
+              │   sec/op    │    sec/op      vs base               │    sec/op      vs base              │
+BWTSmallBlock   34.07m ± 1%   45.85m ± 1% ¹  +34.56% (p=0.008 n=5)   32.68m ± 1% ¹  -4.09% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+shortname: kanzi-Huffman
+        │     Go      │                 LLGo                  │             LLGoFullLTO             │
+        │   sec/op    │    sec/op      vs base                │    sec/op      vs base              │
+Huffman   1.594m ± 0%   4.247m ± 0% ¹  +166.46% (p=0.008 n=5)   1.722m ± 0% ¹  +8.02% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+shortname: workiva_avl-ImmutableInsert
+                │     Go      │                 LLGo                 │             LLGoFullLTO              │
+                │   sec/op    │    sec/op      vs base               │    sec/op      vs base               │
+ImmutableInsert   2.002µ ± 1%   1.595µ ± 2% ¹  -20.33% (p=0.008 n=5)   1.277µ ± 6% ¹  -36.21% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+shortname: workiva_rangetree-ImmutableInsertSecondDimension
+                               │     Go      │              LLGo              │             LLGoFullLTO             │
+                               │   sec/op    │    sec/op      vs base         │    sec/op      vs base              │
+ImmutableInsertSecondDimension   33.98m ± 0%   34.18m ± 1% ¹  ~ (p=0.548 n=5)   31.13m ± 2% ¹  -8.40% (p=0.008 n=5)
+¹ benchmarks vary in cpu
+
+shortname: workiva_triey-Iterator
+         │      Go      │                 LLGo                  │             LLGoFullLTO              │
+         │    sec/op    │     sec/op      vs base               │    sec/op      vs base               │
+Iterator   2428.0n ± 0%   1066.0n ± 2% ¹  -56.10% (p=0.008 n=5)   963.3n ± 7% ¹  -60.33% (p=0.008 n=5)
+¹ benchmarks vary in cpu

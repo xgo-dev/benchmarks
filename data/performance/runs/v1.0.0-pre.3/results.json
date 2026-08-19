@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "format": "benchstat",
+  "run": {
+    "id": "32243648199",
+    "attempt": 1,
+    "number": 3,
+    "createdAt": "2026-08-19T10:52:48.507507Z",
+    "repository": "xgo-dev/benchmarks",
+    "sourceCommit": "dac298f1e618568a648894fd8ea5ed564b21ec9f",
+    "ref": "main",
+    "llgoRepository": "xgo-dev/llgo",
+    "llgoCommit": "cf91afb98fca979c5195751554b67ec75f8c71d6",
+    "llgoTag": "v1.0.0-pre.3",
+    "goVersion": "1.26.2",
+    "llvmVersion": "19",
+    "event": "repository_dispatch",
+    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32243648199",
+    "runnerOS": "Linux",
+    "runnerArch": "X64",
+    "runnerImage": "ubuntu24",
+    "repetitions": 5,
+    "benchmarkEnvironment": {
+      "goos": "linux",
+      "goarch": "amd64",
+      "cpu": "AMD EPYC 7763 64-Core Processor                "
+    }
+  },
+  "configs": [
+    "Go",
+    "LLGo",
+    "LLGoFullLTO"
+  ],
+  "metric": "sec/op",
+  "benchmarks": [
+    {
+      "shortname": "bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo",
+      "suite": "bloom_bits",
+      "case": "BitSetExtractDeposit/size=64/fn=DepositTo",
+      "benchmark": "BitSetExtractDeposit",
+      "values": {
+        "Go": {
+          "value": 2.1870000000000003e-08,
+          "ci": "2%"
+        },
+        "LLGo": {
+          "value": 4.2100000000000006e-08,
+          "ci": "2%",
+          "delta": "+92.50%",
+          "deltaPercent": 92.5,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 1.6480000000000003e-08,
+          "ci": "2%",
+          "delta": "-24.65%",
+          "deltaPercent": -24.65,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1",
+      "suite": "gonum_community",
+      "case": "NewDirectedLayers/graphSize=10,numGraphs=1",
+      "benchmark": "NewDirectedLayers",
+      "values": {
+        "Go": {
+          "value": 1.2080000000000001e-06,
+          "ci": "1%"
+        },
+        "LLGo": {
+          "value": 1.5130000000000002e-06,
+          "ci": "2%",
+          "delta": "+25.25%",
+          "deltaPercent": 25.25,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 1.342e-06,
+          "ci": "1%",
+          "delta": "+11.09%",
+          "deltaPercent": 11.09,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1",
+      "suite": "gonum_community",
+      "case": "NewDirectedLayers/graphSize=1000,numGraphs=1",
+      "benchmark": "NewDirectedLayers",
+      "values": {
+        "Go": {
+          "value": 0.000140016,
+          "ci": "1%"
+        },
+        "LLGo": {
+          "value": 0.00016102800000000002,
+          "ci": "6%",
+          "delta": "+15.01%",
+          "deltaPercent": 15.01,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 0.000157197,
+          "ci": "1%",
+          "delta": "+12.27%",
+          "deltaPercent": 12.27,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "gonum_mat-CholeskyInverseTo%2Fn%3D100",
+      "suite": "gonum_mat",
+      "case": "CholeskyInverseTo/n=100",
+      "benchmark": "CholeskyInverseTo",
+      "values": {
+        "Go": {
+          "value": 0.000278347,
+          "ci": "0%"
+        },
+        "LLGo": {
+          "value": 0.000554102,
+          "ci": "2%",
+          "delta": "+99.07%",
+          "deltaPercent": 99.07,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 0.000201678,
+          "ci": "0%",
+          "delta": "-27.54%",
+          "deltaPercent": -27.54,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "gproto_reflect-Value%2FInterface",
+      "suite": "gproto_reflect",
+      "case": "Value/Interface",
+      "benchmark": "Value",
+      "values": {
+        "Go": {
+          "value": 2.799e-08,
+          "ci": "4%"
+        },
+        "LLGo": {
+          "value": 2.204e-08,
+          "ci": "2%",
+          "delta": "-21.26%",
+          "deltaPercent": -21.26,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 2.913e-08,
+          "ci": "1%",
+          "delta": "+4.07%",
+          "deltaPercent": 4.07,
+          "p": "p=0.032 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "kanzi-ANS0",
+      "suite": "kanzi",
+      "case": "ANS0",
+      "benchmark": "ANS0",
+      "values": {
+        "Go": {
+          "value": 0.0019244320000000002,
+          "ci": "2%"
+        },
+        "LLGo": {
+          "value": 0.002716062,
+          "ci": "0%",
+          "delta": "+41.14%",
+          "deltaPercent": 41.14,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 0.001966951,
+          "ci": "1%",
+          "delta": "+2.21%",
+          "deltaPercent": 2.21,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "kanzi-BWTSmallBlock",
+      "suite": "kanzi",
+      "case": "BWTSmallBlock",
+      "benchmark": "BWTSmallBlock",
+      "values": {
+        "Go": {
+          "value": 0.034070758,
+          "ci": "1%"
+        },
+        "LLGo": {
+          "value": 0.045846107000000004,
+          "ci": "1%",
+          "delta": "+34.56%",
+          "deltaPercent": 34.56,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 0.032677346,
+          "ci": "1%",
+          "delta": "-4.09%",
+          "deltaPercent": -4.09,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "kanzi-Huffman",
+      "suite": "kanzi",
+      "case": "Huffman",
+      "benchmark": "Huffman",
+      "values": {
+        "Go": {
+          "value": 0.001593704,
+          "ci": "0%"
+        },
+        "LLGo": {
+          "value": 0.004246505,
+          "ci": "0%",
+          "delta": "+166.46%",
+          "deltaPercent": 166.46,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 0.0017215730000000001,
+          "ci": "0%",
+          "delta": "+8.02%",
+          "deltaPercent": 8.02,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "workiva_avl-ImmutableInsert",
+      "suite": "workiva_avl",
+      "case": "ImmutableInsert",
+      "benchmark": "ImmutableInsert",
+      "values": {
+        "Go": {
+          "value": 2.002e-06,
+          "ci": "1%"
+        },
+        "LLGo": {
+          "value": 1.5950000000000002e-06,
+          "ci": "2%",
+          "delta": "-20.33%",
+          "deltaPercent": -20.33,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 1.277e-06,
+          "ci": "6%",
+          "delta": "-36.21%",
+          "deltaPercent": -36.21,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "workiva_rangetree-ImmutableInsertSecondDimension",
+      "suite": "workiva_rangetree",
+      "case": "ImmutableInsertSecondDimension",
+      "benchmark": "ImmutableInsertSecondDimension",
+      "values": {
+        "Go": {
+          "value": 0.033983364,
+          "ci": "0%"
+        },
+        "LLGo": {
+          "value": 0.034179479,
+          "ci": "1%",
+          "delta": "~",
+          "deltaPercent": null,
+          "p": "p=0.548 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 0.031130249000000002,
+          "ci": "2%",
+          "delta": "-8.40%",
+          "deltaPercent": -8.4,
+          "p": "p=0.008 n=5"
+        }
+      }
+    },
+    {
+      "shortname": "workiva_triey-Iterator",
+      "suite": "workiva_triey",
+      "case": "Iterator",
+      "benchmark": "Iterator",
+      "values": {
+        "Go": {
+          "value": 2.4280000000000003e-06,
+          "ci": "0%"
+        },
+        "LLGo": {
+          "value": 1.066e-06,
+          "ci": "2%",
+          "delta": "-56.10%",
+          "deltaPercent": -56.1,
+          "p": "p=0.008 n=5"
+        },
+        "LLGoFullLTO": {
+          "value": 9.633e-07,
+          "ci": "7%",
+          "delta": "-60.33%",
+          "deltaPercent": -60.33,
+          "p": "p=0.008 n=5"
+        }
+      }
+    }
+  ],
+  "native": {
+    "text": "benchstat.txt",
+    "csv": "benchstat.csv",
+    "rawDir": "raw"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-19T10:52:51.002413Z",
+  "runs": [
+    {
+      "key": "v1.0.0-pre.3",
+      "id": "32243648199",
+      "attempt": 1,
+      "createdAt": "2026-08-19T10:52:48.507507Z",
+      "sourceCommit": "dac298f1e618568a648894fd8ea5ed564b21ec9f",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "cf91afb98fca979c5195751554b67ec75f8c71d6",
+      "llgoTag": "v1.0.0-pre.3",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32243648199",
+      "path": "performance/runs/v1.0.0-pre.3/results.json"
+    }
+  ]
+}

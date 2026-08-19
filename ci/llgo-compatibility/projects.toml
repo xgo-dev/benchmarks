@@ -37,6 +37,9 @@
   Pattern = "google.golang.org/protobuf/..."
   Version = "v1.36.11"
   Limit = 35
+  # This package emits an unusually large verbose test stream and repeatedly
+  # caused the GitHub-hosted runner to lose communication.
+  Exclude = ["google.golang.org/protobuf/encoding/protojson"]
 
 [[Projects]]
   NamePrefix = "gonum"
@@ -47,6 +50,8 @@
   Version = "v0.17.0"
   Limit = 45
   BuildFlags = ["-tags", "safe"]
+  # Its RDF canonicalization tests have the same runner-starvation behavior.
+  Exclude = ["gonum.org/v1/gonum/graph/formats/rdf"]
 
 [[Projects]]
   NamePrefix = "client_go"

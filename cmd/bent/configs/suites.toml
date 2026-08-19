@@ -110,6 +110,13 @@
   Version = "@release-2026-07-24"
   Disabled = true # fails to get; too large for proxy/sumdb server?
 
+# xgo-dev's binary-size history uses the fetchable AWS SDK v1 package. Keep it
+# as a separate suite so the upstream v2 suite can remain disabled.
+[[Suites]]
+  Name = "aws_restjson_v1"
+  Repo = "github.com/aws/aws-sdk-go/private/protocol/restjson"
+  Version = "@v1.41.1"
+
 [[Suites]]
   Name = "aws_restxml"
   Repo = "github.com/aws/aws-sdk-go-v2/internal/protocoltest/restxml"

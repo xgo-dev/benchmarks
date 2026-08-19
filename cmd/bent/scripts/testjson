@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+exec go tool test2json -p "${BENT_BENCH:-unknown}" "$@"

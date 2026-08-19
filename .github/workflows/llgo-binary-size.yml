@@ -9,10 +9,15 @@ on:
       - ci/llgo-size/publish-site.sh
       - ci/llgo-size/prepare-pages-branch.sh
       - ci/llgo-performance/**
+      - ci/llgo-compatibility/**
       - cmd/bent/configs/benchmarks-llgo-performance.toml
       - cmd/bent/configs/configurations-llgo-performance.toml
+      - cmd/bent/configs/benchmarks-llgo-compatibility.toml
+      - cmd/bent/configs/configurations-llgo-compatibility.toml
+      - cmd/bent/scripts/testjson
       - .github/workflows/llgo-binary-size-pages.yml
       - .github/workflows/llgo-runtime-performance.yml
+      - .github/workflows/llgo-open-source-compatibility.yml
       # ci/llgo-size/llgo-version.env is intentionally not ignored: changing
       # the committed LLGo pin must trigger a binary-size build.
   pull_request:
@@ -21,10 +26,15 @@ on:
       - ci/llgo-size/publish-site.sh
       - ci/llgo-size/prepare-pages-branch.sh
       - ci/llgo-performance/**
+      - ci/llgo-compatibility/**
       - cmd/bent/configs/benchmarks-llgo-performance.toml
       - cmd/bent/configs/configurations-llgo-performance.toml
+      - cmd/bent/configs/benchmarks-llgo-compatibility.toml
+      - cmd/bent/configs/configurations-llgo-compatibility.toml
+      - cmd/bent/scripts/testjson
       - .github/workflows/llgo-binary-size-pages.yml
       - .github/workflows/llgo-runtime-performance.yml
+      - .github/workflows/llgo-open-source-compatibility.yml
   # GitHub evaluates repository-dispatch workflows from the receiving
   # repository's default branch. Merge this workflow there before enabling
   # the sender in xgo-dev/llgo.
@@ -126,6 +136,9 @@ jobs:
               cmd/bent \
               ':(exclude)cmd/bent/configs/benchmarks-llgo-performance.toml' \
               ':(exclude)cmd/bent/configs/configurations-llgo-performance.toml' \
+              ':(exclude)cmd/bent/configs/benchmarks-llgo-compatibility.toml' \
+              ':(exclude)cmd/bent/configs/configurations-llgo-compatibility.toml' \
+              ':(exclude)cmd/bent/scripts/testjson' \
               cmd/bent/configs/benchmarks-llgo-size.toml \
               cmd/bent/configs/configurations-llgo-size.toml \
               cmd/bent/configs/suites.toml; then

@@ -1351,7 +1351,7 @@ func checkAndSetUpFileSystem(shouldInit bool) error {
 	}
 
 	if shuffle < 0 || shuffle > 3 {
-		return fmt.Errorf("Shuffle value (-s) ought to be between 0 and 3, inclusive, instead is %d\n", shuffle)
+		return fmt.Errorf("Shuffle value (-S) ought to be between 0 and 3, inclusive, instead is %d\n", shuffle)
 	}
 
 	// Initialize the directory, copying in default benchmarks and sample configurations, and creating a Dockerfile

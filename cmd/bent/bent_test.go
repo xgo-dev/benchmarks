@@ -159,7 +159,7 @@ func TestCompileOneBuildsMainPackage(t *testing.T) {
 	reportBuildTime = false
 
 	config := Configuration{Name: "Main", Compiler: goCommand, UseBuildCache: true}
-	benchmark := Benchmark{Name: "hello", Repo: ".", BuildMode: "build", BuildDir: buildDir, NotSandboxed: true}
+	benchmark := Benchmark{Name: "hello", Suite: "hello", Repo: ".", BuildMode: "build", buildDir: buildDir, NotSandboxed: true}
 	if failure := config.compileOne(&benchmark, workspace, 1, false); failure != "" {
 		t.Fatal(failure)
 	}

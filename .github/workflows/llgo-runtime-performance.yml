@@ -51,7 +51,7 @@ jobs:
           printf 'LLGO_TAG=%s\n' "$DISPATCH_LLGO_TAG" >> "$GITHUB_ENV"
           printf 'GO_VERSION=%s\n' "$GO_VERSION" >> "$GITHUB_ENV"
           printf 'LLVM_VERSION=%s\n' "$LLVM_VERSION" >> "$GITHUB_ENV"
-          printf 'LLGO_PERFORMANCE_REPETITIONS=10\n' >> "$GITHUB_ENV"
+          printf 'LLGO_PERFORMANCE_REPETITIONS=5\n' >> "$GITHUB_ENV"
           mkdir -p .ci
           printf '%s\n' "$GO_VERSION" > .ci/go-version
 
@@ -115,7 +115,7 @@ jobs:
             "$GITHUB_WORKSPACE/.ci/bent" \
               -B=benchmarks-llgo-performance.toml \
               -C=configurations-llgo-performance.toml \
-              -N=10 -G
+              -N=5 -G
           )
           ci/llgo-performance/report.sh \
             .ci/bent-performance \

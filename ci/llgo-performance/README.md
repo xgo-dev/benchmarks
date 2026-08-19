@@ -1,9 +1,11 @@
 # LLGo runtime performance
 
 This job compares the pinned Go and LLGo toolchains with Bent. It runs the
-checked-in cases ten times each, grouped by benchmark to reduce time-local
+checked-in cases five times each, grouped by benchmark to reduce time-local
 runner noise, and publishes the raw Bent output, native benchstat text/CSV, and
-a structured result used by the runtime-performance Pages table.
+a structured result used by the runtime-performance Pages table. Benchstat uses
+a 90% confidence interval because its default 95% interval requires at least
+six samples.
 
 It runs only after the `xgo-dev/llgo` release workflow publishes a new tag and
 dispatches the exact tag and commit. Ordinary pushes and pull requests do not

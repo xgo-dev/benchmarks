@@ -8,7 +8,8 @@ benchmark_file="$run_dir/benchmarks-llgo-performance.toml"
 report="$run_dir/benchstat.txt"
 csv_report="$run_dir/benchstat.csv"
 json_report="$run_dir/results.json"
-repetitions=10
+repetitions=5
+confidence=0.90
 
 benchmarks=()
 while IFS= read -r benchmark; do
@@ -50,8 +51,9 @@ for config in "${configs[@]}"; do
   fi
 done
 
-"$benchstat_bin" -table shortname -col toolchain -row .name "${stdout_files[@]}" > "$report"
-"$benchstat_bin" -format csv -filter '.unit:sec/op' \
+"$benchstat_bin" -confidence "$confidence" \
+  -table shortname -col toolchain -row .name "${stdout_files[@]}" > "$report"
+"$benchstat_bin" -confidence "$confidence" -format csv -filter '.unit:sec/op' \
   -table shortname -col toolchain -row .name "${stdout_files[@]}" > "$csv_report"
 LLGO_PERFORMANCE_REPETITIONS=$repetitions \
   python3 "$(dirname "$0")/report.py" "$csv_report" "$json_report" "${stdout_files[0]}"

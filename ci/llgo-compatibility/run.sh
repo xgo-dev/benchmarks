@@ -6,6 +6,11 @@ set -euo pipefail
 # dependency resolution inside those modules.
 export GOWORK=off
 
+# Some upstream suites emit hundreds of thousands of test2json events. Bent
+# still retains every event in bench/*.stdout for reporting and artifacts, but
+# echoing them all into the Actions log can starve a hosted runner.
+export BENT_QUIET_RUN_OUTPUT=1
+
 run_dir=$1
 bent_bin=$2
 if [[ -z "$run_dir" || -z "$bent_bin" ]]; then

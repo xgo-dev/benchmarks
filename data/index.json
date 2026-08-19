@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-19T17:03:37.426401Z",
+  "generatedAt": "2026-08-19T23:33:29.926483Z",
   "runs": [
+    {
+      "key": "0d89245e9b6c78134465cb5cf56890af2f5f7053",
+      "id": "32309592638",
+      "attempt": 1,
+      "number": 279,
+      "createdAt": "2026-08-19T23:33:26.992657Z",
+      "sourceCommit": "30c3c404d70ae93a7ed1a53775e36b2a24c74785",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "0d89245e9b6c78134465cb5cf56890af2f5f7053",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32309592638",
+      "path": "runs/0d89245e9b6c78134465cb5cf56890af2f5f7053/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/0d89245e9b6c78134465cb5cf56890af2f5f7053",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2339,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2339",
+      "pullRequestTitle": "runtime: support native CPU profiling"
+    },
     {
       "key": "cf91afb98fca979c5195751554b67ec75f8c71d6",
       "id": "32269638034",

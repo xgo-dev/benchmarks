@@ -4,6 +4,7 @@
   Name = "Go"
   Root = "$GOROOT"
   UseBuildCache = true
+  RunFlags = ["-test.benchtime=500ms"]
   RunEnv = ["GOMAXPROCS=1"]
 
 [[Configurations]]
@@ -12,6 +13,7 @@
   Root = "$GOROOT"
   OmitVetFlag = true
   UseBuildCache = true
+  RunFlags = ["-test.benchtime=500ms"]
   RunEnv = ["GOMAXPROCS=1"]
 
 [[Configurations]]
@@ -21,4 +23,5 @@
   OmitVetFlag = true
   UseBuildCache = true
   BuildFlags = ["-lto=full"]
+  RunFlags = ["-test.benchtime=500ms"]
   RunEnv = ["GOMAXPROCS=1"]

@@ -438,5 +438,5 @@
 [[Suites]]
   Name = "iXGo"
   Repo = "github.com/goplus/ixgo/cmd/ixgo"
-  Version = "@v1.1.2"
+  Version = "@v1.1.5"
   BuildMode = "build"

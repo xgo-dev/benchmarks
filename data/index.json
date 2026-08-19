@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-19T00:41:09.318034Z",
+  "generatedAt": "2026-08-19T01:23:08.395589Z",
   "runs": [
+    {
+      "key": "cf91afb98fca979c5195751554b67ec75f8c71d6",
+      "id": "32202220091",
+      "attempt": 1,
+      "number": 254,
+      "createdAt": "2026-08-19T01:23:03.977819Z",
+      "sourceCommit": "48caeec746c630aead4a582723f53396ef180dd0",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "cf91afb98fca979c5195751554b67ec75f8c71d6",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32202220091",
+      "path": "runs/cf91afb98fca979c5195751554b67ec75f8c71d6/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/cf91afb98fca979c5195751554b67ec75f8c71d6",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2359,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2359",
+      "pullRequestTitle": "build: align alternate runtime Go toolchain"
+    },
     {
       "key": "0ba72ce5b22caae6016b33c69096b89a6f29c7da",
       "id": "32198887836",

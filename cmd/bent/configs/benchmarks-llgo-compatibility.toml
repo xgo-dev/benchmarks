@@ -285,7 +285,7 @@
   Name = "protobuf_004"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/encoding/protojson"
+  Repo = "google.golang.org/protobuf/encoding/prototext"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -294,7 +294,7 @@
   Name = "protobuf_005"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/encoding/prototext"
+  Repo = "google.golang.org/protobuf/encoding/protowire"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -303,7 +303,7 @@
   Name = "protobuf_006"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/encoding/protowire"
+  Repo = "google.golang.org/protobuf/internal/conformance"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -312,7 +312,7 @@
   Name = "protobuf_007"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/conformance"
+  Repo = "google.golang.org/protobuf/internal/descfmt"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -321,7 +321,7 @@
   Name = "protobuf_008"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/descfmt"
+  Repo = "google.golang.org/protobuf/internal/detrand"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -330,7 +330,7 @@
   Name = "protobuf_009"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/detrand"
+  Repo = "google.golang.org/protobuf/internal/encoding/defval"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -339,7 +339,7 @@
   Name = "protobuf_010"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/encoding/defval"
+  Repo = "google.golang.org/protobuf/internal/encoding/json"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -348,7 +348,7 @@
   Name = "protobuf_011"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/encoding/json"
+  Repo = "google.golang.org/protobuf/internal/encoding/tag"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -357,7 +357,7 @@
   Name = "protobuf_012"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/encoding/tag"
+  Repo = "google.golang.org/protobuf/internal/encoding/text"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -366,7 +366,7 @@
   Name = "protobuf_013"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/encoding/text"
+  Repo = "google.golang.org/protobuf/internal/errors"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -375,7 +375,7 @@
   Name = "protobuf_014"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/errors"
+  Repo = "google.golang.org/protobuf/internal/filedesc"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -384,7 +384,7 @@
   Name = "protobuf_015"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/filedesc"
+  Repo = "google.golang.org/protobuf/internal/fuzz/jsonfuzz"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -393,7 +393,7 @@
   Name = "protobuf_016"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/fuzz/jsonfuzz"
+  Repo = "google.golang.org/protobuf/internal/fuzz/textfuzz"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -402,7 +402,7 @@
   Name = "protobuf_017"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/fuzz/textfuzz"
+  Repo = "google.golang.org/protobuf/internal/fuzz/wirefuzz"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -411,7 +411,7 @@
   Name = "protobuf_018"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/fuzz/wirefuzz"
+  Repo = "google.golang.org/protobuf/internal/impl"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -420,7 +420,7 @@
   Name = "protobuf_019"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/impl"
+  Repo = "google.golang.org/protobuf/internal/msgfmt"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -429,7 +429,7 @@
   Name = "protobuf_020"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/msgfmt"
+  Repo = "google.golang.org/protobuf/internal/order"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -438,7 +438,7 @@
   Name = "protobuf_021"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/order"
+  Repo = "google.golang.org/protobuf/internal/race_test/file_desc_init"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -447,7 +447,7 @@
   Name = "protobuf_022"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/race_test/file_desc_init"
+  Repo = "google.golang.org/protobuf/internal/race_test/lazy"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -456,7 +456,7 @@
   Name = "protobuf_023"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/race_test/lazy"
+  Repo = "google.golang.org/protobuf/internal/race_test/messageset_extension_init"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -465,7 +465,7 @@
   Name = "protobuf_024"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/race_test/messageset_extension_init"
+  Repo = "google.golang.org/protobuf/internal/reflection_test"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -474,7 +474,7 @@
   Name = "protobuf_025"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/reflection_test"
+  Repo = "google.golang.org/protobuf/internal/set"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -483,7 +483,7 @@
   Name = "protobuf_026"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/set"
+  Repo = "google.golang.org/protobuf/internal/strs"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -492,7 +492,7 @@
   Name = "protobuf_027"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/strs"
+  Repo = "google.golang.org/protobuf/proto"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -501,7 +501,7 @@
   Name = "protobuf_028"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/proto"
+  Repo = "google.golang.org/protobuf/reflect/protodesc"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -510,7 +510,7 @@
   Name = "protobuf_029"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/reflect/protodesc"
+  Repo = "google.golang.org/protobuf/reflect/protorange"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -519,7 +519,7 @@
   Name = "protobuf_030"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/reflect/protorange"
+  Repo = "google.golang.org/protobuf/reflect/protoreflect"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -528,7 +528,7 @@
   Name = "protobuf_031"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/reflect/protoreflect"
+  Repo = "google.golang.org/protobuf/reflect/protoregistry"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -537,7 +537,7 @@
   Name = "protobuf_032"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/reflect/protoregistry"
+  Repo = "google.golang.org/protobuf/testing/protocmp"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -546,7 +546,7 @@
   Name = "protobuf_033"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/testing/protocmp"
+  Repo = "google.golang.org/protobuf/testing/protopack"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -555,7 +555,7 @@
   Name = "protobuf_034"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/testing/protopack"
+  Repo = "google.golang.org/protobuf/testing/prototest"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -564,7 +564,7 @@
   Name = "protobuf_035"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/testing/prototest"
+  Repo = "google.golang.org/protobuf/types/dynamicpb"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -873,7 +873,7 @@
   Name = "gonum_031"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/formats/rdf"
+  Repo = "gonum.org/v1/gonum/graph/formats/sigmajs"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -883,7 +883,7 @@
   Name = "gonum_032"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/formats/sigmajs"
+  Repo = "gonum.org/v1/gonum/graph/graphs/gen"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -893,7 +893,7 @@
   Name = "gonum_033"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/graphs/gen"
+  Repo = "gonum.org/v1/gonum/graph/internal/set"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -903,7 +903,7 @@
   Name = "gonum_034"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/internal/set"
+  Repo = "gonum.org/v1/gonum/graph/layout"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -913,7 +913,7 @@
   Name = "gonum_035"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/layout"
+  Repo = "gonum.org/v1/gonum/graph/multi"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -923,7 +923,7 @@
   Name = "gonum_036"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/multi"
+  Repo = "gonum.org/v1/gonum/graph/network"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -933,7 +933,7 @@
   Name = "gonum_037"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/network"
+  Repo = "gonum.org/v1/gonum/graph/path"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -943,7 +943,7 @@
   Name = "gonum_038"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/path"
+  Repo = "gonum.org/v1/gonum/graph/path/dynamic"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -953,7 +953,7 @@
   Name = "gonum_039"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/path/dynamic"
+  Repo = "gonum.org/v1/gonum/graph/product"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -963,7 +963,7 @@
   Name = "gonum_040"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/product"
+  Repo = "gonum.org/v1/gonum/graph/set/uid"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -973,7 +973,7 @@
   Name = "gonum_041"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/set/uid"
+  Repo = "gonum.org/v1/gonum/graph/simple"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -983,7 +983,7 @@
   Name = "gonum_042"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/simple"
+  Repo = "gonum.org/v1/gonum/graph/spectral"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -993,7 +993,7 @@
   Name = "gonum_043"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/spectral"
+  Repo = "gonum.org/v1/gonum/graph/testgraph"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -1003,7 +1003,7 @@
   Name = "gonum_044"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/testgraph"
+  Repo = "gonum.org/v1/gonum/graph/topo"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -1013,7 +1013,7 @@
   Name = "gonum_045"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/topo"
+  Repo = "gonum.org/v1/gonum/graph/traverse"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"

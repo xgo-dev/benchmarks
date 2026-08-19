@@ -21,6 +21,12 @@ class CompatibilityManifestTest(unittest.TestCase):
         self.assertTrue(all(entry["Standalone"] for entry in entries))
         self.assertTrue(all(entry["Version"].startswith("@v") for entry in entries))
         self.assertEqual(Counter(entry["Project"] for entry in entries)["etcd"], 28)
+        excluded = {
+            import_path
+            for project in quotas
+            for import_path in project.get("Exclude", [])
+        }
+        self.assertTrue(excluded.isdisjoint(entry["Repo"] for entry in entries))
 
 
 if __name__ == "__main__":

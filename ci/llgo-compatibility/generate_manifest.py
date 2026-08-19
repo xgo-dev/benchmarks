@@ -71,8 +71,11 @@ def discover(project):
             text=True,
             stdout=subprocess.PIPE,
         )
+    excluded = set(project.get("Exclude", []))
     packages = sorted(
-        package["ImportPath"] for package in json_stream(completed.stdout) if eligible(package)
+        package["ImportPath"]
+        for package in json_stream(completed.stdout)
+        if eligible(package) and package["ImportPath"] not in excluded
     )
     limit = project["Limit"]
     if len(packages) < limit:

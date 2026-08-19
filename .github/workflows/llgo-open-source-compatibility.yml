@@ -2,7 +2,9 @@ name: LLGo open-source compatibility
 
 on:
   repository_dispatch:
-    types: [llgo-tag-released]
+    # The second event is for targeted retries after compatibility-only fixes;
+    # it avoids rerunning the independent runtime-performance workflow.
+    types: [llgo-tag-released, llgo-compatibility-rerun]
   pull_request:
     paths:
       - .github/workflows/llgo-open-source-compatibility.yml

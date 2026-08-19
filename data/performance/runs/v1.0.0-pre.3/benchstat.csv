@@ -1,65 +1,407 @@
+shortname: benhoyt_goawk-BuiltinGsubAmpersand
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+BuiltinGsubAmpersand,1.2450000000000001e-05,1%,3.9309e-05,1%,+215.73%,p=0.008 n=5,3.4154000000000005e-05,1%,+174.33%,p=0.008 n=5
+geomean,1.245000000000001e-05,,3.9308999999999986e-05,,+215.73%,,3.415400000000002e-05,,+174.33%,
+
+shortname: benhoyt_goawk-NativeFunc
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+NativeFunc,6.898000000000001e-06,2%,2.5427000000000002e-05,6%,+268.61%,p=0.008 n=5,2.2677e-05,2%,+228.75%,p=0.008 n=5
+geomean,6.897999999999996e-06,,2.5427000000000006e-05,,+268.61%,,2.267699999999998e-05,,+228.75%,
+
+shortname: benhoyt_goawk-RecursiveFunc
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+RecursiveFunc,1.1863000000000001e-05,0%,2.7901000000000003e-05,1%,+135.19%,p=0.008 n=5,2.7472e-05,0%,+131.58%,p=0.008 n=5
+geomean,1.1862999999999991e-05,,2.7901e-05,,+135.19%,,2.747199999999999e-05,,+131.58%,
+
+shortname: benhoyt_goawk-SimpleBuiltins
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+SimpleBuiltins,5.149e-07,1%,1.619e-06,1%,+214.43%,p=0.008 n=5,1.4310000000000001e-06,6%,+177.92%,p=0.008 n=5
+geomean,5.148999999999997e-07,,1.6189999999999988e-06,,+214.43%,,1.4309999999999995e-06,,+177.92%,
+
 shortname: bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-BitSetExtractDeposit,2.1870000000000003e-08,2%,4.2100000000000006e-08,2%,+92.50%,p=0.008 n=5,1.6480000000000003e-08,2%,-24.65%,p=0.008 n=5
-geomean,2.1869999999999993e-08,,4.2100000000000046e-08,,+92.50%,,1.6479999999999983e-08,,-24.65%,
+BitSetExtractDeposit,2.2710000000000003e-08,0%,4.611e-08,3%,+103.04%,p=0.008 n=5,1.8370000000000002e-08,0%,-19.11%,p=0.008 n=5
+geomean,2.2710000000000026e-08,,4.6109999999999954e-08,,+103.04%,,1.837000000000003e-08,,-19.11%,
+
+shortname: capnproto2-Growth_MultiSegment
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Growth_MultiSegment,0.013397466,0%,0.028627621000000002,1%,+113.68%,p=0.008 n=5,0.019139384000000002,3%,+42.86%,p=0.008 n=5
+geomean,0.013397465999999995,,0.028627621000000006,,+113.68%,,0.019139384000000002,,+42.86%,
+
+shortname: capnproto2-Unmarshal_Reuse
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Unmarshal_Reuse,5.012000000000001e-07,0%,1.049e-06,0%,+109.30%,p=0.008 n=5,7.787000000000001e-07,4%,+55.37%,p=0.008 n=5
+geomean,5.012e-07,,1.0489999999999998e-06,,+109.30%,,7.787000000000001e-07,,+55.37%,
+
+shortname: commonmark_markdown-RenderSpecNoHTML
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+RenderSpecNoHTML,0.004701455,3%,0.011204596,1%,+138.32%,p=0.008 n=5,0.008316584,3%,+76.89%,p=0.008 n=5
+geomean,0.004701455000000002,,0.011204595999999997,,+138.32%,,0.008316584000000004,,+76.89%,
+
+shortname: dustin_broadcast-ParallelBrodcast
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+ParallelBrodcast,5.3e-07,1%,2.5217000000000003e-05,3%,+4657.92%,p=0.008 n=5,2.5846000000000003e-05,3%,+4776.60%,p=0.008 n=5
+geomean,5.300000000000003e-07,,2.5216999999999982e-05,,+4657.92%,,2.5846000000000013e-05,,+4776.60%,
+
+shortname: dustin_humanize-BigCommas
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+BigCommas,3.749e-07,1%,1.6200000000000002e-06,2%,+332.12%,p=0.008 n=5,1.3860000000000002e-06,7%,+269.70%,p=0.008 n=5
+geomean,3.7490000000000016e-07,,1.6199999999999993e-06,,+332.12%,,1.3859999999999997e-06,,+269.70%,
+
+shortname: dustin_humanize-Commaf
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Commaf,2.5290000000000005e-07,5%,1.0620000000000002e-06,1%,+319.93%,p=0.008 n=5,7.529e-07,1%,+197.71%,p=0.008 n=5
+geomean,2.5289999999999994e-07,,1.0620000000000008e-06,,+319.93%,,7.529000000000007e-07,,+197.71%,
+
+shortname: dustin_humanize-ParseBytes
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+ParseBytes,8e-08,0%,2.976e-07,1%,+272.00%,p=0.008 n=5,2.6960000000000003e-07,1%,+237.00%,p=0.008 n=5
+geomean,8.000000000000003e-08,,2.976000000000001e-07,,+272.00%,,2.695999999999999e-07,,+237.00%,
+
+shortname: dustin_humanize-ParseSI
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+ParseSI,3.749e-07,2%,1.3970000000000001e-06,1%,+272.63%,p=0.008 n=5,1.3830000000000001e-06,3%,+268.90%,p=0.008 n=5
+geomean,3.7490000000000016e-07,,1.397000000000001e-06,,+272.63%,,1.382999999999999e-06,,+268.90%,
+
+shortname: ericlagergren_decimal-Mandelbrot_decimal_GDA_9
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Mandelbrot_decimal_GDA_9,3.7660798260000004,1%,4.035754478,1%,+7.16%,p=0.008 n=5,3.5487082290000003,0%,-5.77%,p=0.008 n=5
+geomean,3.7660798260000004,,4.035754478,,+7.16%,,3.5487082290000003,,-5.77%,
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dapmckinlay%2Fprec%3D19
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Pi,1.824e-06,0%,8.169000000000001e-06,2%,+347.86%,p=0.008 n=5,8.743e-06,1%,+379.33%,p=0.008 n=5
+geomean,1.8240000000000007e-06,,8.169000000000006e-06,,+347.86%,,8.743000000000006e-06,,+379.33%,
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dcockroachdb%2Fapd%2Fprec%3D100
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Pi,0.0050365720000000004,0%,0.022660094000000002,0%,+349.91%,p=0.008 n=5,0.016651066000000003,5%,+230.60%,p=0.008 n=5
+geomean,0.005036572000000001,,0.022660094000000002,,+349.91%,,0.01665106600000001,,+230.60%,
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dgo-inf%2Fprec%3D100
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Pi,8.9394e-05,1%,0.00022173,1%,+148.04%,p=0.008 n=5,0.00017799300000000002,1%,+99.11%,p=0.008 n=5
+geomean,8.939400000000006e-05,,0.00022172999999999995,,+148.04%,,0.00017799300000000007,,+99.11%,
 
 shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-NewDirectedLayers,1.2080000000000001e-06,1%,1.5130000000000002e-06,2%,+25.25%,p=0.008 n=5,1.342e-06,1%,+11.09%,p=0.008 n=5
-geomean,1.2080000000000001e-06,,1.5129999999999995e-06,,+25.25%,,1.3420000000000002e-06,,+11.09%,
+NewDirectedLayers,1.139e-06,3%,1.5520000000000001e-06,5%,+36.26%,p=0.008 n=5,1.371e-06,1%,+20.37%,p=0.008 n=5
+geomean,1.1390000000000004e-06,,1.5519999999999989e-06,,+36.26%,,1.371000000000001e-06,,+20.37%,
 
 shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-NewDirectedLayers,0.000140016,1%,0.00016102800000000002,6%,+15.01%,p=0.008 n=5,0.000157197,1%,+12.27%,p=0.008 n=5
-geomean,0.000140016,,0.00016102799999999994,,+15.01%,,0.00015719699999999998,,+12.27%,
+NewDirectedLayers,0.000132978,3%,0.000169039,1%,+27.12%,p=0.008 n=5,0.00016127,1%,+21.28%,p=0.008 n=5
+geomean,0.00013297800000000007,,0.000169039,,+27.12%,,0.00016127000000000011,,+21.28%,
+
+shortname: gonum_community-NewUndirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D10
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+NewUndirectedLayers,0.001640858,1%,0.0022418390000000002,1%,+36.63%,p=0.008 n=5,0.002207731,1%,+34.55%,p=0.008 n=5
+geomean,0.0016408579999999994,,0.0022418390000000007,,+36.63%,,0.002207731000000001,,+34.55%,
+
+shortname: gonum_lapack_native-Dgeev%2FCirculant5
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Dgeev,9.100000000000001e-06,11%,5.0829000000000004e-05,1%,+458.56%,p=0.008 n=5,3.961e-05,1%,+335.27%,p=0.008 n=5
+geomean,9.100000000000008e-06,,5.082900000000004e-05,,+458.56%,,3.960999999999999e-05,,+335.27%,
+
+shortname: gonum_mat-AddScaledVec10Inc1
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+AddScaledVec10Inc1,2.027e-07,1%,2.1410000000000003e-06,16%,+956.24%,p=0.008 n=5,2.0730000000000003e-06,2%,+922.69%,p=0.008 n=5
+geomean,2.0270000000000006e-07,,2.1410000000000016e-06,,+956.24%,,2.073000000000001e-06,,+922.69%,
+
+shortname: gonum_mat-CholeskyFactorize%2Fn%3D10
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+CholeskyFactorize,3.236e-06,0%,2.5891e-05,1%,+700.09%,p=0.008 n=5,1.9994000000000002e-05,1%,+517.86%,p=0.008 n=5
+geomean,3.2360000000000017e-06,,2.5890999999999983e-05,,+700.09%,,1.9994e-05,,+517.86%,
 
 shortname: gonum_mat-CholeskyInverseTo%2Fn%3D100
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-CholeskyInverseTo,0.000278347,0%,0.000554102,2%,+99.07%,p=0.008 n=5,0.000201678,0%,-27.54%,p=0.008 n=5
-geomean,0.0002783469999999998,,0.000554102,,+99.07%,,0.00020167800000000003,,-27.54%,
+CholeskyInverseTo,0.000273089,0%,0.000634222,0%,+132.24%,p=0.008 n=5,0.000209301,0%,-23.36%,p=0.008 n=5
+geomean,0.00027308899999999996,,0.0006342220000000003,,+132.24%,,0.00020930100000000003,,-23.36%,
+
+shortname: gonum_mat-MarshalToVecDense10
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+MarshalToVecDense10,4.699e-07,4%,2.081e-06,1%,+342.86%,p=0.008 n=5,1.461e-06,4%,+210.92%,p=0.008 n=5
+geomean,4.6990000000000036e-07,,2.080999999999999e-06,,+342.86%,,1.461e-06,,+210.92%,
+
+shortname: gonum_mat-Pool100by100Uncleared
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Pool100by100Uncleared,1.825e-08,4%,6.352e-08,0%,+248.05%,p=0.008 n=5,2.658e-08,2%,+45.64%,p=0.008 n=5
+geomean,1.8249999999999975e-08,,6.352000000000006e-08,,+248.05%,,2.6580000000000043e-08,,+45.64%,
+
+shortname: gonum_mat-TriMulDiag%2FBenchmarkTriMulDiag100
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+TriMulDiag,4.2312000000000004e-05,1%,0.00013486000000000002,1%,+218.73%,p=0.008 n=5,0.000117886,1%,+178.61%,p=0.008 n=5
+geomean,4.231200000000004e-05,,0.00013485999999999994,,+218.73%,,0.00011788599999999999,,+178.61%,
+
+shortname: gonum_mat-UnmarshalVecDense10
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+UnmarshalVecDense10,2.4500000000000004e-07,0%,1.6110000000000001e-06,1%,+557.55%,p=0.008 n=5,9.450000000000001e-07,5%,+285.71%,p=0.008 n=5
+geomean,2.4500000000000004e-07,,1.610999999999999e-06,,+557.55%,,9.450000000000002e-07,,+285.71%,
+
+shortname: gonum_topo-SortStabilizedPath_100000
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+SortStabilizedPath_100000,0.160047758,2%,0.310231884,2%,+93.84%,p=0.008 n=5,0.27131025000000003,4%,+69.52%,p=0.008 n=5
+geomean,0.16004775800000004,,0.31023188400000007,,+93.84%,,0.27131025,,+69.52%,
+
+shortname: gonum_traverse-WalkAllDepthFirstGnp_100_half
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+WalkAllDepthFirstGnp_100_half,0.00046408200000000005,1%,0.001268257,3%,+173.28%,p=0.008 n=5,0.0011383930000000001,3%,+145.30%,p=0.008 n=5
+geomean,0.000464082,,0.0012682570000000007,,+173.28%,,0.001138393,,+145.30%,
+
+shortname: gproto_encoding-TextDecode
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+TextDecode,0.035300820000000004,1%,0.133484861,2%,+278.14%,p=0.008 n=5,0.101710331,5%,+188.12%,p=0.008 n=5
+geomean,0.03530082000000001,,0.133484861,,+278.14%,,0.101710331,,+188.12%,
+
+shortname: gproto_json-Bool
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Bool,5.6770000000000005e-08,0%,3.5930000000000005e-07,1%,+532.90%,p=0.008 n=5,2.825e-07,0%,+397.62%,p=0.008 n=5
+geomean,5.677000000000004e-08,,3.5930000000000026e-07,,+532.90%,,2.8250000000000005e-07,,+397.62%,
+
+shortname: gproto_json-Int
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Int,2.3800000000000001e-07,2%,7.726e-07,1%,+224.62%,p=0.008 n=5,5.412000000000001e-07,5%,+127.39%,p=0.008 n=5
+geomean,2.3800000000000004e-07,,7.726e-07,,+224.62%,,5.412000000000002e-07,,+127.39%,
+
+shortname: gproto_proto-Decode%2Fbasic_scalar_types_%28%2Atest.TestAllTypes%29
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Decode,1.266e-06,1%,8.23e-06,2%,+550.08%,p=0.008 n=5,8.675e-06,20%,+585.23%,p=0.008 n=5
+geomean,1.2659999999999994e-06,,8.23e-06,,+550.08%,,8.675e-06,,+585.23%,
+
+shortname: gproto_proto-Decode%2Fjust_at_recursion_limit_%28%2Atest3.TestAllTypes%29
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Decode,1.398e-06,4%,9.100000000000001e-06,3%,+550.93%,p=0.008 n=5,9.497e-06,5%,+579.33%,p=0.008 n=5
+geomean,1.398000000000001e-06,,9.100000000000008e-06,,+550.93%,,9.497000000000002e-06,,+579.33%,
+
+shortname: gproto_proto-EqualWithDeeplyNestedEqual
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+EqualWithDeeplyNestedEqual,5.177e-05,2%,0.000303689,5%,+486.61%,p=0.008 n=5,0.000256763,1%,+395.97%,p=0.008 n=5
+geomean,5.177000000000002e-05,,0.0003036889999999999,,+486.61%,,0.0002567630000000001,,+395.97%,
 
 shortname: gproto_reflect-Value%2FInterface
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-Value,2.799e-08,4%,2.204e-08,2%,-21.26%,p=0.008 n=5,2.913e-08,1%,+4.07%,p=0.032 n=5
-geomean,2.7989999999999995e-08,,2.2040000000000017e-08,,-21.26%,,2.9129999999999947e-08,,+4.07%,
+Value,2.9400000000000002e-08,2%,2.38e-08,9%,-19.05%,p=0.008 n=5,2.799e-08,1%,-4.80%,p=0.008 n=5
+geomean,2.9399999999999982e-08,,2.3799999999999978e-08,,-19.05%,,2.7989999999999995e-08,,-4.80%,
+
+shortname: k8s_cache-EachListItemWithAlloc%2FPodList
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+EachListItemWithAlloc,6.1083e-05,2%,0.00015526300000000002,1%,+154.18%,p=0.008 n=5,0.000151502,18%,+148.03%,p=0.008 n=5
+geomean,6.108300000000005e-05,,0.0001552630000000001,,+154.18%,,0.00015150199999999992,,+148.03%,
+
+shortname: k8s_workqueue-DelayingQueue_AddAfter
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+DelayingQueue_AddAfter,3.174e-06,4%,8.231000000000001e-06,8%,+159.33%,p=0.008 n=5,7.5890000000000005e-06,3%,+139.10%,p=0.008 n=5
+geomean,3.1740000000000004e-06,,8.230999999999998e-06,,+159.33%,,7.5889999999999954e-06,,+139.10%,
 
 shortname: kanzi-ANS0
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-ANS0,0.0019244320000000002,2%,0.002716062,0%,+41.14%,p=0.008 n=5,0.001966951,1%,+2.21%,p=0.008 n=5
-geomean,0.0019244320000000004,,0.0027160619999999996,,+41.14%,,0.0019669510000000006,,+2.21%,
+ANS0,0.0018810790000000001,4%,0.002830411,0%,+50.47%,p=0.008 n=5,0.002028827,4%,+7.85%,p=0.008 n=5
+geomean,0.0018810790000000008,,0.002830411,,+50.47%,,0.002028827,,+7.85%,
 
 shortname: kanzi-BWTSmallBlock
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-BWTSmallBlock,0.034070758,1%,0.045846107000000004,1%,+34.56%,p=0.008 n=5,0.032677346,1%,-4.09%,p=0.008 n=5
-geomean,0.03407075799999999,,0.045846107000000004,,+34.56%,,0.032677345999999996,,-4.09%,
+BWTSmallBlock,0.034988759,2%,0.047422263000000006,1%,+35.54%,p=0.008 n=5,0.034421706,1%,-1.62%,p=0.016 n=5
+geomean,0.034988758999999994,,0.047422263000000006,,+35.54%,,0.034421706,,-1.62%,
+
+shortname: kanzi-CM
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+CM,0.042696464,2%,0.068916709,2%,+61.41%,p=0.008 n=5,0.048085263,1%,+12.62%,p=0.008 n=5
+geomean,0.042696463999999996,,0.06891670899999999,,+61.41%,,0.048085263,,+12.62%,
 
 shortname: kanzi-Huffman
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-Huffman,0.001593704,0%,0.004246505,0%,+166.46%,p=0.008 n=5,0.0017215730000000001,0%,+8.02%,p=0.008 n=5
-geomean,0.0015937040000000005,,0.004246505,,+166.46%,,0.0017215730000000008,,+8.02%,
+Huffman,0.0017528880000000002,0%,0.004887142000000001,0%,+178.81%,p=0.008 n=5,0.0018228460000000001,1%,+3.99%,p=0.008 n=5
+geomean,0.0017528880000000006,,0.004887142,,+178.81%,,0.001822846,,+3.99%,
+
+shortname: nelsam_gxui_interval-General
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+General,2.897e-07,10%,1.024e-06,1%,+253.47%,p=0.008 n=5,7.838e-07,1%,+170.56%,p=0.008 n=5
+geomean,2.8970000000000017e-07,,1.0239999999999999e-06,,+253.47%,,7.838000000000004e-07,,+170.56%,
+
+shortname: rcrowley_metrics-Histogram
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Histogram,1.886e-08,3%,1.105e-07,1%,+485.90%,p=0.008 n=5,9.923000000000001e-08,1%,+426.14%,p=0.008 n=5
+geomean,1.8860000000000025e-08,,1.1050000000000012e-07,,+485.90%,,9.922999999999993e-08,,+426.14%,
+
+shortname: rcrowley_metrics-Timer
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Timer,2.475e-07,0%,6.916000000000001e-07,5%,+179.43%,p=0.008 n=5,6.384e-07,0%,+157.94%,p=0.008 n=5
+geomean,2.4750000000000017e-07,,6.915999999999994e-07,,+179.43%,,6.383999999999996e-07,,+157.94%,
+
+shortname: semver-CheckVersionRange
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+CheckVersionRange,4.663000000000001e-08,0%,1.0240000000000002e-07,7%,+119.60%,p=0.008 n=5,9.622000000000001e-08,3%,+106.35%,p=0.008 n=5
+geomean,4.662999999999999e-08,,1.0240000000000004e-07,,+119.60%,,9.622000000000014e-08,,+106.35%,
+
+shortname: semver-CoerceNewVersionSimple
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+CoerceNewVersionSimple,1.356e-07,3%,4.827000000000001e-07,1%,+255.97%,p=0.008 n=5,4.3760000000000005e-07,0%,+222.71%,p=0.008 n=5
+geomean,1.3559999999999992e-07,,4.826999999999997e-07,,+255.97%,,4.376000000000003e-07,,+222.71%,
+
+shortname: semver-ValidateVersionRangeFail
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+ValidateVersionRangeFail,5.32e-07,1%,2.5e-06,7%,+369.92%,p=0.008 n=5,2.741e-06,0%,+415.23%,p=0.008 n=5
+geomean,5.320000000000005e-07,,2.4999999999999994e-06,,+369.92%,,2.741e-06,,+415.23%,
+
+shortname: shopify_sarama-ZstdMemoryConsumption%2Fno_drain
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+ZstdMemoryConsumption,0.000480482,0%,0.006263819,1%,+1203.65%,p=0.008 n=5,0.002436415,2%,+407.08%,p=0.008 n=5
+geomean,0.00048048199999999985,,0.006263818999999998,,+1203.65%,,0.002436415,,+407.08%,
+
+shortname: shopify_sarama-_getMetricNameForTopic
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+_getMetricNameForTopic,7.851e-08,2%,2.3230000000000004e-07,4%,+195.89%,p=0.008 n=5,1.7740000000000001e-07,1%,+125.96%,p=0.008 n=5
+geomean,7.85099999999999e-08,,2.3230000000000017e-07,,+195.89%,,1.7739999999999988e-07,,+125.96%,
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FDecode
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+RoundTrip,4.5066000000000005e-05,2%,0.000203875,1%,+352.39%,p=0.008 n=5,0.000142466,2%,+216.13%,p=0.008 n=5
+geomean,4.506600000000002e-05,,0.00020387500000000017,,+352.39%,,0.00014246599999999995,,+216.13%,
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FEncode
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+RoundTrip,1.8005e-05,2%,0.000112916,4%,+527.14%,p=0.008 n=5,6.8137e-05,2%,+278.43%,p=0.008 n=5
+geomean,1.8005000000000008e-05,,0.00011291599999999993,,+527.14%,,6.813700000000002e-05,,+278.43%,
+
+shortname: thriftrw_gen-RoundTrip%2FPrimitiveOptionalStruct%2FStreaming_Decode
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+RoundTrip,7.67e-07,1%,6.2300000000000005e-06,10%,+712.26%,p=0.008 n=5,4.687e-06,2%,+511.08%,p=0.008 n=5
+geomean,7.669999999999997e-07,,6.23e-06,,+712.26%,,4.687e-06,,+511.08%,
+
+shortname: uber_zap-JSONLogMarshalerFunc
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+JSONLogMarshalerFunc,4.2080000000000006e-07,3%,1.4340000000000002e-06,3%,+240.78%,p=0.008 n=5,1.2650000000000002e-06,4%,+200.62%,p=0.008 n=5
+geomean,4.2080000000000043e-07,,1.4340000000000008e-06,,+240.78%,,1.265e-06,,+200.62%,
+
+shortname: uuid-New
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+New,9.034000000000001e-08,0%,1.14e-06,9%,+1161.90%,p=0.008 n=5,9.762e-07,1%,+980.58%,p=0.008 n=5
+geomean,9.034000000000015e-08,,1.1399999999999992e-06,,+1161.90%,,9.76200000000001e-07,,+980.58%,
+
+shortname: uuid-UUID_MarshalJSON
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+UUID_MarshalJSON,2.3580000000000003e-07,0%,1.5640000000000002e-06,1%,+563.27%,p=0.008 n=5,1.142e-06,1%,+384.31%,p=0.008 n=5
+geomean,2.3579999999999998e-07,,1.5640000000000002e-06,,+563.27%,,1.1420000000000002e-06,,+384.31%,
+
+shortname: uuid-UUID_UnmarshalJSON
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+UUID_UnmarshalJSON,7.351000000000001e-07,3%,3.5450000000000004e-06,5%,+382.25%,p=0.008 n=5,2.1850000000000003e-06,8%,+197.24%,p=0.008 n=5
+geomean,7.351000000000006e-07,,3.545000000000003e-06,,+382.25%,,2.1849999999999994e-06,,+197.24%,
+
+shortname: workiva_augmentedtree-AddItems
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+AddItems,0.000178731,1%,0.00036252800000000004,2%,+102.83%,p=0.008 n=5,0.000205657,5%,+15.07%,p=0.008 n=5
+geomean,0.0001787310000000001,,0.00036252799999999993,,+102.83%,,0.0002056570000000001,,+15.07%,
 
 shortname: workiva_avl-ImmutableInsert
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-ImmutableInsert,2.002e-06,1%,1.5950000000000002e-06,2%,-20.33%,p=0.008 n=5,1.277e-06,6%,-36.21%,p=0.008 n=5
-geomean,2.0020000000000013e-06,,1.595000000000001e-06,,-20.33%,,1.2769999999999998e-06,,-36.21%,
+ImmutableInsert,2.206e-06,4%,1.528e-06,4%,-30.73%,p=0.008 n=5,1.26e-06,11%,-42.88%,p=0.008 n=5
+geomean,2.2060000000000006e-06,,1.5279999999999988e-06,,-30.73%,,1.260000000000001e-06,,-42.88%,
+
+shortname: workiva_bitarray-CompressedIntersects
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+CompressedIntersects,5.172e-08,1%,4.047e-07,3%,+682.48%,p=0.008 n=5,3.1820000000000003e-07,1%,+515.24%,p=0.008 n=5
+geomean,5.171999999999993e-08,,4.046999999999999e-07,,+682.48%,,3.1820000000000014e-07,,+515.24%,
+
+shortname: workiva_hilbert-BulkUpdatePoints
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+BulkUpdatePoints,0.00026478300000000004,4%,0.000996771,1%,+276.45%,p=0.008 n=5,0.0008725600000000001,1%,+229.54%,p=0.008 n=5
+geomean,0.0002647829999999999,,0.0009967709999999998,,+276.45%,,0.0008725600000000004,,+229.54%,
+
+shortname: workiva_queue-PriorityQueue
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+PriorityQueue,6.799e-07,3%,2.133e-06,24%,+213.72%,p=0.008 n=5,1.639e-06,23%,+141.06%,p=0.008 n=5
+geomean,6.799000000000003e-07,,2.1329999999999997e-06,,+213.72%,,1.6389999999999999e-06,,+141.06%,
+
+shortname: workiva_rangetree-Apply
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Apply,1.4508e-05,5%,0.000170583,5%,+1075.79%,p=0.008 n=5,0.000140865,2%,+870.95%,p=0.008 n=5
+geomean,1.4508000000000002e-05,,0.00017058300000000003,,+1075.79%,,0.00014086499999999997,,+870.95%,
 
 shortname: workiva_rangetree-ImmutableInsertSecondDimension
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-ImmutableInsertSecondDimension,0.033983364,0%,0.034179479,1%,~,p=0.548 n=5,0.031130249000000002,2%,-8.40%,p=0.008 n=5
-geomean,0.033983364,,0.034179479000000006,,+0.58%,,0.031130249000000002,,-8.40%,
+ImmutableInsertSecondDimension,0.03341586,4%,0.037885047000000005,2%,+13.37%,p=0.008 n=5,0.033906478000000004,4%,~,p=0.310 n=5
+geomean,0.03341585999999999,,0.037885047000000005,,+13.37%,,0.033906478000000004,,+1.47%,
+
+shortname: workiva_set-Clear
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Clear,4.632e-08,12%,5.449000000000001e-08,1%,+17.64%,p=0.008 n=5,5.6310000000000006e-08,1%,+21.57%,p=0.008 n=5
+geomean,4.632e-08,,5.449000000000009e-08,,+17.64%,,5.6310000000000065e-08,,+21.57%,
+
+shortname: workiva_set-Exists
+,Go,,LLGo,,,,LLGoFullLTO,,,
+,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
+Exists,1.759e-08,0%,6.282e-08,1%,+257.13%,p=0.008 n=5,6.137e-08,0%,+248.89%,p=0.008 n=5
+geomean,1.7589999999999987e-08,,6.281999999999994e-08,,+257.13%,,6.137000000000005e-08,,+248.89%,
 
 shortname: workiva_triey-Iterator
 ,Go,,LLGo,,,,LLGoFullLTO,,,
 ,sec/op,CI,sec/op,CI,vs base,P,sec/op,CI,vs base,P
-Iterator,2.4280000000000003e-06,0%,1.066e-06,2%,-56.10%,p=0.008 n=5,9.633e-07,7%,-60.33%,p=0.008 n=5
-geomean,2.4280000000000003e-06,,1.0659999999999996e-06,,-56.10%,,9.632999999999997e-07,,-60.33%,
+Iterator,2.5960000000000002e-06,0%,8.960000000000001e-07,0%,-65.49%,p=0.008 n=5,9.030000000000001e-07,0%,-65.22%,p=0.008 n=5
+geomean,2.5960000000000006e-06,,8.959999999999998e-07,,-65.49%,,9.029999999999998e-07,,-65.22%,

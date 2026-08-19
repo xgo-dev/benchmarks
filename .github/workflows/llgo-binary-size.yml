@@ -8,7 +8,11 @@ on:
       - ci/llgo-size/site/**
       - ci/llgo-size/publish-site.sh
       - ci/llgo-size/prepare-pages-branch.sh
+      - ci/llgo-performance/**
+      - cmd/bent/configs/benchmarks-llgo-performance.toml
+      - cmd/bent/configs/configurations-llgo-performance.toml
       - .github/workflows/llgo-binary-size-pages.yml
+      - .github/workflows/llgo-runtime-performance.yml
       # ci/llgo-size/llgo-version.env is intentionally not ignored: changing
       # the committed LLGo pin must trigger a binary-size build.
   pull_request:
@@ -16,7 +20,11 @@ on:
       - ci/llgo-size/site/**
       - ci/llgo-size/publish-site.sh
       - ci/llgo-size/prepare-pages-branch.sh
+      - ci/llgo-performance/**
+      - cmd/bent/configs/benchmarks-llgo-performance.toml
+      - cmd/bent/configs/configurations-llgo-performance.toml
       - .github/workflows/llgo-binary-size-pages.yml
+      - .github/workflows/llgo-runtime-performance.yml
   # GitHub evaluates repository-dispatch workflows from the receiving
   # repository's default branch. Merge this workflow there before enabling
   # the sender in xgo-dev/llgo.
@@ -116,6 +124,8 @@ jobs:
               ci/llgo-size/llgo-version.env \
               ci/llgo-size/bin/go \
               cmd/bent \
+              ':(exclude)cmd/bent/configs/benchmarks-llgo-performance.toml' \
+              ':(exclude)cmd/bent/configs/configurations-llgo-performance.toml' \
               cmd/bent/configs/benchmarks-llgo-size.toml \
               cmd/bent/configs/configurations-llgo-size.toml \
               cmd/bent/configs/suites.toml; then

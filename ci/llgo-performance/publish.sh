@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+run_dir=$1
+pages_dir=$2
+site_dir=$3
+if [[ -z "$run_dir" || -z "$pages_dir" || -z "$site_dir" ]]; then
+  echo "usage: publish.sh RUN_DIR PAGES_DIR SITE_DIR" >&2
+  exit 2
+fi
+
+result_json="$run_dir/results.json"
+for file in "$result_json" "$run_dir/benchstat.txt" "$run_dir/benchstat.csv"; do
+  if [[ ! -s "$file" ]]; then
+    echo "missing performance result: $file" >&2
+    exit 1
+  fi
+done
+
+run_key=$(python3 - "$result_json" <<'PY'
+import json
+import re
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as source:
+    run = json.load(source)["run"]
+key = str(run.get("llgoTag") or run.get("llgoCommit") or run.get("id") or "manual")
+if not re.fullmatch(r"[A-Za-z0-9._-]+", key):
+    raise SystemExit("invalid performance run key: " + repr(key))
+print(key)
+PY
+)
+
+performance_dir="$pages_dir/data/performance"
+published_run_dir="$performance_dir/runs/$run_key"
+mkdir -p "$published_run_dir"
+cp "$result_json" "$published_run_dir/results.json"
+cp "$run_dir/benchstat.txt" "$published_run_dir/benchstat.txt"
+cp "$run_dir/benchstat.csv" "$published_run_dir/benchstat.csv"
+if [[ -d "$published_run_dir/raw" ]]; then
+  rm -r "$published_run_dir/raw"
+fi
+mkdir -p "$published_run_dir/raw"
+if compgen -G "$run_dir/bench/*.stdout" >/dev/null; then
+  cp "$run_dir/bench/"*.stdout "$published_run_dir/raw/"
+fi
+
+python3 - "$performance_dir" <<'PY'
+import glob
+import json
+import os
+import sys
+from datetime import datetime, timezone
+
+data_dir = sys.argv[1]
+runs = []
+for path in glob.glob(os.path.join(data_dir, "runs", "*", "results.json")):
+    with open(path, encoding="utf-8") as source:
+        document = json.load(source)
+    run = document.get("run", {})
+    key = os.path.basename(os.path.dirname(path))
+    runs.append({
+        "key": key,
+        "id": run.get("id", ""),
+        "attempt": run.get("attempt"),
+        "createdAt": run.get("createdAt", ""),
+        "sourceCommit": run.get("sourceCommit", ""),
+        "llgoRepository": run.get("llgoRepository", ""),
+        "llgoCommit": run.get("llgoCommit", ""),
+        "llgoTag": run.get("llgoTag", ""),
+        "goVersion": run.get("goVersion", ""),
+        "llvmVersion": run.get("llvmVersion", ""),
+        "workflowUrl": run.get("workflowUrl", ""),
+        "path": "performance/runs/" + key + "/results.json",
+    })
+runs.sort(key=lambda item: item["createdAt"], reverse=True)
+
+index = {
+    "schemaVersion": 1,
+    "generatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+    "runs": runs,
+}
+os.makedirs(data_dir, exist_ok=True)
+with open(os.path.join(data_dir, "index.json"), "w", encoding="utf-8") as destination:
+    json.dump(index, destination, indent=2)
+    destination.write("\n")
+PY
+
+for file in index.html app.js performance.html performance.js style.css _config.yml; do
+  cp "$site_dir/$file" "$pages_dir/$file"
+done
+rm -f "$pages_dir/.nojekyll"
+
+git -C "$pages_dir" config user.name "github-actions[bot]"
+git -C "$pages_dir" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git -C "$pages_dir" add -A
+if git -C "$pages_dir" diff --cached --quiet; then
+  echo "Performance history is already up to date"
+else
+  git -C "$pages_dir" commit -m "ci: publish LLGo performance run $run_key"
+  git -C "$pages_dir" push origin HEAD:pages
+fi

@@ -14,11 +14,6 @@
   Benchmarks = "^BenchmarkCholeskyInverseTo$/^n=100$"
 
 [[Benchmarks]]
-  Name = "uber_tally-TimerReport"
-  Suite = "uber_tally"
-  Benchmarks = "^BenchmarkTimerReport$"
-
-[[Benchmarks]]
   Name = "bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo"
   Suite = "bloom_bits"
   Benchmarks = "^BenchmarkBitSetExtractDeposit$/^size=64$/^fn=DepositTo$"

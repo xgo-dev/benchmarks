@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLGo runtime performance history</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <nav class="site-nav" aria-label="Benchmark views">
+      <a href="index.html">Binary size &amp; build time</a>
+      <a class="active" href="performance.html" aria-current="page">Runtime performance</a>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <p class="eyebrow">LLGo compiler benchmarks</p>
+        <h1>Runtime performance</h1>
+        <p class="lede">Benchstat comparisons for selected Go benchmarks. Go is the baseline; negative deltas mean LLGo is faster.</p>
+      </div>
+      <p id="performance-status" class="status" role="status">Loading results…</p>
+    </header>
+
+    <section class="environment-bar" aria-label="Displayed benchmark environment" aria-live="polite">
+      <div><span class="label">LLGo release</span><strong id="performance-release">—</strong></div>
+      <div><span class="label">Go baseline</span><strong id="performance-go">—</strong></div>
+      <div><span class="label">Environment</span><strong id="performance-environment">—</strong></div>
+      <div><span class="label">Protocol</span><strong id="performance-protocol">—</strong></div>
+    </section>
+
+    <section class="performance-toolbar" aria-label="Performance result selection">
+      <label>Release<select id="performance-run"></select></label>
+      <p id="performance-meta" class="performance-meta"></p>
+      <div class="result-links">
+        <a id="performance-workflow" href="#">Workflow run</a>
+        <a id="performance-text" href="#">benchstat text</a>
+        <a id="performance-csv" href="#">benchstat CSV</a>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="performance-heading">
+      <div class="card-heading">
+        <div><p class="eyebrow">benchstat comparison</p><h2 id="performance-heading">Execution time</h2></div>
+        <p class="performance-note">Median and confidence interval; LLGo deltas are relative to Go.</p>
+      </div>
+      <div class="performance-table-wrap">
+        <table id="performance-table" class="performance-table" aria-live="polite"></table>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://github.com/xgo-dev/benchmarks/tree/main/ci/llgo-performance">Source and benchmark configuration</a>
+      <span>·</span>
+      <a href="data/performance/index.json">Raw performance index</a>
+    </footer>
+  </main>
+  <script src="performance.js"></script>
+</body>
+</html>

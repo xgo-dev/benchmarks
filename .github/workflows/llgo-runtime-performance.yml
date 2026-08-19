@@ -15,6 +15,8 @@ jobs:
   benchmark:
     runs-on: ubuntu-24.04
     timeout-minutes: 90
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -47,7 +49,9 @@ jobs:
           printf 'LLGO_REPOSITORY=%s\n' "$DISPATCH_LLGO_REPOSITORY" >> "$GITHUB_ENV"
           printf 'LLGO_COMMIT=%s\n' "$DISPATCH_LLGO_COMMIT" >> "$GITHUB_ENV"
           printf 'LLGO_TAG=%s\n' "$DISPATCH_LLGO_TAG" >> "$GITHUB_ENV"
+          printf 'GO_VERSION=%s\n' "$GO_VERSION" >> "$GITHUB_ENV"
           printf 'LLVM_VERSION=%s\n' "$LLVM_VERSION" >> "$GITHUB_ENV"
+          printf 'LLGO_PERFORMANCE_REPETITIONS=10\n' >> "$GITHUB_ENV"
           mkdir -p .ci
           printf '%s\n' "$GO_VERSION" > .ci/go-version
 
@@ -58,8 +62,22 @@ jobs:
       - name: Install LLVM dependencies
         run: |
           set -euo pipefail
-          sudo apt-get update
-          sudo apt-get install -y clang-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
+          ubuntu_sources=/etc/apt/sources.list.d/ubuntu.sources
+          if [[ -f "$ubuntu_sources" ]]; then
+            sudo sed -i \
+              -e 's|mirror+file:/etc/apt/apt-mirrors.txt|https://archive.ubuntu.com/ubuntu|g' \
+              -e 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' \
+              "$ubuntu_sources"
+          fi
+          apt_options=(
+            -o Acquire::Retries=3
+            -o Acquire::http::Timeout=30
+            -o Acquire::https::Timeout=30
+            -o DPkg::Lock::Timeout=60
+          )
+          sudo timeout --kill-after=30s 5m apt-get "${apt_options[@]}" update
+          sudo timeout --kill-after=30s 15m apt-get "${apt_options[@]}" install -y \
+            clang-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
             libuv1-dev libgc-dev libffi-dev
 
       - name: Build the released LLGo compiler
@@ -111,4 +129,51 @@ jobs:
           path: |
             .ci/bent-performance/bench
             .ci/bent-performance/benchstat.txt
+            .ci/bent-performance/benchstat.csv
+            .ci/bent-performance/results.json
           if-no-files-found: warn
+
+      - name: Publish runtime performance history to Pages
+        env:
+          PAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          pages_dir="$GITHUB_WORKSPACE/.ci/pages"
+          bash ci/llgo-size/prepare-pages-branch.sh \
+            "$pages_dir" \
+            "https://x-access-token:${PAGES_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          ci/llgo-performance/publish.sh \
+            .ci/bent-performance \
+            "$pages_dir" \
+            ci/llgo-size/site
+
+  deploy-pages:
+    needs: benchmark
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out Pages source
+        uses: actions/checkout@v4
+        with:
+          ref: pages
+          path: pages-source
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Build Pages with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./pages-source
+          destination: ./_site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./_site
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

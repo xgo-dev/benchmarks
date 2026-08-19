@@ -64,10 +64,9 @@ for source in sorted(os.listdir(runs_dir)):
             continue
     os.rename(source_dir, target_dir)
 PY
-cp "$site_dir/index.html" "$pages_dir/index.html"
-cp "$site_dir/app.js" "$pages_dir/app.js"
-cp "$site_dir/style.css" "$pages_dir/style.css"
-cp "$site_dir/_config.yml" "$pages_dir/_config.yml"
+for file in index.html app.js performance.html performance.js style.css _config.yml; do
+  cp "$site_dir/$file" "$pages_dir/$file"
+done
 rm -f "$pages_dir/.nojekyll"
 
 run_key=$(python3 - "$result_json" <<'PY'

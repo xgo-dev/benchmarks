@@ -6,6 +6,8 @@ benchstat_bin=$2
 bench_dir="$run_dir/bench"
 benchmark_file="$run_dir/benchmarks-llgo-performance.toml"
 report="$run_dir/benchstat.txt"
+csv_report="$run_dir/benchstat.csv"
+json_report="$run_dir/results.json"
 repetitions=10
 
 benchmarks=()
@@ -49,4 +51,8 @@ for config in "${configs[@]}"; do
 done
 
 "$benchstat_bin" -table shortname -col toolchain -row .name "${stdout_files[@]}" > "$report"
+"$benchstat_bin" -format csv -filter '.unit:sec/op' \
+  -table shortname -col toolchain -row .name "${stdout_files[@]}" > "$csv_report"
+LLGO_PERFORMANCE_REPETITIONS=$repetitions \
+  python3 "$(dirname "$0")/report.py" "$csv_report" "$json_report" "${stdout_files[0]}"
 cat "$report"

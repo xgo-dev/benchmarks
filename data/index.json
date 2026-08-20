@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-20T01:35:42.758744Z",
+  "generatedAt": "2026-08-20T06:40:05.753823Z",
   "runs": [
+    {
+      "key": "bed9d7c4d4c06e10caf235fae5af251c1c3e9618",
+      "id": "32336043127",
+      "attempt": 1,
+      "number": 288,
+      "createdAt": "2026-08-20T06:40:03.703205Z",
+      "sourceCommit": "ba4068a48b65e75ec504183a6d012b3c6967d795",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "bed9d7c4d4c06e10caf235fae5af251c1c3e9618",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32336043127",
+      "path": "runs/bed9d7c4d4c06e10caf235fae5af251c1c3e9618/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/bed9d7c4d4c06e10caf235fae5af251c1c3e9618",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2299,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2299",
+      "pullRequestTitle": "cl: stabilize generic local ABI names across cache loads"
+    },
     {
       "key": "0d89245e9b6c78134465cb5cf56890af2f5f7053",
       "id": "32317509256",

@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-20T06:40:05.753823Z",
+  "generatedAt": "2026-08-20T07:46:39.080988Z",
   "runs": [
+    {
+      "key": "0314faeba69d9997b0dc09d77ac7f09ab7afe250",
+      "id": "32340870757",
+      "attempt": 1,
+      "number": 291,
+      "createdAt": "2026-08-20T07:46:37.289698Z",
+      "sourceCommit": "480e40935feaa32d0333804eb40192bd89fa9340",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "0314faeba69d9997b0dc09d77ac7f09ab7afe250",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32340870757",
+      "path": "runs/0314faeba69d9997b0dc09d77ac7f09ab7afe250/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/0314faeba69d9997b0dc09d77ac7f09ab7afe250",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2369,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2369",
+      "pullRequestTitle": "internal/packages: eliminate //go:linkname and decouple from x/tools internals"
+    },
     {
       "key": "bed9d7c4d4c06e10caf235fae5af251c1c3e9618",
       "id": "32336043127",

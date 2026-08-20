@@ -67,6 +67,12 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          # A dispatch can wait behind a long binary-size build. Start from
+          # the current branch tip instead of the SHA captured when the event
+          # was created.
+          ref: main
+          fetch-depth: 0
 
       - name: Update the committed LLGo pin and start the build
         env:
@@ -86,20 +92,49 @@ jobs:
             exit 1
           fi
 
-          current_commit="$(awk -F= '$1 == "LLGO_COMMIT" { print $2 }' ci/llgo-size/llgo-version.env)"
-          if [[ "$current_commit" == "$DISPATCH_LLGO_COMMIT" ]]; then
-            echo "LLGo pin is already $DISPATCH_LLGO_COMMIT; no build needed"
-            exit 0
-          fi
-
-          sed -i "s/^LLGO_COMMIT=.*/LLGO_COMMIT=${DISPATCH_LLGO_COMMIT}/" \
-            ci/llgo-size/llgo-version.env
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ci/llgo-size/llgo-version.env
-          git commit -m "ci: pin LLGo ${DISPATCH_LLGO_COMMIT:0:12}"
-          git push origin HEAD:main
 
+          pin_ready=false
+          for attempt in 1 2 3 4; do
+            # Recreate the one-file commit from the latest main after every
+            # rejected push. This preserves unrelated commits that land while
+            # a dispatch is queued or running.
+            git fetch --no-tags origin main
+            git checkout --detach origin/main
+
+            current_commit="$(awk -F= '$1 == "LLGO_COMMIT" { print $2 }' ci/llgo-size/llgo-version.env)"
+            if [[ "$current_commit" == "$DISPATCH_LLGO_COMMIT" ]]; then
+              echo "LLGo pin is already $DISPATCH_LLGO_COMMIT"
+              pin_ready=true
+              break
+            fi
+
+            sed -i "s/^LLGO_COMMIT=.*/LLGO_COMMIT=${DISPATCH_LLGO_COMMIT}/" \
+              ci/llgo-size/llgo-version.env
+            git add ci/llgo-size/llgo-version.env
+            git commit -m "ci: pin LLGo ${DISPATCH_LLGO_COMMIT:0:12}"
+            if git push origin HEAD:main; then
+              pin_ready=true
+              break
+            fi
+
+            if [[ "$attempt" -eq 4 ]]; then
+              echo "failed to update the LLGo pin after $attempt attempts" >&2
+              exit 1
+            fi
+            echo "main advanced during pin update; retrying from origin/main"
+            sleep $((attempt * 2))
+          done
+
+          if [[ "$pin_ready" != true ]]; then
+            echo "LLGo pin update did not reach a terminal state" >&2
+            exit 1
+          fi
+
+          # Dispatch even when the pin was already current. A retry may be
+          # recovering from a prior run that pushed the pin but failed before
+          # it could start the actual binary-size build.
           payload="$(jq -cn \
             --arg ref main \
             --arg llgo_commit "$DISPATCH_LLGO_COMMIT" \

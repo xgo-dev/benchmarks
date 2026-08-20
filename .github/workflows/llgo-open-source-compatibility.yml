@@ -18,7 +18,8 @@ permissions:
 
 concurrency:
   group: llgo-open-source-compatibility-${{ github.event_name }}-${{ github.event.pull_request.number || 'release' }}
-  cancel-in-progress: false
+  # A lost hosted runner must not block the next release or targeted rerun.
+  cancel-in-progress: true
 
 jobs:
   compatibility:

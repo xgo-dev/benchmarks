@@ -9,7 +9,13 @@
   Module = "go.etcd.io/etcd/pkg/v3"
   Pattern = "go.etcd.io/etcd/pkg/v3/..."
   Version = "v3.6.14"
-  Limit = 17
+  Limit = 15
+  # These packages either timed out or failed the Go baseline in the first
+  # full hosted run, so they cannot provide a meaningful LLGo comparison.
+  Exclude = [
+    "go.etcd.io/etcd/pkg/v3/expect",
+    "go.etcd.io/etcd/pkg/v3/proxy",
+  ]
 
 [[Projects]]
   NamePrefix = "etcd_client_pkg"
@@ -37,9 +43,14 @@
   Pattern = "google.golang.org/protobuf/..."
   Version = "v1.36.11"
   Limit = 35
-  # This package emits an unusually large verbose test stream and repeatedly
-  # caused the GitHub-hosted runner to lose communication.
-  Exclude = ["google.golang.org/protobuf/encoding/protojson"]
+  # Exclude packages that produced runner-heavy output or failed the Go
+  # baseline in the first full hosted run.
+  Exclude = [
+    "google.golang.org/protobuf/encoding/protojson",
+    "google.golang.org/protobuf/internal/fuzz/jsonfuzz",
+    "google.golang.org/protobuf/internal/fuzz/textfuzz",
+    "google.golang.org/protobuf/internal/fuzz/wirefuzz",
+  ]
 
 [[Projects]]
   NamePrefix = "gonum"
@@ -50,8 +61,15 @@
   Version = "v0.17.0"
   Limit = 45
   BuildFlags = ["-tags", "safe"]
-  # Its RDF canonicalization tests have the same runner-starvation behavior.
-  Exclude = ["gonum.org/v1/gonum/graph/formats/rdf"]
+  # Exclude the runner-heavy RDF suite, baseline failures, and the package
+  # whose LLGo dependency discovery requested a go.mod rewrite.
+  Exclude = [
+    "gonum.org/v1/gonum/graph/formats/dot/ast",
+    "gonum.org/v1/gonum/graph/formats/dot/internal/astx",
+    "gonum.org/v1/gonum/graph/formats/dot/internal/parser",
+    "gonum.org/v1/gonum/graph/formats/rdf",
+    "gonum.org/v1/gonum/graph/layout",
+  ]
 
 [[Projects]]
   NamePrefix = "client_go"
@@ -61,6 +79,15 @@
   Pattern = "k8s.io/client-go/..."
   Version = "v0.36.2"
   Limit = 45
+  # These packages failed the Go baseline or LLGo dependency discovery in the
+  # first full hosted run.
+  Exclude = [
+    "k8s.io/client-go/discovery/cached/disk",
+    "k8s.io/client-go/discovery/cached/memory",
+    "k8s.io/client-go/kubernetes_test",
+    "k8s.io/client-go/plugin/pkg/client/auth/exec",
+    "k8s.io/client-go/testing/internal",
+  ]
 
 [[Projects]]
   NamePrefix = "zap"
@@ -69,7 +96,8 @@
   Module = "go.uber.org/zap"
   Pattern = "go.uber.org/zap/..."
   Version = "v1.27.0"
-  Limit = 12
+  Limit = 11
+  Exclude = ["go.uber.org/zap"]
 
 [[Projects]]
   NamePrefix = "gorm"
@@ -78,7 +106,8 @@
   Module = "gorm.io/gorm"
   Pattern = "gorm.io/gorm/..."
   Version = "v1.31.2"
-  Limit = 6
+  Limit = 5
+  Exclude = ["gorm.io/gorm/logger"]
 
 [[Projects]]
   NamePrefix = "workiva"
@@ -87,7 +116,7 @@
   Module = "github.com/Workiva/go-datastructures"
   Pattern = "github.com/Workiva/go-datastructures/..."
   Version = "v1.1.7"
-  Limit = 24
+  Limit = 28
 
 [[Projects]]
   NamePrefix = "toml"

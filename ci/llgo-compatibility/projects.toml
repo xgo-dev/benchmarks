@@ -84,6 +84,7 @@
   Exclude = [
     "k8s.io/client-go/discovery/cached/disk",
     "k8s.io/client-go/discovery/cached/memory",
+    "k8s.io/client-go/dynamic/dynamicinformer",
     "k8s.io/client-go/kubernetes_test",
     "k8s.io/client-go/plugin/pkg/client/auth/exec",
     "k8s.io/client-go/testing/internal",

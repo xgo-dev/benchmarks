@@ -33,7 +33,7 @@ fi
 
 for config in Go LLGo; do
   arguments=(
-    -T -N=1
+    -T -N=1 -S=0
     "-b=${LLGO_COMPATIBILITY_PACKAGES:-}"
     "-c=$config"
     -B=benchmarks-llgo-compatibility.toml

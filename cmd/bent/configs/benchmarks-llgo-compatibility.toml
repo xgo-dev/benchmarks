@@ -24,7 +24,7 @@
   Name = "etcd_pkg_003"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/expect"
+  Repo = "go.etcd.io/etcd/pkg/v3/featuregate"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -33,7 +33,7 @@
   Name = "etcd_pkg_004"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/featuregate"
+  Repo = "go.etcd.io/etcd/pkg/v3/flags"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -42,7 +42,7 @@
   Name = "etcd_pkg_005"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/flags"
+  Repo = "go.etcd.io/etcd/pkg/v3/httputil"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -51,7 +51,7 @@
   Name = "etcd_pkg_006"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/httputil"
+  Repo = "go.etcd.io/etcd/pkg/v3/idutil"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -60,7 +60,7 @@
   Name = "etcd_pkg_007"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/idutil"
+  Repo = "go.etcd.io/etcd/pkg/v3/ioutil"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -69,7 +69,7 @@
   Name = "etcd_pkg_008"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/ioutil"
+  Repo = "go.etcd.io/etcd/pkg/v3/netutil"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -78,7 +78,7 @@
   Name = "etcd_pkg_009"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/netutil"
+  Repo = "go.etcd.io/etcd/pkg/v3/osutil"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -87,7 +87,7 @@
   Name = "etcd_pkg_010"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/osutil"
+  Repo = "go.etcd.io/etcd/pkg/v3/pbutil"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -96,7 +96,7 @@
   Name = "etcd_pkg_011"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/pbutil"
+  Repo = "go.etcd.io/etcd/pkg/v3/report"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -105,7 +105,7 @@
   Name = "etcd_pkg_012"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/proxy"
+  Repo = "go.etcd.io/etcd/pkg/v3/schedule"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -114,7 +114,7 @@
   Name = "etcd_pkg_013"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/report"
+  Repo = "go.etcd.io/etcd/pkg/v3/stringutil"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
@@ -123,31 +123,13 @@
   Name = "etcd_pkg_014"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/schedule"
-  Version = "@v3.6.14"
-  Standalone = true
-  Tests = "Test"
-
-[[Benchmarks]]
-  Name = "etcd_pkg_015"
-  Project = "etcd"
-  ProjectURL = "https://github.com/etcd-io/etcd"
-  Repo = "go.etcd.io/etcd/pkg/v3/stringutil"
-  Version = "@v3.6.14"
-  Standalone = true
-  Tests = "Test"
-
-[[Benchmarks]]
-  Name = "etcd_pkg_016"
-  Project = "etcd"
-  ProjectURL = "https://github.com/etcd-io/etcd"
   Repo = "go.etcd.io/etcd/pkg/v3/traceutil"
   Version = "@v3.6.14"
   Standalone = true
   Tests = "Test"
 
 [[Benchmarks]]
-  Name = "etcd_pkg_017"
+  Name = "etcd_pkg_015"
   Project = "etcd"
   ProjectURL = "https://github.com/etcd-io/etcd"
   Repo = "go.etcd.io/etcd/pkg/v3/wait"
@@ -384,7 +366,7 @@
   Name = "protobuf_015"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/fuzz/jsonfuzz"
+  Repo = "google.golang.org/protobuf/internal/impl"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -393,7 +375,7 @@
   Name = "protobuf_016"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/fuzz/textfuzz"
+  Repo = "google.golang.org/protobuf/internal/msgfmt"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -402,7 +384,7 @@
   Name = "protobuf_017"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/fuzz/wirefuzz"
+  Repo = "google.golang.org/protobuf/internal/order"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -411,7 +393,7 @@
   Name = "protobuf_018"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/impl"
+  Repo = "google.golang.org/protobuf/internal/race_test/file_desc_init"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -420,7 +402,7 @@
   Name = "protobuf_019"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/msgfmt"
+  Repo = "google.golang.org/protobuf/internal/race_test/lazy"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -429,7 +411,7 @@
   Name = "protobuf_020"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/order"
+  Repo = "google.golang.org/protobuf/internal/race_test/messageset_extension_init"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -438,7 +420,7 @@
   Name = "protobuf_021"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/race_test/file_desc_init"
+  Repo = "google.golang.org/protobuf/internal/reflection_test"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -447,7 +429,7 @@
   Name = "protobuf_022"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/race_test/lazy"
+  Repo = "google.golang.org/protobuf/internal/set"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -456,7 +438,7 @@
   Name = "protobuf_023"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/race_test/messageset_extension_init"
+  Repo = "google.golang.org/protobuf/internal/strs"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -465,7 +447,7 @@
   Name = "protobuf_024"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/reflection_test"
+  Repo = "google.golang.org/protobuf/proto"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -474,7 +456,7 @@
   Name = "protobuf_025"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/set"
+  Repo = "google.golang.org/protobuf/reflect/protodesc"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -483,7 +465,7 @@
   Name = "protobuf_026"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/internal/strs"
+  Repo = "google.golang.org/protobuf/reflect/protorange"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -492,7 +474,7 @@
   Name = "protobuf_027"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/proto"
+  Repo = "google.golang.org/protobuf/reflect/protoreflect"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -501,7 +483,7 @@
   Name = "protobuf_028"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/reflect/protodesc"
+  Repo = "google.golang.org/protobuf/reflect/protoregistry"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -510,7 +492,7 @@
   Name = "protobuf_029"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/reflect/protorange"
+  Repo = "google.golang.org/protobuf/testing/protocmp"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -519,7 +501,7 @@
   Name = "protobuf_030"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/reflect/protoreflect"
+  Repo = "google.golang.org/protobuf/testing/protopack"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -528,7 +510,7 @@
   Name = "protobuf_031"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/reflect/protoregistry"
+  Repo = "google.golang.org/protobuf/testing/prototest"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -537,7 +519,7 @@
   Name = "protobuf_032"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/testing/protocmp"
+  Repo = "google.golang.org/protobuf/types/dynamicpb"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -546,7 +528,7 @@
   Name = "protobuf_033"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/testing/protopack"
+  Repo = "google.golang.org/protobuf/types/known/anypb"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -555,7 +537,7 @@
   Name = "protobuf_034"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/testing/prototest"
+  Repo = "google.golang.org/protobuf/types/known/durationpb"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -564,7 +546,7 @@
   Name = "protobuf_035"
   Project = "protobuf-go"
   ProjectURL = "https://github.com/protocolbuffers/protobuf-go"
-  Repo = "google.golang.org/protobuf/types/dynamicpb"
+  Repo = "google.golang.org/protobuf/types/known/fieldmaskpb"
   Version = "@v1.36.11"
   Standalone = true
   Tests = "Test"
@@ -823,7 +805,7 @@
   Name = "gonum_026"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/formats/dot/ast"
+  Repo = "gonum.org/v1/gonum/graph/formats/dot/internal/lexer"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -833,7 +815,7 @@
   Name = "gonum_027"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/formats/dot/internal/astx"
+  Repo = "gonum.org/v1/gonum/graph/formats/gexf12"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -843,7 +825,7 @@
   Name = "gonum_028"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/formats/dot/internal/lexer"
+  Repo = "gonum.org/v1/gonum/graph/formats/sigmajs"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -853,7 +835,7 @@
   Name = "gonum_029"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/formats/dot/internal/parser"
+  Repo = "gonum.org/v1/gonum/graph/graphs/gen"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -863,7 +845,7 @@
   Name = "gonum_030"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/formats/gexf12"
+  Repo = "gonum.org/v1/gonum/graph/internal/set"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -873,7 +855,7 @@
   Name = "gonum_031"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/formats/sigmajs"
+  Repo = "gonum.org/v1/gonum/graph/multi"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -883,7 +865,7 @@
   Name = "gonum_032"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/graphs/gen"
+  Repo = "gonum.org/v1/gonum/graph/network"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -893,7 +875,7 @@
   Name = "gonum_033"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/internal/set"
+  Repo = "gonum.org/v1/gonum/graph/path"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -903,7 +885,7 @@
   Name = "gonum_034"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/layout"
+  Repo = "gonum.org/v1/gonum/graph/path/dynamic"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -913,7 +895,7 @@
   Name = "gonum_035"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/multi"
+  Repo = "gonum.org/v1/gonum/graph/product"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -923,7 +905,7 @@
   Name = "gonum_036"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/network"
+  Repo = "gonum.org/v1/gonum/graph/set/uid"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -933,7 +915,7 @@
   Name = "gonum_037"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/path"
+  Repo = "gonum.org/v1/gonum/graph/simple"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -943,7 +925,7 @@
   Name = "gonum_038"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/path/dynamic"
+  Repo = "gonum.org/v1/gonum/graph/spectral"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -953,7 +935,7 @@
   Name = "gonum_039"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/product"
+  Repo = "gonum.org/v1/gonum/graph/testgraph"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -963,7 +945,7 @@
   Name = "gonum_040"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/set/uid"
+  Repo = "gonum.org/v1/gonum/graph/topo"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -973,7 +955,7 @@
   Name = "gonum_041"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/simple"
+  Repo = "gonum.org/v1/gonum/graph/traverse"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -983,7 +965,7 @@
   Name = "gonum_042"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/spectral"
+  Repo = "gonum.org/v1/gonum/integrate"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -993,7 +975,7 @@
   Name = "gonum_043"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/testgraph"
+  Repo = "gonum.org/v1/gonum/integrate/quad"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -1003,7 +985,7 @@
   Name = "gonum_044"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/topo"
+  Repo = "gonum.org/v1/gonum/internal/cmplx64"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -1013,7 +995,7 @@
   Name = "gonum_045"
   Project = "gonum"
   ProjectURL = "https://github.com/gonum/gonum"
-  Repo = "gonum.org/v1/gonum/graph/traverse"
+  Repo = "gonum.org/v1/gonum/interp"
   Version = "@v0.17.0"
   Standalone = true
   Tests = "Test"
@@ -1041,7 +1023,7 @@
   Name = "client_go_003"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/discovery/cached/disk"
+  Repo = "k8s.io/client-go/discovery/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1050,7 +1032,7 @@
   Name = "client_go_004"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/discovery/cached/memory"
+  Repo = "k8s.io/client-go/dynamic"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1059,7 +1041,7 @@
   Name = "client_go_005"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/discovery/fake"
+  Repo = "k8s.io/client-go/dynamic/dynamicinformer"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1068,7 +1050,7 @@
   Name = "client_go_006"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/dynamic"
+  Repo = "k8s.io/client-go/dynamic/dynamiclister"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1077,7 +1059,7 @@
   Name = "client_go_007"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/dynamic/dynamicinformer"
+  Repo = "k8s.io/client-go/dynamic/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1086,7 +1068,7 @@
   Name = "client_go_008"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/dynamic/dynamiclister"
+  Repo = "k8s.io/client-go/features"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1095,7 +1077,7 @@
   Name = "client_go_009"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/dynamic/fake"
+  Repo = "k8s.io/client-go/features/testing"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1104,7 +1086,7 @@
   Name = "client_go_010"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/features"
+  Repo = "k8s.io/client-go/kubernetes/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1113,7 +1095,7 @@
   Name = "client_go_011"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/features/testing"
+  Repo = "k8s.io/client-go/kubernetes/typed/core/v1"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1122,7 +1104,7 @@
   Name = "client_go_012"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes/fake"
+  Repo = "k8s.io/client-go/kubernetes/typed/core/v1/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1131,7 +1113,7 @@
   Name = "client_go_013"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes/typed/core/v1"
+  Repo = "k8s.io/client-go/kubernetes/typed/events/v1beta1"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1140,7 +1122,7 @@
   Name = "client_go_014"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes/typed/core/v1/fake"
+  Repo = "k8s.io/client-go/listers/extensions/v1beta1"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1149,7 +1131,7 @@
   Name = "client_go_015"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes/typed/events/v1beta1"
+  Repo = "k8s.io/client-go/metadata"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1158,7 +1140,7 @@
   Name = "client_go_016"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes_test"
+  Repo = "k8s.io/client-go/metadata/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1167,7 +1149,7 @@
   Name = "client_go_017"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/listers/extensions/v1beta1"
+  Repo = "k8s.io/client-go/metadata/metadatainformer"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1176,7 +1158,7 @@
   Name = "client_go_018"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/metadata"
+  Repo = "k8s.io/client-go/metadata/metadatalister"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1185,7 +1167,7 @@
   Name = "client_go_019"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/metadata/fake"
+  Repo = "k8s.io/client-go/openapi"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1194,7 +1176,7 @@
   Name = "client_go_020"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/metadata/metadatainformer"
+  Repo = "k8s.io/client-go/openapi/openapitest"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1203,7 +1185,7 @@
   Name = "client_go_021"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/metadata/metadatalister"
+  Repo = "k8s.io/client-go/openapi3"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1212,7 +1194,7 @@
   Name = "client_go_022"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/openapi"
+  Repo = "k8s.io/client-go/plugin/pkg/client/auth/oidc"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1221,7 +1203,7 @@
   Name = "client_go_023"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/openapi/openapitest"
+  Repo = "k8s.io/client-go/rest"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1230,7 +1212,7 @@
   Name = "client_go_024"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/openapi3"
+  Repo = "k8s.io/client-go/rest/watch"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1239,7 +1221,7 @@
   Name = "client_go_025"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/plugin/pkg/client/auth/exec"
+  Repo = "k8s.io/client-go/restmapper"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1248,7 +1230,7 @@
   Name = "client_go_026"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/plugin/pkg/client/auth/oidc"
+  Repo = "k8s.io/client-go/scale"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1257,7 +1239,7 @@
   Name = "client_go_027"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/rest"
+  Repo = "k8s.io/client-go/testing"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1266,7 +1248,7 @@
   Name = "client_go_028"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/rest/watch"
+  Repo = "k8s.io/client-go/tools/auth"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1275,7 +1257,7 @@
   Name = "client_go_029"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/restmapper"
+  Repo = "k8s.io/client-go/tools/auth/exec"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1284,7 +1266,7 @@
   Name = "client_go_030"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/scale"
+  Repo = "k8s.io/client-go/tools/cache"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1293,7 +1275,7 @@
   Name = "client_go_031"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/testing"
+  Repo = "k8s.io/client-go/tools/cache/synctrack"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1302,7 +1284,7 @@
   Name = "client_go_032"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/testing/internal"
+  Repo = "k8s.io/client-go/tools/cache/testing"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1311,7 +1293,7 @@
   Name = "client_go_033"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/auth"
+  Repo = "k8s.io/client-go/tools/clientcmd"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1320,7 +1302,7 @@
   Name = "client_go_034"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/auth/exec"
+  Repo = "k8s.io/client-go/tools/clientcmd/api"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1329,7 +1311,7 @@
   Name = "client_go_035"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/cache"
+  Repo = "k8s.io/client-go/tools/clientcmd/api/v1"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1338,7 +1320,7 @@
   Name = "client_go_036"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/cache/synctrack"
+  Repo = "k8s.io/client-go/tools/events"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1347,7 +1329,7 @@
   Name = "client_go_037"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/cache/testing"
+  Repo = "k8s.io/client-go/tools/leaderelection"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1356,7 +1338,7 @@
   Name = "client_go_038"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/clientcmd"
+  Repo = "k8s.io/client-go/tools/leaderelection/resourcelock"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1365,7 +1347,7 @@
   Name = "client_go_039"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/clientcmd/api"
+  Repo = "k8s.io/client-go/tools/pager"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1374,7 +1356,7 @@
   Name = "client_go_040"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/clientcmd/api/v1"
+  Repo = "k8s.io/client-go/tools/portforward"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1383,7 +1365,7 @@
   Name = "client_go_041"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/events"
+  Repo = "k8s.io/client-go/tools/record"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1392,7 +1374,7 @@
   Name = "client_go_042"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/leaderelection"
+  Repo = "k8s.io/client-go/tools/record/util"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1401,7 +1383,7 @@
   Name = "client_go_043"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/leaderelection/resourcelock"
+  Repo = "k8s.io/client-go/tools/reference"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1410,7 +1392,7 @@
   Name = "client_go_044"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/pager"
+  Repo = "k8s.io/client-go/tools/remotecommand"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1419,7 +1401,7 @@
   Name = "client_go_045"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/portforward"
+  Repo = "k8s.io/client-go/tools/watch"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1428,7 +1410,7 @@
   Name = "zap_001"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap"
+  Repo = "go.uber.org/zap/buffer"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1437,7 +1419,7 @@
   Name = "zap_002"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/buffer"
+  Repo = "go.uber.org/zap/internal/color"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1446,7 +1428,7 @@
   Name = "zap_003"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/internal/color"
+  Repo = "go.uber.org/zap/internal/exit"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1455,7 +1437,7 @@
   Name = "zap_004"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/internal/exit"
+  Repo = "go.uber.org/zap/internal/pool"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1464,7 +1446,7 @@
   Name = "zap_005"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/internal/pool"
+  Repo = "go.uber.org/zap/internal/stacktrace"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1473,7 +1455,7 @@
   Name = "zap_006"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/internal/stacktrace"
+  Repo = "go.uber.org/zap/internal/ztest"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1482,7 +1464,7 @@
   Name = "zap_007"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/internal/ztest"
+  Repo = "go.uber.org/zap/zapcore"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1491,7 +1473,7 @@
   Name = "zap_008"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/zapcore"
+  Repo = "go.uber.org/zap/zapgrpc"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1500,7 +1482,7 @@
   Name = "zap_009"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/zapgrpc"
+  Repo = "go.uber.org/zap/zapio"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
@@ -1509,22 +1491,13 @@
   Name = "zap_010"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
-  Repo = "go.uber.org/zap/zapio"
-  Version = "@v1.27.0"
-  Standalone = true
-  Tests = "Test"
-
-[[Benchmarks]]
-  Name = "zap_011"
-  Project = "uber-go/zap"
-  ProjectURL = "https://github.com/uber-go/zap"
   Repo = "go.uber.org/zap/zaptest"
   Version = "@v1.27.0"
   Standalone = true
   Tests = "Test"
 
 [[Benchmarks]]
-  Name = "zap_012"
+  Name = "zap_011"
   Project = "uber-go/zap"
   ProjectURL = "https://github.com/uber-go/zap"
   Repo = "go.uber.org/zap/zaptest/observer"
@@ -1563,22 +1536,13 @@
   Name = "gorm_004"
   Project = "go-gorm/gorm"
   ProjectURL = "https://github.com/go-gorm/gorm"
-  Repo = "gorm.io/gorm/logger"
-  Version = "@v1.31.2"
-  Standalone = true
-  Tests = "Test"
-
-[[Benchmarks]]
-  Name = "gorm_005"
-  Project = "go-gorm/gorm"
-  ProjectURL = "https://github.com/go-gorm/gorm"
   Repo = "gorm.io/gorm/schema"
   Version = "@v1.31.2"
   Standalone = true
   Tests = "Test"
 
 [[Benchmarks]]
-  Name = "gorm_006"
+  Name = "gorm_005"
   Project = "go-gorm/gorm"
   ProjectURL = "https://github.com/go-gorm/gorm"
   Repo = "gorm.io/gorm/utils"
@@ -1798,6 +1762,42 @@
   Project = "go-datastructures"
   ProjectURL = "https://github.com/Workiva/go-datastructures"
   Repo = "github.com/Workiva/go-datastructures/tree/avl"
+  Version = "@v1.1.7"
+  Standalone = true
+  Tests = "Test"
+
+[[Benchmarks]]
+  Name = "workiva_025"
+  Project = "go-datastructures"
+  ProjectURL = "https://github.com/Workiva/go-datastructures"
+  Repo = "github.com/Workiva/go-datastructures/trie/ctrie"
+  Version = "@v1.1.7"
+  Standalone = true
+  Tests = "Test"
+
+[[Benchmarks]]
+  Name = "workiva_026"
+  Project = "go-datastructures"
+  ProjectURL = "https://github.com/Workiva/go-datastructures"
+  Repo = "github.com/Workiva/go-datastructures/trie/dtrie"
+  Version = "@v1.1.7"
+  Standalone = true
+  Tests = "Test"
+
+[[Benchmarks]]
+  Name = "workiva_027"
+  Project = "go-datastructures"
+  ProjectURL = "https://github.com/Workiva/go-datastructures"
+  Repo = "github.com/Workiva/go-datastructures/trie/xfast"
+  Version = "@v1.1.7"
+  Standalone = true
+  Tests = "Test"
+
+[[Benchmarks]]
+  Name = "workiva_028"
+  Project = "go-datastructures"
+  ProjectURL = "https://github.com/Workiva/go-datastructures"
+  Repo = "github.com/Workiva/go-datastructures/trie/yfast"
   Version = "@v1.1.7"
   Standalone = true
   Tests = "Test"

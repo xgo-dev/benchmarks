@@ -20,7 +20,7 @@ class CompatibilityManifestTest(unittest.TestCase):
         self.assertEqual(len({entry["Repo"] for entry in entries}), 200)
         self.assertTrue(all(entry["Standalone"] for entry in entries))
         self.assertTrue(all(entry["Version"].startswith("@v") for entry in entries))
-        self.assertEqual(Counter(entry["Project"] for entry in entries)["etcd"], 28)
+        self.assertEqual(Counter(entry["Project"] for entry in entries)["etcd"], 26)
         excluded = {
             import_path
             for project in quotas

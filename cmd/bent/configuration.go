@@ -230,6 +230,8 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 
 	if verbose > 0 {
 		fmt.Println(asCommandLine(cwd, cmd))
+	} else if os.Getenv("BENT_QUIET_RUN_OUTPUT") != "" {
+		fmt.Printf("\ncompiling: %s (%s)\n", bench.Name, config.Name)
 	} else {
 		fmt.Print(".")
 	}

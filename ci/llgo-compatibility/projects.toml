@@ -59,7 +59,7 @@
   Module = "gonum.org/v1/gonum"
   Pattern = "gonum.org/v1/gonum/..."
   Version = "v0.17.0"
-  Limit = 45
+  Limit = 50
   BuildFlags = ["-tags", "safe"]
   # Exclude the runner-heavy RDF suite, baseline failures, and the package
   # whose LLGo dependency discovery requested a go.mod rewrite.
@@ -78,9 +78,10 @@
   Module = "k8s.io/client-go"
   Pattern = "k8s.io/client-go/..."
   Version = "v0.36.2"
-  Limit = 45
+  Limit = 40
   # These packages failed the Go baseline or LLGo dependency discovery in the
-  # first full hosted run.
+  # first full hosted run, exceeded the practical runner memory/time budget,
+  # or timed out while running under LLGo on the Ubuntu qualification host.
   Exclude = [
     "k8s.io/client-go/discovery/cached/disk",
     "k8s.io/client-go/discovery/cached/memory",
@@ -89,6 +90,11 @@
     "k8s.io/client-go/metadata/metadatainformer",
     "k8s.io/client-go/plugin/pkg/client/auth/exec",
     "k8s.io/client-go/testing/internal",
+    "k8s.io/client-go/tools/cache",
+    "k8s.io/client-go/tools/leaderelection",
+    "k8s.io/client-go/tools/leaderelection/resourcelock",
+    "k8s.io/client-go/tools/record",
+    "k8s.io/client-go/tools/watch",
   ]
 
 [[Projects]]

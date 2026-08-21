@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-21T03:38:17.575595Z",
+  "generatedAt": "2026-08-21T09:26:05.140166Z",
   "runs": [
+    {
+      "key": "0e3cf934814426d77c8e2397ad81b033a55ba1c3",
+      "id": "32462037664",
+      "attempt": 1,
+      "number": 302,
+      "createdAt": "2026-08-21T09:26:03.530316Z",
+      "sourceCommit": "f36e17a15e3b7bc10c8d2f48023041ef701c56d4",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "0e3cf934814426d77c8e2397ad81b033a55ba1c3",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32462037664",
+      "path": "runs/0e3cf934814426d77c8e2397ad81b033a55ba1c3/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/0e3cf934814426d77c8e2397ad81b033a55ba1c3",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2377,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2377",
+      "pullRequestTitle": "build(deps): bump golang.org/x/tools to v0.49.0 and github.com/goplus/mod to v0.22.0"
+    },
     {
       "key": "2815db687312904c6838653fc8fd1e635e8d52af",
       "id": "32440684016",

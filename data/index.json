@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-21T02:39:59.762238Z",
+  "generatedAt": "2026-08-21T03:38:17.575595Z",
   "runs": [
+    {
+      "key": "2815db687312904c6838653fc8fd1e635e8d52af",
+      "id": "32440684016",
+      "attempt": 1,
+      "number": 300,
+      "createdAt": "2026-08-21T03:38:15.967767Z",
+      "sourceCommit": "c6f5fe2137ca125570db1e7c7864079ee1165f7e",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "2815db687312904c6838653fc8fd1e635e8d52af",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32440684016",
+      "path": "runs/2815db687312904c6838653fc8fd1e635e8d52af/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/2815db687312904c6838653fc8fd1e635e8d52af",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2379,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2379",
+      "pullRequestTitle": "build(deps): bump xgo-dev/setup-benchmark-go-action from 1.0.4 to 1.0.5"
+    },
     {
       "key": "ee3311a2d5c2a09ad2e2db38f4085b5e77babd9a",
       "id": "32437223522",

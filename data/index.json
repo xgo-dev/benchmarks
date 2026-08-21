@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-21T01:41:11.404338Z",
+  "generatedAt": "2026-08-21T02:39:59.762238Z",
   "runs": [
+    {
+      "key": "ee3311a2d5c2a09ad2e2db38f4085b5e77babd9a",
+      "id": "32437223522",
+      "attempt": 1,
+      "number": 297,
+      "createdAt": "2026-08-21T02:39:56.675065Z",
+      "sourceCommit": "682ddf18b0addfa0fafea5c1db4a36bec360088f",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "ee3311a2d5c2a09ad2e2db38f4085b5e77babd9a",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32437223522",
+      "path": "runs/ee3311a2d5c2a09ad2e2db38f4085b5e77babd9a/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/ee3311a2d5c2a09ad2e2db38f4085b5e77babd9a",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2378,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2378",
+      "pullRequestTitle": "cl: fold slices of struct and array values into static initializers"
+    },
     {
       "key": "0a42fd511a14578f7e657d1f5f1083d69ff401da",
       "id": "32433286522",

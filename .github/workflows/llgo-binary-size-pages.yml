@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - ci/llgo-size/site/**
+      - ci/llgo-size/publish.sh
+      - ci/llgo-performance/publish.sh
+      - ci/llgo-compatibility/publish.sh
       - ci/llgo-size/publish-site.sh
       - ci/llgo-size/enrich_pull_requests.py
       - ci/llgo-size/prepare-pages-branch.sh

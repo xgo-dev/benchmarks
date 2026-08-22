@@ -99,8 +99,8 @@ class IndexEnrichmentTest(unittest.TestCase):
 
         MODULE.order_runs(index, [first, second])
 
-        self.assertEqual([run["key"] for run in index["runs"]], [first, second])
-        self.assertEqual([run["llgoMainIndex"] for run in index["runs"]], [1, 2])
+        self.assertEqual([run["key"] for run in index["runs"]], [second, first])
+        self.assertEqual([run["llgoMainIndex"] for run in index["runs"]], [2, 1])
 
     def test_places_non_main_runs_after_topological_history(self):
         main = "a" * 40

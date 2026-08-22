@@ -128,14 +128,22 @@ def order_runs(index, main_history):
         if commit in positions:
             run["llgoMainIndex"] = positions[commit]
 
-    def order_key(run):
+    runs = index.setdefault("runs", [])
+    def is_main_run(run):
         position = run.get("llgoMainIndex")
-        if isinstance(position, int) and not isinstance(position, bool):
-            return (0, position, "", str(run.get("key", "")))
-        committed_at = str(run.get("llgoCommittedAt") or run.get("createdAt") or "")
-        return (1, 0, committed_at, str(run.get("key", "")))
+        return isinstance(position, int) and not isinstance(position, bool)
 
-    index.setdefault("runs", []).sort(key=order_key)
+    main_runs = [run for run in runs if is_main_run(run)]
+    other_runs = [run for run in runs if not is_main_run(run)]
+    main_runs.sort(key=lambda run: run["llgoMainIndex"], reverse=True)
+    other_runs.sort(
+        key=lambda run: (
+            str(run.get("llgoCommittedAt") or run.get("createdAt") or ""),
+            str(run.get("key", "")),
+        ),
+        reverse=True,
+    )
+    runs[:] = main_runs + other_runs
 
 
 def legacy_wall_times(run, document, data_dir):

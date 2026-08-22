@@ -165,6 +165,8 @@ run = {
     "ref": env("LLGO_SIZE_REF", "GITHUB_REF_NAME"),
     "llgoRepository": os.environ.get("LLGO_REPOSITORY", ""),
     "llgoCommit": os.environ.get("LLGO_COMMIT", ""),
+    "llgoMainIndex": number("LLGO_MAIN_INDEX", ""),
+    "llgoCommittedAt": os.environ.get("LLGO_COMMITTED_AT", ""),
     "goVersion": os.environ.get("GO_VERSION", ""),
     "llvmVersion": os.environ.get("LLVM_VERSION", ""),
     "event": env("LLGO_SIZE_EVENT", "GITHUB_EVENT_NAME"),

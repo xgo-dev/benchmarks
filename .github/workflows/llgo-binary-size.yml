@@ -51,35 +51,31 @@ permissions:
   contents: read
   actions: read
 
-concurrency:
-  # Keep benchmark builds in their own queue. The Pages-only workflow has a
-  # separate queue; sharing one group would let a newer pending Pages run
-  # replace a pending binary-size run even with cancel-in-progress disabled.
-  group: llgo-binary-size-build
-  cancel-in-progress: false
-
 jobs:
   update-pin:
     if: github.event_name == 'repository_dispatch'
     permissions:
       contents: write
-      actions: write
     runs-on: ubuntu-24.04
+    concurrency:
+      # Pin updates may be coalesced because the file only records the latest
+      # LLGo main revision. The benchmark job below is not part of this queue:
+      # every distinct dispatched LLGo commit still gets its own result.
+      group: llgo-binary-size-pin
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
         with:
-          # A dispatch can wait behind a long binary-size build. Start from
-          # the current branch tip instead of the SHA captured when the event
-          # was created.
+          # A coalesced pin update can start after main has advanced. Always
+          # rebuild its one-file commit from the current branch tip.
           ref: main
           fetch-depth: 0
 
-      - name: Update the committed LLGo pin and start the build
+      - name: Update the committed LLGo pin
         env:
           DISPATCH_SOURCE_REPOSITORY: ${{ github.event.client_payload.source_repository }}
           DISPATCH_LLGO_REPOSITORY: ${{ github.event.client_payload.llgo_repository }}
           DISPATCH_LLGO_COMMIT: ${{ github.event.client_payload.llgo_commit }}
-          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           if [[ "$DISPATCH_SOURCE_REPOSITORY" != "xgo-dev/llgo" || \
@@ -91,6 +87,18 @@ jobs:
             echo "invalid dispatched LLGo commit: ${DISPATCH_LLGO_COMMIT:-missing}" >&2
             exit 1
           fi
+
+          # A newer notification may replace an older pending pin update. Pin
+          # the current LLGo main tip so a delayed notification cannot move
+          # the committed default backwards.
+          target_commit="$(git ls-remote \
+            "https://github.com/${DISPATCH_LLGO_REPOSITORY}.git" \
+            refs/heads/main | awk 'NR == 1 { print $1 }')"
+          if [[ ! "$target_commit" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "could not resolve ${DISPATCH_LLGO_REPOSITORY} main" >&2
+            exit 1
+          fi
+          echo "Pinning current LLGo main $target_commit (notification requested $DISPATCH_LLGO_COMMIT)"
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -104,16 +112,16 @@ jobs:
             git checkout --detach origin/main
 
             current_commit="$(awk -F= '$1 == "LLGO_COMMIT" { print $2 }' ci/llgo-size/llgo-version.env)"
-            if [[ "$current_commit" == "$DISPATCH_LLGO_COMMIT" ]]; then
-              echo "LLGo pin is already $DISPATCH_LLGO_COMMIT"
+            if [[ "$current_commit" == "$target_commit" ]]; then
+              echo "LLGo pin is already $target_commit"
               pin_ready=true
               break
             fi
 
-            sed -i "s/^LLGO_COMMIT=.*/LLGO_COMMIT=${DISPATCH_LLGO_COMMIT}/" \
+            sed -i "s/^LLGO_COMMIT=.*/LLGO_COMMIT=${target_commit}/" \
               ci/llgo-size/llgo-version.env
             git add ci/llgo-size/llgo-version.env
-            git commit -m "ci: pin LLGo ${DISPATCH_LLGO_COMMIT:0:12}"
+            git commit -m "ci: pin LLGo ${target_commit:0:12}"
             if git push origin HEAD:main; then
               pin_ready=true
               break
@@ -131,20 +139,6 @@ jobs:
             echo "LLGo pin update did not reach a terminal state" >&2
             exit 1
           fi
-
-          # Dispatch even when the pin was already current. A retry may be
-          # recovering from a prior run that pushed the pin but failed before
-          # it could start the actual binary-size build.
-          payload="$(jq -cn \
-            --arg ref main \
-            --arg llgo_commit "$DISPATCH_LLGO_COMMIT" \
-            '{ref: $ref, inputs: {llgo_commit: $llgo_commit}}')"
-          curl --fail-with-body --location --request POST \
-            --header 'Accept: application/vnd.github+json' \
-            --header "Authorization: Bearer ${GH_TOKEN}" \
-            --header 'X-GitHub-Api-Version: 2022-11-28' \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/llgo-binary-size.yml/dispatches" \
-            --data "$payload"
 
   pr-scope:
     if: github.event_name == 'pull_request'
@@ -186,18 +180,29 @@ jobs:
 
   binary-size:
     if: >-
-      always() && github.event_name != 'repository_dispatch' &&
-      (github.event_name != 'pull_request' || needs.pr-scope.outputs.full_matrix == 'true')
+      always() &&
+      (github.event_name != 'pull_request' || needs.pr-scope.outputs.full_matrix == 'true') &&
+      !(github.event_name == 'push' && github.actor == 'github-actions[bot]' &&
+        startsWith(github.event.head_commit.message, 'ci: pin LLGo '))
     needs: pr-scope
     permissions:
       contents: write
     runs-on: ubuntu-24.04
     timeout-minutes: 120
+    concurrency:
+      # Different LLGo revisions never share a pending slot. Duplicate
+      # notifications for the same revision may be coalesced safely because
+      # published history is keyed by the full LLGo commit.
+      group: llgo-binary-size-${{ github.event.client_payload.llgo_commit || inputs.llgo_commit || github.sha }}
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
 
       - name: Read pinned toolchain versions
         env:
+          DISPATCH_SOURCE_REPOSITORY: ${{ github.event.client_payload.source_repository }}
+          DISPATCH_LLGO_REPOSITORY: ${{ github.event.client_payload.llgo_repository }}
+          DISPATCH_LLGO_COMMIT: ${{ github.event.client_payload.llgo_commit }}
           MANUAL_LLGO_COMMIT: ${{ inputs.llgo_commit }}
         run: |
           set -euo pipefail
@@ -205,7 +210,19 @@ jobs:
           source ci/llgo-size/llgo-version.env
           set +a
 
-          if [[ -n "$MANUAL_LLGO_COMMIT" ]]; then
+          if [[ "$GITHUB_EVENT_NAME" == "repository_dispatch" ]]; then
+            if [[ "$DISPATCH_SOURCE_REPOSITORY" != "xgo-dev/llgo" || \
+                  "$DISPATCH_LLGO_REPOSITORY" != "xgo-dev/llgo" ]]; then
+              echo "refusing binary-size dispatch from ${DISPATCH_SOURCE_REPOSITORY:-unknown}" >&2
+              exit 1
+            fi
+            if [[ ! "$DISPATCH_LLGO_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+              echo "invalid dispatched LLGo commit: ${DISPATCH_LLGO_COMMIT:-missing}" >&2
+              exit 1
+            fi
+            LLGO_REPOSITORY="$DISPATCH_LLGO_REPOSITORY"
+            LLGO_COMMIT="$DISPATCH_LLGO_COMMIT"
+          elif [[ -n "$MANUAL_LLGO_COMMIT" ]]; then
             if [[ ! "$MANUAL_LLGO_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
               echo "manual LLGo commit must be a full 40-character SHA" >&2
               exit 1
@@ -263,6 +280,13 @@ jobs:
             git -C .ci/llgo fetch --progress --no-tags --depth=1 origin "$LLGO_COMMIT"
           time_command "Check out pinned LLGo commit" \
             git -C .ci/llgo checkout --detach "$LLGO_COMMIT"
+          git -C .ci/llgo fetch --no-tags origin main
+          git -C .ci/llgo rev-list --first-parent --reverse origin/main > .ci/llgo-main-history.txt
+          llgo_main_index="$(awk -v commit="$LLGO_COMMIT" '$0 == commit { print NR; exit }' \
+            .ci/llgo-main-history.txt)"
+          llgo_committed_at="$(git -C .ci/llgo show -s --format=%cI "$LLGO_COMMIT")"
+          printf 'LLGO_MAIN_INDEX=%s\n' "$llgo_main_index" >> "$GITHUB_ENV"
+          printf 'LLGO_COMMITTED_AT=%s\n' "$llgo_committed_at" >> "$GITHUB_ENV"
       - name: Build LLGo and the LTO plugin
         run: |
           set -euo pipefail
@@ -335,14 +359,27 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          pages_dir="$GITHUB_WORKSPACE/.ci/pages"
-          bash ci/llgo-size/prepare-pages-branch.sh \
-            "$pages_dir" \
-            "https://x-access-token:${PAGES_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          ci/llgo-size/publish.sh \
-            .ci/bent-run/results \
-            "$pages_dir" \
-            ci/llgo-size/site
+          published=false
+          for attempt in 1 2 3 4; do
+            pages_dir="$GITHUB_WORKSPACE/.ci/pages-$attempt"
+            bash ci/llgo-size/prepare-pages-branch.sh \
+              "$pages_dir" \
+              "https://x-access-token:${PAGES_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+            if ci/llgo-size/publish.sh \
+                .ci/bent-run/results \
+                "$pages_dir" \
+                ci/llgo-size/site \
+                .ci/llgo-main-history.txt; then
+              published=true
+              break
+            fi
+            echo "Pages advanced during publication; retrying from its latest tip"
+            sleep $((attempt * 2))
+          done
+          if [[ "$published" != true ]]; then
+            echo "failed to publish binary-size history after 4 attempts" >&2
+            exit 1
+          fi
   deploy-pages:
     if: >-
       always() && github.ref == 'refs/heads/main' &&

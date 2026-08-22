@@ -5,8 +5,9 @@ script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 results_dir="$1"
 pages_dir="$2"
 site_dir="$3"
+main_history="${4:-}"
 if [[ -z "$results_dir" || -z "$pages_dir" || -z "$site_dir" ]]; then
-  echo "usage: publish.sh RESULTS_DIR PAGES_DIR SITE_DIR" >&2
+  echo "usage: publish.sh RESULTS_DIR PAGES_DIR SITE_DIR [LLGO_MAIN_HISTORY]" >&2
   exit 2
 fi
 
@@ -133,6 +134,8 @@ for path in glob.glob(os.path.join(data_dir, "runs", "*", "results.json")):
         "ref": run.get("ref", ""),
         "llgoRepository": run.get("llgoRepository", ""),
         "llgoCommit": run.get("llgoCommit", ""),
+        "llgoMainIndex": run.get("llgoMainIndex"),
+        "llgoCommittedAt": run.get("llgoCommittedAt", ""),
         "goVersion": run.get("goVersion", ""),
         "llvmVersion": run.get("llvmVersion", ""),
         "workflowUrl": run.get("workflowUrl", ""),
@@ -149,7 +152,6 @@ for path in glob.glob(os.path.join(data_dir, "runs", "*", "results.json")):
         if field in previous:
             item[field] = previous[field]
     runs.append(item)
-runs.sort(key=lambda item: item["createdAt"], reverse=True)
 
 index = {
     "schemaVersion": 1,
@@ -160,7 +162,11 @@ with open(runs_index_path, "w", encoding="utf-8") as f:
     json.dump(index, f, indent=2)
     f.write("\n")
 PY
-python3 "$script_dir/enrich_pull_requests.py" "$pages_dir/data/index.json"
+enrich_args=("$pages_dir/data/index.json")
+if [[ -n "$main_history" && -s "$main_history" ]]; then
+  enrich_args+=(--main-history "$main_history")
+fi
+python3 "$script_dir/enrich_pull_requests.py" "${enrich_args[@]}"
 
 git -C "$pages_dir" config user.name "github-actions[bot]"
 git -C "$pages_dir" config user.email "41898282+github-actions[bot]@users.noreply.github.com"

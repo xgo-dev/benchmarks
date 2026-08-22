@@ -79,6 +79,43 @@ class PullRequestSelectionTest(unittest.TestCase):
 
 
 class IndexEnrichmentTest(unittest.TestCase):
+    def test_orders_runs_by_llgo_main_history_instead_of_build_completion(self):
+        first = "a" * 40
+        second = "b" * 40
+        index = {
+            "runs": [
+                {
+                    "key": second,
+                    "llgoCommit": second,
+                    "createdAt": "2026-08-21T01:00:00Z",
+                },
+                {
+                    "key": first,
+                    "llgoCommit": first,
+                    "createdAt": "2026-08-21T02:00:00Z",
+                },
+            ]
+        }
+
+        MODULE.order_runs(index, [first, second])
+
+        self.assertEqual([run["key"] for run in index["runs"]], [first, second])
+        self.assertEqual([run["llgoMainIndex"] for run in index["runs"]], [1, 2])
+
+    def test_places_non_main_runs_after_topological_history(self):
+        main = "a" * 40
+        manual = "c" * 40
+        index = {
+            "runs": [
+                {"key": manual, "llgoCommit": manual, "createdAt": "2026-01-01T00:00:00Z"},
+                {"key": main, "llgoCommit": main, "createdAt": "2026-08-01T00:00:00Z"},
+            ]
+        }
+
+        MODULE.order_runs(index, [main])
+
+        self.assertEqual([run["key"] for run in index["runs"]], [main, manual])
+
     def test_builds_compact_trends_and_historical_benchmark_union(self):
         with tempfile.TemporaryDirectory() as temporary:
             data_dir = Path(temporary)

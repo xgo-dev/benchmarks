@@ -257,7 +257,7 @@ function findMeta(key) {
 
 function latestRun() {
   const runs = state.index && state.index.runs || [];
-  return runs[0];
+  return runs[runs.length - 1];
 }
 
 function measureValue(benchmark, config, measure) {
@@ -469,8 +469,7 @@ async function renderTables() {
 
 function chartRuns() {
   const limit = Number(dom.historyRange.value);
-  const newest = limit > 0 ? state.index.runs.slice(0, limit) : state.index.runs.slice();
-  return newest.reverse();
+  return limit > 0 ? state.index.runs.slice(-limit) : state.index.runs.slice();
 }
 
 function chartBand(documents, metas, benchmarkName, measure, title) {
@@ -641,6 +640,7 @@ async function main() {
     if (!response.ok) throw new Error("Cannot load the run index");
     state.index = await response.json();
     if (!state.index.runs || !state.index.runs.length) throw new Error("No benchmark runs are available");
+    state.page = Math.max(1, Math.ceil(state.index.runs.length / state.pageSize));
     state.benchmarkNames = sortedBenchmarkNames(state.index.benchmarkNames);
     if (!state.benchmarkNames.length) {
       state.benchmarkNames = benchmarkNamesFromDocuments([await loadRun(latestRun())]);

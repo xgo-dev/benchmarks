@@ -4,8 +4,9 @@ set -euo pipefail
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 pages_dir="$1"
 site_dir="$2"
+main_history="${3:-}"
 if [[ -z "$pages_dir" || -z "$site_dir" ]]; then
-  echo "usage: publish-site.sh PAGES_DIR SITE_DIR" >&2
+  echo "usage: publish-site.sh PAGES_DIR SITE_DIR [LLGO_MAIN_HISTORY]" >&2
   exit 2
 fi
 
@@ -14,7 +15,11 @@ for file in index.html app.js performance.html performance.js compatibility.html
 done
 rm -f "$pages_dir/.nojekyll"
 if [[ -s "$pages_dir/data/index.json" ]]; then
-  python3 "$script_dir/enrich_pull_requests.py" "$pages_dir/data/index.json"
+  enrich_args=("$pages_dir/data/index.json")
+  if [[ -n "$main_history" && -s "$main_history" ]]; then
+    enrich_args+=(--main-history "$main_history")
+  fi
+  python3 "$script_dir/enrich_pull_requests.py" "${enrich_args[@]}"
 fi
 
 git -C "$pages_dir" config user.name "github-actions[bot]"

@@ -281,7 +281,10 @@ jobs:
             git -C .ci/llgo fetch --progress --no-tags --depth=1 origin "$LLGO_COMMIT"
           time_command "Check out pinned LLGo commit" \
             git -C .ci/llgo checkout --detach "$LLGO_COMMIT"
-          git -C .ci/llgo fetch --no-tags origin main
+          # The commit-specific depth-1 fetch above makes this repository
+          # shallow. Unshallow it before assigning first-parent positions;
+          # otherwise every run appears to be main index 1.
+          git -C .ci/llgo fetch --no-tags --unshallow origin main
           git -C .ci/llgo rev-list --first-parent --reverse origin/main > .ci/llgo-main-history.txt
           llgo_main_index="$(awk -v commit="$LLGO_COMMIT" '$0 == commit { print NR; exit }' \
             .ci/llgo-main-history.txt)"

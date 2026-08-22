@@ -39,11 +39,28 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          set -a
+          source ci/llgo-size/llgo-version.env
+          set +a
+
+          # Rebuild every stored run's main position from the complete LLGo
+          # first-parent history. Result jobs may have been created from old or
+          # shallow checkouts, so their embedded index is only a hint.
+          git clone --filter=blob:none --no-checkout --single-branch --branch main \
+            "https://github.com/${LLGO_REPOSITORY}.git" \
+            "$GITHUB_WORKSPACE/.ci/llgo-history"
+          git -C "$GITHUB_WORKSPACE/.ci/llgo-history" \
+            rev-list --first-parent --reverse origin/main \
+            > "$GITHUB_WORKSPACE/.ci/llgo-main-history.txt"
+
           pages_dir="$GITHUB_WORKSPACE/.ci/pages"
           bash ci/llgo-size/prepare-pages-branch.sh \
             "$pages_dir" \
             "https://x-access-token:${PAGES_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          ci/llgo-size/publish-site.sh "$pages_dir" ci/llgo-size/site
+          ci/llgo-size/publish-site.sh \
+            "$pages_dir" \
+            ci/llgo-size/site \
+            "$GITHUB_WORKSPACE/.ci/llgo-main-history.txt"
 
   deploy-pages:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

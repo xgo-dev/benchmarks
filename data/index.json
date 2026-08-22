@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-22T00:53:37.513685Z",
+  "generatedAt": "2026-08-22T02:17:47.133173Z",
   "runs": [
+    {
+      "key": "fd3b28735e683d26e52f41ce2b2fbdb2bf239528",
+      "id": "32542084674",
+      "attempt": 1,
+      "number": 308,
+      "createdAt": "2026-08-22T02:17:45.181179Z",
+      "sourceCommit": "bc4aafb6e299106e404be2ef79bc18c973e96b28",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "fd3b28735e683d26e52f41ce2b2fbdb2bf239528",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32542084674",
+      "path": "runs/fd3b28735e683d26e52f41ce2b2fbdb2bf239528/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/fd3b28735e683d26e52f41ce2b2fbdb2bf239528",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2385,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2385",
+      "pullRequestTitle": "Update Go support description in README"
+    },
     {
       "key": "067b0fd372b291b3e800df2ee783902a7cf6ce2b",
       "id": "32537442941",

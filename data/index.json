@@ -1,7 +1,27 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-21T09:26:05.140166Z",
+  "generatedAt": "2026-08-22T00:53:37.513685Z",
   "runs": [
+    {
+      "key": "067b0fd372b291b3e800df2ee783902a7cf6ce2b",
+      "id": "32537442941",
+      "attempt": 1,
+      "number": 304,
+      "createdAt": "2026-08-22T00:53:34.479633Z",
+      "sourceCommit": "b158e45b41c5ea100d4f4fcab52ed44bfa5a30ab",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "067b0fd372b291b3e800df2ee783902a7cf6ce2b",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32537442941",
+      "path": "runs/067b0fd372b291b3e800df2ee783902a7cf6ce2b/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/067b0fd372b291b3e800df2ee783902a7cf6ce2b",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2324,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2324",
+      "pullRequestTitle": "docs: update README compatibility and platform status"
+    },
     {
       "key": "0e3cf934814426d77c8e2397ad81b033a55ba1c3",
       "id": "32462037664",

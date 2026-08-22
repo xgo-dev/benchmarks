@@ -25,6 +25,9 @@
   Root = "$GOROOT"
   OmitVetFlag = true
   UseBuildCache = true
+  # A smaller result is useful only if the method-pruned test binary can start.
+  # Empty selections exercise test-main initialization without running tests.
+  ValidateTestBinary = true
   BuildFlags = ["-deadcodedrop"]
   AfterBuild = ["benchsize"]
 

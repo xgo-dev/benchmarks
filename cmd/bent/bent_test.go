@@ -13,6 +13,7 @@ import (
 	"path"
 	"reflect"
 	"runtime"
+	"strings"
 	"testing"
 )
 
@@ -165,6 +166,73 @@ func TestCompileOneBuildsMainPackage(t *testing.T) {
 	}
 	if _, err := os.Stat(path.Join(workspace, "testbin", "hello_Main")); err != nil {
 		t.Fatalf("main binary was not created: %v", err)
+	}
+}
+
+func TestCompileOneValidatesTestBinary(t *testing.T) {
+	goCommand, err := exec.LookPath("go")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	tests := []struct {
+		name        string
+		testSource  string
+		wantFailure bool
+	}{
+		{
+			name:       "starts",
+			testSource: "package sample\n\nimport \"testing\"\n\nfunc TestSmoke(t *testing.T) {}\n",
+		},
+		{
+			name:        "startup failure",
+			testSource:  "package sample\n\nimport (\"os\"; \"testing\")\n\nfunc TestMain(*testing.M) { os.Exit(23) }\n",
+			wantFailure: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			workspace := t.TempDir()
+			buildDir := t.TempDir()
+			if err := os.MkdirAll(path.Join(workspace, "testbin"), 0o755); err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(path.Join(buildDir, "go.mod"), []byte("module example.com/sample\n\ngo 1.22\n"), 0o644); err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(path.Join(buildDir, "sample_test.go"), []byte(tt.testSource), 0o644); err != nil {
+				t.Fatal(err)
+			}
+
+			oldDirs, oldDefaultEnv, oldReportBuildTime := dirs, defaultEnv, reportBuildTime
+			defer func() {
+				dirs = oldDirs
+				defaultEnv = oldDefaultEnv
+				reportBuildTime = oldReportBuildTime
+			}()
+			dirs = &directories{wd: workspace, testBinDir: "testbin"}
+			defaultEnv = replaceEnv(os.Environ(), "GOCACHE", t.TempDir())
+			reportBuildTime = false
+
+			config := Configuration{Name: "Validated", Compiler: goCommand, UseBuildCache: true, ValidateTestBinary: true}
+			benchmark := Benchmark{Name: "sample", Suite: "sample", Repo: ".", buildDir: buildDir, NotSandboxed: true}
+			failure := config.compileOne(&benchmark, workspace, 1, false)
+			if tt.wantFailure {
+				if !strings.Contains(failure, "startup failed") {
+					t.Fatalf("compileOne failure = %q, want startup failure", failure)
+				}
+			} else if failure != "" {
+				t.Fatalf("compileOne returned unexpected failure: %s", failure)
+			}
+		})
+	}
+}
+
+func TestValidateTestBinarySkipsBuildMode(t *testing.T) {
+	config := Configuration{ValidateTestBinary: true}
+	benchmark := Benchmark{BuildMode: buildModeBuild}
+	if err := config.validateTestBinary(&benchmark, "/does/not/exist", nil); err != nil {
+		t.Fatalf("validateTestBinary(build mode) = %v, want nil", err)
 	}
 }
 

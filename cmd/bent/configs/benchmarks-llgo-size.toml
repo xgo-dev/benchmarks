@@ -4,6 +4,9 @@
 # Kubernetes, logging, TOML, GORM, and etcdctl. They are
 # deliberately limited to keep the six-way compiler matrix practical on a
 # GitHub hosted runner, and have been verified against the pinned LLGo revision.
+# Entries use Bent's default BuildMode = "test" unless their suite explicitly
+# selects BuildMode = "build". The latter currently applies to etcdctl, XGo,
+# and iXGo.
 
 [[Benchmarks]]
   Name = "toml"

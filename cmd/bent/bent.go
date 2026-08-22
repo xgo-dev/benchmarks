@@ -930,6 +930,13 @@ results will also appear in 'bench'.
 		}
 
 		if buildOnly {
+			if len(getAndBuildFailures) > 0 {
+				fmt.Fprintln(os.Stderr, "Get and build failures:")
+				for _, failure := range getAndBuildFailures {
+					fmt.Fprintln(os.Stderr, failure)
+				}
+				os.Exit(1)
+			}
 			return
 		}
 

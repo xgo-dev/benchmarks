@@ -17,9 +17,17 @@ and the Go+ toolchain. The GORM schema package is a real MethodByName consumer: 
 package-global readonly `callbackTypes` slice supplies the callback names used
 by `reflect.Value.MethodByName`. It therefore exercises the plugin through the
 same `go test -c` path as the other test-mode results.
-The etcdctl case sets `BuildMode = "build"` and exercises the new `go build` /
-`llgo build` path against `go.etcd.io/etcd/etcdctl/v3`. All configurations use
-Bent's configured build concurrency.
+The etcdctl, XGo, and iXGo suites set `BuildMode = "build"` and exercise the
+`go build` / `llgo build` path. The other six cases use Bent's default
+`BuildMode = "test"` and measure test binaries produced by `go test -c` or
+`llgo test -c`.
+
+The deadcode-drop configuration starts every test-mode binary once with empty
+test and benchmark selections before its size is accepted. This executes the
+generated test-main initialization without running a workload, catching invalid
+method pruning such as an `unreachable method called` failure. Ordinary main
+binaries are not executed by this check. All configurations use Bent's
+configured build concurrency.
 
 Every benchmark/configuration pair is built exactly once. LLGo's package cache
 separates archives that contain LTO plugin markers from ordinary archives, so

@@ -9,6 +9,7 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"context"
 	"fmt"
 	"io"
 	"os"
@@ -25,24 +26,25 @@ import (
 // initiate a bent run. These structures are read from a .toml file at
 // boot-time.
 type Configuration struct {
-	Name          string   // Short name used for binary names, mention on command line
-	Root          string   // Specific Go root to use for this trial
-	Compiler      string   // Optional go-compatible compiler command; defaults to Go from Root
-	OmitVetFlag   bool     // Do not pass Go's -vet=off flag to this compiler
-	UseBuildCache bool     // Reuse package-cache entries unless Bent's -a flag is explicitly requested
-	PgoGen        string   // Name of sub-directory to put profiles for later loading
-	PgoUse        string   // Name of sub-directory to take generated profile files
-	BuildFlags    []string // BuildFlags supplied to the configured build command (e.g., "-p 1")
-	AfterBuild    []string // Array of commands to run, output of all commands for a configuration (across binaries) is collected in <runstamp>.<config>.<cmd>
-	GcFlags       string   // GcFlags supplied to the configured build command
-	LdFlags       string   // LdFlags supplied to the configured build command
-	GcEnv         []string // Environment variables supplied to the configured build command
-	RunFlags      []string // Extra flags passed to every runnable test binary
-	RunEnv        []string // Extra environment variables passed to the runnable test binary
-	RunWrapper    []string // (Outermost) Command and args to precede the runnable test binary; may fail in the sandbox.
-	Disabled      bool     // True if this configuration is temporarily disabled
-	benchWriter   *os.File
-	rootCopy      string // The contents of GOROOT are copied here to isolate compilation benchmarking.
+	Name               string   // Short name used for binary names, mention on command line
+	Root               string   // Specific Go root to use for this trial
+	Compiler           string   // Optional go-compatible compiler command; defaults to Go from Root
+	OmitVetFlag        bool     // Do not pass Go's -vet=off flag to this compiler
+	UseBuildCache      bool     // Reuse package-cache entries unless Bent's -a flag is explicitly requested
+	PgoGen             string   // Name of sub-directory to put profiles for later loading
+	PgoUse             string   // Name of sub-directory to take generated profile files
+	BuildFlags         []string // BuildFlags supplied to the configured build command (e.g., "-p 1")
+	AfterBuild         []string // Array of commands to run, output of all commands for a configuration (across binaries) is collected in <runstamp>.<config>.<cmd>
+	ValidateTestBinary bool     // Start test binaries without selecting tests after building; ignored for BuildMode="build"
+	GcFlags            string   // GcFlags supplied to the configured build command
+	LdFlags            string   // LdFlags supplied to the configured build command
+	GcEnv              []string // Environment variables supplied to the configured build command
+	RunFlags           []string // Extra flags passed to every runnable test binary
+	RunEnv             []string // Extra environment variables passed to the runnable test binary
+	RunWrapper         []string // (Outermost) Command and args to precede the runnable test binary; may fail in the sandbox.
+	Disabled           bool     // True if this configuration is temporarily disabled
+	benchWriter        *os.File
+	rootCopy           string // The contents of GOROOT are copied here to isolate compilation benchmarking.
 }
 
 var dirs *directories // constant across all configurations, useful in other contexts.
@@ -254,6 +256,12 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 		bench.Disabled = true // if it won't compile, it won't run, either.
 		return s + "(" + bench.Name + ")\n"
 	}
+	if err := config.validateTestBinary(bench, compileTo, cmdEnv); err != nil {
+		s := fmt.Sprintf("There was an error validating the test binary for %s (%s): %v", bench.Name, config.Name, err)
+		fmt.Println(s + "\nDISABLING benchmark " + bench.Name)
+		bench.Disabled = true
+		return s + "\n"
+	}
 
 	if reportBuildTime {
 		// Report and record build stats to testbin
@@ -311,6 +319,38 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 	}
 
 	return ""
+}
+
+func (config *Configuration) validateTestBinary(bench *Benchmark, binary string, env []string) error {
+	if !config.ValidateTestBinary || !bench.buildsTestBinary() {
+		return nil
+	}
+
+	targetGOOS := getenv(env, "GOOS")
+	if targetGOOS != "" && targetGOOS != runtime.GOOS {
+		return fmt.Errorf("cannot run %s binary on %s", targetGOOS, runtime.GOOS)
+	}
+	targetGOARCH := getenv(env, "GOARCH")
+	if targetGOARCH != "" && targetGOARCH != runtime.GOARCH {
+		return fmt.Errorf("cannot run %s binary on %s", targetGOARCH, runtime.GOARCH)
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, binary, "-test.run=^$", "-test.bench=^$")
+	cmd.Dir = bench.BuildDir()
+	cmd.Env = env
+	if verbose > 0 {
+		fmt.Println(asCommandLine(dirs.wd, cmd))
+	}
+	output, err := cmd.CombinedOutput()
+	if ctx.Err() == context.DeadlineExceeded {
+		return fmt.Errorf("startup timed out after 30s")
+	}
+	if err != nil {
+		return fmt.Errorf("startup failed: %w, output = %s", err, output)
+	}
+	return nil
 }
 
 // say writes s to c's benchmark output file

@@ -2,22 +2,22 @@
   "schemaVersion": 1,
   "format": "go-test-json",
   "run": {
-    "id": "32541904869",
+    "id": "32546307424",
     "attempt": 1,
-    "number": 17,
-    "createdAt": "2026-08-22T02:13:43.965924Z",
+    "number": 18,
+    "createdAt": "2026-08-22T03:59:16.819592Z",
     "repository": "xgo-dev/benchmarks",
-    "sourceCommit": "b158e45b41c5ea100d4f4fcab52ed44bfa5a30ab",
+    "sourceCommit": "35d18c0f2e0530e0f5065da946e3abd254efb16f",
     "llgoRepository": "xgo-dev/llgo",
     "llgoCommit": "fd3b28735e683d26e52f41ce2b2fbdb2bf239528",
     "llgoTag": "v1.0.0-pre.4",
     "goVersion": "1.26.2",
     "llvmVersion": "19",
     "event": "repository_dispatch",
-    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32541904869",
+    "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32546307424",
     "runnerOS": "Linux",
     "runnerArch": "X64",
-    "cpu": "AMD EPYC 9V74 80-Core Processor"
+    "cpu": "AMD EPYC 7763 64-Core Processor"
   },
   "summary": {
     "projectsCompatible": 7,
@@ -25,10 +25,10 @@
     "packagesCompatible": 191,
     "packagesCompiled": 198,
     "packagesTotal": 200,
-    "testsPassed": 11819,
+    "testsPassed": 11823,
     "testsFailed": 17,
     "testsSkipped": 19,
-    "testsTotal": 11855
+    "testsTotal": 11859
   },
   "projects": [
     {
@@ -3932,7 +3932,7 @@
             "failedTests": [
               {
                 "name": "TestAnonymousAuthConfig",
-                "output": "=== RUN   TestAnonymousAuthConfig\n--- FAIL: TestAnonymousAuthConfig (0.00s)\npanic: can't fill type func(context.Context, string, string) (net.Conn, error), kind func\n\ngoroutine 1 [running]:\ntesting.tRunner$1.func2(...)\n\t/opt/hostedtoolcache/go/1.26.2/x64/src/testing/testing.go:1974 +0x29d\ntesting.tRunner.func1(...)\n\t/opt/hostedtoolcache/go/1.26.2/x64/src/testing/testing.go:1977 +0x4b0\ntesting.tRunner(...)\n\t/opt/hostedtoolcache/go/1.26.2/x64/src/testing/testing.go:2042 +0x1fc\ntesting.(*testState).waitParallel(...)\n\t/opt/hostedtoolcache/go/1.26.2/x64/src/testing/testing.go:2220 +0x1d4"
+                "output": "=== RUN   TestAnonymousAuthConfig\n--- FAIL: TestAnonymousAuthConfig (0.01s)\npanic: can't fill type func(context.Context, string, string) (net.Conn, error), kind func\n\ngoroutine 1 [running]:\ntesting.tRunner$1.func2(...)\n\t/opt/hostedtoolcache/go/1.26.2/x64/src/testing/testing.go:1974 +0x29d\ntesting.tRunner.func1(...)\n\t/opt/hostedtoolcache/go/1.26.2/x64/src/testing/testing.go:1977 +0x4b0\ntesting.tRunner(...)\n\t/opt/hostedtoolcache/go/1.26.2/x64/src/testing/testing.go:2042 +0x1fc\ntesting.(*testState).waitParallel(...)\n\t/opt/hostedtoolcache/go/1.26.2/x64/src/testing/testing.go:2220 +0x1d4"
               }
             ]
           }
@@ -4405,15 +4405,15 @@
           "LLGo": {
             "build": "pass",
             "test": "runner-error",
-            "passed": 7,
+            "passed": 11,
             "failed": 1,
             "skipped": 0,
-            "total": 8,
+            "total": 12,
             "elapsedSeconds": null,
             "failedTests": [
               {
-                "name": "TestSPDYExecutorStream/timeoutTest",
-                "output": "=== RUN   TestSPDYExecutorStream/timeoutTest"
+                "name": "TestStreamRandomData",
+                "output": "=== RUN   TestStreamRandomData"
               }
             ]
           }
@@ -4446,7 +4446,7 @@
             "failedTests": [
               {
                 "name": "TestCacheHoldAfterCARotation",
-                "output": "=== RUN   TestCacheHoldAfterCARotation\n    cache_test.go:490: cache len 1, want 0: context deadline exceeded\n--- FAIL: TestCacheHoldAfterCARotation (10.01s)"
+                "output": "=== RUN   TestCacheHoldAfterCARotation\n    cache_test.go:490: cache len 1, want 0: context deadline exceeded\n--- FAIL: TestCacheHoldAfterCARotation (10.02s)"
               },
               {
                 "name": "TestCacheReviveAfterDrop",

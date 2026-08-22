@@ -86,8 +86,13 @@ with open(os.path.join(data_dir, "index.json"), "w", encoding="utf-8") as destin
     destination.write("\n")
 PY
 
+# Result jobs can finish long after a newer site revision has been published.
+# Seed a brand-new Pages branch, but leave existing static assets to the
+# dedicated Pages workflow so an old result job cannot roll the UI back.
 for file in index.html app.js performance.html performance.js compatibility.html compatibility.js style.css _config.yml; do
-  cp "$site_dir/$file" "$pages_dir/$file"
+  if [[ ! -e "$pages_dir/$file" ]]; then
+    cp "$site_dir/$file" "$pages_dir/$file"
+  fi
 done
 rm -f "$pages_dir/.nojekyll"
 

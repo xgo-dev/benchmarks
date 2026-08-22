@@ -6,6 +6,7 @@ on:
       - main
     paths-ignore:
       - ci/llgo-size/site/**
+      - ci/llgo-size/publish.sh
       - ci/llgo-size/publish-site.sh
       - ci/llgo-size/prepare-pages-branch.sh
       - ci/llgo-performance/**

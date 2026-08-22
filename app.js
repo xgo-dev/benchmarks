@@ -255,11 +255,6 @@ function findMeta(key) {
   return state.index && state.index.runs.find(function (run) { return run.key === key; });
 }
 
-function latestRun() {
-  const runs = state.index && state.index.runs || [];
-  return runs[runs.length - 1];
-}
-
 function measureValue(benchmark, config, measure) {
   if (!benchmark) return NaN;
   if (measure === "size") return Number(benchmark.values && benchmark.values[config]);
@@ -276,7 +271,7 @@ function filteredRuns() {
   const query = state.query.trim().toLowerCase();
   if (!query) return state.index.runs;
   return state.index.runs.filter(function (run) {
-    return [commitLabel(run), run.llgoCommit, run.sourceCommit, run.ref, run.llgoCommittedAt, run.createdAt, run.key]
+    return [commitLabel(run), run.llgoCommit, run.sourceCommit, run.ref, run.createdAt, run.key]
       .some(function (value) { return String(value || "").toLowerCase().includes(query); });
   });
 }
@@ -336,7 +331,7 @@ function headerHtml(run) {
   const selected = state.selectedKeys.indexOf(run.key);
   const marker = selected >= 0 ? '<b class="pick-marker">' + (selected === 0 ? "A" : "B") + "</b>" : "";
   const commit = commitLinkHtml(run, "<code>" + escapeHtml(commitLabel(run)) + "</code>", "commit-link", commitLinkTitle(run) + ": " + commitLabel(run));
-  const date = escapeHtml(dateLabel(run.llgoCommittedAt || run.createdAt));
+  const date = escapeHtml(dateLabel(run.createdAt));
   const detail = state.comparisonMode
     ? '<button class="commit-select" type="button" data-run-key="' + escapeHtml(run.key) + '" title="Select ' + escapeHtml(commitLabel(run)) + ' for comparison">' + marker + "<span>" + date + "</span></button>"
     : '<span class="commit-date">' + date + "</span>";
@@ -446,9 +441,8 @@ function goVersionLabel(value) {
 }
 
 async function renderEnvironment() {
-  const newest = latestRun();
-  const key = state.selectedKeys.length === 2 ? state.selectedKeys[1] : newest.key;
-  const meta = findMeta(key) || newest;
+  const key = state.selectedKeys.length === 2 ? state.selectedKeys[1] : state.index.runs[0].key;
+  const meta = findMeta(key) || state.index.runs[0];
   const document = await loadRun(meta);
   const run = document.run || {};
   dom.envRunner.textContent = normalizeRunner(run);
@@ -469,7 +463,8 @@ async function renderTables() {
 
 function chartRuns() {
   const limit = Number(dom.historyRange.value);
-  return limit > 0 ? state.index.runs.slice(-limit) : state.index.runs.slice();
+  const newest = limit > 0 ? state.index.runs.slice(0, limit) : state.index.runs.slice();
+  return newest.reverse();
 }
 
 function chartBand(documents, metas, benchmarkName, measure, title) {
@@ -640,10 +635,9 @@ async function main() {
     if (!response.ok) throw new Error("Cannot load the run index");
     state.index = await response.json();
     if (!state.index.runs || !state.index.runs.length) throw new Error("No benchmark runs are available");
-    state.page = Math.max(1, Math.ceil(state.index.runs.length / state.pageSize));
     state.benchmarkNames = sortedBenchmarkNames(state.index.benchmarkNames);
     if (!state.benchmarkNames.length) {
-      state.benchmarkNames = benchmarkNamesFromDocuments([await loadRun(latestRun())]);
+      state.benchmarkNames = benchmarkNamesFromDocuments([await loadRun(state.index.runs[0])]);
     }
     state.activeBenchmark = state.benchmarkNames[0] || "";
     configs.forEach(function (config) { state.activeConfigs.add(config); });
@@ -652,7 +646,7 @@ async function main() {
     renderConfigFilter();
     attachEvents();
     await refreshAll();
-    dom.status.textContent = "Updated " + dateLabel(state.index.generatedAt || latestRun().createdAt);
+    dom.status.textContent = "Updated " + dateLabel(state.index.generatedAt || state.index.runs[0].createdAt);
   } catch (error) {
     dom.status.textContent = error.message;
     dom.status.classList.add("error");

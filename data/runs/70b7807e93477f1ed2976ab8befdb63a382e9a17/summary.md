@@ -1,0 +1,14 @@
+# LLGo binary-size CI
+All values are ELF file sizes in bytes, collected by Bent `benchsize`.
+
+| Benchmark | Go | LLGoNoLTO | LLGoDeadcodeDrop | LLGoFullLTONoGlobalDCE | LLGoFullLTOGlobalDCE | LLGoFullLTOGlobalDCEPlugin |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Aws_restjson | 14635492 | 14250440 | 11730968 | 14151664 | 11957928 | 11957928 |
+| Dustin_humanize | 4999034 | 5256304 | 3813440 | 5108696 | 3804184 | 3804184 |
+| Etcdctl | 25896983 | 23954616 | 22659832 | 23983312 | 23388728 | 23388728 |
+| Gorm_schema | 9421683 | 7811640 | 7137776 | 7698168 | 7436800 | 6030688 |
+| IXGo | 41505755 | 32404160 | 31641880 | 32460184 | 32196232 | 32196232 |
+| K8s_workqueue | 10681819 | 12447136 | 11675296 | 12382664 | 12222552 | 12222552 |
+| Toml | 7324958 | 6821496 | 5605872 | 6685512 | 5643752 | 5643752 |
+| Uber_zap | 10024992 | 12758160 | 10293744 | 12709856 | 10914432 | 10914432 |
+| XGo | 18662581 | 19343784 | 16981864 | 19374032 | 18909976 | 18909976 |

@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-22T06:32:05.517877Z",
+  "generatedAt": "2026-08-22T09:37:10.156126Z",
   "runs": [
+    {
+      "key": "70b7807e93477f1ed2976ab8befdb63a382e9a17",
+      "id": "32562160381",
+      "attempt": 1,
+      "number": 321,
+      "createdAt": "2026-08-22T09:37:08.062889Z",
+      "sourceCommit": "74d7194c2bda1df2a8ee1a1d3aec76eb808064bd",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "70b7807e93477f1ed2976ab8befdb63a382e9a17",
+      "llgoMainIndex": 1541,
+      "llgoCommittedAt": "2026-08-22T16:22:12+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32562160381",
+      "path": "runs/70b7807e93477f1ed2976ab8befdb63a382e9a17/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/70b7807e93477f1ed2976ab8befdb63a382e9a17",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2389,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2389",
+      "pullRequestTitle": "README: C/C++ support"
+    },
     {
       "key": "8b630ab55b1b2f3d1f5f115443b433a2c081c3d8",
       "id": "32553738306",

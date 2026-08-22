@@ -87,11 +87,13 @@ class IndexEnrichmentTest(unittest.TestCase):
                 {
                     "key": second,
                     "llgoCommit": second,
+                    "llgoMainIndex": 1,
                     "createdAt": "2026-08-21T01:00:00Z",
                 },
                 {
                     "key": first,
                     "llgoCommit": first,
+                    "llgoMainIndex": 1,
                     "createdAt": "2026-08-21T02:00:00Z",
                 },
             ]

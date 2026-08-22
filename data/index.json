@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-22T10:41:11.682654Z",
+  "generatedAt": "2026-08-22T15:04:17.318334Z",
   "runs": [
     {
       "key": "e3f9319e162345d1c653ceae31d4cb8980d0d6a7",
-      "id": "32564915679",
+      "id": "32576247949",
       "attempt": 1,
-      "number": 325,
-      "createdAt": "2026-08-22T10:41:09.838621Z",
-      "sourceCommit": "add7c5b94a569367db1e2182990929964ae0c0da",
+      "number": 327,
+      "createdAt": "2026-08-22T15:04:14.122949Z",
+      "sourceCommit": "a8f126694f038f439488d9df747cb16490a79a39",
       "ref": "main",
       "llgoRepository": "xgo-dev/llgo",
       "llgoCommit": "e3f9319e162345d1c653ceae31d4cb8980d0d6a7",
@@ -16,7 +16,7 @@
       "llgoCommittedAt": "2026-08-22T17:25:23+08:00",
       "goVersion": "1.26.2",
       "llvmVersion": "19",
-      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32564915679",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32576247949",
       "path": "runs/e3f9319e162345d1c653ceae31d4cb8980d0d6a7/results.json",
       "commitUrl": "https://github.com/xgo-dev/llgo/commit/e3f9319e162345d1c653ceae31d4cb8980d0d6a7",
       "pullRequestResolved": true,

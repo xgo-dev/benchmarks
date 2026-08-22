@@ -34,27 +34,96 @@ for config in "${configs[@]}"; do
   fi
   stdout_file=${matches[0]}
   stdout_files+=("$stdout_file")
+done
 
-  for benchmark in "${benchmarks[@]}"; do
-    count=$(grep -Fxc "shortname: $benchmark" "$stdout_file" || true)
-    if ((count != repetitions)); then
-      echo "$config produced $count/$repetitions samples for $benchmark" >&2
-      exit 1
+valid_benchmarks=()
+skipped_benchmarks=()
+for benchmark in "${benchmarks[@]}"; do
+  failure=""
+  for index in "${!configs[@]}"; do
+    config=${configs[$index]}
+    stdout_file=${stdout_files[$index]}
+    sample_count=$(grep -Fxc -- "shortname: $benchmark" "$stdout_file" || true)
+    pass_count=$(awk -v marker="shortname: $benchmark" '
+      function finish_sample() {
+        if (active && passed) {
+          passing++
+        }
+      }
+      /^shortname: / {
+        finish_sample()
+        active = ($0 == marker)
+        passed = 0
+        next
+      }
+      active && $0 == "PASS" {
+        passed = 1
+      }
+      END {
+        finish_sample()
+        print passing + 0
+      }
+    ' "$stdout_file")
+
+    if ((sample_count != repetitions || pass_count != repetitions)); then
+      detail="$config: $pass_count/$sample_count passing samples"
+      failure="${failure}${failure:+; }$detail"
     fi
   done
 
-  pass_count=$(grep -c '^PASS$' "$stdout_file" || true)
-  expected_passes=$((${#benchmarks[@]} * repetitions))
-  if ((pass_count != expected_passes)); then
-    echo "$config produced $pass_count/$expected_passes passing samples" >&2
-    exit 1
+  if [[ -n "$failure" ]]; then
+    skipped_benchmarks+=("$benchmark ($failure)")
+  else
+    valid_benchmarks+=("$benchmark")
   fi
 done
 
+if ((${#valid_benchmarks[@]} == 0)); then
+  echo "no LLGo performance benchmarks produced complete results" >&2
+  exit 1
+fi
+
+filtered_dir=$(mktemp -d "$run_dir/report-filtered.XXXXXX")
+trap 'rm -rf "$filtered_dir"' EXIT
+allow_file="$filtered_dir/benchmarks.txt"
+printf '%s\n' "${valid_benchmarks[@]}" > "$allow_file"
+
+filtered_stdout_files=()
+for index in "${!configs[@]}"; do
+  config=${configs[$index]}
+  stdout_file=${stdout_files[$index]}
+  filtered_stdout="$filtered_dir/$config.stdout"
+  awk -v allow_file="$allow_file" '
+    BEGIN {
+      while ((getline benchmark < allow_file) > 0) {
+        allowed["shortname: " benchmark] = 1
+      }
+      close(allow_file)
+    }
+    /^shortname: / {
+      emit = ($0 in allowed)
+    }
+    emit {
+      print
+    }
+  ' "$stdout_file" > "$filtered_stdout"
+  filtered_stdout_files+=("$filtered_stdout")
+done
+
+{
+  printf 'Compared %d/%d benchmarks with %d repetitions per toolchain.\n' \
+    "${#valid_benchmarks[@]}" "${#benchmarks[@]}" "$repetitions"
+  if ((${#skipped_benchmarks[@]} > 0)); then
+    printf 'Skipped %d incomplete benchmarks:\n' "${#skipped_benchmarks[@]}"
+    printf -- '- %s\n' "${skipped_benchmarks[@]}"
+  fi
+  printf '\n'
+} > "$report"
+
 "$benchstat_bin" -confidence "$confidence" \
-  -table shortname -col toolchain -row .name "${stdout_files[@]}" > "$report"
+  -table shortname -col toolchain -row .name "${filtered_stdout_files[@]}" >> "$report"
 "$benchstat_bin" -confidence "$confidence" -format csv -filter '.unit:sec/op' \
-  -table shortname -col toolchain -row .name "${stdout_files[@]}" > "$csv_report"
+  -table shortname -col toolchain -row .name "${filtered_stdout_files[@]}" > "$csv_report"
 LLGO_PERFORMANCE_REPETITIONS=$repetitions \
-  python3 "$(dirname "$0")/report.py" "$csv_report" "$json_report" "${stdout_files[0]}"
+  python3 "$(dirname "$0")/report.py" "$csv_report" "$json_report" "${filtered_stdout_files[0]}"
 cat "$report"

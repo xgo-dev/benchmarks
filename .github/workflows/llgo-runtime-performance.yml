@@ -112,10 +112,16 @@ jobs:
           (
             cd .ci/bent-performance
             "$GITHUB_WORKSPACE/.ci/bent" -I
+            set +e
             "$GITHUB_WORKSPACE/.ci/bent" \
               -B=benchmarks-llgo-performance.toml \
               -C=configurations-llgo-performance.toml \
               -N=5 -G
+            bent_status=$?
+            set -e
+            if ((bent_status != 0)); then
+              echo "::warning::Bent exited with status $bent_status; reporting complete benchmark samples"
+            fi
           )
           ci/llgo-performance/report.sh \
             .ci/bent-performance \

@@ -85,8 +85,9 @@ The benchmark and page-only workflows use separate concurrency keys. Pages
 publication retries from the latest `pages` tip if parallel benchmark runs
 finish together. The index records each result's position on LLGo's first-parent
 `main` history and displays commits in that order rather than build completion
-order; the dashboard opens on the newest page while keeping its columns oldest
-to newest.
+order; the dashboard keeps the newest commits on the first page and orders its
+columns newest to oldest. Trend charts reverse that selection for chronological
+left-to-right display.
 
 Pull requests that change the committed LLGo version, Bent, the LLGo-size
 benchmark/configuration files, or the suite definitions used by those cases

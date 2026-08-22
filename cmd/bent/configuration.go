@@ -30,6 +30,7 @@ type Configuration struct {
 	Compiler      string   // Optional go-compatible compiler command; defaults to Go from Root
 	OmitVetFlag   bool     // Do not pass Go's -vet=off flag to this compiler
 	UseBuildCache bool     // Reuse package-cache entries unless Bent's -a flag is explicitly requested
+	BuildCache    string   // Optional cache policy: "shared" or isolated "stdlib"
 	PgoGen        string   // Name of sub-directory to put profiles for later loading
 	PgoUse        string   // Name of sub-directory to take generated profile files
 	BuildFlags    []string // BuildFlags supplied to the configured build command (e.g., "-p 1")
@@ -43,6 +44,7 @@ type Configuration struct {
 	Disabled      bool     // True if this configuration is temporarily disabled
 	benchWriter   *os.File
 	rootCopy      string // The contents of GOROOT are copied here to isolate compilation benchmarking.
+	cacheSeed     string // Standard-library-only cache seed, when BuildCache is "stdlib".
 }
 
 var dirs *directories // constant across all configurations, useful in other contexts.
@@ -89,7 +91,7 @@ func (config *Configuration) buildCommandArgs(bench *Benchmark, randomizingBinar
 	}
 	// Preserve Bent's historic default of a fresh build. Configurations which
 	// can safely share a cache may opt in, while an explicit -a always wins.
-	if !randomizingBinaries && (!config.UseBuildCache || explicitAll != 0) {
+	if !randomizingBinaries && (!config.usesBuildCache() || explicitAll != 0) {
 		args = append(args, "-a")
 	}
 	return args
@@ -202,6 +204,17 @@ func (config *Configuration) compileOne(bench *Benchmark, cwd string, count int,
 	cmd.Env = append(cmd.Env, "BENT_I="+fmt.Sprintf("%d", count))
 	cmd.Env = replaceEnvs(cmd.Env, sliceExpandEnv(bench.GcEnv, cmd.Env))
 	cmd.Env = replaceEnvs(cmd.Env, sliceExpandEnv(config.GcEnv, cmd.Env))
+	cacheDir, cacheCleanup, err := config.isolatedBuildCache()
+	if err != nil {
+		s := fmt.Sprintf("Could not prepare isolated build cache for %s/%s: %v", bench.Suite, config.Name, err)
+		fmt.Println(s + " DISABLING benchmark " + bench.Name)
+		bench.Disabled = true
+		return s + "(" + bench.Name + ")\n"
+	}
+	defer cacheCleanup()
+	if cacheDir != "" {
+		cmd.Env = buildCacheEnv(cmd.Env, cacheDir)
+	}
 	configGoArch := getenv(cmd.Env, "GOARCH")
 
 	cmdEnv := append([]string{}, cmd.Env...) // for after-build

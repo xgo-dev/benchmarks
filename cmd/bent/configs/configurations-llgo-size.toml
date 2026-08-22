@@ -2,13 +2,14 @@
 #
 # LLGO_BIN and LLGO_LTO_PLUGIN are built by the workflow. LLGo's command is
 # Go-compatible but does not support the standard go command's -vet option.
-# It has a plugin-aware package cache, so these one-shot size builds may reuse
-# valid archives; an explicit Bent -a still forces a full rebuild.
+# Each measured build starts from a private cache containing only its required
+# standard-library packages. Module dependencies and the target package are
+# rebuilt for every benchmark/configuration pair.
 
 [[Configurations]]
   Name = "Go"
   Root = "$GOROOT"
-  UseBuildCache = true
+  BuildCache = "stdlib"
   AfterBuild = ["benchsize"]
 
 [[Configurations]]
@@ -16,7 +17,7 @@
   Compiler = "$LLGO_BIN"
   Root = "$GOROOT"
   OmitVetFlag = true
-  UseBuildCache = true
+  BuildCache = "stdlib"
   AfterBuild = ["benchsize"]
 
 [[Configurations]]
@@ -24,7 +25,7 @@
   Compiler = "$LLGO_BIN"
   Root = "$GOROOT"
   OmitVetFlag = true
-  UseBuildCache = true
+  BuildCache = "stdlib"
   BuildFlags = ["-deadcodedrop"]
   AfterBuild = ["benchsize"]
 
@@ -33,7 +34,7 @@
   Compiler = "$LLGO_BIN"
   Root = "$GOROOT"
   OmitVetFlag = true
-  UseBuildCache = true
+  BuildCache = "stdlib"
   BuildFlags = ["-lto=full", "-globaldce=false"]
   AfterBuild = ["benchsize"]
 
@@ -42,7 +43,7 @@
   Compiler = "$LLGO_BIN"
   Root = "$GOROOT"
   OmitVetFlag = true
-  UseBuildCache = true
+  BuildCache = "stdlib"
   BuildFlags = ["-lto=full"]
   AfterBuild = ["benchsize"]
 
@@ -51,6 +52,6 @@
   Compiler = "$LLGO_BIN"
   Root = "$GOROOT"
   OmitVetFlag = true
-  UseBuildCache = true
+  BuildCache = "stdlib"
   BuildFlags = ["-lto=full", "-lto-pass-plugin=$LLGO_LTO_PLUGIN"]
   AfterBuild = ["benchsize"]

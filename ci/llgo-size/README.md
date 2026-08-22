@@ -21,9 +21,13 @@ The etcdctl case sets `BuildMode = "build"` and exercises the new `go build` /
 `llgo build` path against `go.etcd.io/etcd/etcdctl/v3`. All configurations use
 Bent's configured build concurrency.
 
-Every benchmark/configuration pair is built exactly once. LLGo's package cache
-separates archives that contain LTO plugin markers from ordinary archives, so
-the plugin configuration does not require a forced `-a` rebuild.
+Every benchmark/configuration pair is built exactly once. Each configuration
+first prewarms the standard-library packages required by the selected suites.
+Every measured build then receives a private copy of that seed, so it can reuse
+the standard library but cannot reuse module dependencies or target packages
+compiled by an earlier pair. Native Go and LLGo follow the same cache policy;
+the workflow also disables setup-go's cross-run build-cache restore. LLGo's
+package-cache fingerprint still separates the LTO and plugin configurations.
 The required suite set explicitly includes `dustin_humanize`'s `BenchmarkParseBigBytes`; the
 report fails instead of silently publishing a partial result if any required
 suite is absent.

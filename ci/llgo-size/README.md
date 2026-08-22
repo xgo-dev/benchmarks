@@ -47,14 +47,14 @@ and a full-width separator marks the next benchmark. The row set is the union
 of every published run, so a historical benchmark remains visible with `—` in
 commit columns where it was not produced.
 
-The `llgo-main-updated` repository-dispatch event from `xgo-dev/llgo` first
-updates `LLGO_COMMIT` on the benchmarks `main` branch, then explicitly starts a
-`workflow_dispatch` build with that complete SHA. This makes the version-file
-update and the published result one ordered operation without relying on a
-`GITHUB_TOKEN`-created push to trigger another workflow. The exact commit is
-retained in `results.json` and the Pages history, so every LLGo `main` update
-has a comparable data point. GitHub requires the receiver workflow to be on
-the benchmarks repository's default branch before it can receive this event.
+The `llgo-main-updated` repository-dispatch event from `xgo-dev/llgo` starts a
+binary-size build directly with the complete dispatched SHA. A separate,
+coalescible job updates `LLGO_COMMIT` on the benchmarks `main` branch to the
+current LLGo main tip; coalescing that bookkeeping cannot discard a benchmark
+revision. Distinct LLGo commits use distinct build concurrency keys, so a burst
+of merges may run in parallel but every LLGo `main` update retains a comparable
+data point. GitHub requires the receiver workflow to be on the benchmarks
+repository's default branch before it can receive this event.
 The workflow sources `timing.sh` for its shared CI step timing output.
 Bent schedules benchmark/configuration builds serially; each LLGo invocation
 uses the compiler's own package-level parallelism.
@@ -81,9 +81,12 @@ separate `llgo-binary-size-pages.yml` workflow. That path publishes the updated
 site directly without rebuilding benchmarks, and its publication jobs are
 restricted to `main`; pull-request builds cannot publish Pages.
 
-The benchmark and page-only workflows use separate concurrency queues. A page
-refresh can therefore wait independently without replacing a pending
-binary-size run.
+The benchmark and page-only workflows use separate concurrency keys. Pages
+publication retries from the latest `pages` tip if parallel benchmark runs
+finish together. The index records each result's position on LLGo's first-parent
+`main` history and displays commits in that order rather than build completion
+order; the dashboard opens on the newest page while keeping its columns oldest
+to newest.
 
 Pull requests that change the committed LLGo version, Bent, the LLGo-size
 benchmark/configuration files, or the suite definitions used by those cases

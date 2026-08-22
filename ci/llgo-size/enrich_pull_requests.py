@@ -110,6 +110,34 @@ def repository_from_result(run, data_dir):
     return str(result_document(run, data_dir).get("run", {}).get("llgoRepository", ""))
 
 
+def load_main_history(path):
+    if path is None:
+        return []
+    with path.open(encoding="utf-8") as history_file:
+        commits = [line.strip().lower() for line in history_file if line.strip()]
+    invalid = [commit for commit in commits if not COMMIT_RE.fullmatch(commit)]
+    if invalid:
+        raise ValueError("invalid LLGo main commit in history: " + repr(invalid[0]))
+    return commits
+
+
+def order_runs(index, main_history):
+    positions = {commit: position for position, commit in enumerate(main_history, start=1)}
+    for run in index.get("runs", []):
+        commit = str(run.get("llgoCommit", "")).lower()
+        if commit in positions:
+            run["llgoMainIndex"] = positions[commit]
+
+    def order_key(run):
+        position = run.get("llgoMainIndex")
+        if isinstance(position, int) and not isinstance(position, bool):
+            return (0, position, "", str(run.get("key", "")))
+        committed_at = str(run.get("llgoCommittedAt") or run.get("createdAt") or "")
+        return (1, 0, committed_at, str(run.get("key", "")))
+
+    index.setdefault("runs", []).sort(key=order_key)
+
+
 def legacy_wall_times(run, document, data_dir):
     native_path = document.get("native", {}).get("buildTimes")
     path = result_path(run, data_dir)
@@ -221,6 +249,11 @@ def parse_args(argv):
         "--api-url",
         default=os.environ.get("GITHUB_API_URL", "https://api.github.com"),
     )
+    parser.add_argument(
+        "--main-history",
+        type=Path,
+        help="first-parent LLGo main commits, oldest first",
+    )
     return parser.parse_args(argv)
 
 
@@ -231,6 +264,8 @@ def main(argv=None):
     with args.index.open(encoding="utf-8") as index_file:
         index = json.load(index_file)
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN", "")
+
+    order_runs(index, load_main_history(args.main_history))
 
     def lookup(repository, commit):
         return github_pull_request_lookup(repository, commit, args.api_url, token)

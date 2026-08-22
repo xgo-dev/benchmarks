@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-22T09:48:42.100642Z",
+  "generatedAt": "2026-08-22T09:49:02.714907Z",
   "runs": [
     {
       "key": "6e6eb71df91a0ecd1bc7c89e9002a187ac99d8d8",
@@ -23,6 +23,28 @@
       "pullRequestNumber": 2382,
       "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2382",
       "pullRequestTitle": "licenses: preserve third-party notices in distributions"
+    },
+    {
+      "key": "e86fda805083e135d9ac82a2c57946e5529b2764",
+      "id": "32562285072",
+      "attempt": 1,
+      "number": 322,
+      "createdAt": "2026-08-22T09:48:59.615255Z",
+      "sourceCommit": "844e1fee9e0ec3766a7af3697563976726187029",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "e86fda805083e135d9ac82a2c57946e5529b2764",
+      "llgoMainIndex": 1542,
+      "llgoCommittedAt": "2026-08-22T16:25:43+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32562285072",
+      "path": "runs/e86fda805083e135d9ac82a2c57946e5529b2764/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e86fda805083e135d9ac82a2c57946e5529b2764",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2384,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2384",
+      "pullRequestTitle": "mod: github.com/xgo-dev/plan9asm v0.5.0"
     },
     {
       "key": "70b7807e93477f1ed2976ab8befdb63a382e9a17",

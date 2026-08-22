@@ -454,6 +454,10 @@ results will also appear in 'bench'.
 			trial.Root = os.ExpandEnv(root) + "/"
 		}
 		trial.Compiler = os.ExpandEnv(trial.Compiler)
+		if err := trial.validateBuildCache(); err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 		if len(trial.RunWrapper) > 0 {
 			// Args will be expanded later with BENT_ environment variables injected.
 			// TODO should it use concatenation of os env and configuration env?
@@ -760,6 +764,22 @@ results will also appear in 'bench'.
 			return
 		}
 
+		var stdPackages []string
+		for _, config := range todo.Configurations {
+			if !config.Disabled && config.BuildCache == buildCacheStdlib {
+				stdPackages, err = standardLibraryPackages(todo.BenchmarkSuites)
+				if err != nil {
+					fmt.Println(err)
+					os.Exit(2)
+				}
+				if len(stdPackages) == 0 {
+					fmt.Println("No standard-library dependencies found for isolated cache prewarming")
+					os.Exit(2)
+				}
+				break
+			}
+		}
+
 		// Create build-related benchmark files
 		for ci := range todo.Configurations {
 			todo.Configurations[ci].createFilesForLater()
@@ -770,10 +790,12 @@ results will also appear in 'bench'.
 		// (that contains all the tests).
 
 		if verbose == 0 {
-			fmt.Print("Building goroots")
+			fmt.Print("Preparing compiler caches")
 		}
 
-		// First for each configuration, get the compiler and library and install it in its own GOROOT.
+		// First prepare each compiler and its standard library. Configurations
+		// using the stdlib cache policy also create the seed copied before every
+		// measured benchmark build.
 		for ci, config := range todo.Configurations {
 			if config.Disabled {
 				continue
@@ -782,30 +804,42 @@ results will also appear in 'bench'.
 				// An alternate compiler consumes the configured GOROOT directly;
 				// it does not have a standard-library tree for Bent to copy.
 				config.rootCopy = ""
+			} else {
+				root := config.Root
+				rootCopy := path.Join(dirs.goroots, config.Name)
+				if verbose > 0 {
+					fmt.Printf("rm -rf %s\n", rootCopy)
+				}
+				os.RemoveAll(rootCopy)
+				config.rootCopy = rootCopy
+
+				docopy := func(from, to string) {
+					err := fileutil.CopyDir(to, from, nil)
+					if verbose > 0 || err != nil {
+						fmt.Printf("Copying directory %s to %s, error=%v\n", from, to, err)
+					}
+				}
+
+				docopy(path.Join(root, "bin"), path.Join(rootCopy, "bin"))
+				docopy(path.Join(root, "src"), path.Join(rootCopy, "src"))
+				docopy(path.Join(root, "pkg"), path.Join(rootCopy, "pkg"))
+			}
+
+			if config.BuildCache == buildCacheStdlib {
+				if verbose > 0 {
+					fmt.Printf("Prewarming %d standard-library packages for %s\n", len(stdPackages), config.Name)
+				}
+				if err := prepareCacheSeed(&config, stdPackages, needSandbox, needNotSandbox); err != nil {
+					fmt.Println(err)
+					config.Disabled = true
+				}
 				todo.Configurations[ci] = config
 				continue
 			}
-
-			root := config.Root
-
-			rootCopy := path.Join(dirs.goroots, config.Name)
-			if verbose > 0 {
-				fmt.Printf("rm -rf %s\n", rootCopy)
+			if config.Compiler != "" {
+				todo.Configurations[ci] = config
+				continue
 			}
-			os.RemoveAll(rootCopy)
-			config.rootCopy = rootCopy
-			todo.Configurations[ci] = config
-
-			docopy := func(from, to string) {
-				err := fileutil.CopyDir(to, from, nil)
-				if verbose > 0 || err != nil {
-					fmt.Printf("Copying directory %s to %s, error=%v\n", from, to, err)
-				}
-			}
-
-			docopy(path.Join(root, "bin"), path.Join(rootCopy, "bin"))
-			docopy(path.Join(root, "src"), path.Join(rootCopy, "src"))
-			docopy(path.Join(root, "pkg"), path.Join(rootCopy, "pkg"))
 
 			gocmd := config.goCommandCopy()
 
@@ -818,8 +852,8 @@ results will also appear in 'bench'.
 				if withAltOS {
 					cmd.Env = replaceEnv(cmd.Env, "GOOS", "linux")
 				}
-				if rootCopy != "" {
-					cmd.Env = replaceEnv(cmd.Env, "GOROOT", rootCopy)
+				if config.rootCopy != "" {
+					cmd.Env = replaceEnv(cmd.Env, "GOROOT", config.rootCopy)
 				}
 				cmd.Env = replaceEnvs(cmd.Env, sliceExpandEnv(config.GcEnv, cmd.Env))
 
@@ -1416,7 +1450,7 @@ func copyAsset(fs embed.FS, dir, file string) {
 }
 
 type directories struct {
-	wd, gopath, goroots, build, testBinDir, benchDir string
+	wd, gopath, goroots, build, buildCaches, testBinDir, benchDir string
 }
 
 // createDirectories creates all the directories we need.
@@ -1427,14 +1461,15 @@ func createDirectories() (*directories, error) {
 		os.Exit(1)
 	}
 	dirs := &directories{
-		wd:         cwd,
-		gopath:     path.Join(cwd, "gopath"),
-		goroots:    path.Join(cwd, "goroots"),
-		build:      path.Join(cwd, "build"),
-		testBinDir: "testbin",
-		benchDir:   "bench",
+		wd:          cwd,
+		gopath:      path.Join(cwd, "gopath"),
+		goroots:     path.Join(cwd, "goroots"),
+		build:       path.Join(cwd, "build"),
+		buildCaches: path.Join(cwd, "build-cache"),
+		testBinDir:  "testbin",
+		benchDir:    "bench",
 	}
-	for _, d := range []string{dirs.gopath, dirs.goroots, dirs.build, path.Join(cwd, dirs.testBinDir), path.Join(cwd, dirs.benchDir)} {
+	for _, d := range []string{dirs.gopath, dirs.goroots, dirs.build, dirs.buildCaches, path.Join(cwd, dirs.testBinDir), path.Join(cwd, dirs.benchDir)} {
 		if err := mkdirAsNeeded(d); err != nil {
 			return nil, fmt.Errorf("error creating %v: %v", d, err)
 		}

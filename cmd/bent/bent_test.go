@@ -57,6 +57,11 @@ func TestConfigurationBuildCommandArgs(t *testing.T) {
 			want:          []string{"test", "-c"},
 		},
 		{
+			name:          "standard library cache",
+			configuration: Configuration{OmitVetFlag: true, BuildCache: buildCacheStdlib},
+			want:          []string{"test", "-c"},
+		},
+		{
 			name:      "main package fresh build",
 			benchmark: Benchmark{BuildMode: "build"},
 			want:      []string{"build", "-a"},

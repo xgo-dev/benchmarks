@@ -133,6 +133,12 @@ Go toolchain root for that configuration.
 Set `OmitVetFlag` only when that command does not accept Go's `-vet=off` flag. Bent keeps its
 historic fresh-build default; a configuration may set `UseBuildCache` for a compiler with a
 correctly keyed package cache, and an explicit Bent `-a` still forces a rebuild.
+`BuildCache = "shared"` is the string equivalent of `UseBuildCache = true`.
+`BuildCache = "stdlib"` first prewarms the standard-library dependencies used by the selected
+benchmark suites. Before every benchmark/configuration build, Bent clones that seed into private
+Go and user-cache directories; module dependencies and the target package therefore do not leak
+from earlier builds. Cache cloning and standard-library prewarming are outside the reported
+compiler duration. Do not set `UseBuildCache` and `BuildCache` together.
 The `-build-only` flag stops after binary construction and `AfterBuild` collection; it is useful
 for binary-size CI, including comparisons of executables produced from `main` packages. See
 `configurations-llgo-size.toml`.

@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-22T09:37:10.156126Z",
+  "generatedAt": "2026-08-22T09:48:42.100642Z",
   "runs": [
+    {
+      "key": "6e6eb71df91a0ecd1bc7c89e9002a187ac99d8d8",
+      "id": "32562371791",
+      "attempt": 1,
+      "number": 323,
+      "createdAt": "2026-08-22T09:48:40.076902Z",
+      "sourceCommit": "844e1fee9e0ec3766a7af3697563976726187029",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "6e6eb71df91a0ecd1bc7c89e9002a187ac99d8d8",
+      "llgoMainIndex": 1543,
+      "llgoCommittedAt": "2026-08-22T16:27:25+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32562371791",
+      "path": "runs/6e6eb71df91a0ecd1bc7c89e9002a187ac99d8d8/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/6e6eb71df91a0ecd1bc7c89e9002a187ac99d8d8",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2382,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2382",
+      "pullRequestTitle": "licenses: preserve third-party notices in distributions"
+    },
     {
       "key": "70b7807e93477f1ed2976ab8befdb63a382e9a17",
       "id": "32562160381",

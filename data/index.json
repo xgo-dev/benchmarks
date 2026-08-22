@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-22T09:54:18.758526Z",
+  "generatedAt": "2026-08-22T10:41:11.682654Z",
   "runs": [
+    {
+      "key": "e3f9319e162345d1c653ceae31d4cb8980d0d6a7",
+      "id": "32564915679",
+      "attempt": 1,
+      "number": 325,
+      "createdAt": "2026-08-22T10:41:09.838621Z",
+      "sourceCommit": "add7c5b94a569367db1e2182990929964ae0c0da",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "e3f9319e162345d1c653ceae31d4cb8980d0d6a7",
+      "llgoMainIndex": 1545,
+      "llgoCommittedAt": "2026-08-22T17:25:23+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32564915679",
+      "path": "runs/e3f9319e162345d1c653ceae31d4cb8980d0d6a7/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e3f9319e162345d1c653ceae31d4cb8980d0d6a7",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2392,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2392",
+      "pullRequestTitle": "Add benchmark badge to README"
+    },
     {
       "key": "e637b2cace43b90d3b144d99929200ea30d375a1",
       "id": "32562791037",

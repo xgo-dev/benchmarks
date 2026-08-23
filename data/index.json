@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-22T15:04:17.318334Z",
+  "generatedAt": "2026-08-23T13:34:12.651499Z",
   "runs": [
+    {
+      "key": "e4786ae092be6b5d1e7b1aa98baef81158fbf693",
+      "id": "32638741025",
+      "attempt": 1,
+      "number": 332,
+      "createdAt": "2026-08-23T13:34:09.834242Z",
+      "sourceCommit": "a8f126694f038f439488d9df747cb16490a79a39",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "e4786ae092be6b5d1e7b1aa98baef81158fbf693",
+      "llgoMainIndex": 1547,
+      "llgoCommittedAt": "2026-08-23T20:12:28+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32638741025",
+      "path": "runs/e4786ae092be6b5d1e7b1aa98baef81158fbf693/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e4786ae092be6b5d1e7b1aa98baef81158fbf693",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2394,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2394",
+      "pullRequestTitle": "cl: extend static initialization for aggregate values"
+    },
     {
       "key": "e3f9319e162345d1c653ceae31d4cb8980d0d6a7",
       "id": "32576247949",

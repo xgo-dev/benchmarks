@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-24T19:59:20.277950Z",
+  "generatedAt": "2026-08-24T22:01:05.637720Z",
   "runs": [
+    {
+      "key": "ca3eff7cb7c224b8bf8d060f711e718a9fa79682",
+      "id": "32775308747",
+      "attempt": 1,
+      "number": 336,
+      "createdAt": "2026-08-24T22:01:03.287662Z",
+      "sourceCommit": "f1ed42cf2c05bf9223c36c8d79f2dae34615addb",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "ca3eff7cb7c224b8bf8d060f711e718a9fa79682",
+      "llgoMainIndex": 1552,
+      "llgoCommittedAt": "2026-08-25T04:39:47+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32775308747",
+      "path": "runs/ca3eff7cb7c224b8bf8d060f711e718a9fa79682/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/ca3eff7cb7c224b8bf8d060f711e718a9fa79682",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2400,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2400",
+      "pullRequestTitle": "windows: establish Go-compatible MSVC target configuration (R0)"
+    },
     {
       "key": "68e2038381546cf12a4da1dc0e790ffa24a61b2b",
       "id": "32764240149",

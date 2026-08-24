@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-24T03:15:23.407961Z",
+  "generatedAt": "2026-08-24T15:47:13.208683Z",
   "runs": [
+    {
+      "key": "583045e6954cec6832fe316383c1d0fb4330e27e",
+      "id": "32739628160",
+      "attempt": 1,
+      "number": 334,
+      "createdAt": "2026-08-24T15:47:07.994553Z",
+      "sourceCommit": "6bd134ae5d48aa6ac252b4fa536934f5e0412401",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "583045e6954cec6832fe316383c1d0fb4330e27e",
+      "llgoMainIndex": 1550,
+      "llgoCommittedAt": "2026-08-24T22:31:36+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32739628160",
+      "path": "runs/583045e6954cec6832fe316383c1d0fb4330e27e/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/583045e6954cec6832fe316383c1d0fb4330e27e",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2396,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2396",
+      "pullRequestTitle": "build: compact Darwin size-optimized executables"
+    },
     {
       "key": "daef162f1a64c460d0f3681c562f645612a388e8",
       "id": "32681864614",

@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-23T13:34:12.651499Z",
+  "generatedAt": "2026-08-24T03:15:23.407961Z",
   "runs": [
+    {
+      "key": "daef162f1a64c460d0f3681c562f645612a388e8",
+      "id": "32681864614",
+      "attempt": 1,
+      "number": 333,
+      "createdAt": "2026-08-24T03:15:19.945766Z",
+      "sourceCommit": "4be1f8d7a12969f5b6eddaa0549da7cb7a5e17ce",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "daef162f1a64c460d0f3681c562f645612a388e8",
+      "llgoMainIndex": 1549,
+      "llgoCommittedAt": "2026-08-24T10:04:57+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32681864614",
+      "path": "runs/daef162f1a64c460d0f3681c562f645612a388e8/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/daef162f1a64c460d0f3681c562f645612a388e8",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2393,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2393",
+      "pullRequestTitle": "compiler: default host to Os and targets to Oz"
+    },
     {
       "key": "e4786ae092be6b5d1e7b1aa98baef81158fbf693",
       "id": "32638741025",

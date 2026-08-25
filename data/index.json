@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-25T01:53:13.919527Z",
+  "generatedAt": "2026-08-25T01:54:58.753994Z",
   "runs": [
     {
       "key": "dcb9130ed57af8b53369b63e70694a3bbd9468ac",
@@ -23,6 +23,28 @@
       "pullRequestNumber": 2403,
       "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2403",
       "pullRequestTitle": "windows: lower the MSVC C ABI and select libffi ABIs (R3, depends on #2402)"
+    },
+    {
+      "key": "7b3fc9ff9dc671dd30a608be230e551fe61a3e45",
+      "id": "32793916855",
+      "attempt": 1,
+      "number": 337,
+      "createdAt": "2026-08-25T01:54:56.252024Z",
+      "sourceCommit": "cfa5f82c64d6561eb8889843709b292f56ff0ab9",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "7b3fc9ff9dc671dd30a608be230e551fe61a3e45",
+      "llgoMainIndex": 1553,
+      "llgoCommittedAt": "2026-08-25T08:27:41+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32793916855",
+      "path": "runs/7b3fc9ff9dc671dd30a608be230e551fe61a3e45/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/7b3fc9ff9dc671dd30a608be230e551fe61a3e45",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2401,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2401",
+      "pullRequestTitle": "windows: make compiler host storage portable (R1, depends on #2400)"
     },
     {
       "key": "ca3eff7cb7c224b8bf8d060f711e718a9fa79682",

@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-24T22:01:05.637720Z",
+  "generatedAt": "2026-08-25T01:53:13.919527Z",
   "runs": [
+    {
+      "key": "dcb9130ed57af8b53369b63e70694a3bbd9468ac",
+      "id": "32794320501",
+      "attempt": 1,
+      "number": 339,
+      "createdAt": "2026-08-25T01:53:11.243272Z",
+      "sourceCommit": "41b8eddd16c8e6c332ad529a5c2f4308634a55b0",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "dcb9130ed57af8b53369b63e70694a3bbd9468ac",
+      "llgoMainIndex": 1555,
+      "llgoCommittedAt": "2026-08-25T08:36:22+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32794320501",
+      "path": "runs/dcb9130ed57af8b53369b63e70694a3bbd9468ac/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/dcb9130ed57af8b53369b63e70694a3bbd9468ac",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2403,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2403",
+      "pullRequestTitle": "windows: lower the MSVC C ABI and select libffi ABIs (R3, depends on #2402)"
+    },
     {
       "key": "ca3eff7cb7c224b8bf8d060f711e718a9fa79682",
       "id": "32775308747",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-25T01:54:58.753994Z",
+  "generatedAt": "2026-08-25T01:55:21.575144Z",
   "runs": [
     {
       "key": "dcb9130ed57af8b53369b63e70694a3bbd9468ac",
@@ -23,6 +23,28 @@
       "pullRequestNumber": 2403,
       "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2403",
       "pullRequestTitle": "windows: lower the MSVC C ABI and select libffi ABIs (R3, depends on #2402)"
+    },
+    {
+      "key": "50a11c1487104a48bca2e445f3b5e0267c12763f",
+      "id": "32794252873",
+      "attempt": 1,
+      "number": 338,
+      "createdAt": "2026-08-25T01:55:18.587386Z",
+      "sourceCommit": "41b8eddd16c8e6c332ad529a5c2f4308634a55b0",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "50a11c1487104a48bca2e445f3b5e0267c12763f",
+      "llgoMainIndex": 1554,
+      "llgoCommittedAt": "2026-08-25T08:32:17+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/32794252873",
+      "path": "runs/50a11c1487104a48bca2e445f3b5e0267c12763f/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/50a11c1487104a48bca2e445f3b5e0267c12763f",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2402,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2402",
+      "pullRequestTitle": "windows: build native PE/COFF artifacts (R2, depends on #2401)"
     },
     {
       "key": "7b3fc9ff9dc671dd30a608be230e551fe61a3e45",

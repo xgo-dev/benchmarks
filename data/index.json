@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-25T01:55:21.575144Z",
+  "generatedAt": "2026-08-26T22:56:53.769745Z",
   "runs": [
+    {
+      "key": "e1791699056b16d17a731608f0085f7f4038a327",
+      "id": "33016088458",
+      "attempt": 1,
+      "number": 340,
+      "createdAt": "2026-08-26T22:56:50.181077Z",
+      "sourceCommit": "a63e5652d0d063bb8cffa1836820385be430bf8a",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "e1791699056b16d17a731608f0085f7f4038a327",
+      "llgoMainIndex": 1559,
+      "llgoCommittedAt": "2026-08-27T05:35:26+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33016088458",
+      "path": "runs/e1791699056b16d17a731608f0085f7f4038a327/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e1791699056b16d17a731608f0085f7f4038a327",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2404,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2404",
+      "pullRequestTitle": "windows: add the Win32 runtime and callback substrate (R4)"
+    },
     {
       "key": "dcb9130ed57af8b53369b63e70694a3bbd9468ac",
       "id": "32794320501",

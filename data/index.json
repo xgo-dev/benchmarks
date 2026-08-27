@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T04:40:48.128381Z",
+  "generatedAt": "2026-08-27T10:37:19.412807Z",
   "runs": [
+    {
+      "key": "a91a36b5be5343a7ce955e67878b0fd582793bd4",
+      "id": "33058191917",
+      "attempt": 1,
+      "number": 343,
+      "createdAt": "2026-08-27T10:37:15.819679Z",
+      "sourceCommit": "158b73eca53d4548e7fb37ba40cf3c410f9badce",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "a91a36b5be5343a7ce955e67878b0fd582793bd4",
+      "llgoMainIndex": 1562,
+      "llgoCommittedAt": "2026-08-27T17:21:16+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33058191917",
+      "path": "runs/a91a36b5be5343a7ce955e67878b0fd582793bd4/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/a91a36b5be5343a7ce955e67878b0fd582793bd4",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2416,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2416",
+      "pullRequestTitle": "ssa: lower large array comparisons to runtime equality algorithms"
+    },
     {
       "key": "71754b4596659e2ed3503a84b5d58cfc8e19c20a",
       "id": "33036461536",

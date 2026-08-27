@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T10:37:19.412807Z",
+  "generatedAt": "2026-08-27T12:02:02.846864Z",
   "runs": [
+    {
+      "key": "ff9bad85038964f5e1b4b29a4b1352378b31d6f4",
+      "id": "33064194417",
+      "attempt": 1,
+      "number": 345,
+      "createdAt": "2026-08-27T12:01:59.557127Z",
+      "sourceCommit": "751c3139181c1b0e08d48012434cec95a412dfd9",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "ff9bad85038964f5e1b4b29a4b1352378b31d6f4",
+      "llgoMainIndex": 1564,
+      "llgoCommittedAt": "2026-08-27T18:41:59+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33064194417",
+      "path": "runs/ff9bad85038964f5e1b4b29a4b1352378b31d6f4/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/ff9bad85038964f5e1b4b29a4b1352378b31d6f4",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2418,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2418",
+      "pullRequestTitle": "windows: integrate OS and standard-library support (R6)"
+    },
     {
       "key": "a91a36b5be5343a7ce955e67878b0fd582793bd4",
       "id": "33058191917",

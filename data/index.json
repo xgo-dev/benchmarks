@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T12:02:02.846864Z",
+  "generatedAt": "2026-08-27T12:05:10.312540Z",
   "runs": [
     {
       "key": "ff9bad85038964f5e1b4b29a4b1352378b31d6f4",
@@ -23,6 +23,28 @@
       "pullRequestNumber": 2418,
       "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2418",
       "pullRequestTitle": "windows: integrate OS and standard-library support (R6)"
+    },
+    {
+      "key": "ce9670948913a6012d51ef97ba0114f2dff5edaa",
+      "id": "33063779385",
+      "attempt": 1,
+      "number": 344,
+      "createdAt": "2026-08-27T12:05:07.646346Z",
+      "sourceCommit": "677bf82ae374aedd1e79e401d1a7d0a791aae9e0",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "ce9670948913a6012d51ef97ba0114f2dff5edaa",
+      "llgoMainIndex": 1563,
+      "llgoCommittedAt": "2026-08-27T18:36:21+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33063779385",
+      "path": "runs/ce9670948913a6012d51ef97ba0114f2dff5edaa/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/ce9670948913a6012d51ef97ba0114f2dff5edaa",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2411,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2411",
+      "pullRequestTitle": "ltoplugin: drop unobserved reflect method funcs"
     },
     {
       "key": "a91a36b5be5343a7ce955e67878b0fd582793bd4",

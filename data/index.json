@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T00:21:20.288001Z",
+  "generatedAt": "2026-08-27T04:40:48.128381Z",
   "runs": [
+    {
+      "key": "71754b4596659e2ed3503a84b5d58cfc8e19c20a",
+      "id": "33036461536",
+      "attempt": 1,
+      "number": 342,
+      "createdAt": "2026-08-27T04:40:45.932588Z",
+      "sourceCommit": "7274ec1c1f1ab0a6efca556f1f490dd94e895ce6",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "71754b4596659e2ed3503a84b5d58cfc8e19c20a",
+      "llgoMainIndex": 1561,
+      "llgoCommittedAt": "2026-08-27T11:28:01+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33036461536",
+      "path": "runs/71754b4596659e2ed3503a84b5d58cfc8e19c20a/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/71754b4596659e2ed3503a84b5d58cfc8e19c20a",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2405,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2405",
+      "pullRequestTitle": "windows: implement native fault and SEH execution semantics (R5)"
+    },
     {
       "key": "2dea8633e77a63eb1f12c8235c9d11e13a60d2be",
       "id": "33021315800",

@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T12:05:10.312540Z",
+  "generatedAt": "2026-08-27T23:08:10.702135Z",
   "runs": [
+    {
+      "key": "61961750a7e5392785a793fa8a15553a995add34",
+      "id": "33118989744",
+      "attempt": 1,
+      "number": 346,
+      "createdAt": "2026-08-27T23:08:07.564367Z",
+      "sourceCommit": "0643e5fef37abf219942de305c7367698ac655f8",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "61961750a7e5392785a793fa8a15553a995add34",
+      "llgoMainIndex": 1565,
+      "llgoCommittedAt": "2026-08-28T05:37:05+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33118989744",
+      "path": "runs/61961750a7e5392785a793fa8a15553a995add34/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/61961750a7e5392785a793fa8a15553a995add34",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2422,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2422",
+      "pullRequestTitle": "windows: support reproducible native and cross toolchains (R7, depends on #2418)"
+    },
     {
       "key": "ff9bad85038964f5e1b4b29a4b1352378b31d6f4",
       "id": "33064194417",

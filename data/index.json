@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-26T22:56:53.769745Z",
+  "generatedAt": "2026-08-27T00:21:20.288001Z",
   "runs": [
+    {
+      "key": "2dea8633e77a63eb1f12c8235c9d11e13a60d2be",
+      "id": "33021315800",
+      "attempt": 1,
+      "number": 341,
+      "createdAt": "2026-08-27T00:21:17.855745Z",
+      "sourceCommit": "39f26823d337fd9a46187206035dcc45594a1d51",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "2dea8633e77a63eb1f12c8235c9d11e13a60d2be",
+      "llgoMainIndex": 1560,
+      "llgoCommittedAt": "2026-08-27T06:54:52+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33021315800",
+      "path": "runs/2dea8633e77a63eb1f12c8235c9d11e13a60d2be/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/2dea8633e77a63eb1f12c8235c9d11e13a60d2be",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2412,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2412",
+      "pullRequestTitle": "build: use loaded package metadata for assembly files"
+    },
     {
       "key": "e1791699056b16d17a731608f0085f7f4038a327",
       "id": "33016088458",

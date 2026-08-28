@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T23:08:10.702135Z",
+  "generatedAt": "2026-08-28T00:29:41.056227Z",
   "runs": [
+    {
+      "key": "e33e3460798b97146ec35d4120f32af6abfc6af2",
+      "id": "33125390593",
+      "attempt": 1,
+      "number": 347,
+      "createdAt": "2026-08-28T00:29:37.518905Z",
+      "sourceCommit": "c27ef4cd3d98e6a0e4adc1300598c6f79da1a2ad",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "e33e3460798b97146ec35d4120f32af6abfc6af2",
+      "llgoMainIndex": 1566,
+      "llgoCommittedAt": "2026-08-28T07:11:30+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33125390593",
+      "path": "runs/e33e3460798b97146ec35d4120f32af6abfc6af2/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e33e3460798b97146ec35d4120f32af6abfc6af2",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2425,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2425",
+      "pullRequestTitle": "windows: integrate Windows into shared CI matrices (R8, depends on #2422)"
+    },
     {
       "key": "61961750a7e5392785a793fa8a15553a995add34",
       "id": "33118989744",

@@ -1,0 +1,29 @@
+goos: linux
+goarch: amd64
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkToml 1 8129120420 build-real-ns/op 20824703000 build-user-ns/op 825895000 build-sys-ns/op
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkGorm_schema 1 12677398310 build-real-ns/op 35068577000 build-user-ns/op 1046700000 build-sys-ns/op
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkUber_zap 1 25815548900 build-real-ns/op 55594019000 build-user-ns/op 1434695000 build-sys-ns/op
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkK8s_workqueue 1 22972384606 build-real-ns/op 47314287000 build-user-ns/op 1332077000 build-sys-ns/op
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkEtcdctl 1 71403188716 build-real-ns/op 213002391000 build-user-ns/op 4123257000 build-sys-ns/op
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkXGo 1 41605381847 build-real-ns/op 103903634000 build-user-ns/op 2682662000 build-sys-ns/op
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkIXGo 1 125667740420 build-real-ns/op 349609280000 build-user-ns/op 5658274000 build-sys-ns/op
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkDustin_humanize 1 5358408615 build-real-ns/op 11653702000 build-user-ns/op 598863000 build-sys-ns/op
+goarch: amd64
+toolchain: LLGoDeadcodeDrop
+BenchmarkAws_restjson 1 38100702918 build-real-ns/op 77831340000 build-user-ns/op 1967873000 build-sys-ns/op

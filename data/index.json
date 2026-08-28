@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T15:07:52.263813Z",
+  "generatedAt": "2026-08-28T16:54:54.810383Z",
   "runs": [
+    {
+      "key": "c1d5da21341c3a5c288a92c9a888ee6473a54666",
+      "id": "33184862846",
+      "attempt": 1,
+      "number": 349,
+      "createdAt": "2026-08-28T16:54:51.575388Z",
+      "sourceCommit": "3772cde5ee2a854b6d1f4319ce73e12c13b32226",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "c1d5da21341c3a5c288a92c9a888ee6473a54666",
+      "llgoMainIndex": 1570,
+      "llgoCommittedAt": "2026-08-28T23:22:43+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33184862846",
+      "path": "runs/c1d5da21341c3a5c288a92c9a888ee6473a54666/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/c1d5da21341c3a5c288a92c9a888ee6473a54666",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2430,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2430",
+      "pullRequestTitle": "ltoplugin: devirtualize static itab calls"
+    },
     {
       "key": "6fc2ef150f95d8b9331433f325fcb1b6ee5ad4e4",
       "id": "33178434168",

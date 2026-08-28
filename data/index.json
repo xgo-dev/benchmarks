@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T00:29:41.056227Z",
+  "generatedAt": "2026-08-28T15:07:52.263813Z",
   "runs": [
+    {
+      "key": "6fc2ef150f95d8b9331433f325fcb1b6ee5ad4e4",
+      "id": "33178434168",
+      "attempt": 1,
+      "number": 348,
+      "createdAt": "2026-08-28T15:07:47.701610Z",
+      "sourceCommit": "c14d13534d29a23d3e0f3d95403313ccf7df8bd4",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "6fc2ef150f95d8b9331433f325fcb1b6ee5ad4e4",
+      "llgoMainIndex": 1569,
+      "llgoCommittedAt": "2026-08-28T22:04:50+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33178434168",
+      "path": "runs/6fc2ef150f95d8b9331433f325fcb1b6ee5ad4e4/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/6fc2ef150f95d8b9331433f325fcb1b6ee5ad4e4",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2433,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2433",
+      "pullRequestTitle": "windows: support stdcall declarations and callbacks"
+    },
     {
       "key": "e33e3460798b97146ec35d4120f32af6abfc6af2",
       "id": "33125390593",

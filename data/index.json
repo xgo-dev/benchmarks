@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T16:54:54.810383Z",
+  "generatedAt": "2026-08-29T01:25:30.374249Z",
   "runs": [
+    {
+      "key": "f6b3475c36fb7da8a3101dba8f6b7eaa2e3813ce",
+      "id": "33222604908",
+      "attempt": 1,
+      "number": 350,
+      "createdAt": "2026-08-29T01:25:26.757079Z",
+      "sourceCommit": "22a5f1ec0041bab66d5c19854bbf06ff243d7ffd",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "f6b3475c36fb7da8a3101dba8f6b7eaa2e3813ce",
+      "llgoMainIndex": 1571,
+      "llgoCommittedAt": "2026-08-29T08:07:41+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33222604908",
+      "path": "runs/f6b3475c36fb7da8a3101dba8f6b7eaa2e3813ce/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/f6b3475c36fb7da8a3101dba8f6b7eaa2e3813ce",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2441,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2441",
+      "pullRequestTitle": "mod: github.com/goplus/lib v0.5.0"
+    },
     {
       "key": "c1d5da21341c3a5c288a92c9a888ee6473a54666",
       "id": "33184862846",

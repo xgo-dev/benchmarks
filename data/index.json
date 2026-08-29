@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-29T01:25:30.374249Z",
+  "generatedAt": "2026-08-29T10:07:15.146602Z",
   "runs": [
+    {
+      "key": "58e3aaa3d55abfb69bf006f9f2015f59546dad2c",
+      "id": "33243756243",
+      "attempt": 1,
+      "number": 351,
+      "createdAt": "2026-08-29T10:07:11.671948Z",
+      "sourceCommit": "6ba3651ad89f90c515e96fcba6a05ffe3f5e3a2e",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "58e3aaa3d55abfb69bf006f9f2015f59546dad2c",
+      "llgoMainIndex": 1572,
+      "llgoCommittedAt": "2026-08-29T16:41:12+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33243756243",
+      "path": "runs/58e3aaa3d55abfb69bf006f9f2015f59546dad2c/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/58e3aaa3d55abfb69bf006f9f2015f59546dad2c",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2444,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2444",
+      "pullRequestTitle": "build: support multiple package outputs"
+    },
     {
       "key": "f6b3475c36fb7da8a3101dba8f6b7eaa2e3813ce",
       "id": "33222604908",

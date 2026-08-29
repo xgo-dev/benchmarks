@@ -1,0 +1,3060 @@
+
+shortname: benhoyt_goawk-BuiltinGsubAmpersand
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.624MHz
+BenchmarkBuiltinGsubAmpersand-4   	   13810	     42964 ns/op
+PASS
+
+shortname: benhoyt_goawk-BuiltinGsubAmpersand
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.579MHz
+BenchmarkBuiltinGsubAmpersand-4   	   13710	     43077 ns/op
+PASS
+
+shortname: benhoyt_goawk-BuiltinGsubAmpersand
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.418MHz
+BenchmarkBuiltinGsubAmpersand-4   	   13725	     43507 ns/op
+PASS
+
+shortname: benhoyt_goawk-BuiltinGsubAmpersand
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.621MHz
+BenchmarkBuiltinGsubAmpersand-4   	   13786	     42895 ns/op
+PASS
+
+shortname: benhoyt_goawk-BuiltinGsubAmpersand
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.301MHz
+BenchmarkBuiltinGsubAmpersand-4   	   13832	     42940 ns/op
+PASS
+
+shortname: benhoyt_goawk-NativeFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.109MHz
+BenchmarkNativeFunc-4   	   19603	     30055 ns/op
+PASS
+
+shortname: benhoyt_goawk-NativeFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.580MHz
+BenchmarkNativeFunc-4   	   19569	     30301 ns/op
+PASS
+
+shortname: benhoyt_goawk-NativeFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.663MHz
+BenchmarkNativeFunc-4   	   19722	     29967 ns/op
+PASS
+
+shortname: benhoyt_goawk-NativeFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.362MHz
+BenchmarkNativeFunc-4   	   19825	     30739 ns/op
+PASS
+
+shortname: benhoyt_goawk-NativeFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.371MHz
+BenchmarkNativeFunc-4   	   19694	     29947 ns/op
+PASS
+
+shortname: benhoyt_goawk-RecursiveFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.972MHz
+BenchmarkRecursiveFunc-4   	   16873	     34275 ns/op
+PASS
+
+shortname: benhoyt_goawk-RecursiveFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.109MHz
+BenchmarkRecursiveFunc-4   	   17397	     34097 ns/op
+PASS
+
+shortname: benhoyt_goawk-RecursiveFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.050MHz
+BenchmarkRecursiveFunc-4   	   17352	     34194 ns/op
+PASS
+
+shortname: benhoyt_goawk-RecursiveFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.255MHz
+BenchmarkRecursiveFunc-4   	   17253	     34340 ns/op
+PASS
+
+shortname: benhoyt_goawk-RecursiveFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.767MHz
+BenchmarkRecursiveFunc-4   	   17287	     34273 ns/op
+PASS
+
+shortname: benhoyt_goawk-SimpleBuiltins
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.361MHz
+BenchmarkSimpleBuiltins-4   	  247434	      2287 ns/op
+PASS
+
+shortname: benhoyt_goawk-SimpleBuiltins
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.448MHz
+BenchmarkSimpleBuiltins-4   	  246957	      2286 ns/op
+PASS
+
+shortname: benhoyt_goawk-SimpleBuiltins
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.413MHz
+BenchmarkSimpleBuiltins-4   	  246901	      2299 ns/op
+PASS
+
+shortname: benhoyt_goawk-SimpleBuiltins
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.769MHz
+BenchmarkSimpleBuiltins-4   	  246081	      2273 ns/op
+PASS
+
+shortname: benhoyt_goawk-SimpleBuiltins
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/benhoyt/goawk/interp
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.383MHz
+BenchmarkSimpleBuiltins-4   	  246632	      2288 ns/op
+PASS
+
+shortname: bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/bits-and-blooms/bitset
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.182MHz
+BenchmarkBitSetExtractDeposit/size=64/fn=DepositTo-4         	12185480	        49.21 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+shortname: bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/bits-and-blooms/bitset
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.923MHz
+BenchmarkBitSetExtractDeposit/size=64/fn=DepositTo-4         	12199334	        49.23 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+shortname: bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/bits-and-blooms/bitset
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.248MHz
+BenchmarkBitSetExtractDeposit/size=64/fn=DepositTo-4         	12211836	        49.28 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+shortname: bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/bits-and-blooms/bitset
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.182MHz
+BenchmarkBitSetExtractDeposit/size=64/fn=DepositTo-4         	12211813	        49.20 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+shortname: bloom_bits-BitSetExtractDeposit%2Fsize%3D64%2Ffn%3DDepositTo
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/bits-and-blooms/bitset
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.207MHz
+BenchmarkBitSetExtractDeposit/size=64/fn=DepositTo-4         	12193930	        49.18 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Growth_MultiSegment
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkGrowth_MultiSegment-4   	      19	  28900324 ns/op	  36.28 MB/s	 8311712 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Growth_MultiSegment
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkGrowth_MultiSegment-4   	      19	  28889469 ns/op	  36.30 MB/s	 8311697 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Growth_MultiSegment
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.113MHz
+BenchmarkGrowth_MultiSegment-4   	      20	  28821509 ns/op	  36.38 MB/s	 8311391 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Growth_MultiSegment
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkGrowth_MultiSegment-4   	      20	  28912010 ns/op	  36.27 MB/s	 8311294 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Growth_MultiSegment
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkGrowth_MultiSegment-4   	      19	  28933257 ns/op	  36.24 MB/s	 8311648 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Unmarshal_Reuse
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 3255.132MHz
+BenchmarkUnmarshal_Reuse-4   	  540573	      1038 ns/op	     272 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Unmarshal_Reuse
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.880MHz
+BenchmarkUnmarshal_Reuse-4   	  528928	      1056 ns/op	     272 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Unmarshal_Reuse
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 3224.730MHz
+BenchmarkUnmarshal_Reuse-4   	  535131	      1042 ns/op	     272 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Unmarshal_Reuse
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.719MHz
+BenchmarkUnmarshal_Reuse-4   	  532623	      1039 ns/op	     272 B/op	       0 allocs/op
+PASS
+
+shortname: capnproto2-Unmarshal_Reuse
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: zombiezen.com/go/capnproto2
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.902MHz
+BenchmarkUnmarshal_Reuse-4   	  535916	      1037 ns/op	     272 B/op	       0 allocs/op
+PASS
+
+shortname: commonmark_markdown-RenderSpecNoHTML
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gitlab.com/golang-commonmark/markdown
+cpu: AMD EPYC 7763 64-Core Processor @ 3246.285MHz
+BenchmarkRenderSpecNoHTML-4   	      44	  12422800 ns/op
+PASS
+
+shortname: commonmark_markdown-RenderSpecNoHTML
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gitlab.com/golang-commonmark/markdown
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.471MHz
+BenchmarkRenderSpecNoHTML-4   	      44	  12383870 ns/op
+PASS
+
+shortname: commonmark_markdown-RenderSpecNoHTML
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gitlab.com/golang-commonmark/markdown
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.656MHz
+BenchmarkRenderSpecNoHTML-4   	      43	  12422462 ns/op
+PASS
+
+shortname: commonmark_markdown-RenderSpecNoHTML
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gitlab.com/golang-commonmark/markdown
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.080MHz
+BenchmarkRenderSpecNoHTML-4   	      43	  12374555 ns/op
+PASS
+
+shortname: commonmark_markdown-RenderSpecNoHTML
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gitlab.com/golang-commonmark/markdown
+cpu: AMD EPYC 7763 64-Core Processor @ 3239.775MHz
+BenchmarkRenderSpecNoHTML-4   	      44	  12483755 ns/op
+PASS
+
+shortname: dustin_broadcast-ParallelBrodcast
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-broadcast
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.916MHz
+BenchmarkParallelBrodcast-4   	   20026	     28993 ns/op
+PASS
+
+shortname: dustin_broadcast-ParallelBrodcast
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-broadcast
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.284MHz
+BenchmarkParallelBrodcast-4   	   20438	     30933 ns/op
+PASS
+
+shortname: dustin_broadcast-ParallelBrodcast
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-broadcast
+cpu: AMD EPYC 7763 64-Core Processor @ 3239.112MHz
+BenchmarkParallelBrodcast-4   	   20383	     28767 ns/op
+PASS
+
+shortname: dustin_broadcast-ParallelBrodcast
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-broadcast
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.359MHz
+BenchmarkParallelBrodcast-4   	   20984	     30873 ns/op
+PASS
+
+shortname: dustin_broadcast-ParallelBrodcast
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-broadcast
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.105MHz
+BenchmarkParallelBrodcast-4   	   21025	     30273 ns/op
+PASS
+
+shortname: dustin_humanize-BigCommas
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.101MHz
+BenchmarkBigCommas-4   	  276085	      1911 ns/op
+PASS
+
+shortname: dustin_humanize-BigCommas
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.215MHz
+BenchmarkBigCommas-4   	  273060	      2006 ns/op
+PASS
+
+shortname: dustin_humanize-BigCommas
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.005MHz
+BenchmarkBigCommas-4   	  277617	      1913 ns/op
+PASS
+
+shortname: dustin_humanize-BigCommas
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.754MHz
+BenchmarkBigCommas-4   	  270319	      1932 ns/op
+PASS
+
+shortname: dustin_humanize-BigCommas
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.776MHz
+BenchmarkBigCommas-4   	  272480	      1938 ns/op
+PASS
+
+shortname: dustin_humanize-Commaf
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.738MHz
+BenchmarkCommaf-4   	  450459	      1185 ns/op
+PASS
+
+shortname: dustin_humanize-Commaf
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.442MHz
+BenchmarkCommaf-4   	  453728	      1190 ns/op
+PASS
+
+shortname: dustin_humanize-Commaf
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.870MHz
+BenchmarkCommaf-4   	  452818	      1184 ns/op
+PASS
+
+shortname: dustin_humanize-Commaf
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.536MHz
+BenchmarkCommaf-4   	  451694	      1243 ns/op
+PASS
+
+shortname: dustin_humanize-Commaf
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.687MHz
+BenchmarkCommaf-4   	  453974	      1183 ns/op
+PASS
+
+shortname: dustin_humanize-ParseBytes
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.075MHz
+BenchmarkParseBytes-4   	 1572824	       378.4 ns/op
+PASS
+
+shortname: dustin_humanize-ParseBytes
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.410MHz
+BenchmarkParseBytes-4   	 1574546	       382.7 ns/op
+PASS
+
+shortname: dustin_humanize-ParseBytes
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.397MHz
+BenchmarkParseBytes-4   	 1577125	       376.2 ns/op
+PASS
+
+shortname: dustin_humanize-ParseBytes
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.838MHz
+BenchmarkParseBytes-4   	 1586047	       373.9 ns/op
+PASS
+
+shortname: dustin_humanize-ParseBytes
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.323MHz
+BenchmarkParseBytes-4   	 1571560	       377.4 ns/op
+PASS
+
+shortname: dustin_humanize-ParseSI
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.212MHz
+BenchmarkParseSI-4   	  310504	      1664 ns/op
+PASS
+
+shortname: dustin_humanize-ParseSI
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.136MHz
+BenchmarkParseSI-4   	  309835	      1668 ns/op
+PASS
+
+shortname: dustin_humanize-ParseSI
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.379MHz
+BenchmarkParseSI-4   	  310635	      1669 ns/op
+PASS
+
+shortname: dustin_humanize-ParseSI
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3247.165MHz
+BenchmarkParseSI-4   	  310392	      1672 ns/op
+PASS
+
+shortname: dustin_humanize-ParseSI
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/dustin/go-humanize
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.489MHz
+BenchmarkParseSI-4   	  313202	      1669 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Mandelbrot_decimal_GDA_9
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.433MHz
+BenchmarkMandelbrot_decimal_GDA_9-4   	       1	4531326791 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Mandelbrot_decimal_GDA_9
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkMandelbrot_decimal_GDA_9-4   	       1	4492946155 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Mandelbrot_decimal_GDA_9
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkMandelbrot_decimal_GDA_9-4   	       1	4496492459 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Mandelbrot_decimal_GDA_9
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkMandelbrot_decimal_GDA_9-4   	       1	4518957988 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Mandelbrot_decimal_GDA_9
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkMandelbrot_decimal_GDA_9-4   	       1	4498983714 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dapmckinlay%2Fprec%3D19
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.680MHz
+BenchmarkPi/foo=apmckinlay/prec=19-4 	   63270	      9246 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dapmckinlay%2Fprec%3D19
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.046MHz
+BenchmarkPi/foo=apmckinlay/prec=19-4 	   63295	      9084 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dapmckinlay%2Fprec%3D19
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.109MHz
+BenchmarkPi/foo=apmckinlay/prec=19-4 	   62884	      9130 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dapmckinlay%2Fprec%3D19
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.038MHz
+BenchmarkPi/foo=apmckinlay/prec=19-4 	   62113	      8963 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dapmckinlay%2Fprec%3D19
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.960MHz
+BenchmarkPi/foo=apmckinlay/prec=19-4 	   62984	      9039 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dcockroachdb%2Fapd%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkPi/foo=cockroachdb/apd/prec=100-4         	      15	  34630839 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dcockroachdb%2Fapd%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkPi/foo=cockroachdb/apd/prec=100-4         	      15	  34404917 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dcockroachdb%2Fapd%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkPi/foo=cockroachdb/apd/prec=100-4         	      15	  34291302 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dcockroachdb%2Fapd%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkPi/foo=cockroachdb/apd/prec=100-4         	      15	  34363721 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dcockroachdb%2Fapd%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.004MHz
+BenchmarkPi/foo=cockroachdb/apd/prec=100-4         	      15	  34271107 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dgo-inf%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.830MHz
+BenchmarkPi/foo=go-inf/prec=100-4         	    1879	    291057 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dgo-inf%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.654MHz
+BenchmarkPi/foo=go-inf/prec=100-4         	    1848	    290873 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dgo-inf%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.465MHz
+BenchmarkPi/foo=go-inf/prec=100-4         	    1900	    291962 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dgo-inf%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.498MHz
+BenchmarkPi/foo=go-inf/prec=100-4         	    1843	    293364 ns/op
+PASS
+
+shortname: ericlagergren_decimal-Pi%2Ffoo%3Dgo-inf%2Fprec%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/ericlagergren/decimal_benchmarks
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.633MHz
+BenchmarkPi/foo=go-inf/prec=100-4         	    1896	    290198 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.367MHz
+BenchmarkNewDirectedLayers/graphSize=10,numGraphs=1-4         	  275376	      2000 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.746MHz
+BenchmarkNewDirectedLayers/graphSize=10,numGraphs=1-4         	  273517	      2019 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.265MHz
+BenchmarkNewDirectedLayers/graphSize=10,numGraphs=1-4         	  270500	      2025 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.381MHz
+BenchmarkNewDirectedLayers/graphSize=10,numGraphs=1-4         	  272372	      2037 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D10%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.168MHz
+BenchmarkNewDirectedLayers/graphSize=10,numGraphs=1-4         	  279199	      2043 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.827MHz
+BenchmarkNewDirectedLayers/graphSize=1000,numGraphs=1-4         	    2488	    216654 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.986MHz
+BenchmarkNewDirectedLayers/graphSize=1000,numGraphs=1-4         	    2529	    218405 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3246.697MHz
+BenchmarkNewDirectedLayers/graphSize=1000,numGraphs=1-4         	    2528	    217278 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3238.108MHz
+BenchmarkNewDirectedLayers/graphSize=1000,numGraphs=1-4         	    2592	    218016 ns/op
+PASS
+
+shortname: gonum_community-NewDirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.436MHz
+BenchmarkNewDirectedLayers/graphSize=1000,numGraphs=1-4         	    2509	    217163 ns/op
+PASS
+
+shortname: gonum_community-NewUndirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3249.509MHz
+BenchmarkNewUndirectedLayers/graphSize=1000,numGraphs=10-4         	     206	   2866063 ns/op
+PASS
+
+shortname: gonum_community-NewUndirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.007MHz
+BenchmarkNewUndirectedLayers/graphSize=1000,numGraphs=10-4         	     206	   2869453 ns/op
+PASS
+
+shortname: gonum_community-NewUndirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.443MHz
+BenchmarkNewUndirectedLayers/graphSize=1000,numGraphs=10-4         	     205	   2871969 ns/op
+PASS
+
+shortname: gonum_community-NewUndirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.712MHz
+BenchmarkNewUndirectedLayers/graphSize=1000,numGraphs=10-4         	     206	   2882574 ns/op
+PASS
+
+shortname: gonum_community-NewUndirectedLayers%2FgraphSize%3D1000%2CnumGraphs%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/community
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.260MHz
+BenchmarkNewUndirectedLayers/graphSize=1000,numGraphs=10-4         	     206	   2878612 ns/op
+PASS
+
+shortname: gonum_lapack_native-Dgeev%2FCirculant5
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/lapack/gonum
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.419MHz
+BenchmarkDgeev/Circulant5-4         	   10000	     52977 ns/op
+PASS
+
+shortname: gonum_lapack_native-Dgeev%2FCirculant5
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/lapack/gonum
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.437MHz
+BenchmarkDgeev/Circulant5-4         	   10000	     52956 ns/op
+PASS
+
+shortname: gonum_lapack_native-Dgeev%2FCirculant5
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/lapack/gonum
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.908MHz
+BenchmarkDgeev/Circulant5-4         	   10000	     53441 ns/op
+PASS
+
+shortname: gonum_lapack_native-Dgeev%2FCirculant5
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/lapack/gonum
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.845MHz
+BenchmarkDgeev/Circulant5-4         	   10000	     53034 ns/op
+PASS
+
+shortname: gonum_lapack_native-Dgeev%2FCirculant5
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/lapack/gonum
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.811MHz
+BenchmarkDgeev/Circulant5-4         	   10000	     53046 ns/op
+PASS
+
+shortname: gonum_mat-AddScaledVec10Inc1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.531MHz
+BenchmarkAddScaledVec10Inc1-4   	  263796	      2281 ns/op
+PASS
+
+shortname: gonum_mat-AddScaledVec10Inc1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.053MHz
+BenchmarkAddScaledVec10Inc1-4   	  266928	      2246 ns/op
+PASS
+
+shortname: gonum_mat-AddScaledVec10Inc1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.268MHz
+BenchmarkAddScaledVec10Inc1-4   	  268635	      2261 ns/op
+PASS
+
+shortname: gonum_mat-AddScaledVec10Inc1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.648MHz
+BenchmarkAddScaledVec10Inc1-4   	  268790	      2262 ns/op
+PASS
+
+shortname: gonum_mat-AddScaledVec10Inc1
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.745MHz
+BenchmarkAddScaledVec10Inc1-4   	  269821	      2248 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyFactorize%2Fn%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.971MHz
+BenchmarkCholeskyFactorize/n=10-4         	   23607	     25008 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyFactorize%2Fn%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.895MHz
+BenchmarkCholeskyFactorize/n=10-4         	   23614	     25111 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyFactorize%2Fn%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.773MHz
+BenchmarkCholeskyFactorize/n=10-4         	   23588	     25315 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyFactorize%2Fn%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.376MHz
+BenchmarkCholeskyFactorize/n=10-4         	   23568	     25151 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyFactorize%2Fn%3D10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.088MHz
+BenchmarkCholeskyFactorize/n=10-4         	   23300	     25133 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyInverseTo%2Fn%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3237.320MHz
+BenchmarkCholeskyInverseTo/n=100-4         	     930	    644143 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyInverseTo%2Fn%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.190MHz
+BenchmarkCholeskyInverseTo/n=100-4         	     918	    643837 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyInverseTo%2Fn%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.594MHz
+BenchmarkCholeskyInverseTo/n=100-4         	     931	    643862 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyInverseTo%2Fn%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.437MHz
+BenchmarkCholeskyInverseTo/n=100-4         	     932	    643419 ns/op
+PASS
+
+shortname: gonum_mat-CholeskyInverseTo%2Fn%3D100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3238.606MHz
+BenchmarkCholeskyInverseTo/n=100-4         	     932	    643284 ns/op
+PASS
+
+shortname: gonum_mat-MarshalToVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.837MHz
+BenchmarkMarshalToVecDense10-4   	  256713	      2174 ns/op
+PASS
+
+shortname: gonum_mat-MarshalToVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.011MHz
+BenchmarkMarshalToVecDense10-4   	  254960	      2195 ns/op
+PASS
+
+shortname: gonum_mat-MarshalToVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.219MHz
+BenchmarkMarshalToVecDense10-4   	  256200	      2193 ns/op
+PASS
+
+shortname: gonum_mat-MarshalToVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.709MHz
+BenchmarkMarshalToVecDense10-4   	  260041	      2177 ns/op
+PASS
+
+shortname: gonum_mat-MarshalToVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.915MHz
+BenchmarkMarshalToVecDense10-4   	  258535	      2177 ns/op
+PASS
+
+shortname: gonum_mat-Pool100by100Uncleared
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.319MHz
+BenchmarkPool100by100Uncleared-4   	 9886081	        60.69 ns/op
+PASS
+
+shortname: gonum_mat-Pool100by100Uncleared
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3239.923MHz
+BenchmarkPool100by100Uncleared-4   	10540816	        56.87 ns/op
+PASS
+
+shortname: gonum_mat-Pool100by100Uncleared
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.177MHz
+BenchmarkPool100by100Uncleared-4   	10550444	        56.94 ns/op
+PASS
+
+shortname: gonum_mat-Pool100by100Uncleared
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.175MHz
+BenchmarkPool100by100Uncleared-4   	10541395	        56.89 ns/op
+PASS
+
+shortname: gonum_mat-Pool100by100Uncleared
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.415MHz
+BenchmarkPool100by100Uncleared-4   	10516345	        56.93 ns/op
+PASS
+
+shortname: gonum_mat-TriMulDiag%2FBenchmarkTriMulDiag100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.944MHz
+BenchmarkTriMulDiag/BenchmarkTriMulDiag100-4         	    4068	    142748 ns/op
+PASS
+
+shortname: gonum_mat-TriMulDiag%2FBenchmarkTriMulDiag100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.281MHz
+BenchmarkTriMulDiag/BenchmarkTriMulDiag100-4         	    4130	    141969 ns/op
+PASS
+
+shortname: gonum_mat-TriMulDiag%2FBenchmarkTriMulDiag100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.782MHz
+BenchmarkTriMulDiag/BenchmarkTriMulDiag100-4         	    4095	    147381 ns/op
+PASS
+
+shortname: gonum_mat-TriMulDiag%2FBenchmarkTriMulDiag100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.043MHz
+BenchmarkTriMulDiag/BenchmarkTriMulDiag100-4         	    4089	    142898 ns/op
+PASS
+
+shortname: gonum_mat-TriMulDiag%2FBenchmarkTriMulDiag100
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.902MHz
+BenchmarkTriMulDiag/BenchmarkTriMulDiag100-4         	    4090	    142607 ns/op
+PASS
+
+shortname: gonum_mat-UnmarshalVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.634MHz
+BenchmarkUnmarshalVecDense10-4   	  360788	      1561 ns/op
+PASS
+
+shortname: gonum_mat-UnmarshalVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.691MHz
+BenchmarkUnmarshalVecDense10-4   	  360597	      1570 ns/op
+PASS
+
+shortname: gonum_mat-UnmarshalVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.487MHz
+BenchmarkUnmarshalVecDense10-4   	  359254	      1560 ns/op
+PASS
+
+shortname: gonum_mat-UnmarshalVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.479MHz
+BenchmarkUnmarshalVecDense10-4   	  358437	      1560 ns/op
+PASS
+
+shortname: gonum_mat-UnmarshalVecDense10
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/mat
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.477MHz
+BenchmarkUnmarshalVecDense10-4   	  353154	      1564 ns/op
+PASS
+
+shortname: gonum_topo-SortStabilizedPath_100000
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/topo
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.374MHz
+BenchmarkSortStabilizedPath_100000-4   	       2	 299231699 ns/op
+PASS
+
+shortname: gonum_topo-SortStabilizedPath_100000
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/topo
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkSortStabilizedPath_100000-4   	       2	 311389416 ns/op
+PASS
+
+shortname: gonum_topo-SortStabilizedPath_100000
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/topo
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkSortStabilizedPath_100000-4   	       2	 302104732 ns/op
+PASS
+
+shortname: gonum_topo-SortStabilizedPath_100000
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/topo
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkSortStabilizedPath_100000-4   	       2	 295632844 ns/op
+PASS
+
+shortname: gonum_topo-SortStabilizedPath_100000
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/topo
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.117MHz
+BenchmarkSortStabilizedPath_100000-4   	       2	 303034856 ns/op
+PASS
+
+shortname: gonum_traverse-WalkAllDepthFirstGnp_100_half
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/traverse
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.396MHz
+BenchmarkWalkAllDepthFirstGnp_100_half-4   	     421	   1519396 ns/op
+PASS
+
+shortname: gonum_traverse-WalkAllDepthFirstGnp_100_half
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/traverse
+cpu: AMD EPYC 7763 64-Core Processor @ 3238.074MHz
+BenchmarkWalkAllDepthFirstGnp_100_half-4   	     422	   1526077 ns/op
+PASS
+
+shortname: gonum_traverse-WalkAllDepthFirstGnp_100_half
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/traverse
+cpu: AMD EPYC 7763 64-Core Processor @ 3160.735MHz
+BenchmarkWalkAllDepthFirstGnp_100_half-4   	     423	   1520689 ns/op
+PASS
+
+shortname: gonum_traverse-WalkAllDepthFirstGnp_100_half
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/traverse
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.638MHz
+BenchmarkWalkAllDepthFirstGnp_100_half-4   	     417	   1529540 ns/op
+PASS
+
+shortname: gonum_traverse-WalkAllDepthFirstGnp_100_half
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: gonum.org/v1/gonum/graph/traverse
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.800MHz
+BenchmarkWalkAllDepthFirstGnp_100_half-4   	     412	   1547942 ns/op
+PASS
+
+shortname: gproto_encoding-TextDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/encoding
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.800MHz
+BenchmarkTextDecode-4   	       4	 149593730 ns/op
+PASS
+
+shortname: gproto_encoding-TextDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/encoding
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.156MHz
+BenchmarkTextDecode-4   	       4	 146825628 ns/op
+PASS
+
+shortname: gproto_encoding-TextDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/encoding
+cpu: AMD EPYC 7763 64-Core Processor @ 3081.964MHz
+BenchmarkTextDecode-4   	       4	 151537196 ns/op
+PASS
+
+shortname: gproto_encoding-TextDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/encoding
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.031MHz
+BenchmarkTextDecode-4   	       4	 147065012 ns/op
+PASS
+
+shortname: gproto_encoding-TextDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/encoding
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.144MHz
+BenchmarkTextDecode-4   	       4	 156171012 ns/op
+PASS
+
+shortname: gproto_json-Bool
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3246.559MHz
+BenchmarkBool-4   	 1728873	       341.7 ns/op
+PASS
+
+shortname: gproto_json-Bool
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.046MHz
+BenchmarkBool-4   	 1728123	       339.5 ns/op
+PASS
+
+shortname: gproto_json-Bool
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.492MHz
+BenchmarkBool-4   	 1749380	       340.1 ns/op
+PASS
+
+shortname: gproto_json-Bool
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.058MHz
+BenchmarkBool-4   	 1754437	       339.4 ns/op
+PASS
+
+shortname: gproto_json-Bool
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.940MHz
+BenchmarkBool-4   	 1759911	       338.7 ns/op
+PASS
+
+shortname: gproto_json-Int
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.738MHz
+BenchmarkInt-4   	  660046	       812.3 ns/op
+PASS
+
+shortname: gproto_json-Int
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.474MHz
+BenchmarkInt-4   	  656782	       821.5 ns/op
+PASS
+
+shortname: gproto_json-Int
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.487MHz
+BenchmarkInt-4   	  652564	       813.0 ns/op
+PASS
+
+shortname: gproto_json-Int
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.633MHz
+BenchmarkInt-4   	  653568	       817.2 ns/op
+PASS
+
+shortname: gproto_json-Int
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/internal/encoding/json
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.789MHz
+BenchmarkInt-4   	  657967	       814.3 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fbasic_scalar_types_%28%2Atest.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.171MHz
+BenchmarkDecode/basic_scalar_types_(*test.TestAllTypes)-4         	   54296	     10174 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fbasic_scalar_types_%28%2Atest.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.969MHz
+BenchmarkDecode/basic_scalar_types_(*test.TestAllTypes)-4         	   52597	     10240 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fbasic_scalar_types_%28%2Atest.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.470MHz
+BenchmarkDecode/basic_scalar_types_(*test.TestAllTypes)-4         	   52492	     10321 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fbasic_scalar_types_%28%2Atest.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.188MHz
+BenchmarkDecode/basic_scalar_types_(*test.TestAllTypes)-4         	   53364	     11505 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fbasic_scalar_types_%28%2Atest.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.946MHz
+BenchmarkDecode/basic_scalar_types_(*test.TestAllTypes)-4         	   51826	     10383 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fjust_at_recursion_limit_%28%2Atest3.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.567MHz
+BenchmarkDecode/just_at_recursion_limit_(*test3.TestAllTypes)-4         	   50290	     11176 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fjust_at_recursion_limit_%28%2Atest3.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.614MHz
+BenchmarkDecode/just_at_recursion_limit_(*test3.TestAllTypes)-4         	   51456	     11202 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fjust_at_recursion_limit_%28%2Atest3.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.517MHz
+BenchmarkDecode/just_at_recursion_limit_(*test3.TestAllTypes)-4         	   49912	     11199 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fjust_at_recursion_limit_%28%2Atest3.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.892MHz
+BenchmarkDecode/just_at_recursion_limit_(*test3.TestAllTypes)-4         	   50156	     11374 ns/op
+PASS
+
+shortname: gproto_proto-Decode%2Fjust_at_recursion_limit_%28%2Atest3.TestAllTypes%29
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.085MHz
+BenchmarkDecode/just_at_recursion_limit_(*test3.TestAllTypes)-4         	   50252	     11018 ns/op
+PASS
+
+shortname: gproto_proto-EqualWithDeeplyNestedEqual
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.724MHz
+BenchmarkEqualWithDeeplyNestedEqual-4   	     811	    745395 ns/op	  246658 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_proto-EqualWithDeeplyNestedEqual
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3239.545MHz
+BenchmarkEqualWithDeeplyNestedEqual-4   	     801	    743133 ns/op	  246664 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_proto-EqualWithDeeplyNestedEqual
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.339MHz
+BenchmarkEqualWithDeeplyNestedEqual-4   	     801	    745939 ns/op	  246651 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_proto-EqualWithDeeplyNestedEqual
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.442MHz
+BenchmarkEqualWithDeeplyNestedEqual-4   	     816	    744876 ns/op	  246653 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_proto-EqualWithDeeplyNestedEqual
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/proto
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.286MHz
+BenchmarkEqualWithDeeplyNestedEqual-4   	     802	    745384 ns/op	  246656 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_reflect-Value%2FInterface
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/reflect/protoreflect
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.366MHz
+BenchmarkValue/Interface-4         	24162361	        26.34 ns/op	      32 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_reflect-Value%2FInterface
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/reflect/protoreflect
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.515MHz
+BenchmarkValue/Interface-4         	20501456	        24.88 ns/op	      32 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_reflect-Value%2FInterface
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/reflect/protoreflect
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.303MHz
+BenchmarkValue/Interface-4         	24284869	        24.71 ns/op	      32 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_reflect-Value%2FInterface
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/reflect/protoreflect
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.906MHz
+BenchmarkValue/Interface-4         	20375701	        24.83 ns/op	      32 B/op	       0 allocs/op
+PASS
+
+shortname: gproto_reflect-Value%2FInterface
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: google.golang.org/protobuf/reflect/protoreflect
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.855MHz
+BenchmarkValue/Interface-4         	24274552	        24.63 ns/op	      32 B/op	       0 allocs/op
+PASS
+
+shortname: k8s_cache-EachListItemWithAlloc%2FPodList
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/tools/cache
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.639MHz
+BenchmarkEachListItemWithAlloc/PodList-4         	    4312	    140579 ns/op
+PASS
+
+shortname: k8s_cache-EachListItemWithAlloc%2FPodList
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/tools/cache
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.045MHz
+BenchmarkEachListItemWithAlloc/PodList-4         	    4298	    139440 ns/op
+PASS
+
+shortname: k8s_cache-EachListItemWithAlloc%2FPodList
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/tools/cache
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.820MHz
+BenchmarkEachListItemWithAlloc/PodList-4         	    4302	    140919 ns/op
+PASS
+
+shortname: k8s_cache-EachListItemWithAlloc%2FPodList
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/tools/cache
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.737MHz
+BenchmarkEachListItemWithAlloc/PodList-4         	    4339	    139274 ns/op
+PASS
+
+shortname: k8s_cache-EachListItemWithAlloc%2FPodList
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/tools/cache
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.064MHz
+BenchmarkEachListItemWithAlloc/PodList-4         	    3544	    142488 ns/op
+PASS
+
+shortname: k8s_workqueue-DelayingQueue_AddAfter
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/util/workqueue
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.877MHz
+BenchmarkDelayingQueue_AddAfter-4   	   92097	     10427 ns/op
+PASS
+
+shortname: k8s_workqueue-DelayingQueue_AddAfter
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/util/workqueue
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.352MHz
+BenchmarkDelayingQueue_AddAfter-4   	   90777	      7707 ns/op
+PASS
+
+shortname: k8s_workqueue-DelayingQueue_AddAfter
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/util/workqueue
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.869MHz
+BenchmarkDelayingQueue_AddAfter-4   	   82408	      9399 ns/op
+PASS
+
+shortname: k8s_workqueue-DelayingQueue_AddAfter
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/util/workqueue
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.602MHz
+BenchmarkDelayingQueue_AddAfter-4   	   92529	      7874 ns/op
+PASS
+
+shortname: k8s_workqueue-DelayingQueue_AddAfter
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: k8s.io/client-go/util/workqueue
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.279MHz
+BenchmarkDelayingQueue_AddAfter-4   	   89490	      9078 ns/op
+PASS
+
+shortname: kanzi-ANS0
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3222.279MHz
+BenchmarkANS0-4   	     140	   4207012 ns/op
+PASS
+
+shortname: kanzi-ANS0
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.769MHz
+BenchmarkANS0-4   	     141	   4200639 ns/op
+PASS
+
+shortname: kanzi-ANS0
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.041MHz
+BenchmarkANS0-4   	     141	   4201311 ns/op
+PASS
+
+shortname: kanzi-ANS0
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.352MHz
+BenchmarkANS0-4   	     141	   4197108 ns/op
+PASS
+
+shortname: kanzi-ANS0
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.991MHz
+BenchmarkANS0-4   	     141	   4194176 ns/op
+PASS
+
+shortname: kanzi-BWTSmallBlock
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkBWTSmallBlock-4   	      12	  46237222 ns/op
+PASS
+
+shortname: kanzi-BWTSmallBlock
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkBWTSmallBlock-4   	      12	  46111089 ns/op
+PASS
+
+shortname: kanzi-BWTSmallBlock
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkBWTSmallBlock-4   	      12	  46110981 ns/op
+PASS
+
+shortname: kanzi-BWTSmallBlock
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2891.355MHz
+BenchmarkBWTSmallBlock-4   	      12	  46060420 ns/op
+PASS
+
+shortname: kanzi-BWTSmallBlock
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkBWTSmallBlock-4   	      12	  46138851 ns/op
+PASS
+
+shortname: kanzi-CM
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkCM-4   	       8	  63565310 ns/op
+PASS
+
+shortname: kanzi-CM
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.442MHz
+BenchmarkCM-4   	       8	  64112665 ns/op
+PASS
+
+shortname: kanzi-CM
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkCM-4   	       8	  63670072 ns/op
+PASS
+
+shortname: kanzi-CM
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkCM-4   	       8	  63703139 ns/op
+PASS
+
+shortname: kanzi-CM
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkCM-4   	       8	  63686651 ns/op
+PASS
+
+shortname: kanzi-Huffman
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.566MHz
+BenchmarkHuffman-4   	     138	   4286933 ns/op
+PASS
+
+shortname: kanzi-Huffman
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.472MHz
+BenchmarkHuffman-4   	     138	   4295363 ns/op
+PASS
+
+shortname: kanzi-Huffman
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.281MHz
+BenchmarkHuffman-4   	     138	   4295869 ns/op
+PASS
+
+shortname: kanzi-Huffman
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.420MHz
+BenchmarkHuffman-4   	     136	   4297864 ns/op
+PASS
+
+shortname: kanzi-Huffman
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/flanglet/kanzi-go/v2/benchmark
+cpu: AMD EPYC 7763 64-Core Processor @ 3247.943MHz
+BenchmarkHuffman-4   	     138	   4300581 ns/op
+PASS
+
+shortname: nelsam_gxui_interval-General
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: git.sr.ht/~nelsam/gxui/interval
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.485MHz
+BenchmarkGeneral-4   	  493116	      1182 ns/op
+PASS
+
+shortname: nelsam_gxui_interval-General
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: git.sr.ht/~nelsam/gxui/interval
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.050MHz
+BenchmarkGeneral-4   	  497560	      1179 ns/op
+PASS
+
+shortname: nelsam_gxui_interval-General
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: git.sr.ht/~nelsam/gxui/interval
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.974MHz
+BenchmarkGeneral-4   	  495770	      1182 ns/op
+PASS
+
+shortname: nelsam_gxui_interval-General
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: git.sr.ht/~nelsam/gxui/interval
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.844MHz
+BenchmarkGeneral-4   	  497307	      1180 ns/op
+PASS
+
+shortname: nelsam_gxui_interval-General
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: git.sr.ht/~nelsam/gxui/interval
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.694MHz
+BenchmarkGeneral-4   	  493831	      1188 ns/op
+PASS
+
+shortname: rcrowley_metrics-Histogram
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.931MHz
+BenchmarkHistogram-4   	 4934336	       116.7 ns/op
+PASS
+
+shortname: rcrowley_metrics-Histogram
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.911MHz
+BenchmarkHistogram-4   	 4879762	       118.0 ns/op
+PASS
+
+shortname: rcrowley_metrics-Histogram
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.458MHz
+BenchmarkHistogram-4   	 4918729	       118.5 ns/op
+PASS
+
+shortname: rcrowley_metrics-Histogram
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.235MHz
+BenchmarkHistogram-4   	 4914448	       117.6 ns/op
+PASS
+
+shortname: rcrowley_metrics-Histogram
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.177MHz
+BenchmarkHistogram-4   	 4943150	       116.8 ns/op
+PASS
+
+shortname: rcrowley_metrics-Timer
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.915MHz
+BenchmarkTimer-4   	  730928	       724.5 ns/op
+PASS
+
+shortname: rcrowley_metrics-Timer
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.620MHz
+BenchmarkTimer-4   	  733279	       718.9 ns/op
+PASS
+
+shortname: rcrowley_metrics-Timer
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.737MHz
+BenchmarkTimer-4   	  717112	       737.6 ns/op
+PASS
+
+shortname: rcrowley_metrics-Timer
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3247.090MHz
+BenchmarkTimer-4   	  720433	       722.9 ns/op
+PASS
+
+shortname: rcrowley_metrics-Timer
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/rcrowley/go-metrics
+cpu: AMD EPYC 7763 64-Core Processor @ 3238.928MHz
+BenchmarkTimer-4   	  727957	       724.2 ns/op
+PASS
+
+shortname: semver-CheckVersionRange
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.887MHz
+BenchmarkCheckVersionRange-4   	 5354854	       107.2 ns/op	      64 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CheckVersionRange
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.735MHz
+BenchmarkCheckVersionRange-4   	 5214066	       109.8 ns/op	      64 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CheckVersionRange
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.990MHz
+BenchmarkCheckVersionRange-4   	 5087791	       112.3 ns/op	      64 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CheckVersionRange
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.605MHz
+BenchmarkCheckVersionRange-4   	 5208649	       110.0 ns/op	      64 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CheckVersionRange
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.491MHz
+BenchmarkCheckVersionRange-4   	 5150166	       110.1 ns/op	      64 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CoerceNewVersionSimple
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.001MHz
+BenchmarkCoerceNewVersionSimple-4   	 1193286	       497.7 ns/op	     432 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CoerceNewVersionSimple
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.309MHz
+BenchmarkCoerceNewVersionSimple-4   	 1194050	       501.3 ns/op	     432 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CoerceNewVersionSimple
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.401MHz
+BenchmarkCoerceNewVersionSimple-4   	 1194384	       496.6 ns/op	     432 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CoerceNewVersionSimple
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.241MHz
+BenchmarkCoerceNewVersionSimple-4   	 1183330	       504.2 ns/op	     432 B/op	       0 allocs/op
+PASS
+
+shortname: semver-CoerceNewVersionSimple
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.905MHz
+BenchmarkCoerceNewVersionSimple-4   	 1197397	       515.2 ns/op	     432 B/op	       0 allocs/op
+PASS
+
+shortname: semver-ValidateVersionRangeFail
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.313MHz
+BenchmarkValidateVersionRangeFail-4   	  233754	      2611 ns/op	    3744 B/op	       0 allocs/op
+PASS
+
+shortname: semver-ValidateVersionRangeFail
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.133MHz
+BenchmarkValidateVersionRangeFail-4   	  235929	      2554 ns/op	    3744 B/op	       0 allocs/op
+PASS
+
+shortname: semver-ValidateVersionRangeFail
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.519MHz
+BenchmarkValidateVersionRangeFail-4   	  233962	      2571 ns/op	    3744 B/op	       0 allocs/op
+PASS
+
+shortname: semver-ValidateVersionRangeFail
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.365MHz
+BenchmarkValidateVersionRangeFail-4   	  233382	      2569 ns/op	    3744 B/op	       0 allocs/op
+PASS
+
+shortname: semver-ValidateVersionRangeFail
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Masterminds/semver/v3
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.489MHz
+BenchmarkValidateVersionRangeFail-4   	  235345	      2573 ns/op	    3744 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-ZstdMemoryConsumption%2Fno_drain
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkZstdMemoryConsumption/no_drain-4         	     110	   5408628 ns/op	  236444 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-ZstdMemoryConsumption%2Fno_drain
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkZstdMemoryConsumption/no_drain-4         	     109	   5439175 ns/op	  238236 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-ZstdMemoryConsumption%2Fno_drain
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkZstdMemoryConsumption/no_drain-4         	     109	   5460308 ns/op	  238224 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-ZstdMemoryConsumption%2Fno_drain
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkZstdMemoryConsumption/no_drain-4         	     109	   5450624 ns/op	  238262 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-ZstdMemoryConsumption%2Fno_drain
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.233MHz
+BenchmarkZstdMemoryConsumption/no_drain-4         	     109	   5452150 ns/op	  238232 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-_getMetricNameForTopic
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.585MHz
+Benchmark_getMetricNameForTopic-4   	 2148283	       279.8 ns/op	     128 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-_getMetricNameForTopic
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.508MHz
+Benchmark_getMetricNameForTopic-4   	 2127182	       292.8 ns/op	     128 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-_getMetricNameForTopic
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.029MHz
+Benchmark_getMetricNameForTopic-4   	 2152971	       279.5 ns/op	     128 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-_getMetricNameForTopic
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.475MHz
+Benchmark_getMetricNameForTopic-4   	 2144548	       280.1 ns/op	     128 B/op	       0 allocs/op
+PASS
+
+shortname: shopify_sarama-_getMetricNameForTopic
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/IBM/sarama
+cpu: AMD EPYC 7763 64-Core Processor @ 3053.107MHz
+Benchmark_getMetricNameForTopic-4   	 2144900	       279.7 ns/op	     128 B/op	       0 allocs/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.483MHz
+BenchmarkRoundTrip/ContainersOfContainers/Decode-4  	    2504	    210783 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.637MHz
+BenchmarkRoundTrip/ContainersOfContainers/Decode-4  	    2470	    211347 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.117MHz
+BenchmarkRoundTrip/ContainersOfContainers/Decode-4  	    2451	    212457 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.475MHz
+BenchmarkRoundTrip/ContainersOfContainers/Decode-4  	    2498	    211423 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FDecode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3246.811MHz
+BenchmarkRoundTrip/ContainersOfContainers/Decode-4  	    2454	    211337 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FEncode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.797MHz
+BenchmarkRoundTrip/ContainersOfContainers/Encode-4  	    4312	    117942 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FEncode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.947MHz
+BenchmarkRoundTrip/ContainersOfContainers/Encode-4  	    5088	    118749 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FEncode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.118MHz
+BenchmarkRoundTrip/ContainersOfContainers/Encode-4  	    5078	    117409 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FEncode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.082MHz
+BenchmarkRoundTrip/ContainersOfContainers/Encode-4  	    5090	    117588 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FContainersOfContainers%2FEncode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.915MHz
+BenchmarkRoundTrip/ContainersOfContainers/Encode-4  	    4280	    118481 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FPrimitiveOptionalStruct%2FStreaming_Decode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.256MHz
+BenchmarkRoundTrip/PrimitiveOptionalStruct/Streaming_Decode-4         	   87750	      6108 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FPrimitiveOptionalStruct%2FStreaming_Decode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.511MHz
+BenchmarkRoundTrip/PrimitiveOptionalStruct/Streaming_Decode-4         	   88038	      6093 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FPrimitiveOptionalStruct%2FStreaming_Decode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.304MHz
+BenchmarkRoundTrip/PrimitiveOptionalStruct/Streaming_Decode-4         	   87934	      6072 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FPrimitiveOptionalStruct%2FStreaming_Decode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.902MHz
+BenchmarkRoundTrip/PrimitiveOptionalStruct/Streaming_Decode-4         	   88279	      6097 ns/op
+PASS
+
+shortname: thriftrw_gen-RoundTrip%2FPrimitiveOptionalStruct%2FStreaming_Decode
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/thriftrw/gen
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.757MHz
+BenchmarkRoundTrip/PrimitiveOptionalStruct/Streaming_Decode-4         	   87702	      6068 ns/op
+PASS
+
+shortname: uber_zap-JSONLogMarshalerFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/zap/zapcore
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.943MHz
+BenchmarkJSONLogMarshalerFunc-4   	  383398	      1552 ns/op
+PASS
+
+shortname: uber_zap-JSONLogMarshalerFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/zap/zapcore
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.031MHz
+BenchmarkJSONLogMarshalerFunc-4   	  401510	      1505 ns/op
+PASS
+
+shortname: uber_zap-JSONLogMarshalerFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/zap/zapcore
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.257MHz
+BenchmarkJSONLogMarshalerFunc-4   	  393064	      1504 ns/op
+PASS
+
+shortname: uber_zap-JSONLogMarshalerFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/zap/zapcore
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.834MHz
+BenchmarkJSONLogMarshalerFunc-4   	  404098	      1508 ns/op
+PASS
+
+shortname: uber_zap-JSONLogMarshalerFunc
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: go.uber.org/zap/zapcore
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.462MHz
+BenchmarkJSONLogMarshalerFunc-4   	  393182	      1508 ns/op
+PASS
+
+shortname: uuid-New
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.926MHz
+BenchmarkNew-4   	  614109	       941.2 ns/op
+PASS
+
+shortname: uuid-New
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.362MHz
+BenchmarkNew-4   	  616749	       941.9 ns/op
+PASS
+
+shortname: uuid-New
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.151MHz
+BenchmarkNew-4   	  614647	       945.5 ns/op
+PASS
+
+shortname: uuid-New
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.896MHz
+BenchmarkNew-4   	  606865	       942.7 ns/op
+PASS
+
+shortname: uuid-New
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.920MHz
+BenchmarkNew-4   	  615363	       942.5 ns/op
+PASS
+
+shortname: uuid-UUID_MarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.975MHz
+BenchmarkUUID_MarshalJSON-4   	  357392	      1676 ns/op
+PASS
+
+shortname: uuid-UUID_MarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.238MHz
+BenchmarkUUID_MarshalJSON-4   	  354571	      1740 ns/op
+PASS
+
+shortname: uuid-UUID_MarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.000MHz
+BenchmarkUUID_MarshalJSON-4   	  356311	      1662 ns/op
+PASS
+
+shortname: uuid-UUID_MarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.690MHz
+BenchmarkUUID_MarshalJSON-4   	  361581	      1674 ns/op
+PASS
+
+shortname: uuid-UUID_MarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.288MHz
+BenchmarkUUID_MarshalJSON-4   	  358983	      1676 ns/op
+PASS
+
+shortname: uuid-UUID_UnmarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.327MHz
+BenchmarkUUID_UnmarshalJSON-4   	  147081	      3428 ns/op
+PASS
+
+shortname: uuid-UUID_UnmarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.001MHz
+BenchmarkUUID_UnmarshalJSON-4   	  147585	      3412 ns/op
+PASS
+
+shortname: uuid-UUID_UnmarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.076MHz
+BenchmarkUUID_UnmarshalJSON-4   	  175719	      3394 ns/op
+PASS
+
+shortname: uuid-UUID_UnmarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.488MHz
+BenchmarkUUID_UnmarshalJSON-4   	  175806	      3425 ns/op
+PASS
+
+shortname: uuid-UUID_UnmarshalJSON
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/google/uuid
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.014MHz
+BenchmarkUUID_UnmarshalJSON-4   	  149073	      3422 ns/op
+PASS
+
+shortname: workiva_augmentedtree-AddItems
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/augmentedtree
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.157MHz
+BenchmarkAddItems-4   	    1562	    348313 ns/op
+PASS
+
+shortname: workiva_augmentedtree-AddItems
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/augmentedtree
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.595MHz
+BenchmarkAddItems-4   	    1599	    347737 ns/op
+PASS
+
+shortname: workiva_augmentedtree-AddItems
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/augmentedtree
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.320MHz
+BenchmarkAddItems-4   	    1544	    348307 ns/op
+PASS
+
+shortname: workiva_augmentedtree-AddItems
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/augmentedtree
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.788MHz
+BenchmarkAddItems-4   	    1580	    344631 ns/op
+PASS
+
+shortname: workiva_augmentedtree-AddItems
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/augmentedtree
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.407MHz
+BenchmarkAddItems-4   	    1578	    348357 ns/op
+PASS
+
+shortname: workiva_avl-ImmutableInsert
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/tree/avl
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.336MHz
+BenchmarkImmutableInsert-4   	  473436	      1469 ns/op
+PASS
+
+shortname: workiva_avl-ImmutableInsert
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/tree/avl
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.226MHz
+BenchmarkImmutableInsert-4   	  478299	      1473 ns/op
+PASS
+
+shortname: workiva_avl-ImmutableInsert
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/tree/avl
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.602MHz
+BenchmarkImmutableInsert-4   	  479012	      1507 ns/op
+PASS
+
+shortname: workiva_avl-ImmutableInsert
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/tree/avl
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.070MHz
+BenchmarkImmutableInsert-4   	  471963	      1469 ns/op
+PASS
+
+shortname: workiva_avl-ImmutableInsert
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/tree/avl
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.575MHz
+BenchmarkImmutableInsert-4   	  480968	      1469 ns/op
+PASS
+
+shortname: workiva_bitarray-CompressedIntersects
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/bitarray
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.004MHz
+BenchmarkCompressedIntersects-4   	 1399191	       424.8 ns/op
+PASS
+
+shortname: workiva_bitarray-CompressedIntersects
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/bitarray
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.041MHz
+BenchmarkCompressedIntersects-4   	 1340818	       424.3 ns/op
+PASS
+
+shortname: workiva_bitarray-CompressedIntersects
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/bitarray
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.675MHz
+BenchmarkCompressedIntersects-4   	 1389454	       426.7 ns/op
+PASS
+
+shortname: workiva_bitarray-CompressedIntersects
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/bitarray
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.297MHz
+BenchmarkCompressedIntersects-4   	 1398858	       426.2 ns/op
+PASS
+
+shortname: workiva_bitarray-CompressedIntersects
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/bitarray
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.663MHz
+BenchmarkCompressedIntersects-4   	 1388354	       425.3 ns/op
+PASS
+
+shortname: workiva_hilbert-BulkUpdatePoints
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rtree/hilbert
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.645MHz
+BenchmarkBulkUpdatePoints-4   	     538	   1099474 ns/op
+PASS
+
+shortname: workiva_hilbert-BulkUpdatePoints
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rtree/hilbert
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.089MHz
+BenchmarkBulkUpdatePoints-4   	     532	   1097760 ns/op
+PASS
+
+shortname: workiva_hilbert-BulkUpdatePoints
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rtree/hilbert
+cpu: AMD EPYC 7763 64-Core Processor @ 3239.203MHz
+BenchmarkBulkUpdatePoints-4   	     535	   1092964 ns/op
+PASS
+
+shortname: workiva_hilbert-BulkUpdatePoints
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rtree/hilbert
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.503MHz
+BenchmarkBulkUpdatePoints-4   	     535	   1099842 ns/op
+PASS
+
+shortname: workiva_hilbert-BulkUpdatePoints
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rtree/hilbert
+cpu: AMD EPYC 7763 64-Core Processor @ 3231.285MHz
+BenchmarkBulkUpdatePoints-4   	     530	   1094232 ns/op
+PASS
+
+shortname: workiva_queue-PriorityQueue
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/queue
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.906MHz
+BenchmarkPriorityQueue-4   	  306036	      1816 ns/op
+PASS
+
+shortname: workiva_queue-PriorityQueue
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/queue
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.933MHz
+BenchmarkPriorityQueue-4   	  289388	      2108 ns/op
+PASS
+
+shortname: workiva_queue-PriorityQueue
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/queue
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.051MHz
+BenchmarkPriorityQueue-4   	  372867	      1720 ns/op
+PASS
+
+shortname: workiva_queue-PriorityQueue
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/queue
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.488MHz
+BenchmarkPriorityQueue-4   	  318542	      2131 ns/op
+PASS
+
+shortname: workiva_queue-PriorityQueue
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/queue
+cpu: AMD EPYC 7763 64-Core Processor @ 3238.684MHz
+BenchmarkPriorityQueue-4   	  252976	      2521 ns/op
+PASS
+
+shortname: workiva_rangetree-Apply
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.181MHz
+BenchmarkApply-4   	    2960	    170000 ns/op
+PASS
+
+shortname: workiva_rangetree-Apply
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.265MHz
+BenchmarkApply-4   	    3480	    171956 ns/op
+PASS
+
+shortname: workiva_rangetree-Apply
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.551MHz
+BenchmarkApply-4   	    3013	    170274 ns/op
+PASS
+
+shortname: workiva_rangetree-Apply
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 3246.224MHz
+BenchmarkApply-4   	    2966	    169776 ns/op
+PASS
+
+shortname: workiva_rangetree-Apply
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 3246.197MHz
+BenchmarkApply-4   	    3552	    169345 ns/op
+PASS
+
+shortname: workiva_rangetree-ImmutableInsertSecondDimension
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkImmutableInsertSecondDimension-4   	      14	  39034563 ns/op
+PASS
+
+shortname: workiva_rangetree-ImmutableInsertSecondDimension
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkImmutableInsertSecondDimension-4   	      14	  38716963 ns/op
+PASS
+
+shortname: workiva_rangetree-ImmutableInsertSecondDimension
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.956MHz
+BenchmarkImmutableInsertSecondDimension-4   	      14	  38177438 ns/op
+PASS
+
+shortname: workiva_rangetree-ImmutableInsertSecondDimension
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 2445.429MHz
+BenchmarkImmutableInsertSecondDimension-4   	      14	  39846688 ns/op
+PASS
+
+shortname: workiva_rangetree-ImmutableInsertSecondDimension
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/rangetree
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.431MHz
+BenchmarkImmutableInsertSecondDimension-4   	      15	  38028696 ns/op
+PASS
+
+shortname: workiva_set-Clear
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.392MHz
+BenchmarkClear-4   	 9998493	        56.24 ns/op
+PASS
+
+shortname: workiva_set-Clear
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.997MHz
+BenchmarkClear-4   	 9867974	        55.88 ns/op
+PASS
+
+shortname: workiva_set-Clear
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3236.934MHz
+BenchmarkClear-4   	10032022	        56.34 ns/op
+PASS
+
+shortname: workiva_set-Clear
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.106MHz
+BenchmarkClear-4   	 9935872	        56.50 ns/op
+PASS
+
+shortname: workiva_set-Clear
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.992MHz
+BenchmarkClear-4   	 9909528	        56.10 ns/op
+PASS
+
+shortname: workiva_set-Exists
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.782MHz
+BenchmarkExists-4   	 6957262	        80.87 ns/op
+PASS
+
+shortname: workiva_set-Exists
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3245.822MHz
+BenchmarkExists-4   	 6923541	        81.86 ns/op
+PASS
+
+shortname: workiva_set-Exists
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3242.689MHz
+BenchmarkExists-4   	 6974438	        80.94 ns/op
+PASS
+
+shortname: workiva_set-Exists
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.128MHz
+BenchmarkExists-4   	 7080730	        80.60 ns/op
+PASS
+
+shortname: workiva_set-Exists
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/set
+cpu: AMD EPYC 7763 64-Core Processor @ 3241.483MHz
+BenchmarkExists-4   	 6929281	        81.06 ns/op
+PASS
+
+shortname: workiva_triey-Iterator
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/trie/yfast
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.755MHz
+BenchmarkIterator-4   	  203323	      2936 ns/op
+PASS
+
+shortname: workiva_triey-Iterator
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/trie/yfast
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.058MHz
+BenchmarkIterator-4   	  203458	      2937 ns/op
+PASS
+
+shortname: workiva_triey-Iterator
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/trie/yfast
+cpu: AMD EPYC 7763 64-Core Processor @ 3240.041MHz
+BenchmarkIterator-4   	  202834	      2940 ns/op
+PASS
+
+shortname: workiva_triey-Iterator
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/trie/yfast
+cpu: AMD EPYC 7763 64-Core Processor @ 3244.649MHz
+BenchmarkIterator-4   	  203781	      2939 ns/op
+PASS
+
+shortname: workiva_triey-Iterator
+toolchain: LLGo
+goos: linux
+goarch: amd64
+pkg: github.com/Workiva/go-datastructures/trie/yfast
+cpu: AMD EPYC 7763 64-Core Processor @ 3243.963MHz
+BenchmarkIterator-4   	  203190	      2936 ns/op
+PASS

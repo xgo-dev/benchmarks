@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-29T10:07:15.146602Z",
+  "generatedAt": "2026-08-29T10:50:36.359953Z",
   "runs": [
+    {
+      "key": "10d5f05e64d2c09646ef974c72da9b322e53c2ed",
+      "id": "33245390899",
+      "attempt": 1,
+      "number": 352,
+      "createdAt": "2026-08-29T10:50:33.477012Z",
+      "sourceCommit": "ee7f65f4baa28b902c14533d92255a1e86306378",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "10d5f05e64d2c09646ef974c72da9b322e53c2ed",
+      "llgoMainIndex": 1573,
+      "llgoCommittedAt": "2026-08-29T17:16:30+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33245390899",
+      "path": "runs/10d5f05e64d2c09646ef974c72da9b322e53c2ed/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/10d5f05e64d2c09646ef974c72da9b322e53c2ed",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2429,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2429",
+      "pullRequestTitle": "build: print verbose packages after completion"
+    },
     {
       "key": "58e3aaa3d55abfb69bf006f9f2015f59546dad2c",
       "id": "33243756243",

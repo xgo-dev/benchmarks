@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-29T12:33:39.569177Z",
+  "generatedAt": "2026-08-29T15:21:35.219825Z",
   "runs": [
+    {
+      "key": "c68086197ea4e7843d88a848688ca50a3184fd4d",
+      "id": "33256712547",
+      "attempt": 1,
+      "number": 355,
+      "createdAt": "2026-08-29T15:21:31.813905Z",
+      "sourceCommit": "79700f27988fe01d2300b2229fcf3b37ca49cad4",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "c68086197ea4e7843d88a848688ca50a3184fd4d",
+      "llgoMainIndex": 1576,
+      "llgoCommittedAt": "2026-08-29T22:05:02+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33256712547",
+      "path": "runs/c68086197ea4e7843d88a848688ca50a3184fd4d/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/c68086197ea4e7843d88a848688ca50a3184fd4d",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2440,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2440",
+      "pullRequestTitle": "windows: support independent MSVC and MinGW profiles (R9, depends on goplus/lib#26)"
+    },
     {
       "key": "c6857d23fec4f1e3c55b9d9825b2f4a2d1332ad9",
       "id": "33249410495",

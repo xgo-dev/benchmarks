@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-29T10:50:36.359953Z",
+  "generatedAt": "2026-08-29T11:11:32.108002Z",
   "runs": [
+    {
+      "key": "96fe356d521b6e4905cff8ce016f3354815b12f9",
+      "id": "33246039930",
+      "attempt": 1,
+      "number": 353,
+      "createdAt": "2026-08-29T11:11:29.891545Z",
+      "sourceCommit": "6e4016c1a21c2636a437f047069ba9dc323eea6b",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "96fe356d521b6e4905cff8ce016f3354815b12f9",
+      "llgoMainIndex": 1574,
+      "llgoCommittedAt": "2026-08-29T17:36:44+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33246039930",
+      "path": "runs/96fe356d521b6e4905cff8ce016f3354815b12f9/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/96fe356d521b6e4905cff8ce016f3354815b12f9",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2437,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2437",
+      "pullRequestTitle": "support Go 1.27 generic concrete method; support Go 1.27 in CI and runtime"
+    },
     {
       "key": "10d5f05e64d2c09646ef974c72da9b322e53c2ed",
       "id": "33245390899",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T15:14:45.517779Z",
+  "generatedAt": "2026-08-30T15:25:38.227671Z",
   "runs": [
     {
       "key": "b9e4f8a6624d39b5fbc1628198e951de037df8f7",
@@ -23,6 +23,28 @@
       "pullRequestNumber": 2445,
       "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2445",
       "pullRequestTitle": "lto: refine interface method type IDs"
+    },
+    {
+      "key": "baa8c8b801822e9aab51677abed22e057a94f40a",
+      "id": "33315326533",
+      "attempt": 1,
+      "number": 357,
+      "createdAt": "2026-08-30T15:25:35.915263Z",
+      "sourceCommit": "b6f2f85ad7d3fd6f92f10878a294a3c31aea8f4d",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "baa8c8b801822e9aab51677abed22e057a94f40a",
+      "llgoMainIndex": 1582,
+      "llgoCommittedAt": "2026-08-30T21:41:19+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33315326533",
+      "path": "runs/baa8c8b801822e9aab51677abed22e057a94f40a/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/baa8c8b801822e9aab51677abed22e057a94f40a",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2453,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2453",
+      "pullRequestTitle": "mod: github.com/xgo-dev/plan9asm v0.5.1"
     },
     {
       "key": "c4941f9ae7067ffb9b8f30310285d7cdd0fa9571",

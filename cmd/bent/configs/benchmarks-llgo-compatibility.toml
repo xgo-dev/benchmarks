@@ -1055,7 +1055,7 @@
   Name = "client_go_001"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go"
+  Repo = "k8s.io/client-go/discovery"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1064,7 +1064,7 @@
   Name = "client_go_002"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/discovery"
+  Repo = "k8s.io/client-go/discovery/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1073,7 +1073,7 @@
   Name = "client_go_003"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/discovery/fake"
+  Repo = "k8s.io/client-go/dynamic"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1082,7 +1082,7 @@
   Name = "client_go_004"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/dynamic"
+  Repo = "k8s.io/client-go/dynamic/dynamiclister"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1091,7 +1091,7 @@
   Name = "client_go_005"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/dynamic/dynamiclister"
+  Repo = "k8s.io/client-go/dynamic/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1100,7 +1100,7 @@
   Name = "client_go_006"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/dynamic/fake"
+  Repo = "k8s.io/client-go/features"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1109,7 +1109,7 @@
   Name = "client_go_007"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/features"
+  Repo = "k8s.io/client-go/features/testing"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1118,7 +1118,7 @@
   Name = "client_go_008"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/features/testing"
+  Repo = "k8s.io/client-go/kubernetes/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1127,7 +1127,7 @@
   Name = "client_go_009"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes/fake"
+  Repo = "k8s.io/client-go/kubernetes/typed/core/v1"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1136,7 +1136,7 @@
   Name = "client_go_010"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes/typed/core/v1"
+  Repo = "k8s.io/client-go/kubernetes/typed/core/v1/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1145,7 +1145,7 @@
   Name = "client_go_011"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes/typed/core/v1/fake"
+  Repo = "k8s.io/client-go/kubernetes/typed/events/v1beta1"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1154,7 +1154,7 @@
   Name = "client_go_012"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/kubernetes/typed/events/v1beta1"
+  Repo = "k8s.io/client-go/listers/extensions/v1beta1"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1163,7 +1163,7 @@
   Name = "client_go_013"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/listers/extensions/v1beta1"
+  Repo = "k8s.io/client-go/metadata"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1172,7 +1172,7 @@
   Name = "client_go_014"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/metadata"
+  Repo = "k8s.io/client-go/metadata/fake"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1181,7 +1181,7 @@
   Name = "client_go_015"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/metadata/fake"
+  Repo = "k8s.io/client-go/metadata/metadatalister"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1190,7 +1190,7 @@
   Name = "client_go_016"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/metadata/metadatalister"
+  Repo = "k8s.io/client-go/openapi"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1199,7 +1199,7 @@
   Name = "client_go_017"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/openapi"
+  Repo = "k8s.io/client-go/openapi/openapitest"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1208,7 +1208,7 @@
   Name = "client_go_018"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/openapi/openapitest"
+  Repo = "k8s.io/client-go/openapi3"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1217,7 +1217,7 @@
   Name = "client_go_019"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/openapi3"
+  Repo = "k8s.io/client-go/plugin/pkg/client/auth/oidc"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1226,7 +1226,7 @@
   Name = "client_go_020"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/plugin/pkg/client/auth/oidc"
+  Repo = "k8s.io/client-go/rest"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1235,7 +1235,7 @@
   Name = "client_go_021"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/rest"
+  Repo = "k8s.io/client-go/rest/watch"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1244,7 +1244,7 @@
   Name = "client_go_022"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/rest/watch"
+  Repo = "k8s.io/client-go/restmapper"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1253,7 +1253,7 @@
   Name = "client_go_023"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/restmapper"
+  Repo = "k8s.io/client-go/scale"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1262,7 +1262,7 @@
   Name = "client_go_024"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/scale"
+  Repo = "k8s.io/client-go/testing"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1271,7 +1271,7 @@
   Name = "client_go_025"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/testing"
+  Repo = "k8s.io/client-go/tools/auth"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1280,7 +1280,7 @@
   Name = "client_go_026"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/auth"
+  Repo = "k8s.io/client-go/tools/auth/exec"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1289,7 +1289,7 @@
   Name = "client_go_027"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/auth/exec"
+  Repo = "k8s.io/client-go/tools/cache/synctrack"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1298,7 +1298,7 @@
   Name = "client_go_028"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/cache/synctrack"
+  Repo = "k8s.io/client-go/tools/cache/testing"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1307,7 +1307,7 @@
   Name = "client_go_029"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/cache/testing"
+  Repo = "k8s.io/client-go/tools/clientcmd"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1316,7 +1316,7 @@
   Name = "client_go_030"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/clientcmd"
+  Repo = "k8s.io/client-go/tools/clientcmd/api"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1325,7 +1325,7 @@
   Name = "client_go_031"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/clientcmd/api"
+  Repo = "k8s.io/client-go/tools/clientcmd/api/v1"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1334,7 +1334,7 @@
   Name = "client_go_032"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/clientcmd/api/v1"
+  Repo = "k8s.io/client-go/tools/events"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1343,7 +1343,7 @@
   Name = "client_go_033"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/events"
+  Repo = "k8s.io/client-go/tools/pager"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1352,7 +1352,7 @@
   Name = "client_go_034"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/pager"
+  Repo = "k8s.io/client-go/tools/portforward"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1361,7 +1361,7 @@
   Name = "client_go_035"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/portforward"
+  Repo = "k8s.io/client-go/tools/record/util"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1370,7 +1370,7 @@
   Name = "client_go_036"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/record/util"
+  Repo = "k8s.io/client-go/tools/reference"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1379,7 +1379,7 @@
   Name = "client_go_037"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/reference"
+  Repo = "k8s.io/client-go/tools/remotecommand"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1388,7 +1388,7 @@
   Name = "client_go_038"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/tools/remotecommand"
+  Repo = "k8s.io/client-go/transport"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1397,7 +1397,7 @@
   Name = "client_go_039"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/transport"
+  Repo = "k8s.io/client-go/transport/websocket"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"
@@ -1406,7 +1406,7 @@
   Name = "client_go_040"
   Project = "kubernetes/client-go"
   ProjectURL = "https://github.com/kubernetes/client-go"
-  Repo = "k8s.io/client-go/transport/websocket"
+  Repo = "k8s.io/client-go/util/cert"
   Version = "@v0.36.2"
   Standalone = true
   Tests = "Test"

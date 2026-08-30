@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T15:25:38.227671Z",
+  "generatedAt": "2026-08-30T23:52:25.561429Z",
   "runs": [
+    {
+      "key": "fe4916ed4e53f92234100a445bb0e0fa693db3b3",
+      "id": "33339490626",
+      "attempt": 1,
+      "number": 359,
+      "createdAt": "2026-08-30T23:52:22.107319Z",
+      "sourceCommit": "328cf61ba2211de25d14c9bdc7397e9b6665fd7a",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "fe4916ed4e53f92234100a445bb0e0fa693db3b3",
+      "llgoMainIndex": 1585,
+      "llgoCommittedAt": "2026-08-31T06:33:48+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33339490626",
+      "path": "runs/fe4916ed4e53f92234100a445bb0e0fa693db3b3/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/fe4916ed4e53f92234100a445bb0e0fa693db3b3",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2461,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2461",
+      "pullRequestTitle": "runtime: register foreign C export threads with the collector"
+    },
     {
       "key": "b9e4f8a6624d39b5fbc1628198e951de037df8f7",
       "id": "33315511740",

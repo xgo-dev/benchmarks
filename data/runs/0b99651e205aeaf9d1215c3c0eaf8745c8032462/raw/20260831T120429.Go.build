@@ -1,0 +1,29 @@
+goos: linux
+goarch: amd64
+goarch: amd64
+toolchain: Go
+BenchmarkXGo 1 4464171577 build-real-ns/op 14350234000 build-user-ns/op 1007637000 build-sys-ns/op
+goarch: amd64
+toolchain: Go
+BenchmarkToml 1 727334707 build-real-ns/op 1491584000 build-user-ns/op 163107000 build-sys-ns/op
+goarch: amd64
+toolchain: Go
+BenchmarkUber_zap 1 1640326539 build-real-ns/op 3994963000 build-user-ns/op 335793000 build-sys-ns/op
+goarch: amd64
+toolchain: Go
+BenchmarkEtcdctl 1 7926186817 build-real-ns/op 24880124000 build-user-ns/op 1833788000 build-sys-ns/op
+goarch: amd64
+toolchain: Go
+BenchmarkDustin_humanize 1 304742262 build-real-ns/op 547067000 build-user-ns/op 106136000 build-sys-ns/op
+goarch: amd64
+toolchain: Go
+BenchmarkK8s_workqueue 1 1308179770 build-real-ns/op 3407903000 build-user-ns/op 363613000 build-sys-ns/op
+goarch: amd64
+toolchain: Go
+BenchmarkIXGo 1 10101937922 build-real-ns/op 33110687000 build-user-ns/op 2661753000 build-sys-ns/op
+goarch: amd64
+toolchain: Go
+BenchmarkAws_restjson 1 2505821498 build-real-ns/op 5717651000 build-user-ns/op 567527000 build-sys-ns/op
+goarch: amd64
+toolchain: Go
+BenchmarkGorm_schema 1 1757631268 build-real-ns/op 4375712000 build-user-ns/op 336179000 build-sys-ns/op

@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-30T23:52:25.561429Z",
+  "generatedAt": "2026-08-31T13:06:48.016517Z",
   "runs": [
+    {
+      "key": "0b99651e205aeaf9d1215c3c0eaf8745c8032462",
+      "id": "33388803127",
+      "attempt": 1,
+      "number": 360,
+      "createdAt": "2026-08-31T13:06:44.296953Z",
+      "sourceCommit": "0c4528c8e133ebbf321eaec1c4d869c774876595",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "0b99651e205aeaf9d1215c3c0eaf8745c8032462",
+      "llgoMainIndex": 1592,
+      "llgoCommittedAt": "2026-08-31T19:46:11+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33388803127",
+      "path": "runs/0b99651e205aeaf9d1215c3c0eaf8745c8032462/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/0b99651e205aeaf9d1215c3c0eaf8745c8032462",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2454,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2454",
+      "pullRequestTitle": "windows: qualify ARM64 and 386 MSVC targets (R10)"
+    },
     {
       "key": "fe4916ed4e53f92234100a445bb0e0fa693db3b3",
       "id": "33339490626",

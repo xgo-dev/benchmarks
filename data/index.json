@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T22:29:48.637171Z",
+  "generatedAt": "2026-08-31T23:12:21.350596Z",
   "runs": [
+    {
+      "key": "b200f0f8eff673805f6c789546892e65e5171e54",
+      "id": "33444867198",
+      "attempt": 1,
+      "number": 362,
+      "createdAt": "2026-08-31T23:12:18.015067Z",
+      "sourceCommit": "f54fc5f244ff70ee33e10c49162f4de1a3f49222",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "b200f0f8eff673805f6c789546892e65e5171e54",
+      "llgoMainIndex": 1594,
+      "llgoCommittedAt": "2026-09-01T06:06:13+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33444867198",
+      "path": "runs/b200f0f8eff673805f6c789546892e65e5171e54/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/b200f0f8eff673805f6c789546892e65e5171e54",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2465,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2465",
+      "pullRequestTitle": "windows: qualify debuggers and host shells (R12; depends on #2463)"
+    },
     {
       "key": "3e640cb40465fa62f586bdab45bcd97706d122c7",
       "id": "33440126301",

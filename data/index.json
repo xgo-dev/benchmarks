@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-31T23:12:21.350596Z",
+  "generatedAt": "2026-09-02T01:41:42.798804Z",
   "runs": [
+    {
+      "key": "be3fa9d4943fd8939164e236d52f1fc1ce58d818",
+      "id": "33574458050",
+      "attempt": 1,
+      "number": 363,
+      "createdAt": "2026-09-02T01:41:40.208445Z",
+      "sourceCommit": "b9ad304a675fc733bb7ee901ff1c41fba89d6e4d",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "be3fa9d4943fd8939164e236d52f1fc1ce58d818",
+      "llgoMainIndex": 1597,
+      "llgoCommittedAt": "2026-09-02T08:12:11+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33574458050",
+      "path": "runs/be3fa9d4943fd8939164e236d52f1fc1ce58d818/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/be3fa9d4943fd8939164e236d52f1fc1ce58d818",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2471,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2471",
+      "pullRequestTitle": "[WASM R0] build: define ecosystem ABI profiles"
+    },
     {
       "key": "b200f0f8eff673805f6c789546892e65e5171e54",
       "id": "33444867198",

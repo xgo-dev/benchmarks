@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T01:41:42.798804Z",
+  "generatedAt": "2026-09-02T09:20:11.533619Z",
   "runs": [
+    {
+      "key": "a062b7f87c40ca9d66dc1dd472f1bb17d44e961c",
+      "id": "33601124533",
+      "attempt": 1,
+      "number": 364,
+      "createdAt": "2026-09-02T09:20:07.849061Z",
+      "sourceCommit": "1ea9ce167f5d441c8f16729602d1ce33a0b862ee",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "a062b7f87c40ca9d66dc1dd472f1bb17d44e961c",
+      "llgoMainIndex": 1598,
+      "llgoCommittedAt": "2026-09-02T13:30:10+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33601124533",
+      "path": "runs/a062b7f87c40ca9d66dc1dd472f1bb17d44e961c/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/a062b7f87c40ca9d66dc1dd472f1bb17d44e961c",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2468,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2468",
+      "pullRequestTitle": "build: remove legacy ABI modes"
+    },
     {
       "key": "be3fa9d4943fd8939164e236d52f1fc1ce58d818",
       "id": "33574458050",

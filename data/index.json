@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T09:42:42.087918Z",
+  "generatedAt": "2026-09-03T04:09:05.404132Z",
   "runs": [
+    {
+      "key": "d4a84af85d7e3cd3ba09e462f00e22943a8b9aa0",
+      "id": "33708433349",
+      "attempt": 1,
+      "number": 366,
+      "createdAt": "2026-09-03T04:09:02.826139Z",
+      "sourceCommit": "f482770a6dab20d1324b07873b9ec09d02dc029f",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "d4a84af85d7e3cd3ba09e462f00e22943a8b9aa0",
+      "llgoMainIndex": 1601,
+      "llgoCommittedAt": "2026-09-03T10:38:57+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33708433349",
+      "path": "runs/d4a84af85d7e3cd3ba09e462f00e22943a8b9aa0/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/d4a84af85d7e3cd3ba09e462f00e22943a8b9aa0",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2234,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2234",
+      "pullRequestTitle": "test: share package builds before parallel test runs"
+    },
     {
       "key": "317e876a8ed25c3ebcb01e44f58627a0d745242e",
       "id": "33607613232",

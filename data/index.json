@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T04:09:05.404132Z",
+  "generatedAt": "2026-09-03T12:10:59.117332Z",
   "runs": [
+    {
+      "key": "4084e7c00a5f15644cc51a78ad7925fdeb519baa",
+      "id": "33743018810",
+      "attempt": 1,
+      "number": 368,
+      "createdAt": "2026-09-03T12:10:56.235787Z",
+      "sourceCommit": "9567c7e35b3986fa909b4d1ccb28f48c2a6905ce",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "4084e7c00a5f15644cc51a78ad7925fdeb519baa",
+      "llgoMainIndex": 1603,
+      "llgoCommittedAt": "2026-09-03T18:09:56+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33743018810",
+      "path": "runs/4084e7c00a5f15644cc51a78ad7925fdeb519baa/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/4084e7c00a5f15644cc51a78ad7925fdeb519baa",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2475,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2475",
+      "pullRequestTitle": "build: make LLGoFiles safe across compiler processes"
+    },
     {
       "key": "d4a84af85d7e3cd3ba09e462f00e22943a8b9aa0",
       "id": "33708433349",

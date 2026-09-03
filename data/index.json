@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T12:10:59.117332Z",
+  "generatedAt": "2026-09-03T12:58:29.775238Z",
   "runs": [
+    {
+      "key": "0208d05b150742285abf09c5f6e229ff09b699fb",
+      "id": "33750561174",
+      "attempt": 1,
+      "number": 370,
+      "createdAt": "2026-09-03T12:58:26.338148Z",
+      "sourceCommit": "543ac59fce9b2e6e722e32d7ec0f500f3a637cf6",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "0208d05b150742285abf09c5f6e229ff09b699fb",
+      "llgoMainIndex": 1604,
+      "llgoCommittedAt": "2026-09-03T19:33:00+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33750561174",
+      "path": "runs/0208d05b150742285abf09c5f6e229ff09b699fb/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/0208d05b150742285abf09c5f6e229ff09b699fb",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2472,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2472",
+      "pullRequestTitle": "[WASM R1] runtime: add single-worker blocking and timers"
+    },
     {
       "key": "4084e7c00a5f15644cc51a78ad7925fdeb519baa",
       "id": "33743018810",

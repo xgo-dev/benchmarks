@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-04T08:57:01.278739Z",
+  "generatedAt": "2026-09-04T15:03:04.960576Z",
   "runs": [
+    {
+      "key": "9d30ea112e55af715f2de996bb69bdf931a0c7c7",
+      "id": "33877824052",
+      "attempt": 1,
+      "number": 378,
+      "createdAt": "2026-09-04T15:03:01.079623Z",
+      "sourceCommit": "e114bac15a0665ca99bf7e1322a49f1909b94acc",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "9d30ea112e55af715f2de996bb69bdf931a0c7c7",
+      "llgoMainIndex": 1608,
+      "llgoCommittedAt": "2026-09-04T21:22:37+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33877824052",
+      "path": "runs/9d30ea112e55af715f2de996bb69bdf931a0c7c7/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/9d30ea112e55af715f2de996bb69bdf931a0c7c7",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2496,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2496",
+      "pullRequestTitle": "fix(ssa): preserve nonnull closure environments"
+    },
     {
       "key": "af13f708ad32c7d74ba25ab919e0710d5e8a7316",
       "id": "33844283497",

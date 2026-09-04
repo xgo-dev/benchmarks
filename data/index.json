@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-04T15:03:04.960576Z",
+  "generatedAt": "2026-09-04T20:56:31.271018Z",
   "runs": [
+    {
+      "key": "034c151ecef208e49ec0bdf1143422a0f5c14df4",
+      "id": "33914633179",
+      "attempt": 1,
+      "number": 379,
+      "createdAt": "2026-09-04T20:56:27.787153Z",
+      "sourceCommit": "12353c2f8eef8b618e5b2cd459fee32da3ef4d81",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "034c151ecef208e49ec0bdf1143422a0f5c14df4",
+      "llgoMainIndex": 1609,
+      "llgoCommittedAt": "2026-09-05T04:07:02+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33914633179",
+      "path": "runs/034c151ecef208e49ec0bdf1143422a0f5c14df4/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/034c151ecef208e49ec0bdf1143422a0f5c14df4",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2482,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2482",
+      "pullRequestTitle": "build: pipeline multi-package tests through a DAG"
+    },
     {
       "key": "9d30ea112e55af715f2de996bb69bdf931a0c7c7",
       "id": "33877824052",

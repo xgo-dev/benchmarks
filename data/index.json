@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T12:58:29.775238Z",
+  "generatedAt": "2026-09-04T08:57:01.278739Z",
   "runs": [
+    {
+      "key": "af13f708ad32c7d74ba25ab919e0710d5e8a7316",
+      "id": "33844283497",
+      "attempt": 1,
+      "number": 377,
+      "createdAt": "2026-09-04T08:56:57.477832Z",
+      "sourceCommit": "17310f1995fff6b3c12b562d2fd2be901fe8f475",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "af13f708ad32c7d74ba25ab919e0710d5e8a7316",
+      "llgoMainIndex": 1607,
+      "llgoCommittedAt": "2026-09-04T12:20:52+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33844283497",
+      "path": "runs/af13f708ad32c7d74ba25ab919e0710d5e8a7316/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/af13f708ad32c7d74ba25ab919e0710d5e8a7316",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2489,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2489",
+      "pullRequestTitle": "runtime: preserve closure values in map buckets"
+    },
     {
       "key": "0208d05b150742285abf09c5f6e229ff09b699fb",
       "id": "33750561174",

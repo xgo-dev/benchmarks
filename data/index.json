@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-05T04:11:25.215966Z",
+  "generatedAt": "2026-09-05T14:56:03.380150Z",
   "runs": [
+    {
+      "key": "d0d96f781060d389317cdc20a3e55c5e70bb7a91",
+      "id": "33970033218",
+      "attempt": 1,
+      "number": 382,
+      "createdAt": "2026-09-05T14:56:00.014385Z",
+      "sourceCommit": "6186a4345a4c64ee51adac196fb9065a485eba42",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "d0d96f781060d389317cdc20a3e55c5e70bb7a91",
+      "llgoMainIndex": 1614,
+      "llgoCommittedAt": "2026-09-05T21:49:36+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33970033218",
+      "path": "runs/d0d96f781060d389317cdc20a3e55c5e70bb7a91/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/d0d96f781060d389317cdc20a3e55c5e70bb7a91",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2488,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2488",
+      "pullRequestTitle": "build: honor test -c for named targets"
+    },
     {
       "key": "e657b567a89f29970246b052bf09c22ebe69faf5",
       "id": "33938873418",

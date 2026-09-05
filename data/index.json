@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-05T14:56:03.380150Z",
+  "generatedAt": "2026-09-05T15:01:52.228678Z",
   "runs": [
     {
       "key": "d0d96f781060d389317cdc20a3e55c5e70bb7a91",
@@ -23,6 +23,28 @@
       "pullRequestNumber": 2488,
       "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2488",
       "pullRequestTitle": "build: honor test -c for named targets"
+    },
+    {
+      "key": "e4863137b5b89d3574d6f9dac1fbd33db9773bed",
+      "id": "33970019825",
+      "attempt": 1,
+      "number": 381,
+      "createdAt": "2026-09-05T15:01:48.831953Z",
+      "sourceCommit": "47443fbba82cd5f642546c6e797e412847dea4b6",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "e4863137b5b89d3574d6f9dac1fbd33db9773bed",
+      "llgoMainIndex": 1613,
+      "llgoCommittedAt": "2026-09-05T21:49:06+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "19",
+      "workflowUrl": "https://github.com/xgo-dev/benchmarks/actions/runs/33970019825",
+      "path": "runs/e4863137b5b89d3574d6f9dac1fbd33db9773bed/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/e4863137b5b89d3574d6f9dac1fbd33db9773bed",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2455,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2455",
+      "pullRequestTitle": "cabi: prove parameter storage reuse"
     },
     {
       "key": "e657b567a89f29970246b052bf09c22ebe69faf5",

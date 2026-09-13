@@ -1,7 +1,29 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-12T06:51:33.130235Z",
+  "generatedAt": "2026-09-13T07:12:01.162103Z",
   "runs": [
+    {
+      "key": "52ae044dfa3dd6074dbeeeb932bc29f834b70ce7",
+      "id": "34741297778",
+      "attempt": 1,
+      "number": 420,
+      "createdAt": "2026-09-13T07:11:57.423215Z",
+      "sourceCommit": "12b32bb0c1c434a16a554d38852eb009395e22ef",
+      "ref": "main",
+      "llgoRepository": "xgo-dev/llgo",
+      "llgoCommit": "52ae044dfa3dd6074dbeeeb932bc29f834b70ce7",
+      "llgoMainIndex": 1651,
+      "llgoCommittedAt": "2026-09-13T13:50:24+08:00",
+      "goVersion": "1.26.2",
+      "llvmVersion": "22",
+      "workflowUrl": "https://github.com/llgo-test/benchmarks/actions/runs/34741297778",
+      "path": "runs/52ae044dfa3dd6074dbeeeb932bc29f834b70ce7/results.json",
+      "commitUrl": "https://github.com/xgo-dev/llgo/commit/52ae044dfa3dd6074dbeeeb932bc29f834b70ce7",
+      "pullRequestResolved": true,
+      "pullRequestNumber": 2574,
+      "pullRequestUrl": "https://github.com/xgo-dev/llgo/pull/2574",
+      "pullRequestTitle": "Use native ARM64 ESP tools in Windows LLGo packages"
+    },
     {
       "key": "b07cd12ad1ace793047dcf1c12ece8c01b139565",
       "id": "34674830725",
